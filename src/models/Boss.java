@@ -5,11 +5,24 @@ package models;
  */
 public class Boss extends Person
 {
-    private ManagementDepartment managementDepartment = Company.getCompany().getManagementDepartment();
+    private static Boss bossInstance = new Boss();
+
+//    private ManagementDepartment managementDepartment = ManagementDepartment.getManagementDepartment();
 
     public Boss()
     {
         setFirstName("Boss");
         setLastName("of the Company");
+    }
+
+
+    public static Boss getBoss()
+    {
+        return bossInstance;
+    }
+
+    @Override
+    public String toString() {
+        return "Boss : " + getFirstName() + " " + getLastName();
     }
 }

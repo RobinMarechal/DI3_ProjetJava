@@ -1,41 +1,86 @@
 package models;
 
-import java.util.ArrayList;
-
 /**
  * Created by Robin on 27/03/2017.
  */
 public class Manager extends Employee
 {
-    private ManagementDepartment managementDepartment = Company.getCompany().getManagementDepartment();
-    private ArrayList<StandardDepartment> managedDepartments = new ArrayList<>();
-
-    public Manager() { }
+//    private ManagementDepartment managementDepartment = Company.getCompany().getManagementDepartment();
+    private StandardDepartment managedDepartment;
 
     public Manager(String firstName, String lastName)
     {
         super(firstName, lastName);
+        Company.getCompany().getManagementDepartment().addManager(this);
     }
 
-    public Manager(String firstName, String lastName, StandardDepartment department)
+    public Manager(String firstName, String lastName, int id) throws Exception
     {
-        this(firstName, lastName);
-        this.managedDepartments.add(department);
+        super(firstName, lastName, id);
     }
 
     public boolean isManagerOf(StandardDepartment department)
     {
-        return managedDepartments.contains(department);
+        return this.managedDepartment == department;
     }
 
-    public void manages(StandardDepartment department) {
-        if(!isManagerOf(department))
-            managedDepartments.add(department);
-    }
-
-    public void doesNotManageAnymore(StandardDepartment department)
+    public StandardDepartment getManagedDepartment()
     {
-        if(isManagerOf(department))
-            managedDepartments.remove(department);
+        return managedDepartment;
+    }
+
+    public Manager manages(StandardDepartment department)
+    {
+        if(this.managedDepartment != department)
+        {
+            department.setManager(this);
+        }
+
+        if(department == null && this.managedDepartment != null)
+        {
+            doesNotManageAnymore(this.managedDepartment);
+        }
+
+        this.managedDepartment = department;
+
+
+        return this;
+    }
+
+    public Manager becomesManagerOf(StandardDepartment department)
+    {
+        manages(department);
+        return this;
+    }
+
+    public Manager doesNotManageAnymore(StandardDepartment department)
+    {
+        if(department == null || department == managedDepartment)
+        {
+            return this;
+        }
+
+        department.setManager(null);
+        managedDepartment = null;
+        return this;
+    }
+
+    @Override
+    public Manager fire()
+    {
+        super.fire();
+        Company.getCompany().getManagementDepartment().removeManager(this);
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        String name = "no department";
+        if(managedDepartment != null)
+        {
+            name = managedDepartment.getName();
+        }
+
+        return super.toString() + " (Manager of "+ name +")";
     }
 }

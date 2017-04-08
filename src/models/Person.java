@@ -23,11 +23,18 @@ public abstract class Person {
         return lastName;
     }
 
-    public void setFirstName(String firstName) {
+    public Person setFirstName(String firstName) {
         this.firstName = firstName;
+        return this;
     }
 
-    public void setLastName(String lastName) {
+    public Person setLastName(String lastName) {
         this.lastName = lastName;
+        return this;
+    }
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
     }
 }
