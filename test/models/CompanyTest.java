@@ -1,7 +1,14 @@
 package models;
 
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 import org.junit.Test;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -153,5 +160,32 @@ public class CompanyTest
 
         assertTrue(deps2.contains(dep3));
     }
+
+    @Test
+    public void saving ()
+    {
+        Company.getCompany().save();
+        String filepath = "data\\files\\company.json";
+
+        File f = new File(filepath);
+
+        try
+        {
+            FileReader reader = new FileReader(f);
+            JSONParser parser = new JSONParser();
+            JSONObject obj = (JSONObject) parser.parse(reader);
+
+            assertTrue(obj.get("name").equals(Company.getCompany().getName()));
+        }
+        catch (FileNotFoundException e)
+        {
+            fail("The file '" + filepath + "' sould exist...");
+        }
+        catch (ParseException | IOException e)
+        {
+            fail("Error when parsing the file...");
+        }
+    }
+
 
 }

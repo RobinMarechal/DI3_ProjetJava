@@ -1,75 +1,38 @@
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
+import java.time.temporal.ChronoUnit;
 import java.util.ArrayList;
+import java.util.Scanner;
 
+import jdk.nashorn.api.scripting.JSObject;
 import models.*;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.JSONValue;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.w3c.dom.Document;
+import org.w3c.dom.Element;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.DocumentBuilder;
+import javax.xml.parsers.DocumentBuilderFactory;
+import javax.xml.parsers.ParserConfigurationException;
+
+import org.json.*;
 
 /**
  * Created by Robin on 27/03/2017.
  */
 public class Main
 {
-   public static void main(String args[])
-   {
-       Employee e = new Employee("Jean", "Dupont");
-       System.out.println(e);
-       LocalDate now = LocalDate.now();
-       e.doCheck(now, LocalTime.of(7, 55));
+    public static void main (String args[])
+    {
 
-       e.doCheck(now, LocalTime.of(17, 3));
-
-       System.out.println(CheckInOut.getTotalChecks());
-       System.out.println(e.getCheckInOutAt(now));
-
-       LocalDate tomorrow = now.plusDays(1);
-
-       e.doCheck(tomorrow, LocalTime.of(8, 3));
-
-       System.out.println(e.getCheckInOutAt(tomorrow));
-
-       System.out.println(Company.getCompany());
-       System.out.println(Company.getCompany().getBoss());
-       System.out.println(Boss.getBoss());
-
-       Manager m = new Manager("Man", "Ager");
-       
-       System.out.println(m);
-
-       StandardDepartment dep = new StandardDepartment("Dep1", "test", m);
-       dep.addEmployee(e);
-
-       System.out.println(dep);
-       System.out.println(dep.toStringWithEmployees());
-
-       Employee e2 = new Employee("Emp", "loyé");
-
-       dep.addEmployee(e2);
-       
-       System.out.println(dep.toStringWithEmployees());
-       
-       dep.removeEmployee(e);
-       
-       System.out.println(dep.toStringWithEmployees());
-       
-       System.out.println(dep.getManager());
-
-       System.out.println(Company.getCompany().getManagementDepartment());
-       System.out.println(Company.getCompany().getManagementDepartment().toStringWithManagers());
-       
-       System.out.println("Employees :");
-       System.out.println(Company.getCompany().employeesToString());
-       
-       System.out.println("---------------------------------------");
-
-       Employee emp = Company.addEmployee("Te", "St");
-       Employee emp2 = Company.addEmployee("Test2", "test2");
-       Manager man = Company.addManager("Manag", "er");
-       StandardDepartment stDep = Company.addStandardDepartment("Department", "test")
-               .setManager(man)
-               .addEmployee(emp)
-               .addEmployee(emp2);
-
-       System.out.println(stDep.toStringWithEmployees());
-
-   }
+    }
 }
