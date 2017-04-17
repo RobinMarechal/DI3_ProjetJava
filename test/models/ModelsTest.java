@@ -1,10 +1,8 @@
 package models;
 
 import org.junit.*;
-import org.junit.runners.MethodSorters;
 
 import java.io.File;
-import java.time.LocalDateTime;
 
 import static org.junit.Assert.*;
 
@@ -27,25 +25,23 @@ public class ModelsTest
         baseNbDepartments = Company.getCompany().getNbStandardDepartments();
         baseNbManagers = ManagementDepartment.getManagementDepartment().getNbManagers();
 
-        e1 = Company.addEmployee("e1", "a");
-        e2 = Company.addEmployee("e2", "b");
+        e1 = Company.createEmployee("e1", "a");
+        e2 = Company.createEmployee("e2", "b");
         e3 = new Employee("e3", "c");
         e4 = new Employee("e4", "d");
         e5 = new Employee("e5", "e");
 
-        m1 = Company.addManager("m1", "a");
-        m2 = Company.addManager("m2", "b");
+        m1 = Company.createManager("m1", "a");
+        m2 = Company.createManager("m2", "b");
         m3 = new Manager("m3", "c");
         m4 = new Manager("m4", "d");
 
-        dep1 = Company.addStandardDepartment("dep1", "a");
-        dep2 = Company.addStandardDepartment("dep2", "b", m2);
+        dep1 = Company.createStandardDepartment("dep1", "a");
+        dep2 = Company.createStandardDepartment("dep2", "b", m2);
         dep3 = new StandardDepartment("dep3", "c", m3);
         dep4 = new StandardDepartment("dep4", "d");
 
         dep1.setManager(m1);
-        dep4.setManager(m4);
-
         dep1.addEmployee(e1);
         dep1.addEmployee(e2);
         dep1.addEmployee(e3);
@@ -54,6 +50,7 @@ public class ModelsTest
 
         dep3.addEmployee(e5);
 
+        dep4.setManager(m4);
         /*
             dep1 => manager = m1 ; employees = [m1, e1, e2, e3],
             dep2 => manager = m2 ; employees = [m2, e4],
@@ -96,19 +93,24 @@ public class ModelsTest
         assertEquals(5, dep1.getNbEmployees());
         assertEquals(1, dep3.getNbEmployees()); // 1 because of the manager
 
-        dep1.addEmployee(m3);
+        try
+        {
+            dep1.addEmployee(m3);
+            fail("Manager shouldn't be added successfuly as an employee: he's the manager of another department.");
+        }
+        catch (Exception e)
+        {
+        }
 
-        assertEquals(6, dep1.getNbEmployees());
-        assertEquals(0, dep3.getNbEmployees());
         assertEquals(m1, dep1.getManager());
-        assertNull(dep3.getManager());
-        assertEquals(dep1, m3.getDepartment());
-        assertNull(m3.getManagedDepartment());
+        assertNotNull(dep3.getManager());
+        assertEquals(dep3, m3.getDepartment());
+        assertNotNull(m3.getManagedDepartment());
 
         dep2.setManager(m1);
 
         assertNull(dep1.getManager());
-        assertEquals(5, dep1.getNbEmployees());
+        assertEquals(4, dep1.getNbEmployees());
         assertEquals(3, dep2.getNbEmployees());
         assertEquals(dep2, m1.getDepartment());
         assertEquals(dep2, m1.getManagedDepartment());

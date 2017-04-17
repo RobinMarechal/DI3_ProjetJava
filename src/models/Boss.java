@@ -2,7 +2,6 @@ package models;
 
 import lib.json.JsonSaver;
 import lib.json.Jsonable;
-import org.json.simple.JSONObject;
 
 /**
  * Created by Robin on 27/03/2017. <br/>
@@ -21,7 +20,7 @@ public class Boss extends Person implements Jsonable, JsonSaver
      * No parameter constructor <br/>
      * Define Boss' first-name and last-name.
      */
-    public Boss()
+    private Boss()
     {
         setFirstName("Boss");
         setLastName("of the Company");

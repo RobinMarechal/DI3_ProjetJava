@@ -5,9 +5,6 @@ import lib.json.Jsonable;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -37,9 +34,10 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
 
     /**
      * 3 parameters constructor (with manager)
-     * @param name The department's name
+     *
+     * @param name           The department's name
      * @param activitySector the department's activitySector
-     * @param manager the department's manager
+     * @param manager        the department's manager
      */
     public StandardDepartment (String name, String activitySector, Manager manager)
     {
@@ -47,11 +45,12 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
         setManager(manager);
     }
 
-     /**
+    /**
      * 3 parameters constructor (with id)
-     * @param name The department's name
+     *
+     * @param name           The department's name
      * @param activitySector the department's activitySector
-     * @param id the id to give to this department
+     * @param id             the id to give to this department
      * @throws Exception if there already is a department with this ID
      */
     public StandardDepartment (String name, String activitySector, int id) throws Exception
@@ -74,7 +73,8 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
 
     /**
      * 2 parameters constructor
-     * @param name The department's name
+     *
+     * @param name           The department's name
      * @param activitySector the department's activitySector
      */
     public StandardDepartment (String name, String activitySector)
@@ -87,6 +87,7 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
 
     /**
      * Retrieve the department's ID
+     *
      * @return the department's ID
      */
     public int getId ()
@@ -96,6 +97,7 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
 
     /**
      * The ID of the next created instance of {@link StandardDepartment}
+     *
      * @return the ID of the next instance
      */
     public static int getNextId ()
@@ -105,6 +107,7 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
 
     /**
      * Retrieve the number of employees working in this department
+     *
      * @return the number of employees working in this department
      */
     public int getNbEmployees ()
@@ -114,21 +117,63 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
 
     /**
      * Adds a manager to this department as an employee
+     *
      * @param manager the employee to add
      * @return this
+     * @throws Exception if the manager is managing another department
      */
-    public StandardDepartment addEmployee(Manager manager)
+    public StandardDepartment addEmployee (Manager manager) throws Exception
     {
+        if (manager != null)
+        {
+            // If the manager is managing another department, throw and exception
+            if (manager.getManagedDepartment() != null && manager.getManagedDepartment() != this)
+            {
+                throw new Exception("Impossible to add a manager as an employee if he is the manager of another department.");
+            }
+
+            addEmployee((Employee) manager);
+        }
+
+        return this;
+
+        /*
+        if(manager != null)
+        {
+            // This manager is no longer the manager of his department
+            StandardDepartment oldManagedDep = manager.getManagedDepartment();
+
+            if(oldManagedDep != null)
+            {
+                oldManagedDep.setManager(null);
+            }
+
+            // He no longer manages any department unless it's this department
+            if(manager.getManagedDepartment() != this)
+            {
+                manager.setManagedDepartment(null);
+            }
+
+            // Then we add it as an employee
+            this.addEmployee((Employee) manager);
+        }
+
+        return this;
+        */
+
+        /*
         if(manager != null && !employees.contains(manager))
         {
             manager.setManagedDepartment(null);
         }
 
         return this.addEmployee((Employee) manager);
+        */
     }
 
     /**
      * Adds an employee to this department
+     *
      * @param employee the employee to add
      * @return this
      */
@@ -136,7 +181,17 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
     {
         if (employee != null && !employees.contains(employee))
         {
+            // We add this employee the list
             this.employees.add(employee);
+
+            // The former employee's department does not contain him anymore
+            StandardDepartment oldDep = (StandardDepartment) employee.getDepartment();
+            if (oldDep != null && oldDep != this)
+            {
+                oldDep.removeEmployee(employee);
+            }
+
+            // This employee is now owned by this department
             employee.setDepartment(this);
         }
 
@@ -145,6 +200,7 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
 
     /**
      * Removes an employee from this department
+     *
      * @param employee the employee to remove
      * @return this
      */
@@ -161,11 +217,45 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
 
     /**
      * Sets the manager of this department
+     *
      * @param manager the new manager
      * @return this
      */
     public StandardDepartment setManager (Manager manager)
     {
+        // The old manager is no longer the manager of any department
+        Manager oldManager = this.manager;
+        if (oldManager != null)
+        {
+            oldManager.setManagedDepartment(null);
+        }
+
+        // The new manager is now the manager of this department
+        if (manager != null)
+        {
+            // The new manager is no longer the manager of his old department
+            StandardDepartment oldDepartment = manager.getManagedDepartment();
+
+            if (oldDepartment != null)
+            {
+                oldDepartment.setManager(null);
+            }
+
+            // He becomes the manager of this department
+            manager.setManagedDepartment(this);
+        }
+
+        this.manager = manager;
+
+        // Finally, he joins the department as an employee.
+        this.addEmployee((Employee) manager);
+
+        return this;
+
+
+        //
+
+        /*
         if(this.manager != null)
         {
             this.manager.setManagedDepartment(null);
@@ -185,10 +275,12 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
         }
 
         return this;
+        */
     }
 
     /**
      * Retrieve the manager of the department
+     *
      * @return the manager of the department
      */
     public Manager getManager ()
@@ -201,16 +293,28 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
      */
     public void remove ()
     {
-        for(Employee e : employees)
+        // The employees of this department no longer have a department
+        for (Employee e : employees)
         {
-            e.setDepartmentToNull();
+            e.setDepartment(null);
         }
 
+        // The manager is no longer the manager of this department
+        if (this.manager != null)
+        {
+            this.manager.setManagedDepartment(null);
+        }
+
+        // Then We clear the list
+        employees.clear();
+
+        // Finally we remove this department from the company
         Company.getCompany().removeStandardDepartment(this);
     }
 
     /**
      * Creates a String representing the department and all his employees
+     *
      * @return
      */
     public String toStringWithEmployees ()
@@ -243,6 +347,7 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
 
     /**
      * Creates a String representing the department
+     *
      * @return
      */
     @Override

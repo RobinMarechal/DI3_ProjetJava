@@ -14,7 +14,7 @@ import static org.junit.Assert.*;
  * Created by Robin on 09/04/2017.
  */
 public class CheckInOutTest {
-    Employee e1;
+    private Employee e1;
 
     @Before
     public void setUp() throws Exception {

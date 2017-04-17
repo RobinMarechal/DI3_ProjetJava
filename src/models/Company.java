@@ -5,12 +5,10 @@ import lib.json.JsonSaver;
 import lib.json.Jsonable;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-import org.json.simple.JSONValue;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.time.LocalDate;
@@ -140,13 +138,7 @@ public class Company implements Jsonable, JsonSaver, JsonLoader
      */
     public Company fire (Employee employee)
     {
-        if (employee == null)
-        {
-            return this;
-        }
-
-        employee.fire();
-        employee = null;
+        removeEmployee(employee);
         return this;
     }
 
@@ -158,18 +150,37 @@ public class Company implements Jsonable, JsonSaver, JsonLoader
      */
     public Company fire (Manager manager)
     {
-        if (manager == null)
-        {
-            return this;
-        }
-
-        manager.fire();
-        manager = null;
+        removeEmployee(manager);
         return this;
     }
 
     /**
-     * Removes en employee from the Company
+     * Removes a manager from the Company
+     *
+     * @param manager the manager to remove
+     * @return this
+     */
+    public Company removeManager (Manager manager)
+    {
+        removeEmployee(manager);
+        return this;
+    }
+
+    /**
+     * Removes a manager from the Company
+     *
+     * @param manager the manager the remove
+     * @return this
+     */
+    public Company removeEmployee (Manager manager)
+    {
+        this.managementDepartmentInstance.removeManager(manager);
+
+        return this;
+    }
+
+    /**
+     * Removes an employee from the Company
      *
      * @param employee the employee the remove
      * @return this
@@ -179,7 +190,15 @@ public class Company implements Jsonable, JsonSaver, JsonLoader
         if (employee != null && employees.contains(employee))
         {
             employees.remove(employee);
-            employee.fire();
+
+            // remove this employee from its department
+            // we don't use employee.fire() to avoid the recursion
+            StandardDepartment dep = employee.getDepartment();
+            if (dep != null)
+            {
+                dep.removeEmployee(employee);
+                employee.setDepartment(null);
+            }
         }
 
         return this;
@@ -192,9 +211,23 @@ public class Company implements Jsonable, JsonSaver, JsonLoader
      * @param lastName  the employee's last-name
      * @return the new employee
      */
-    public static Employee addEmployee (String firstName, String lastName)
+    public static Employee createEmployee (String firstName, String lastName)
     {
         return new Employee(firstName, lastName);
+    }
+
+    /**
+     * Creates an {@link Employee} instance and adds it to the Company
+     *
+     * @param firstName the employee's first-name
+     * @param lastName  the employee's last-name
+     * @param id        the id to give to that new employee
+     * @return the new employee
+     * @throws Exception if there already is an employee with this ID
+     */
+    public static Employee createEmployee (String firstName, String lastName, int id) throws Exception
+    {
+        return new Employee(firstName, lastName, id);
     }
 
     /**
@@ -204,9 +237,23 @@ public class Company implements Jsonable, JsonSaver, JsonLoader
      * @param lastName  the manager's last-name
      * @return the new manager
      */
-    public static Manager addManager (String firstName, String lastName)
+    public static Manager createManager (String firstName, String lastName)
     {
         return new Manager(firstName, lastName);
+    }
+
+    /**
+     * Creates a {@link Manager} instance and adds it to the Company
+     *
+     * @param firstName the manager's first-name
+     * @param lastName  the manager's last-name
+     * @param id        the id to give to that new manager
+     * @return the new manager
+     * @throws Exception if there already is an employee with this ID
+     */
+    public static Manager createManager (String firstName, String lastName, int id) throws Exception
+    {
+        return new Manager(firstName, lastName, id);
     }
 
     /**
@@ -296,7 +343,7 @@ public class Company implements Jsonable, JsonSaver, JsonLoader
      * @param activitySector the department's activity sector
      * @return the new standard department
      */
-    public static StandardDepartment addStandardDepartment (String name, String activitySector)
+    public static StandardDepartment createStandardDepartment (String name, String activitySector)
     {
         StandardDepartment department = new StandardDepartment(name, activitySector);
         return department;
@@ -310,9 +357,9 @@ public class Company implements Jsonable, JsonSaver, JsonLoader
      * @param manager        the manager who has to manage this department
      * @return the new standard department
      */
-    public static StandardDepartment addStandardDepartment (String name, String activitySector, Manager manager)
+    public static StandardDepartment createStandardDepartment (String name, String activitySector, Manager manager)
     {
-        StandardDepartment dep = addStandardDepartment(name, activitySector);
+        StandardDepartment dep = createStandardDepartment(name, activitySector);
         dep.setManager(manager);
         return dep;
     }
@@ -500,7 +547,7 @@ public class Company implements Jsonable, JsonSaver, JsonLoader
                 Employee employee;
 
                 // firstName, lastName sector, id
-                if(obj.get("manager") == Boolean.TRUE)
+                if (obj.get("manager") == Boolean.TRUE)
                 {
                     employee = new Manager(firstName, lastName, id);
                 }
@@ -517,13 +564,13 @@ public class Company implements Jsonable, JsonSaver, JsonLoader
                 Object startingHourObject = obj.get("startingHour");
                 Object endingHourObject = obj.get("endingHour");
 
-                if(startingHourObject != null)
+                if (startingHourObject != null)
                 {
                     String startingHourString = startingHourObject == null ? null : startingHourObject.toString();
                     startingHourTime = LocalTime.parse(startingHourString, timeFormatter);
                 }
 
-                if(endingHourObject != null)
+                if (endingHourObject != null)
                 {
                     String endingHourString = startingHourObject == null ? null : startingHourObject.toString();
                     endingHourTime = LocalTime.parse(endingHourString, timeFormatter);
@@ -547,14 +594,14 @@ public class Company implements Jsonable, JsonSaver, JsonLoader
                     LocalDateTime arrivedAtDT = null;
                     LocalDateTime leftAtDT = null;
 
-                    if(arrivedAtObject != null)
+                    if (arrivedAtObject != null)
                     {
                         String arrivedAtStr = arrivedAtObject == null ? null : arrivedAtObject.toString();
                         LocalTime arrivedAt = LocalTime.parse(arrivedAtStr, timeFormatter);
                         arrivedAtDT = LocalDateTime.of(date, arrivedAt);
                         employee.doCheck(arrivedAtDT); // in
 
-                        if(leftAtObject != null)
+                        if (leftAtObject != null)
                         {
                             String leftAtStr = leftAtObject == null ? null : arrivedAtObject.toString();
                             LocalTime leftAt = LocalTime.parse(leftAtStr, timeFormatter);

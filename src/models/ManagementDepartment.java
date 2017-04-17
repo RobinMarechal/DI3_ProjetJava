@@ -2,7 +2,6 @@ package models;
 
 import lib.json.JsonSaver;
 import lib.json.Jsonable;
-import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 
@@ -88,10 +87,22 @@ public class ManagementDepartment extends VirtualDepartment implements JsonSaver
      */
     public ManagementDepartment removeManager(Manager manager)
     {
-        if(manager != null && managers.contains(manager))
+        if(manager != null)
         {
             managers.remove(manager);
+
+            // The department he managed has no longer a manager...
+            StandardDepartment managedDep = manager.getManagedDepartment();
+            if(managedDep != null)
+            {
+                managedDep.setManager(null);
+            }
+
+            // The manager does not manage any department
             manager.setManagedDepartment(null);
+
+            // Finally we remove the manager from the company
+            Company.getCompany().fire((Employee) manager);
         }
 
         return this;

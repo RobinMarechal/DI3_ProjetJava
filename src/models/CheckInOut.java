@@ -3,15 +3,13 @@ package models;
 import lib.json.Jsonable;
 import org.json.simple.JSONObject;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.time.temporal.ChronoUnit;
-import java.util.AbstractCollection;
 import java.util.HashMap;
 import java.util.Map;
-
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.LocalDateTime;
 
 /**
  * Created by Robin on 27/03/2017. <br/>
@@ -59,7 +57,7 @@ public class CheckInOut implements Jsonable
      * @param employee The associated employee
      * @param date     The date of work
      */
-    public CheckInOut (Employee employee, LocalDate date)
+    CheckInOut (Employee employee, LocalDate date)
     {
         this.employee = employee;
         this.date = date;
@@ -72,7 +70,7 @@ public class CheckInOut implements Jsonable
      * @param employee The associated employee
      * @param dateTime The arrival of the employee
      */
-    public CheckInOut (Employee employee, LocalDateTime dateTime)
+    CheckInOut (Employee employee, LocalDateTime dateTime)
     {
         this.employee = employee;
         this.date = LocalDate.from(dateTime);
@@ -245,7 +243,7 @@ public class CheckInOut implements Jsonable
      *
      * @param dateTime the datetime of the check
      */
-    public void check (LocalDateTime dateTime)
+    void check (LocalDateTime dateTime)
     {
         LocalTime time = LocalTime.from(dateTime);
 

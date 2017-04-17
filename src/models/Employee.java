@@ -2,22 +2,16 @@ package models;
 
 import lib.json.JsonSaver;
 import lib.json.Jsonable;
-import org.jetbrains.annotations.NotNull;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
-
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.StringJoiner;
 
 /**
  * Created by Robin on 27/03/2017.
@@ -216,7 +210,7 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
      * Retrieve the department where this employee is working
      * @return the department where this employee is working
      */
-    public VirtualDepartment getDepartment() {
+    public StandardDepartment getDepartment() {
         return department;
     }
 
@@ -224,11 +218,14 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
      * Modify the department of the employee
      * @param department the new department
      * @return this
-     * @warning this method should only be used by StandardDepartment's methods.
+     * @warning this method is unsafe and should only be used by StandardDepartment's methods.
      */
-    @NotNull
     protected Employee setDepartment(StandardDepartment department)
     {
+        this.department = department;
+        return this;
+
+        /*
         if(department == this.department)
         {
             return this;
@@ -242,6 +239,7 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
         this.department = department;
 
         return this;
+        */
     }
 
     /**
@@ -251,11 +249,6 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
     public Employee fire()
     {
         Company.getCompany().removeEmployee(this);
-
-        if(this.department != null)
-        {
-            this.department.removeEmployee(this);
-        }
 
         return this;
     }
@@ -324,13 +317,11 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
     @Override
     public JSONObject toJson ()
     {
-        JSONObject json;
+        JSONObject json = super.toJson();
         JSONArray checksArray = new JSONArray();
 
         String startingHourStr = startingHour == null ? null : startingHour.format(DateTimeFormatter.ofPattern("HH:mm"));
         String endingHourStr = endingHour == null ? null : endingHour.format(DateTimeFormatter.ofPattern("HH:mm"));
-
-        json = super.toJson();
 
         json.put("id", id);
         json.put("startingHour", startingHourStr);

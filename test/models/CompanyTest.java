@@ -9,9 +9,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 import static org.junit.Assert.*;
 
@@ -33,7 +31,7 @@ public class CompanyTest
     public void addEmployee() throws Exception 
 	{
         Company.getCompany().addEmployee(null);
-        e = Company.addEmployee("", "");
+        e = Company.createEmployee("", "");
         assertNotNull(e);
 
     }
@@ -58,7 +56,7 @@ public class CompanyTest
     @Test
     public void addManager() throws Exception 
 	{
-        m = Company.addManager("", "");
+        m = Company.createManager("", "");
         assertNotNull(m);
         assertEquals(Company.getCompany().getManagementDepartment().getNbManagers(), 1);
     }
@@ -91,7 +89,7 @@ public class CompanyTest
     public void addStandardDepartment() throws Exception 
 	{
 	    int n = Company.getCompany().getNbStandardDepartments();
-        StandardDepartment dep = Company.addStandardDepartment("", "");
+        StandardDepartment dep = Company.createStandardDepartment("", "");
 
         assertNotNull(dep);
         assertEquals(1 + n, Company.getCompany().getNbStandardDepartments());
@@ -107,7 +105,7 @@ public class CompanyTest
 	{
 	    int n = Company.getCompany().getNbStandardDepartments();
 
-	    StandardDepartment dep = Company.addStandardDepartment("test", "tests");
+	    StandardDepartment dep = Company.createStandardDepartment("test", "tests");
 
         assertEquals(n + 1, Company.getCompany().getNbStandardDepartments());
 
@@ -121,9 +119,9 @@ public class CompanyTest
     {
 
 
-        Employee e1 = Company.addEmployee("ABCDEF", "ijklmn");
-        Employee e2 = Company.addEmployee("azertyuiop", "qsdfghjklm");
-        Employee e3 = Company.addEmployee("abcdef", "Wxcvbn");
+        Employee e1 = Company.createEmployee("ABCDEF", "ijklmn");
+        Employee e2 = Company.createEmployee("azertyuiop", "qsdfghjklm");
+        Employee e3 = Company.createEmployee("abcdef", "Wxcvbn");
 
         ArrayList<Employee> employees1 = Company.getCompany().searchEmployee("abcdef", "");
         ArrayList<Employee> employees2 = Company.getCompany().searchEmployee("abcdef", "ijklmn");
@@ -143,9 +141,9 @@ public class CompanyTest
     @Test
     public void searchStandardDepartment() throws Exception
     {
-        StandardDepartment dep1 = Company.addStandardDepartment("aaaaaaaaaaaaaaa", "Activity");
-        StandardDepartment dep2 = Company.addStandardDepartment("aaaaaaaaaaaaaaa2", "Sector");
-        StandardDepartment dep3 = Company.addStandardDepartment("test", "aaaaaaaaaaaaaaaa");
+        StandardDepartment dep1 = Company.createStandardDepartment("aaaaaaaaaaaaaaa", "Activity");
+        StandardDepartment dep2 = Company.createStandardDepartment("aaaaaaaaaaaaaaa2", "Sector");
+        StandardDepartment dep3 = Company.createStandardDepartment("test", "aaaaaaaaaaaaaaaa");
 
         ArrayList<StandardDepartment> deps1 = Company.getCompany().searchStandardDepartment("aaaaaaaaaaaaaaa", "");
         ArrayList<StandardDepartment> deps2 = Company.getCompany().searchStandardDepartment("", "aaaaaaaaaaaaaaa");
