@@ -3,11 +3,11 @@ package models;
 import lib.json.Jsonable;
 import org.json.simple.JSONObject;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
+import lib.time.Time;
+import lib.time.Date;
+import lib.time.DateTime;
+
 import java.time.format.DateTimeFormatter;
-import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -21,28 +21,28 @@ public class CheckInOut implements Jsonable
     /**
      * The number pf checks in per day
      */
-    private static HashMap<LocalDate, Integer> totalChecksInPerDay = new HashMap<>();
+    private static HashMap<Date, Integer> totalChecksInPerDay = new HashMap<>();
 
     /**
      * The number of checks out per day
      */
-    private static HashMap<LocalDate, Integer> totalChecksOutPerDay = new HashMap<>();
+    private static HashMap<Date, Integer> totalChecksOutPerDay = new HashMap<>();
 
 
     /**
      * The time (HH:MM) when this employee arrived at work this day
      */
-    private LocalTime arrivedAt;
+    private Time arrivedAt;
 
     /**
      * The time (HH:MM) when this employee left work this day
      */
-    private LocalTime leftAt;
+    private Time leftAt;
 
     /**
      * The date of the working day
      */
-    private LocalDate date;
+    private Date date;
 
     /**
      * The employee who checked-in/out.
@@ -57,7 +57,7 @@ public class CheckInOut implements Jsonable
      * @param employee The associated employee
      * @param date     The date of work
      */
-    CheckInOut (Employee employee, LocalDate date)
+    CheckInOut (Employee employee, Date date)
     {
         this.employee = employee;
         this.date = date;
@@ -70,35 +70,12 @@ public class CheckInOut implements Jsonable
      * @param employee The associated employee
      * @param dateTime The arrival of the employee
      */
-    CheckInOut (Employee employee, LocalDateTime dateTime)
+    CheckInOut (Employee employee, DateTime dateTime)
     {
         this.employee = employee;
-        this.date = LocalDate.from(dateTime);
+        this.date = Date.fromDateTime(dateTime);
 
         check(dateTime);
-    }
-
-    /**
-     * Rounds the check time to the nearest quarter <br/>
-     * Ex: 8h07 => 8h00; 8h08 => 8h15
-     *
-     * @param time The time to round
-     * @return the rounded time
-     */
-    private LocalTime roundTimeToNearestQuarter (LocalTime time)
-    {
-        LocalTime lt = LocalTime.from(time).truncatedTo(ChronoUnit.MINUTES);
-
-        int minutes = lt.getMinute();
-        int minutesInQuarter = minutes % 15;
-        int minutesToAdd = -minutesInQuarter;
-        if (minutesInQuarter > 7)
-        {
-            minutesToAdd += 15;
-        }
-
-        lt = lt.plusMinutes(minutesToAdd);
-        return lt;
     }
 
     /**
@@ -109,7 +86,7 @@ public class CheckInOut implements Jsonable
     public static int getTotalChecksIn ()
     {
         int count = 0;
-        for (Map.Entry<LocalDate, Integer> entry : totalChecksInPerDay.entrySet())
+        for (Map.Entry<Date, Integer> entry : totalChecksInPerDay.entrySet())
         {
             count += entry.getValue();
         }
@@ -124,7 +101,7 @@ public class CheckInOut implements Jsonable
     public static int getTotalChecksOut ()
     {
         int count = 0;
-        for (Map.Entry<LocalDate, Integer> entry : totalChecksOutPerDay.entrySet())
+        for (Map.Entry<Date, Integer> entry : totalChecksOutPerDay.entrySet())
         {
             count += entry.getValue();
         }
@@ -147,7 +124,7 @@ public class CheckInOut implements Jsonable
      * @param date The date
      * @return the number of checks in at the date
      */
-    public static int getTotalChecksInAt (LocalDate date)
+    public static int getTotalChecksInAt (Date date)
     {
         return totalChecksInPerDay.containsKey(date) ? totalChecksInPerDay.get(date) : 0;
     }
@@ -158,7 +135,7 @@ public class CheckInOut implements Jsonable
      * @param date The date
      * @return the number of checks out at the date
      */
-    public static int getTotalChecksOutAt (LocalDate date)
+    public static int getTotalChecksOutAt (Date date)
     {
         return totalChecksOutPerDay.containsKey(date) ? totalChecksOutPerDay.get(date) : 0;
     }
@@ -169,7 +146,7 @@ public class CheckInOut implements Jsonable
      * @param date The date
      * @return the number of checks (in + out) at the date
      */
-    public static int getTotalChecksAt (LocalDate date)
+    public static int getTotalChecksAt (Date date)
     {
         return getTotalChecksInAt(date) + getTotalChecksOutAt(date);
     }
@@ -179,7 +156,7 @@ public class CheckInOut implements Jsonable
      *
      * @return The check-in time of the employee(rounded to the nearest quarter)
      */
-    public LocalTime getArrivedAt ()
+    public Time getArrivedAt ()
     {
         return arrivedAt;
     }
@@ -189,7 +166,7 @@ public class CheckInOut implements Jsonable
      *
      * @param arrivedAt the time of the check-in
      */
-    public void setArrivedAt (LocalTime arrivedAt)
+    public void setArrivedAt (Time arrivedAt)
     {
         checkIn(arrivedAt);
     }
@@ -199,7 +176,7 @@ public class CheckInOut implements Jsonable
      *
      * @return The check-out time of the employee
      */
-    public LocalTime getLeftAt ()
+    public Time getLeftAt ()
     {
         return leftAt;
     }
@@ -209,7 +186,7 @@ public class CheckInOut implements Jsonable
      *
      * @param leftAt the time of the check-out
      */
-    public void setLeftAt (LocalTime leftAt)
+    public void setLeftAt (Time leftAt)
     {
         checkOut(leftAt);
     }
@@ -219,7 +196,7 @@ public class CheckInOut implements Jsonable
      *
      * @return the checks' date
      */
-    public LocalDate getDate ()
+    public Date getDate ()
     {
         return date;
     }
@@ -243,9 +220,9 @@ public class CheckInOut implements Jsonable
      *
      * @param dateTime the datetime of the check
      */
-    void check (LocalDateTime dateTime)
+    void check (DateTime dateTime)
     {
-        LocalTime time = LocalTime.from(dateTime);
+        Time time = Time.fromDateTime(dateTime);
 
         if (arrivedAt == null)
         {
@@ -263,9 +240,9 @@ public class CheckInOut implements Jsonable
      *
      * @param time the check-in time.
      */
-    private void checkIn (LocalTime time)
+    private void checkIn (Time time)
     {
-        arrivedAt = roundTimeToNearestQuarter(time);
+        arrivedAt = time;
 
         // If there already was a checkIn this day, increment the counter
         // otherwise, create the HashMap entry for this date
@@ -285,9 +262,9 @@ public class CheckInOut implements Jsonable
      *
      * @param time the check-out time.
      */
-    private void checkOut (LocalTime time)
+    private void checkOut (Time time)
     {
-        leftAt = roundTimeToNearestQuarter(time);
+        leftAt = time;
 
         if (totalChecksOutPerDay.containsKey(date))
         {
@@ -337,9 +314,9 @@ public class CheckInOut implements Jsonable
     {
         JSONObject checkObject = new JSONObject();
 
-        String dateStr = date.format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        String arrivedAtStr = arrivedAt == null ? null : arrivedAt.format(DateTimeFormatter.ofPattern("HH:mm"));
-        String leftAtStr = leftAt == null ? null : leftAt.format(DateTimeFormatter.ofPattern("HH:mm"));
+        String dateStr = date.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String arrivedAtStr = arrivedAt == null ? null : arrivedAt.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+        String leftAtStr = leftAt == null ? null : leftAt.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"));
 
         checkObject.put("date", dateStr);
         checkObject.put("arrivedAt", arrivedAtStr);

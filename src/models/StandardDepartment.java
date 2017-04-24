@@ -136,39 +136,6 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
         }
 
         return this;
-
-        /*
-        if(manager != null)
-        {
-            // This manager is no longer the manager of his department
-            StandardDepartment oldManagedDep = manager.getManagedDepartment();
-
-            if(oldManagedDep != null)
-            {
-                oldManagedDep.setManager(null);
-            }
-
-            // He no longer manages any department unless it's this department
-            if(manager.getManagedDepartment() != this)
-            {
-                manager.setManagedDepartment(null);
-            }
-
-            // Then we add it as an employee
-            this.addEmployee((Employee) manager);
-        }
-
-        return this;
-        */
-
-        /*
-        if(manager != null && !employees.contains(manager))
-        {
-            manager.setManagedDepartment(null);
-        }
-
-        return this.addEmployee((Employee) manager);
-        */
     }
 
     /**
@@ -251,31 +218,6 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
         this.addEmployee((Employee) manager);
 
         return this;
-
-
-        //
-
-        /*
-        if(this.manager != null)
-        {
-            this.manager.setManagedDepartment(null);
-            this.manager = null;
-        }
-
-        if(manager != null)
-        {
-            manager.setManagedDepartment(this);
-            this.manager = manager;
-
-            if (!employees.contains(manager))
-            {
-                employees.add(manager);
-                manager.setDepartment(this);
-            }
-        }
-
-        return this;
-        */
     }
 
     /**

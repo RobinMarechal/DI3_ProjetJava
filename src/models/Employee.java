@@ -2,13 +2,13 @@ package models;
 
 import lib.json.JsonSaver;
 import lib.json.Jsonable;
+import lib.time.DateTime;
+import lib.time.Time;
+import lib.time.Date;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 import java.io.Serializable;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
@@ -31,12 +31,12 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
     /**
      * The time when the employee must arrive at work every morning
      */
-    private LocalTime startingHour;
+    private Time startingHour;
 
     /**
      * The time when the employee must leave every day
      */
-    private LocalTime endingHour;
+    private Time endingHour;
 
     /**
      * The department where this employee is working
@@ -46,7 +46,7 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
     /**
      * A list of al checks per date.
      */
-    private HashMap<LocalDate, CheckInOut> checksInOut = new HashMap<>();
+    private HashMap<Date, CheckInOut> checksInOut = new HashMap<>();
 
 
     /**
@@ -91,7 +91,7 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
      * Retrieve the starting hour attribute
      * @return the starting hour
      */
-    public LocalTime getStartingHour() {
+    public Time getStartingHour() {
         return startingHour;
     }
 
@@ -100,7 +100,7 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
      * @param startingHour the new day starting hour
      * @return this
      */
-    public Employee setStartingHour(LocalTime startingHour) {
+    public Employee setStartingHour(Time startingHour) {
         this.startingHour = startingHour;
         return this;
     }
@@ -109,7 +109,7 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
      * Retrieve the ending hour attribute
      * @return the ending hour
      */
-    public LocalTime getEndingHour() {
+    public Time getEndingHour() {
         return endingHour;
     }
 
@@ -118,7 +118,7 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
      * @param endingHour the new day ending hour
      * @return this
      */
-    public Employee setEndingHour(LocalTime endingHour) {
+    public Employee setEndingHour(Time endingHour) {
         this.endingHour = endingHour;
         return this;
     }
@@ -128,7 +128,7 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
      * @param date the date
      * @return the time of arrival at this date
      */
-    public LocalTime getArrivingTimeAt(LocalDate date)
+    public Time getArrivingTimeAt(Date date)
     {
         if(!checksInOut.containsKey(date))
             return null;
@@ -141,7 +141,7 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
      * @param date the date
      * @return the time of leaving at this date
      */
-    public LocalTime getLeavingTimeAt(LocalDate date)
+    public Time getLeavingTimeAt(Date date)
     {
         if(!checksInOut.containsKey(date))
             return null;
@@ -163,7 +163,7 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
      * @param date the date
      * @return true: he was late, false otherwise
      */
-    public boolean arrivedLateAt(LocalDate date)
+    public boolean arrivedLateAt(Date date)
     {
         return false;
     }
@@ -173,7 +173,7 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
      * @param date the date
      * @return true: he arrived earlier, false otherwise
      */
-    public boolean arrivedEarlierAt(LocalDate date)
+    public boolean arrivedEarlierAt(Date date)
     {
         return false;
     }
@@ -183,7 +183,7 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
      * @param date the date
      * @return true: he left earlier, false otherwise
      */
-    public boolean leftEarlierAt(LocalDate date)
+    public boolean leftEarlierAt(Date date)
     {
         return false;
     }
@@ -193,7 +193,7 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
      * @param date the date
      * @return true: he left late, false otherwise
      */
-    public boolean leftLateAt(LocalDate date)
+    public boolean leftLateAt(Date date)
     {
         return false;
     }
@@ -258,7 +258,7 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
      * @param date the date of check
      * @return The CheckInOut at this date
      */
-    public CheckInOut getCheckInOutAt(LocalDate date)
+    public CheckInOut getCheckInOutAt(Date date)
     {
         return checksInOut.get(date);
     }
@@ -269,10 +269,10 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
      * @param dateTime The datetime of the check
      * @return this
      */
-    public Employee doCheck(LocalDateTime dateTime)
+    public Employee doCheck (DateTime dateTime)
     {
-        LocalDate date = LocalDate.from(dateTime);
-        LocalTime time = LocalTime.from(dateTime);
+        Date date = Date.fromDateTime(dateTime);
+        Time time = Time.fromDateTime(dateTime);
 
         // If there already is a CheckInOut instance associate with this Employee...
         if(checksInOut.containsKey(date))
@@ -320,15 +320,15 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
         JSONObject json = super.toJson();
         JSONArray checksArray = new JSONArray();
 
-        String startingHourStr = startingHour == null ? null : startingHour.format(DateTimeFormatter.ofPattern("HH:mm"));
-        String endingHourStr = endingHour == null ? null : endingHour.format(DateTimeFormatter.ofPattern("HH:mm"));
+        String startingHourStr = startingHour == null ? null : startingHour.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+        String endingHourStr = endingHour == null ? null : endingHour.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"));
 
         json.put("id", id);
         json.put("startingHour", startingHourStr);
         json.put("endingHour", endingHourStr);
         json.put("manager", false);
 
-        for(Map.Entry<LocalDate, CheckInOut> entry : checksInOut.entrySet())
+        for(Map.Entry<Date, CheckInOut> entry : checksInOut.entrySet())
         {
             CheckInOut check = entry.getValue();
 
