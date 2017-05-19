@@ -1,22 +1,22 @@
 package models;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import lib.json.Jsonable;
 import org.json.simple.JSONObject;
+
+import java.io.Serializable;
 
 /**
  * Created by Robin on 27/03/2017.
  */
-public abstract class VirtualDepartment implements Jsonable
+public abstract class VirtualDepartment implements Jsonable, Serializable
 {
-    /**
-     * The name of the department
-     */
-    private String name;
+    /** The name of the department  */
+    private StringProperty name = new SimpleStringProperty(this, "name", "");
 
-    /**
-     * The activity sector of the department
-     */
-    private String activitySector;
+    /** The activity sector of the department */
+    private StringProperty activitySector = new SimpleStringProperty(this, "activitySector", "");
 
     /**
      * 2 parameters constructor
@@ -24,8 +24,8 @@ public abstract class VirtualDepartment implements Jsonable
      * @param activitySector The activity sector of the department
      */
     public VirtualDepartment(String name, String activitySector) {
-        this.name = name;
-        this.activitySector = activitySector;
+        this.name.setValue(name);
+        this.activitySector.setValue(activitySector);
     }
 
     /**
@@ -34,7 +34,7 @@ public abstract class VirtualDepartment implements Jsonable
      */
     public String getName() {
 
-        return name;
+        return name.getValueSafe();
     }
 
     /**
@@ -43,7 +43,7 @@ public abstract class VirtualDepartment implements Jsonable
      * @return this
      */
     public VirtualDepartment setName(String name) {
-        this.name = name;
+        this.name.setValue(name);
         return this;
     }
 
@@ -52,7 +52,7 @@ public abstract class VirtualDepartment implements Jsonable
      * @return the activity sector of the department
      */
     public String getActivitySector() {
-        return activitySector;
+        return activitySector.getValueSafe();
     }
 
 
@@ -62,8 +62,18 @@ public abstract class VirtualDepartment implements Jsonable
      * @return this
      */
     public VirtualDepartment setActivitySector(String activitySector) {
-        this.activitySector = activitySector;
+        this.activitySector.setValue(activitySector);
         return this;
+    }
+
+    public StringProperty nameProperty ()
+    {
+        return name;
+    }
+
+    public StringProperty activitySectorProperty ()
+    {
+        return activitySector;
     }
 
     /**
@@ -73,8 +83,8 @@ public abstract class VirtualDepartment implements Jsonable
     @Override
     public String toString() {
         return "VirtualDepartment{" +
-                "name='" + name + '\'' +
-                ", activitySector='" + activitySector + '\'' +
+                "name='" + name.getValueSafe() + '\'' +
+                ", activitySector='" + activitySector.getValueSafe() + '\'' +
                 '}';
 
 
@@ -90,8 +100,8 @@ public abstract class VirtualDepartment implements Jsonable
     {
         JSONObject json = new JSONObject();
 
-        json.put("name", this.name);
-        json.put("activitySector", this.activitySector);
+        json.put("name", this.name.getValueSafe());
+        json.put("activitySector", this.activitySector.getValueSafe());
 
         return json;
     }

@@ -1,9 +1,9 @@
 package models;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lib.json.JsonSaver;
 import lib.json.Jsonable;
-
-import java.util.ArrayList;
 
 /**
  * Created by Robin on 27/03/2017.
@@ -16,10 +16,8 @@ public class ManagementDepartment extends VirtualDepartment implements JsonSaver
     private static ManagementDepartment managementDepartmentInstance = new ManagementDepartment();
 
 
-    /**
-     * A list of all Company's managers
-     */
-    private ArrayList<Manager> managers = new ArrayList<>();
+    /** A list of all Company's managers */
+    private ObservableList<Manager> managers = FXCollections.observableArrayList();
 
 
     /**
@@ -63,6 +61,16 @@ public class ManagementDepartment extends VirtualDepartment implements JsonSaver
         }
 
         return null;
+    }
+
+    /**
+     * Get a list containing all the managers
+     *
+     * @return a list containing all managers
+     */
+    public ObservableList<Manager> getManagersList()
+    {
+        return  this.managers;
     }
 
     /**
@@ -141,5 +149,10 @@ public class ManagementDepartment extends VirtualDepartment implements JsonSaver
         String path = "data\\files";
         String filename = "management_department.json";
         saveToFile(path, filename, toJson());
+    }
+
+    public void loadFromDeserialization (ManagementDepartment instance)
+    {
+        this.managementDepartmentInstance = instance;
     }
 }

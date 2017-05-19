@@ -1,5 +1,7 @@
 package models;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import lib.json.JsonSaver;
 import lib.json.Jsonable;
 import org.json.simple.JSONObject;
@@ -12,7 +14,7 @@ public class Manager extends Employee implements Jsonable, JsonSaver
     /**
      * The {@link StandardDepartment} instance managed by this manager
      */
-    private StandardDepartment managedDepartment;
+    private ObjectProperty<StandardDepartment> managedDepartment = new SimpleObjectProperty<>(this, "managedDepartment", null);
 
     /**
      * 2 parameters constructor <br/>
@@ -52,7 +54,7 @@ public class Manager extends Employee implements Jsonable, JsonSaver
      */
     public boolean isManagerOf (StandardDepartment department)
     {
-        return this.managedDepartment == department;
+        return this.managedDepartment.getValue() == department;
     }
 
     /**
@@ -62,7 +64,7 @@ public class Manager extends Employee implements Jsonable, JsonSaver
      */
     public StandardDepartment getManagedDepartment ()
     {
-        return managedDepartment;
+        return managedDepartment.getValue();
     }
 
     /**
@@ -87,9 +89,9 @@ public class Manager extends Employee implements Jsonable, JsonSaver
     public String toString ()
     {
         String name = "no department";
-        if (managedDepartment != null)
+        if (managedDepartment.getValue() != null)
         {
-            name = managedDepartment.getName();
+            name = managedDepartment.getValue().getName();
         }
 
         return super.toString() + " (Manager of " + name + ")";
@@ -118,7 +120,7 @@ public class Manager extends Employee implements Jsonable, JsonSaver
      */
     protected Manager setManagedDepartment (StandardDepartment managedDepartment)
     {
-        this.managedDepartment = managedDepartment;
+        this.managedDepartment.setValue(managedDepartment);
         return this;
         /*
         if(this.managedDepartment != null)

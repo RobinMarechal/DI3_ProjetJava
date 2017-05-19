@@ -1,14 +1,14 @@
 package models;
 
+import lib.time.SimpleDate;
+import lib.time.SimpleDateTime;
+import lib.time.SimpleTime;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
-
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNull;
 
 /**
  * Created by Robin on 09/04/2017.
@@ -29,11 +29,11 @@ public class CheckInOutTest {
     @Test
     public void basics() throws Exception
     {
-        LocalDate date = LocalDate.of(2017, 4, 9);
+        SimpleDate date = SimpleDate.of(2017, 4, 9);
 
-        int atDate = CheckInOut.getTotalChecksAt(date);
-        int inAtDate = CheckInOut.getTotalChecksInAt(date);
-        int total = CheckInOut.getTotalChecks();
+        int atDate = Company.getCompany().getTotalChecksAt(date);
+        int inAtDate = Company.getCompany().getTotalChecksInAt(date);
+        int total = Company.getCompany().getTotalChecks();
 
         CheckInOut c = new CheckInOut(e1, date);
 
@@ -43,11 +43,11 @@ public class CheckInOutTest {
         assertNull(c.getArrivedAt());
         assertNull(c.getLeftAt());
 
-        LocalTime in = LocalTime.of(8, 5, 30);
-        LocalTime out = LocalTime.of(16, 56, 30);
+        SimpleTime in = SimpleTime.of(8, 5, 30);
+        SimpleTime out = SimpleTime.of(16, 56, 30);
 
-        LocalTime roundedIn = LocalTime.of(8, 0);
-        LocalTime roundedOut = LocalTime.of(17, 0);
+        SimpleTime roundedIn = SimpleTime.of(8, 0);
+        SimpleTime roundedOut = SimpleTime.of(17, 0);
 
         c.setArrivedAt(in);
         c.setLeftAt(out);
@@ -55,57 +55,57 @@ public class CheckInOutTest {
         assertEquals(roundedIn, c.getArrivedAt());
         assertEquals(roundedOut, c.getLeftAt());
 
-        assertEquals(atDate + 2, CheckInOut.getTotalChecksAt(date));
-        assertEquals(inAtDate + 1, CheckInOut.getTotalChecksInAt(date));
-        assertEquals(total + 2, CheckInOut.getTotalChecks());
+        assertEquals(atDate + 2, Company.getCompany().getTotalChecksAt(date));
+        assertEquals(inAtDate + 1, Company.getCompany().getTotalChecksInAt(date));
+        assertEquals(total + 2, Company.getCompany().getTotalChecks());
     }
 
     @Test
     public void employeeTest()  throws Exception
     {
         //2017-04-10 7h55 & 2017-04-10 17h09
-        LocalDateTime arrivingDT1 = LocalDateTime.of(2017, 4, 10, 7, 55);
-        LocalDateTime leavingDT1 = LocalDateTime.of(2017, 4, 10, 17, 9);
+        SimpleDateTime arrivingDT1 = SimpleDateTime.of(2017, 4, 10, 7, 55);
+        SimpleDateTime leavingDT1 = SimpleDateTime.of(2017, 4, 10, 17, 9);
 
         //2017-04-11 8h23 & 2017-04-11 16h35
-        LocalDateTime arrivingDT2 = LocalDateTime.of(2017, 4, 11, 8, 23);
-        LocalDateTime leavingDT2 = LocalDateTime.of(2017, 4, 11, 16, 35);
+        SimpleDateTime arrivingDT2 = SimpleDateTime.of(2017, 4, 11, 8, 23);
+        SimpleDateTime leavingDT2 = SimpleDateTime.of(2017, 4, 11, 16, 35);
 
 
-        LocalDate today = LocalDate.from(arrivingDT1);
-        LocalDate tomorrow = today.plusDays(1);
+        SimpleDate today = SimpleDate.fromSimpleDateTime(arrivingDT1);
+        SimpleDate tomorrow = today.plusDays(1);
 
-        e1.setStartingHour(LocalTime.of(8, 0));
-        e1.setEndingHour(LocalTime.of(17, 0));
+        e1.setStartingHour(SimpleTime.of(8, 0));
+        e1.setEndingHour(SimpleTime.of(17, 0));
 
         // First Day
 
         e1.doCheck(arrivingDT1);
 
-        assertEquals(LocalTime.of(8, 0), e1.getArrivingTimeAt(today));
+        assertEquals(SimpleTime.of(8, 0), e1.getArrivingTimeAt(today));
         assertNull(e1.getArrivingTimeAt(tomorrow));
         assertNull(e1.getLeavingTimeAt(today));
 
         e1.doCheck(leavingDT1);
 
-        assertEquals(LocalTime.of(8, 0), e1.getArrivingTimeAt(today));
-        assertEquals(LocalTime.of(17, 15), e1.getLeavingTimeAt(today));
+        assertEquals(SimpleTime.of(8, 0), e1.getArrivingTimeAt(today));
+        assertEquals(SimpleTime.of(17, 15), e1.getLeavingTimeAt(today));
 
         // Second Day
 
         e1.doCheck(arrivingDT2);
 
-        assertEquals(LocalTime.of(8, 30), e1.getArrivingTimeAt(tomorrow));
+        assertEquals(SimpleTime.of(8, 30), e1.getArrivingTimeAt(tomorrow));
         assertNull(e1.getLeavingTimeAt(tomorrow));
 
         e1.doCheck(leavingDT2);
 
-        assertEquals(LocalTime.of(16, 30), e1.getLeavingTimeAt(tomorrow));
+        assertEquals(SimpleTime.of(16, 30), e1.getLeavingTimeAt(tomorrow));
 
-        e1.doCheck(LocalDateTime.of(2017, 4, 10, 18, 0));
+        e1.doCheck(SimpleDateTime.of(2017, 4, 10, 18, 0));
 
-        assertEquals("Third check of the day shouldn't do anything.", LocalTime.of(8, 30), e1.getArrivingTimeAt(tomorrow));
-        assertEquals("Third check of the day shouldn't do anything.", LocalTime.of(16, 30), e1.getLeavingTimeAt(tomorrow));
+        assertEquals("Third check of the day shouldn't do anything.", SimpleTime.of(8, 30), e1.getArrivingTimeAt(tomorrow));
+        assertEquals("Third check of the day shouldn't do anything.", SimpleTime.of(16, 30), e1.getLeavingTimeAt(tomorrow));
 
         // Late or on time?
 

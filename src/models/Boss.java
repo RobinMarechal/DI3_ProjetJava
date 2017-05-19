@@ -3,12 +3,14 @@ package models;
 import lib.json.JsonSaver;
 import lib.json.Jsonable;
 
+import java.io.Serializable;
+
 /**
  * Created by Robin on 27/03/2017. <br/>
  * Represents the Boss of the Company. <br/>
  * Singleton
  */
-public class Boss extends Person implements Jsonable, JsonSaver
+public class Boss extends Person implements Jsonable, JsonSaver, Serializable
 {
     /**
      * Instance of Boss class
@@ -57,5 +59,10 @@ public class Boss extends Person implements Jsonable, JsonSaver
         String path = "data\\files";
         String filename = "boss.json";
         saveToFile(path, filename, toJson());
+    }
+
+    public void loadFromDeserialization (Boss instance)
+    {
+        bossInstance = instance;
     }
 }

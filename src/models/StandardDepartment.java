@@ -1,36 +1,32 @@
 package models;
 
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleObjectProperty;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import lib.json.JsonSaver;
 import lib.json.Jsonable;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
-
-import java.util.ArrayList;
 
 /**
  * Created by Robin on 27/03/2017.
  */
 public class StandardDepartment extends VirtualDepartment implements Jsonable, JsonSaver
 {
-    /**
-     * The ID of the next instance
-     */
+    /** The ID of the next instance */
     private static int NEXT_ID = 1;
 
-    /**
-     * The ID of the instance
-     */
-    private int id;
+    /**  The ID of the instance */
+    private IntegerProperty id = new SimpleIntegerProperty(this, "id", -1);
 
-    /**
-     * A list of all employees working in this department
-     */
-    private ArrayList<Employee> employees = new ArrayList<>();
+    /** A list of all employees working in this department  */
+    private ObservableList<Employee> employees = FXCollections.observableArrayList();
 
-    /**
-     * The manager of the department
-     */
-    private Manager manager;
+    /** The manager of the department */
+    private ObjectProperty<Manager> manager = new SimpleObjectProperty<>(this, "manager");
 
     /**
      * 3 parameters constructor (with manager)
@@ -67,7 +63,7 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
             StandardDepartment.NEXT_ID = id + 1;
         }
 
-        this.id = id;
+        this.id.setValue(id);
         Company.getCompany().addStandardDepartment(this);
     }
 
@@ -80,7 +76,7 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
     public StandardDepartment (String name, String activitySector)
     {
         super(name, activitySector);
-        id = StandardDepartment.NEXT_ID;
+        id.setValue(StandardDepartment.NEXT_ID);
         StandardDepartment.NEXT_ID++;
         Company.getCompany().addStandardDepartment(this);
     }
@@ -92,7 +88,7 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
      */
     public int getId ()
     {
-        return id;
+        return id.getValue();
     }
 
     /**
@@ -103,6 +99,11 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
     public static int getNextId ()
     {
         return StandardDepartment.NEXT_ID;
+    }
+
+    static void setNextId(int nextId)
+    {
+        NEXT_ID = nextId;
     }
 
     /**
@@ -166,6 +167,22 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
     }
 
     /**
+     * Adds an employee to this department
+     *
+     * @param employees the employees to add
+     * @return this
+     */
+    public StandardDepartment addAllEmployees (Employee... employees)
+    {
+        for (Employee e : employees)
+        {
+            addEmployee(e);
+        }
+
+        return this;
+    }
+
+    /**
      * Removes an employee from this department
      *
      * @param employee the employee to remove
@@ -191,7 +208,7 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
     public StandardDepartment setManager (Manager manager)
     {
         // The old manager is no longer the manager of any department
-        Manager oldManager = this.manager;
+        Manager oldManager = this.manager.getValue();
         if (oldManager != null)
         {
             oldManager.setManagedDepartment(null);
@@ -212,7 +229,7 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
             manager.setManagedDepartment(this);
         }
 
-        this.manager = manager;
+        this.manager.setValue(manager);
 
         // Finally, he joins the department as an employee.
         this.addEmployee((Employee) manager);
@@ -226,6 +243,26 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
      * @return the manager of the department
      */
     public Manager getManager ()
+    {
+        return manager.getValue();
+    }
+
+    public IntegerProperty idProperty ()
+    {
+        return id;
+    }
+
+    public ObservableList<Employee> getEmployees ()
+    {
+        return employees;
+    }
+
+    public void setEmployees (ObservableList<Employee> employees)
+    {
+        this.employees = employees;
+    }
+
+    public ObjectProperty<Manager> managerProperty ()
     {
         return manager;
     }
@@ -244,7 +281,7 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
         // The manager is no longer the manager of this department
         if (this.manager != null)
         {
-            this.manager.setManagedDepartment(null);
+            this.manager.getValue().setManagedDepartment(null);
         }
 
         // Then We clear the list
@@ -295,7 +332,8 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
     @Override
     public String toString ()
     {
-        return "StandardDepartment : " + getName() + ", activity sector : " + getActivitySector() + ", managed by : " + manager;
+//        return "StandardDepartment : " + getName() + ", activity sector : " + getActivitySector() + ", managed by : " + manager;
+        return getName();
     }
 
     /**
@@ -305,7 +343,7 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
     public void save ()
     {
         String path = "data\\files\\departments";
-        String filename = id + ".json";
+        String filename = id.getValue() + ".json";
         saveToFile(path, filename, toJson());
     }
 
@@ -320,8 +358,8 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
         JSONObject json = super.toJson();
         JSONArray employeesArray = new JSONArray();
 
-        json.put("id", id);
-        json.put("manager", manager == null ? null : manager.getId());
+        json.put("id", id.getValue());
+        json.put("manager", manager.getValue() == null ? null : manager.getValue().getId());
 
         for (Employee e : employees)
         {
@@ -331,5 +369,15 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
         json.put("employees", employeesArray);
 
         return json;
+    }
+
+    /**
+     * Get the list of the employees working in this department
+     *
+     * @return the list of the employees working int this department
+     */
+    public ObservableList<Employee> getEmployeesList ()
+    {
+        return employees;
     }
 }

@@ -120,8 +120,29 @@
         <default-constraints vsize-policy="6" hsize-policy="0" anchor="0" fill="2" />
       </item>
     </group>
+    <group name="Custom Components">
+      <item class="lib.views.CustomComponents.Button" icon="/com/intellij/uiDesigner/icons/button.png" removable="true" auto-create-binding="false" can-attach-label="false">
+        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="0" />
+      </item>
+      <item class="lib.views.CustomComponents.Scene" icon="/com/intellij/uiDesigner/icons/panel.png" removable="true" auto-create-binding="true" can-attach-label="true" is-container="true">
+        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="0" />
+      </item>
+      <item class="lib.views.CustomComponents.TabPane" icon="/com/intellij/uiDesigner/icons/tabbedPane.png" removable="true" auto-create-binding="false" can-attach-label="false" is-container="true">
+        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="0" />
+      </item>
+      <item class="lib.views.CustomComponents.Table" icon="/com/intellij/uiDesigner/icons/table.png" removable="true" auto-create-binding="false" can-attach-label="false">
+        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="0" />
+      </item>
+      <item class="lib.views.CustomComponents.TextField" icon="/com/intellij/uiDesigner/icons/textField.png" removable="true" auto-create-binding="false" can-attach-label="false">
+        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="0" />
+      </item>
+      <item class="lib.views.CustomComponents.Label" icon="/com/intellij/uiDesigner/icons/label.png" removable="true" auto-create-binding="false" can-attach-label="false">
+        <default-constraints vsize-policy="3" hsize-policy="3" anchor="0" fill="0" />
+      </item>
+    </group>
   </component>
   <component name="uidesigner-configuration">
+    <option name="INSTRUMENT_CLASSES" value="false" />
     <option name="DEFAULT_LAYOUT_MANAGER" value="BorderLayout" />
   </component>
 </project>

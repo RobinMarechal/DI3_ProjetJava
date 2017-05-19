@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1200.0" styleClass="bg-transparent" stylesheets="@../../../lib/views/style.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Label styleClass="h2" text="Liste des employés :" textAlignment="CENTER" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets bottom="10.0" top="10.0" />
+         </BorderPane.margin></Label>
+   </top>
+   <center>
+        <TableView fx:id="table" prefWidth="1200.0" BorderPane.alignment="CENTER" styleClass="employees-list">
+            <columns>
+                <TableColumn fx:id="columnId" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="60.0" resizable="false" text="ID" />
+                <TableColumn fx:id="columnFirstName" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="165" resizable="false" text="Prénom" />
+                <TableColumn fx:id="columnLastName" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="165.0" resizable="false" text="Nom" />
+                <TableColumn fx:id="columnDepartment" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="225.0" resizable="false" text="Départment" />
+                <TableColumn fx:id="columnManager" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="90.0" resizable="false" text="Manager" />
+                <TableColumn fx:id="columnStartingHour" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="115.0" resizable="false" text="Embauche à" />
+                <TableColumn fx:id="columnEndingHour" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="115.0" resizable="false" text="Débauche à" />
+                <TableColumn fx:id="columnArrivedAt" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="125.0" resizable="false" text="Heure d'arrivée" />
+                <TableColumn fx:id="columnLeftAt" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="125.0" resizable="false" text="Heure de départ" />
+                <!--<TableColumn fx:id="columnOvertime" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="160.0" resizable="false" text="Heures supplémentaires" />-->
+            </columns>
+        </TableView>
+   </center>
+</BorderPane>

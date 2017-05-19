@@ -1,0 +1,20 @@
+{
+  "firstName": "Benoit",
+  "lastName": "6%",
+  "startingHour": "08:00",
+  "endingHour": "17:00",
+  "checks": [
+    {
+      "date": "2017-04-26",
+      "leftAt": "16:45",
+      "arrivedAt": "08:00"
+    },
+    {
+      "date": "2017-04-25",
+      "leftAt": "17:00",
+      "arrivedAt": "08:15"
+    }
+  ],
+  "manager": false,
+  "id": 1
+}

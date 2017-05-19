@@ -1,252 +1,277 @@
 package models;
 
+import javafx.beans.property.*;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import lib.exceptions.ModelException;
+import lib.exceptions.codes.EmployeeCodes;
 import lib.json.JsonSaver;
 import lib.json.Jsonable;
-import lib.time.DateTime;
-import lib.time.Time;
-import lib.time.Date;
+import lib.time.SimpleDate;
+import lib.time.SimpleDateTime;
+import lib.time.SimpleTime;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
-import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Optional;
 
 /**
  * Created by Robin on 27/03/2017.
  */
-public class Employee extends Person implements JsonSaver, Jsonable, Serializable
+public class Employee extends Person implements JsonSaver, Jsonable
 {
-    /**
-     * Next employee ID
-     */
+
+    /** Next employee ID */
     private static int NEXT_ID = 1;
 
-    /**
-     * Employee's ID
-     */
-    private int id;
 
-    /**
-     * The time when the employee must arrive at work every morning
-     */
-    private Time startingHour;
+    /** Employee's ID */
+    private IntegerProperty id = new SimpleIntegerProperty(this, "id", -1);
 
-    /**
-     * The time when the employee must leave every day
-     */
-    private Time endingHour;
+    /** The time when the employee must arrive at work every morning */
+    private ObjectProperty<SimpleTime> startingHour = new SimpleObjectProperty<>(this, "startingHour", SimpleTime.of(8, 0));
 
-    /**
-     * The department where this employee is working
-     */
-    private StandardDepartment department;
+    /** The time when the employee must leave every day */
+    private ObjectProperty<SimpleTime> endingHour = new SimpleObjectProperty<>(this, "endingHour", SimpleTime.of(17, 0));
 
-    /**
-     * A list of al checks per date.
-     */
-    private HashMap<Date, CheckInOut> checksInOut = new HashMap<>();
+    /** The additional time in minutes (can be < 0) */
+    private double overtime = 0;
+
+    /** The department where this employee is working */
+    private ObjectProperty<StandardDepartment> department = new SimpleObjectProperty<>(this, "department", null);
+
+    /** A list of al checks per date. */
+    private ObservableList<CheckInOut> checksInOut = FXCollections.observableArrayList();
 
 
     /**
      * 2 parameters constructor
+     *
      * @param firstName the first-name of the employee
-     * @param lastName the last-name of the employee
+     * @param lastName  the last-name of the employee
      */
-    public Employee(String firstName, String lastName)
+    public Employee (String firstName, String lastName)
     {
         super(firstName, lastName);
-        this.id = Employee.NEXT_ID;
+        this.id.setValue(Employee.NEXT_ID);
         Employee.NEXT_ID++;
         Company.getCompany().addEmployee(this);
     }
 
     /**
      * 2 parameters constructor
+     *
      * @param firstName the first-name of the employee
-     * @param lastName the last-name of the employee
-     * @param id the ID to give to this employee
+     * @param lastName  the last-name of the employee
+     * @param id        the ID to give to this employee
      * @throws Exception if there already is an employee with this ID
      */
-    public Employee(String firstName, String lastName, int id) throws Exception
+    public Employee (String firstName, String lastName, int id) throws Exception
     {
         super(firstName, lastName);
 
-        if(Company.getCompany().getEmployee(id) != null)
+        if (Company.getCompany().getEmployee(id) != null)
         {
             throw new Exception("There already is an employee with id " + id + ".");
         }
 
-        if(id > Employee.NEXT_ID)
+        if (id > Employee.NEXT_ID)
         {
             Employee.NEXT_ID = id + 1;
         }
 
-        this.id = id;
+        this.id.setValue(id);
         Company.getCompany().addEmployee(this);
     }
 
     /**
-     * Retrieve the starting hour attribute
-     * @return the starting hour
-     */
-    public Time getStartingHour() {
-        return startingHour;
-    }
-
-    /**
-     * Modify the starting hour
-     * @param startingHour the new day starting hour
-     * @return this
-     */
-    public Employee setStartingHour(Time startingHour) {
-        this.startingHour = startingHour;
-        return this;
-    }
-
-    /**
      * Retrieve the ending hour attribute
+     *
      * @return the ending hour
      */
-    public Time getEndingHour() {
+    public SimpleTime getEndingHour ()
+    {
+        return endingHour.getValue();
+    }
+
+    public ObjectProperty<SimpleTime> endingHourProperty ()
+    {
         return endingHour;
     }
 
     /**
      * Modify the ending hour
+     *
      * @param endingHour the new day ending hour
      * @return this
      */
-    public Employee setEndingHour(Time endingHour) {
-        this.endingHour = endingHour;
+    public Employee setEndingHour (SimpleTime endingHour)
+    {
+        this.endingHour.setValue(endingHour);
         return this;
+    }
+
+
+    public SimpleTime getStartingHour ()
+    {
+        return startingHour.getValue();
+    }
+
+    public ObjectProperty<SimpleTime> startingHourProperty ()
+    {
+        return startingHour;
+    }
+
+    public void setStartingHour (SimpleTime startingHour)
+    {
+        this.startingHour.setValue(startingHour);
     }
 
     /**
      * Retrieve the time when the employee arrived at work at a specific date
+     *
      * @param date the date
      * @return the time of arrival at this date
      */
-    public Time getArrivingTimeAt(Date date)
+    public SimpleTime getArrivingTimeAt (SimpleDate date)
     {
-        if(!checksInOut.containsKey(date))
-            return null;
+        CheckInOut o = getCheckInOutAt(date);
+        return o == null ? null : o.getArrivedAt();
+    }
 
-        return checksInOut.get(date).getArrivedAt();
+    public ObjectProperty<SimpleTime> arrivingTimePropertyAt (SimpleDate date)
+    {
+        CheckInOut o = getCheckInOutAt(date);
+        return o == null ? null : o.arrivedAtProperty();
     }
 
     /**
      * Retrieve the time when the employee left work at a specific date
+     *
      * @param date the date
      * @return the time of leaving at this date
      */
-    public Time getLeavingTimeAt(Date date)
+    public SimpleTime getLeavingTimeAt (SimpleDate date)
     {
-        if(!checksInOut.containsKey(date))
-            return null;
+        CheckInOut o = getCheckInOutAt(date);
+        return o == null ? null : o.getLeftAt();
+    }
 
-        return checksInOut.get(date).getLeftAt();
+    public ObjectProperty<SimpleTime> leavingTimePropertyAt (SimpleDate date)
+    {
+        CheckInOut o = getCheckInOutAt(date);
+        return o == null ? null : o.leftAtProperty();
+    }
+
+    public IntegerProperty idProperty ()
+    {
+        return id;
     }
 
     /**
      * Retrieve the ID of the employee
+     *
      * @return the ID of the employee
      */
-    public int getId()
+    public int getId ()
     {
-        return this.id;
+        return this.id.getValue();
     }
 
     /**
-     * To know if the employee arrived late at a specific date
-     * @param date the date
-     * @return true: he was late, false otherwise
+     * Get the total overtime of this employee <br/>
+     * For example, if he came at 8:15 on one day while he's supposed to start at 8:00, <code>overtime = -15</code>.
+     *
+     * @return
      */
-    public boolean arrivedLateAt(Date date)
+    public double getOvertime ()
     {
-        return false;
+        return overtime;
+    }
+
+    public void setOvertime (double overtime)
+    {
+        this.overtime = overtime;
     }
 
     /**
-     * To know if the employee arrived earlier at a specific date
-     * @param date the date
-     * @return true: he arrived earlier, false otherwise
+     * Verify if the employee arrived on time, late or early at work at a specific date
+     *
+     * @param date the date of work
+     * @return 0 : the employee was on time <br> 1 : the employee came early <br> -1 : the employee came late
      */
-    public boolean arrivedEarlierAt(Date date)
+    public int verifyCheckInTimeAt (SimpleDate date) throws ModelException
     {
-        return false;
+        final SimpleTime checkInTime = getArrivingTimeAt(date);
+        if(checkInTime == null)
+            throw new ModelException(EmployeeCodes.NO_CHECK_IN_THIS_DATE);
+        return startingHour.getValue().compareTo(checkInTime);
     }
 
     /**
-     * To know if the employee left earlier at a specific date
-     * @param date the date
-     * @return true: he left earlier, false otherwise
+     * Verify if the employee left on time, late or early at a specific date
+     *
+     * @param date the date of work
+     * @return 0 : the employee left on time <br> -1 : the employee left early <br> 1 : the employee left late
      */
-    public boolean leftEarlierAt(Date date)
+    public int verifyCheckOutTimeAt (SimpleDate date) throws ModelException
     {
-        return false;
-    }
-
-    /**
-     * To know if the employee left late at a specific date
-     * @param date the date
-     * @return true: he left late, false otherwise
-     */
-    public boolean leftLateAt(Date date)
-    {
-        return false;
+        final SimpleTime checkOutTime = getLeavingTimeAt(date);
+        if(checkOutTime == null)
+            throw new ModelException(EmployeeCodes.NO_CHECK_OUT_THIS_DATE);
+        return -endingHour.getValue().compareTo(checkOutTime);
     }
 
     /**
      * Retrieve the automatic next employee ID
+     *
      * @return the next employee ID
      */
-    public static int getNextId() {
+    public static int getNextId ()
+    {
         return NEXT_ID;
+    }
+
+    static void setNextId (int nextId)
+    {
+        NEXT_ID = nextId;
     }
 
     /**
      * Retrieve the department where this employee is working
+     *
      * @return the department where this employee is working
      */
-    public StandardDepartment getDepartment() {
-        return department;
+    public StandardDepartment getDepartment ()
+    {
+        return department.getValue();
     }
 
     /**
      * Modify the department of the employee
+     *
      * @param department the new department
      * @return this
      * @warning this method is unsafe and should only be used by StandardDepartment's methods.
      */
-    protected Employee setDepartment(StandardDepartment department)
+    protected Employee setDepartment (StandardDepartment department)
     {
-        this.department = department;
+        this.department.setValue(department);
         return this;
+    }
 
-        /*
-        if(department == this.department)
-        {
-            return this;
-        }
-
-        if(this.department != null)
-        {
-            this.department.removeEmployee(this);
-        }
-
-        this.department = department;
-
-        return this;
-        */
+    public ObjectProperty<StandardDepartment> departmentProperty ()
+    {
+        return department;
     }
 
     /**
      * Fire an employee
+     *
      * @return this
      */
-    public Employee fire()
+    public Employee fire ()
     {
         Company.getCompany().removeEmployee(this);
 
@@ -255,47 +280,73 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
 
     /**
      * Retrieve the CheckInOut of a specific date
+     *
      * @param date the date of check
      * @return The CheckInOut at this date
      */
-    public CheckInOut getCheckInOutAt(Date date)
+    public CheckInOut getCheckInOutAt (SimpleDate date)
     {
-        return checksInOut.get(date);
+        final Optional<CheckInOut> streamFound = checksInOut.stream().filter(c -> c.getDate().equals(date)).findFirst();
+        if (!streamFound.isPresent())
+        {
+            return null;
+        }
+
+        return streamFound.get();
     }
 
+    public ObservableList<CheckInOut> getChecksInOut ()
+    {
+        return checksInOut;
+    }
 
     /**
      * Makes the employee perform a check in or out.
+     *
      * @param dateTime The datetime of the check
      * @return this
      */
-    public Employee doCheck (DateTime dateTime)
+    public synchronized Employee doCheck (SimpleDateTime dateTime)
     {
-        Date date = Date.fromDateTime(dateTime);
-        Time time = Time.fromDateTime(dateTime);
+        SimpleDate date = SimpleDate.fromSimpleDateTime(dateTime);
+        SimpleTime time = SimpleTime.fromSimpleDateTime(dateTime);
+
+        CheckInOut check = getCheckInOutAt(date);
+        int index = checksInOut.indexOf(check);
 
         // If there already is a CheckInOut instance associate with this Employee...
-        if(checksInOut.containsKey(date))
+        if (check != null) // Check in
         {
-            // We simply modify it
-            checksInOut.get(date).check(dateTime);
+            check.check(dateTime);
+            checksInOut.set(index, check);
+            //            checksInOut.
+
+            // We update the additional working time
+            overtime -= ((double) endingHour.getValue().diff(time)) / 60.0;
         }
-        else
+        else // Check out
         {
             // otherwise we create one
-            checksInOut.put(date, new CheckInOut(this, dateTime));
+            check = new CheckInOut(this, date);
+            check.check(dateTime);
+            checksInOut.add(check);
+
+            // We update the additional working time
+            overtime += ((double) startingHour.getValue().diff(time)) / 60.0;
         }
+
         return this;
     }
 
     /**
      * Creates a String from an Employee's instance
+     *
      * @return
      */
     @Override
-    public String toString()
+    public String toString ()
     {
-        return "Employee n°" + id + " : " + super.toString();
+        return "Employee n°" + id.getValue() + " : " + super.toString();
     }
 
     /**
@@ -305,7 +356,7 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
     public void save ()
     {
         String path = "data\\files\\employees";
-        String filename = this.id + ".json";
+        String filename = this.id.getValue() + ".json";
         saveToFile(path, filename, toJson());
     }
 
@@ -320,31 +371,25 @@ public class Employee extends Person implements JsonSaver, Jsonable, Serializabl
         JSONObject json = super.toJson();
         JSONArray checksArray = new JSONArray();
 
-        String startingHourStr = startingHour == null ? null : startingHour.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"));
-        String endingHourStr = endingHour == null ? null : endingHour.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+        String startingHourStr = startingHour.getValue() == null ? null : startingHour.getValue()
+                                                                                      .toLocalTime()
+                                                                                      .format(DateTimeFormatter.ofPattern("HH:mm"));
+        String endingHourStr = endingHour.getValue() == null ? null : endingHour.getValue()
+                                                                                .toLocalTime()
+                                                                                .format(DateTimeFormatter.ofPattern("HH:mm"));
 
-        json.put("id", id);
+        json.put("id", id.getValue());
         json.put("startingHour", startingHourStr);
         json.put("endingHour", endingHourStr);
         json.put("manager", false);
 
-        for(Map.Entry<Date, CheckInOut> entry : checksInOut.entrySet())
+        for (CheckInOut check : checksInOut)
         {
-            CheckInOut check = entry.getValue();
-
             checksArray.add(check.toJson());
         }
 
         json.put("checks", checksArray);
 
         return json;
-    }
-
-    /**
-     * Set the department of this employee to null.
-     */
-    protected void setDepartmentToNull ()
-    {
-        this.department = null;
     }
 }

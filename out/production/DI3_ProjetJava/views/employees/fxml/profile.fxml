@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.VBox?>
+
+
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1200.0"
+            styleClass="bg-transparent" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
+    <top>
+        <Label styleClass="h2" text="Profil d'un employé" textAlignment="CENTER" BorderPane.alignment="CENTER">
+            <BorderPane.margin>
+                <Insets bottom="20.0" top="20.0"/>
+            </BorderPane.margin>
+        </Label>
+    </top>
+    <left>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="640.0" BorderPane.alignment="CENTER">
+            <Label fx:id="labFirstName" styleClass="h2" text="Prenom" textAlignment="CENTER"/>
+            <Label fx:id="labLastName" styleClass="h2" text="Nom" textAlignment="CENTER"/>
+            <Label fx:id="labId" styleClass="p" text="ID : id" textAlignment="CENTER"/>
+            <Label fx:id="labDep" styleClass="p" text="Département : Non département (manager)" textAlignment="CENTER"/>
+            <Label fx:id="labStartsAt" layoutX="315.0" layoutY="340.0" styleClass="p" text="Embauche à : HH:mm" textAlignment="CENTER"/>
+            <Label fx:id="labEndsAt" layoutX="315.0" layoutY="349.0" styleClass="p" text="Débauche à : HH:mm" textAlignment="CENTER"/>
+            <Label fx:id="labAddMin" layoutX="274.0" layoutY="357.0" styleClass="p" text="Heures supplémentaires : X.YH"
+                   textAlignment="CENTER"/>
+            <Separator orientation="VERTICAL" prefHeight="193.0" prefWidth="154.0" visible="false"/>
+        </VBox>
+    </left>
+    <center>
+        <VBox BorderPane.alignment="CENTER">
+            <children>
+                <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308"
+                       styleClass="h3" text="Historique des checks-in et des checks-out :" textAlignment="CENTER"/>
+                <TableView fx:id="table" maxHeight="1.7976931348623157E308" prefWidth="560.0" VBox.vgrow="ALWAYS">
+                    <columns>
+                        <TableColumn fx:id="colDate" maxWidth="Infinity" minWidth="-1.0" prefWidth="180.0"
+                                     resizable="false" text="Date"/>
+                        <TableColumn fx:id="colArrivedAt" maxWidth="1.7976931348623157E308" minWidth="-1.0"
+                                     prefWidth="180.0" resizable="false" text="Heure d'arrivée"/>
+                        <TableColumn fx:id="colLeftAt" maxWidth="1.7976931348623157E308" minWidth="-1.0"
+                                     prefWidth="180.0" resizable="false" text="Heure de départ"/>
+                    </columns>
+                </TableView>
+            </children>
+        </VBox>
+    </center>
+</BorderPane>

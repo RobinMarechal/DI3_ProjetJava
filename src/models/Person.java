@@ -1,77 +1,58 @@
 package models;
 
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
 import lib.json.Jsonable;
 import org.json.simple.JSONObject;
+
+import java.io.Serializable;
 
 /**
  * Created by Robin on 27/03/2017.
  */
-public abstract class Person implements Jsonable
+public abstract class Person implements Jsonable, Serializable
 {
+    private StringProperty firstName = new SimpleStringProperty(this, "firstName", "");
+    private StringProperty lastName = new SimpleStringProperty(this, "lastName", "");
 
-    /**
-     * The first-name of the Person
-     */
-    private String firstName;
 
-    /**
-     * The last-name of the Person
-     */
-    private String lastName;
-
-    /**
-     * Basic constructor
-     */
     public Person(){}
 
-
-    /**
-     * 2 parameters constructor
-     * @param firstName the first-name of the person
-     * @param lastName the last-name of the person
-     */
-    public Person(String firstName, String lastName)
+    public Person (String firstName, String lastName)
     {
-        this.firstName = firstName;
-        this.lastName = lastName;
+        this.firstName.setValue(firstName);
+        this.lastName.setValue(lastName);
     }
 
-    /**
-     * Retrieve the first-name of the person
-     * @return the first-name
-     */
-    public String getFirstName() {
+    public String getFirstName ()
+    {
+        return firstName.get();
+    }
+
+    public StringProperty firstNameProperty ()
+    {
         return firstName;
     }
 
-
-    /**
-     * Retrieve the last-name of the person
-     * @return the last-name
-     */
-    public String getLastName() {
-        return lastName;
-    }
-
-
-    /**
-     * Modifies the first-name of the person
-     * @param firstName the new first-name
-     * @return this
-     */
-    public Person setFirstName(String firstName) {
-        this.firstName = firstName;
+    public Person setFirstName (String firstName)
+    {
+        this.firstName.set(firstName);
         return this;
     }
 
+    public String getLastName ()
+    {
+        return lastName.get();
+    }
 
-    /**
-     * Modifies the last-name of the person
-     * @param lastName the new last-name
-     * @return this
-     */
-    public Person setLastName(String lastName) {
-        this.lastName = lastName;
+    public StringProperty lastNameProperty ()
+    {
+        return lastName;
+    }
+
+    public Person setLastName (String lastName)
+    {
+        this.lastName.set(lastName);
         return this;
     }
 
@@ -81,7 +62,7 @@ public abstract class Person implements Jsonable
      */
     @Override
     public String toString() {
-        return firstName + " " + lastName;
+        return firstName.getValueSafe() + " " + lastName.getValueSafe();
     }
 
 
@@ -95,11 +76,9 @@ public abstract class Person implements Jsonable
     {
         JSONObject json = new JSONObject();
 
-        json.put("firstName", firstName);
-        json.put("lastName", lastName);
+        json.put("firstName", firstName.getValueSafe());
+        json.put("lastName", lastName.getValueSafe());
 
         return json;
     }
-
-
 }

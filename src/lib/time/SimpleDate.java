@@ -2,6 +2,7 @@ package lib.time;
 
 import org.jetbrains.annotations.Contract;
 
+import java.io.Serializable;
 import java.time.DayOfWeek;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
@@ -10,16 +11,18 @@ import java.time.Month;
 /**
  * Created by Robin on 24/04/2017.
  */
-public class Date
+public class SimpleDate implements Serializable, Comparable<SimpleDate>
 {
-    private DateTime dateTime;
+    public static final SimpleDate TODAY = SimpleDate.fromSimpleDateTime(SimpleDateTime.NOW);
 
-    private Date (LocalDate localDate)
+    private SimpleDateTime dateTime;
+
+    private SimpleDate (LocalDate localDate)
     {
-        this.dateTime = DateTime.fromLocalDate(localDate);
+        this.dateTime = SimpleDateTime.fromLocalDate(localDate);
     }
 
-    private Date(Date date)
+    private SimpleDate (SimpleDate date)
     {
         this.dateTime = date.dateTime;
     }
@@ -34,40 +37,40 @@ public class Date
         return LocalDate.from(dateTime.toLocalDateTime());
     }
 
-    public DateTime toDateTime ()
+    public SimpleDateTime toSimpleDateTime ()
     {
         return dateTime;
     }
 
-    public Date plusDays (int days)
+    public SimpleDate plusDays (int days)
     {
-        dateTime = dateTime.plusDays(days);
-        return this;
+        SimpleDateTime sdt = dateTime.plusDays(days);
+        return sdt.toSimpleDate();
     }
 
-    public Date plusMonths (int months)
+    public SimpleDate plusMonths (int months)
     {
-        dateTime = dateTime.plusMonths(months);
-        return this;
+        SimpleDateTime sdt = dateTime.plusMonths(months);
+        return sdt.toSimpleDate();
     }
 
-    public Date plusYears (int years)
+    public SimpleDate plusYears (int years)
     {
-        dateTime = dateTime.plusYears(years);
-        return this;
+        SimpleDateTime sdt = dateTime.plusYears(years);
+        return sdt.toSimpleDate();
     }
 
-    public Date minusDays (int days)
+    public SimpleDate minusDays (int days)
     {
         return this.plusDays(-days);
     }
 
-    public Date minusMonths (int months)
+    public SimpleDate minusMonths (int months)
     {
         return this.plusMonths(-months);
     }
 
-    public Date minusYears (int years)
+    public SimpleDate minusYears (int years)
     {
         return this.plusYears(-years);
     }
@@ -102,28 +105,53 @@ public class Date
         return dateTime.getYear();
     }
 
+    /**
+     * Get the number of days seperating both dates
+     * @param date
+     * @return the number of days separating both dates. <0 : the object is before the param.
+     */
+    public long diff(SimpleDate date)
+    {
+        return (int) (toLocalDate().toEpochDay() - date.toLocalDate().toEpochDay());
+    }
+
+
+    /**
+     * Tests if the object date is after the param date
+     * @param date
+     * @return the number of days separating both dates. -1 : the object is before the param.
+     */
+    public int compareTo(SimpleDate date) throws NullPointerException
+    {
+        if(date == null)
+            throw new NullPointerException();
+
+        long diff = diff(date);
+        return (int) (diff == 0 ? 0 : diff / Math.abs(diff));
+    }
+
     // Statics
 
     @Contract ("_, _, _ -> !null")
-    public static Date of (int years, int month, int days)
+    public static SimpleDate of (int years, int month, int days)
     {
-        return new Date(LocalDate.of(years, month, days));
+        return new SimpleDate(LocalDate.of(years, month, days));
     }
 
     @Contract ("_ -> !null")
-    public static Date fromLocalDate (LocalDate localDate)
+    public static SimpleDate fromLocalDate (LocalDate localDate)
     {
-        return new Date(localDate);
+        return new SimpleDate(localDate);
     }
 
     @Contract ("_ -> !null")
-    public static Date fromLocalDateTime (LocalDateTime localDateTime)
+    public static SimpleDate fromLocalDateTime (LocalDateTime localDateTime)
     {
         return fromLocalDate(localDateTime.toLocalDate());
     }
 
     @Contract ("_ -> !null")
-    public static Date fromDateTime (DateTime dateTime)
+    public static SimpleDate fromSimpleDateTime (SimpleDateTime dateTime)
     {
         return of(dateTime.getYear(), dateTime.getMonthValue(), dateTime.getDayOfMonth());
     }
@@ -140,7 +168,7 @@ public class Date
             return false;
         }
 
-        Date date = (Date) o;
+        SimpleDate date = (SimpleDate) o;
 
         return dateTime != null ? dateTime.equals(date.dateTime) : date.dateTime == null;
 

@@ -1,53 +1,44 @@
 package models;
 
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import lib.json.Jsonable;
+import lib.time.SimpleDate;
+import lib.time.SimpleDateTime;
+import lib.time.SimpleTime;
 import org.json.simple.JSONObject;
 
-import lib.time.Time;
-import lib.time.Date;
-import lib.time.DateTime;
-
+import java.io.Serializable;
 import java.time.format.DateTimeFormatter;
-import java.util.HashMap;
-import java.util.Map;
+
+import static lib.time.SimpleDate.fromSimpleDateTime;
 
 /**
  * Created by Robin on 27/03/2017. <br/>
  * This class represents a check-in AND a check-out for a day, for an employee (including managers). <br/>
  * An instance of CheckInOut represents both check-in and check-out.
  */
-public class CheckInOut implements Jsonable
+public class CheckInOut implements Jsonable, Serializable
 {
-    /**
-     * The number pf checks in per day
-     */
-    private static HashMap<Date, Integer> totalChecksInPerDay = new HashMap<>();
-
-    /**
-     * The number of checks out per day
-     */
-    private static HashMap<Date, Integer> totalChecksOutPerDay = new HashMap<>();
-
-
     /**
      * The time (HH:MM) when this employee arrived at work this day
      */
-    private Time arrivedAt;
+    private ObjectProperty<SimpleTime> arrivedAt = new SimpleObjectProperty<>(this, "arrivedAt");
 
     /**
      * The time (HH:MM) when this employee left work this day
      */
-    private Time leftAt;
+    private ObjectProperty<SimpleTime> leftAt = new SimpleObjectProperty<>(this, "leftAt");
 
     /**
      * The date of the working day
      */
-    private Date date;
+    private ObjectProperty<SimpleDate> date = new SimpleObjectProperty<>(this, "date");
 
     /**
      * The employee who checked-in/out.
      */
-    private Employee employee;
+    private final Employee employee;
 
 
     /**
@@ -57,98 +48,25 @@ public class CheckInOut implements Jsonable
      * @param employee The associated employee
      * @param date     The date of work
      */
-    CheckInOut (Employee employee, Date date)
+    CheckInOut (Employee employee, SimpleDate date)
     {
         this.employee = employee;
-        this.date = date;
+        this.date.setValue(date);
     }
 
     /**
-     * Constructor with DateTime <br/>
+     * Constructor with SimpleDateTime <br/>
      * Sets-up the object and register the check-in
      *
      * @param employee The associated employee
      * @param dateTime The arrival of the employee
      */
-    CheckInOut (Employee employee, DateTime dateTime)
+    CheckInOut (Employee employee, SimpleDateTime dateTime)
     {
         this.employee = employee;
-        this.date = Date.fromDateTime(dateTime);
+        this.date.setValue(fromSimpleDateTime(dateTime));
 
         check(dateTime);
-    }
-
-    /**
-     * Retrieve the total number of checks in.
-     *
-     * @return the number of checks in
-     */
-    public static int getTotalChecksIn ()
-    {
-        int count = 0;
-        for (Map.Entry<Date, Integer> entry : totalChecksInPerDay.entrySet())
-        {
-            count += entry.getValue();
-        }
-        return count;
-    }
-
-    /**
-     * Retrieve the total number of checks out.
-     *
-     * @return the number of checks out
-     */
-    public static int getTotalChecksOut ()
-    {
-        int count = 0;
-        for (Map.Entry<Date, Integer> entry : totalChecksOutPerDay.entrySet())
-        {
-            count += entry.getValue();
-        }
-        return count;
-    }
-
-    /**
-     * Retrieve the total number of checks (in and out)
-     *
-     * @return the number of checks
-     */
-    public static int getTotalChecks ()
-    {
-        return getTotalChecksIn() + getTotalChecksOut();
-    }
-
-    /**
-     * Retrieve the number of checks in at a specific date
-     *
-     * @param date The date
-     * @return the number of checks in at the date
-     */
-    public static int getTotalChecksInAt (Date date)
-    {
-        return totalChecksInPerDay.containsKey(date) ? totalChecksInPerDay.get(date) : 0;
-    }
-
-    /**
-     * Retrieve the number of checks out at a specific date
-     *
-     * @param date The date
-     * @return the number of checks out at the date
-     */
-    public static int getTotalChecksOutAt (Date date)
-    {
-        return totalChecksOutPerDay.containsKey(date) ? totalChecksOutPerDay.get(date) : 0;
-    }
-
-    /**
-     * Retrieve the number of checks (in + out) at a specific date
-     *
-     * @param date The date
-     * @return the number of checks (in + out) at the date
-     */
-    public static int getTotalChecksAt (Date date)
-    {
-        return getTotalChecksInAt(date) + getTotalChecksOutAt(date);
     }
 
     /**
@@ -156,7 +74,12 @@ public class CheckInOut implements Jsonable
      *
      * @return The check-in time of the employee(rounded to the nearest quarter)
      */
-    public Time getArrivedAt ()
+    public SimpleTime getArrivedAt ()
+    {
+        return arrivedAt.getValue();
+    }
+
+    public ObjectProperty<SimpleTime> arrivedAtProperty ()
     {
         return arrivedAt;
     }
@@ -166,7 +89,7 @@ public class CheckInOut implements Jsonable
      *
      * @param arrivedAt the time of the check-in
      */
-    public void setArrivedAt (Time arrivedAt)
+    public void setArrivedAt (SimpleTime arrivedAt)
     {
         checkIn(arrivedAt);
     }
@@ -176,7 +99,12 @@ public class CheckInOut implements Jsonable
      *
      * @return The check-out time of the employee
      */
-    public Time getLeftAt ()
+    public SimpleTime getLeftAt ()
+    {
+        return leftAt.getValue();
+    }
+
+    public ObjectProperty<SimpleTime> leftAtProperty ()
     {
         return leftAt;
     }
@@ -186,7 +114,7 @@ public class CheckInOut implements Jsonable
      *
      * @param leftAt the time of the check-out
      */
-    public void setLeftAt (Time leftAt)
+    public void setLeftAt (SimpleTime leftAt)
     {
         checkOut(leftAt);
     }
@@ -196,9 +124,19 @@ public class CheckInOut implements Jsonable
      *
      * @return the checks' date
      */
-    public Date getDate ()
+    public SimpleDate getDate ()
+    {
+        return date.getValue();
+    }
+
+    public ObjectProperty<SimpleDate> dateProperty ()
     {
         return date;
+    }
+
+    public void setDate (SimpleDate date)
+    {
+        this.date.set(date);
     }
 
     /**
@@ -220,15 +158,15 @@ public class CheckInOut implements Jsonable
      *
      * @param dateTime the datetime of the check
      */
-    void check (DateTime dateTime)
+    void check (SimpleDateTime dateTime)
     {
-        Time time = Time.fromDateTime(dateTime);
+        SimpleTime time = SimpleTime.fromSimpleDateTime(dateTime);
 
-        if (arrivedAt == null)
+        if (arrivedAt.getValue() == null)
         {
             checkIn(time);
         }
-        else if (leftAt == null)
+        else if (leftAt.getValue() == null)
         {
             checkOut(time);
         }
@@ -240,20 +178,11 @@ public class CheckInOut implements Jsonable
      *
      * @param time the check-in time.
      */
-    private void checkIn (Time time)
+    private void checkIn (SimpleTime time)
     {
-        arrivedAt = time;
+        arrivedAt.setValue(time);
 
-        // If there already was a checkIn this day, increment the counter
-        // otherwise, create the HashMap entry for this date
-        if (totalChecksInPerDay.containsKey(date))
-        {
-            totalChecksInPerDay.put(date, totalChecksInPerDay.get(date) + 1);
-        }
-        else
-        {
-            totalChecksInPerDay.put(date, 1);
-        }
+        Company.getCompany().incrementChecksInAt(date.getValue());
     }
 
     /**
@@ -262,18 +191,11 @@ public class CheckInOut implements Jsonable
      *
      * @param time the check-out time.
      */
-    private void checkOut (Time time)
+    private void checkOut (SimpleTime time)
     {
-        leftAt = time;
+        leftAt.setValue(time);
 
-        if (totalChecksOutPerDay.containsKey(date))
-        {
-            totalChecksOutPerDay.put(date, totalChecksOutPerDay.get(date) + 1);
-        }
-        else
-        {
-            totalChecksOutPerDay.put(date, 1);
-        }
+        Company.getCompany().incrementChecksOutAt(date.getValue());
     }
 
     /**
@@ -285,21 +207,21 @@ public class CheckInOut implements Jsonable
     public String toString ()
     {
         String str = employee.toString();
-        if (arrivedAt != null)
+        if (arrivedAt.getValue() != null)
         {
-            str += " arrived at " + arrivedAt;
+            str += " arrived at " + arrivedAt.getValue();
         }
-        if (leftAt != null)
+        if (leftAt.getValue() != null)
         {
-            if (arrivedAt != null)
+            if (arrivedAt.getValue() != null)
             {
                 str += " and";
             }
 
-            str += " left at " + leftAt;
+            str += " left at " + leftAt.getValue();
         }
 
-        str += " on the " + date;
+        str += " on the " + date.getValue();
 
         return str;
     }
@@ -314,9 +236,9 @@ public class CheckInOut implements Jsonable
     {
         JSONObject checkObject = new JSONObject();
 
-        String dateStr = date.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        String arrivedAtStr = arrivedAt == null ? null : arrivedAt.toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm"));
-        String leftAtStr = leftAt == null ? null : leftAt.toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+        String dateStr = date.getValue().toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        String arrivedAtStr = arrivedAt.getValue() == null ? null : arrivedAt.getValue().toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+        String leftAtStr = leftAt.getValue() == null ? null : leftAt.getValue().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"));
 
         checkObject.put("date", dateStr);
         checkObject.put("arrivedAt", arrivedAtStr);

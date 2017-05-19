@@ -1,11 +1,3 @@
-OK - Constructeurs protected (package-private) :
-    - Employee
-    - Manager
-    - StandardDepartment
-    - CheckInOut
+- QUESTION : concurrence
 
-    => Permet d'empêcher de créer une instance de ces classes de l'exterieur de Model
-
-OK - Léguer le role de maintenir la cohérence du projet aux classes (dans l'ordre)
-    Company -> StandardDepartment -> Employee -> CheckInOut
-               ManagementDepartment -> Managers
+- Update style des cells (listener sur les properties + arrivedEarlierAt() et leftLateAt())
