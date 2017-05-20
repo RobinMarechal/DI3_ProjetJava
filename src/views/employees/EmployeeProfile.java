@@ -2,9 +2,11 @@ package views.employees;
 
 import controllers.DepartmentsController;
 import javafx.beans.binding.Bindings;
+import javafx.beans.binding.StringExpression;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +19,7 @@ import javafx.scene.layout.BorderPane;
 import lib.time.SimpleDate;
 import lib.time.SimpleTime;
 import lib.util.Closure;
+import lib.views.CSSClasses;
 import lib.views.Template;
 import lib.views.custom.components.Link;
 import models.CheckInOut;
@@ -45,8 +48,7 @@ public class EmployeeProfile extends EmployeesViewController implements Initiali
     private final StringProperty prefixOvertime = new SimpleStringProperty(this, "prefixDep", "Heures supplémentaires : ");
 
     // UI components
-    @FXML private Label labFirstName;
-    @FXML private Label labLastName;
+    @FXML private Label labName;
     @FXML private Label labId;
     @FXML private Label labDep;
     @FXML private Label labStartsAt;
@@ -63,6 +65,15 @@ public class EmployeeProfile extends EmployeesViewController implements Initiali
 
         this.employee = emp;
         checks = emp.getChecksInOut();
+        
+        checks.addListener(new ListChangeListener<CheckInOut>()
+        {
+            @Override
+            public void onChanged (Change<? extends CheckInOut> c)
+            {
+                System.out.println("Changed employee " + emp.getId());
+            }
+        });
 
         // constant
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/employees/fxml/profile.fxml"));
@@ -88,21 +99,21 @@ public class EmployeeProfile extends EmployeesViewController implements Initiali
 
         // Initialization of cell factories in order to color cell's content based on its value
 
-        table.setOnSort(event ->
-        {
-            try
-            {
-                new Thread(() ->
-                {
-                    initCellValueFactories();
-                    displayRightComponents();
-                }).start();
-            }
-            catch (IllegalStateException e)
-            {
-                System.out.println("IllegalStateException has been thrown, Couldn't sort the table...");
-            }
-        });
+//        table.setOnSort(event ->
+//        {
+//            try
+//            {
+//                new Thread(() ->
+//                {
+//                    initCellValueFactories();
+//                    displayRightComponents();
+//                }).start();
+//            }
+//            catch (IllegalStateException e)
+//            {
+//                System.out.println("IllegalStateException has been thrown, Couldn't sort the table...");
+//            }
+//        });
     }
 
     private void display ()
@@ -134,16 +145,31 @@ public class EmployeeProfile extends EmployeesViewController implements Initiali
         Link depLink = new Link(closure);
         depLink.textProperty().bind(Bindings.concat(prefixDep, dep.nameProperty()));
         depLink.setTooltipValue("Clickez pour voir le détail du département.");
+        final StringExpression nameBinding = Bindings.concat(employee.firstNameProperty(), " ", employee.lastNameProperty());
 
-        labFirstName.textProperty().bind(employee.firstNameProperty());
-
-        labLastName.textProperty().bind(employee.lastNameProperty());
+        labName.textProperty().bind(nameBinding);
         labId.textProperty().bind(Bindings.concat(prefixId, employee.idProperty()));
         labDep.setText(null);
         labDep.setGraphic(depLink);
         labStartsAt.textProperty().bind(Bindings.concat(prefixStartsAt, employee.startingHourProperty()));
         labEndsAt.textProperty().bind(Bindings.concat(prefixEndsAt, employee.endingHourProperty()));
-        labAddMin.textProperty().bind(Bindings.concat(prefixOvertime, employee.getOvertime()));
+        labAddMin.textProperty().bind(Bindings.concat(prefixOvertime, employee.overtimeProperty()));
+
+        labAddMin.textProperty().addListener((observable, oldValue, newValue) ->
+        {
+            final double                 overtime   = employee.getOvertime();
+            final ObservableList<String> styleClass = labAddMin.getStyleClass();
+
+            // reset style class
+            styleClass.removeAll(CSSClasses.Text.RED);
+
+            // Set the style class based on the employee's overtime's value
+            if (overtime < 0)
+            {
+                styleClass.add(CSSClasses.Text.RED);
+//                styleClass.add(CSSClasses.Text.BOLD);
+            }
+        });
     }
 
 }

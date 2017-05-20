@@ -322,14 +322,17 @@ public class Employee extends Person implements JsonSaver, Jsonable
         // If there already is a CheckInOut instance associate with this Employee...
         if (check != null) // Check in
         {
-            check.check(dateTime);
-            checksInOut.set(index, check);
-            //            checksInOut.
+            if(check.getLeftAt() == null)
+            {
+                check.check(dateTime);
+                checksInOut.set(index, check);
+                //            checksInOut.
 
-            // We update the additional working time
-            double tmp = overtime.getValue();
-            tmp -= ((double) endingHour.getValue().diff(time)) / 60.0;
-            overtime.setValue(tmp);
+                // We update the additional working time
+                double tmp = overtime.getValue();
+                tmp -= ((double) endingHour.getValue().diff(time)) / 60.0;
+                overtime.setValue(tmp);
+            }
         }
         else // Check out
         {

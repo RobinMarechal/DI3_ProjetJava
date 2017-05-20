@@ -31,7 +31,7 @@ import java.util.ResourceBundle;
 public class EmployeeList extends EmployeesViewController implements Initializable
 {
     private final SimpleDate date;
-    private ObservableList<Row> obs;
+    private ObservableList<Row> rows;
 
     // components
     @FXML private TableView<Row> table;
@@ -63,21 +63,24 @@ public class EmployeeList extends EmployeesViewController implements Initializab
         employees.addListener(new ListChangeListener<Employee>()
         {
             @Override
-            public void onChanged (Change<? extends Employee> c)
+            public void onChanged (Change<? extends Employee> change)
             {
-                while (c.next())
+                while (change.next())
                 {
-                    List l = c.getAddedSubList();
-                    obs.add(new Row((Employee) l.get(0)));
+                    List list = change.getAddedSubList();
+                    for (Object o : list)
+                    {
+                        rows.add(new Row((Employee) o));
+                    }
                 }
             }
         });
 
-        obs = FXCollections.observableArrayList();
+        rows = FXCollections.observableArrayList();
 
         for (Employee e : employees)
         {
-            obs.add(new Row(e));
+            rows.add(new Row(e));
         }
 
         // constant
@@ -151,7 +154,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
         columnLeftAt.setCellValueFactory(new PropertyValueFactory<>("leftAt"));
         columnOvertime.setCellValueFactory(new PropertyValueFactory<>("overtime"));
 
-        table.setItems(obs);
+        table.setItems(rows);
     }
 
     private void initCellFactories ()
@@ -474,11 +477,11 @@ public class EmployeeList extends EmployeesViewController implements Initializab
             // arriving and leaving hour properties
             if (employee.arrivingTimePropertyAt(date) != null)
             {
-                arrivedAt.bind(employee.arrivingTimePropertyAt(date));
+                arrivedAt.setValue(employee.getArrivingTimeAt(date));
             }
             if (employee.leavingTimePropertyAt(date) != null)
             {
-                leftAt.bind(employee.leavingTimePropertyAt(date));
+                leftAt.setValue(employee.getLeavingTimeAt(date));
             }
 
             // If the CheckInOut list changes, typically when an employee checks in or out...

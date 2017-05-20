@@ -15,6 +15,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import lib.BaseController;
+import lib.time.SimpleDate;
 import lib.views.custom.components.Scene;
 import lib.views.custom.components.SlidingLabel;
 import models.Company;
@@ -102,7 +103,7 @@ public class Template
         layout.getChildren().addAll(menuBar, contentLayout);
 
         // We load the company home view
-        setView(Tabs.COMPANY, new HomeCompany(Company.getCompany()));
+        setView(Tabs.COMPANY, new HomeCompany(Company.getCompany(), SimpleDate.TODAY));
 
         scene = new Scene(layout);
         scene.getStylesheets().add("lib/views/style.css");

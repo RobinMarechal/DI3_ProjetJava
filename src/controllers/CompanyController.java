@@ -1,6 +1,7 @@
 package controllers;
 
 import lib.BaseController;
+import lib.time.SimpleDate;
 import lib.views.Tabs;
 import lib.views.Template;
 import models.Company;
@@ -23,7 +24,7 @@ public class CompanyController extends BaseController implements Observer
     @Override
     public void home ()
     {
-        CompanyViewController view = new HomeCompany(Company.getCompany());
+        CompanyViewController view = new HomeCompany(Company.getCompany(), SimpleDate.TODAY);
 
         Template.getInstance().setView(Tabs.COMPANY, view);
     }

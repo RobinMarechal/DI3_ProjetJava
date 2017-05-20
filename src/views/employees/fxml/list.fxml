@@ -8,7 +8,7 @@
 
 <BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1200.0" styleClass="bg-transparent" stylesheets="@../../../lib/views/style.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <Label styleClass="h2" text="Liste des employés :" textAlignment="CENTER" BorderPane.alignment="CENTER">
+      <Label styleClass="h2" text="Employee List :" textAlignment="CENTER" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" top="10.0" />
          </BorderPane.margin></Label>

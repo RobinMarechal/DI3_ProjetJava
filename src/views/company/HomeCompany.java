@@ -28,6 +28,7 @@ import java.util.ResourceBundle;
 public class HomeCompany extends CompanyViewController implements Initializable
 {
     private Company company;
+    private SimpleDate date;
 
     // Constants
     /** progressBar animation duration in millisecond */
@@ -46,8 +47,9 @@ public class HomeCompany extends CompanyViewController implements Initializable
     @FXML private Label labelChecksInProgress;
     @FXML private Label labelChecksOutProgress;
 
-    public HomeCompany (Company company)
+    public HomeCompany (Company company, SimpleDate date)
     {
+        this.date = date;
         this.company = company;
 
         // constant
@@ -96,8 +98,8 @@ public class HomeCompany extends CompanyViewController implements Initializable
         final IntegerBinding   nbEmployeesInt         = Bindings.size(company.getEmployeesList());
         final StringExpression nbEmployees            = Bindings.concat(nbEmployeesPrefix, nbEmployeesInt);
         final StringExpression nbDepartments          = Bindings.concat(nbDepartmentsPrefix, Bindings.size(company.getStandardDepartmentsList()));
-        final DoubleBinding    nbChecksIn             = Bindings.doubleValueAt(company.getTotalChecksInPerDay(), SimpleDate.TODAY);
-        final DoubleBinding    nbChecksOut            = Bindings.doubleValueAt(company.getTotalChecksOutPerDay(), SimpleDate.TODAY);
+        final DoubleBinding    nbChecksIn             = Bindings.doubleValueAt(company.getTotalChecksInPerDay(), date);
+        final DoubleBinding    nbChecksOut            = Bindings.doubleValueAt(company.getTotalChecksOutPerDay(), date);
         final StringExpression checksInProgressTitle  = Bindings.concat("Checks-in du jour : (", IntegerBinding.integerExpression(nbChecksIn), "/", nbEmployeesInt, ")");
         final StringExpression checksOutProgressTitle = Bindings.concat("Checks-out du jour : (", IntegerBinding.integerExpression(nbChecksOut), "/", nbEmployeesInt, ")");
 

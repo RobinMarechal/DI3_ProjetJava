@@ -95,3 +95,11 @@
 .employees-list .table-row-cell:hover{
     -fx-cursor: hand;
 }
+
+.text-bold{
+    -fx-font-weight:bold;
+}
+
+.text-italic{
+    -fx-font-style: italic;
+}

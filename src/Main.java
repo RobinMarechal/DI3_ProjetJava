@@ -1,5 +1,6 @@
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.collections.ObservableList;
 import javafx.stage.Stage;
 import lib.time.SimpleDate;
 import lib.time.SimpleDateTime;
@@ -9,6 +10,9 @@ import models.Company;
 import models.Employee;
 import models.Manager;
 import models.StandardDepartment;
+
+import java.util.ArrayList;
+import java.util.Collections;
 
 /**
  * Created by Robin on 27/03/2017.
@@ -22,46 +26,63 @@ public class Main extends Application
 
     private static void testData ()
     {
-        Employee e1 = new Employee("A", "A");
-        Employee e2 = new Employee("B", "B");
-        Employee e3 = new Employee("C", "C");
-        Employee e4 = new Employee("D", "D");
-        Employee e5 = new Employee("E", "E");
+        String names[] = {
+                "Arlen Gabby",
+                "Jake Reagan",
+                "Roger Fitzroy",
+                "Winslow Humphrey",
+                "Theodore Luke",
+                "Jewel Rodney",
+                "Buddy Zachary",
+                "Rocky Cordell",
+                "Jake Reagan",
+                "Roger Fitzroy",
+                "Winslow Humphrey",
+                "Theodore Luke",
+                "Jewel Rodney",
+                "Buddy Zachary",
+                "Rocky Cordell",
+                "Jake Reagan",
+                "Roger Fitzroy",
+                "Winslow Humphrey",
+                "Theodore Luke",
+                "Jewel Rodney",
+                "Buddy Zachary",
+                "Rocky Cordell",
+                "Jake Reagan",
+                "Roger Fitzroy",
+                "Winslow Humphrey",
+                "Theodore Luke",
+                "Jewel Rodney",
+                "Buddy Zachary",
+                "Rocky Cordell"
+        };
 
-        Manager m1 = new Manager("Ma", "Ma");
-        Manager m2 = new Manager("Mb", "Mb");
+        Manager m1 = new Manager("Audley", "Gilbert");
+        Manager m2 = new Manager("Davy", "Levi");
+        Manager m3 = new Manager("Sacheverell", "Lovel");
 
-        StandardDepartment dep1 = new StandardDepartment("depa", "depa");
-        StandardDepartment dep2 = new StandardDepartment("depb", "depb");
+        StandardDepartment dep1 = new StandardDepartment("Maintenance", "informatique");
+        StandardDepartment dep2 = new StandardDepartment("Comptabilité", "Finance");
+        StandardDepartment dep3 = new StandardDepartment("Chaine de production", "Manufacture");
 
         dep1.setManager(m1);
         dep2.setManager(m2);
+        dep3.setManager(m3);
 
-        dep1.addAllEmployees(e1, e2, e3);
-        dep2.addAllEmployees(e4, e5);
+        final ObservableList<StandardDepartment> depList = Company.getCompany().getStandardDepartmentsList();
 
-        SimpleDate d = SimpleDate.TODAY;
-        SimpleTime t = SimpleTime.of(8, 0);
+        for (String name : names)
+        {
+            String fn = name.split(" ")[0];
+            String ln = name.split(" ")[1];
 
-        SimpleDateTime sdt8h = SimpleDateTime.fromDateAndTime(d, t);
+            Employee e = new Employee(fn, ln);
 
-        e1.doCheck(sdt8h.plusMinutes(15));
-        e1.doCheck(sdt8h.plusHours(7));
+            StandardDepartment dep = depList.get((int) (Math.random() * 500) % depList.size());
 
-        System.out.println("ADD HOURS E1 : " + e1.getOvertime());
-
-        e2.doCheck(sdt8h.plusMinutes(30));
-        e2.doCheck(sdt8h.plusHours(8));
-
-        e3.doCheck(sdt8h.minusMinutes(15));
-        e4.doCheck(sdt8h.minusMinutes(30));
-
-        e5.setStartingHour(SimpleTime.of(11, 45));
-        m1.setStartingHour(SimpleTime.of(11, 30));
-        m2.setStartingHour(SimpleTime.of(11, 15));
-
-        System.out.println(Company.getCompany().getEmployeesList().get(0).getCheckInOutAt(SimpleDate.TODAY));
-        System.out.println(Company.getCompany().getTotalChecksInAt(SimpleDate.TODAY));
+            dep.addEmployee(e);
+        }
     }
 
     /**
@@ -93,7 +114,51 @@ public class Main extends Application
 
         window.show();
 
-        runQuickTests();
+        runAutomaticTests();
+
+        //runQuickTests();
+    }
+
+    private void runAutomaticTests ()
+    {
+        new Thread(() ->
+        {
+            try
+            {
+                SimpleDate date = SimpleDate.TODAY;
+                ObservableList<Employee> tmp  = Company.getCompany().getEmployeesList();
+                ArrayList<Employee>      emps = new ArrayList<Employee>(tmp);
+
+                for (int i = 0; i < 20; i++)
+                {
+                    Collections.shuffle(emps);
+
+                    final SimpleDate fDate = date.plusDays(i);
+                    System.out.println("Date : " + fDate);
+
+                    for (Employee e : emps)
+                    {
+                        SimpleTime time = e.getStartingHour().plusMinutes((int) (Math.random() * 120) - 60);
+                        Thread.sleep(200);
+                        Platform.runLater(() -> e.doCheck(SimpleDateTime.fromDateAndTime(fDate, time)));
+                    }
+
+                    Collections.shuffle(emps);
+
+                    for (Employee e : emps)
+                    {
+                        SimpleTime time = e.getEndingHour().plusMinutes((int) (Math.random() * 120) - 60);
+                        Thread.sleep(200);
+                        Platform.runLater(() -> e.doCheck(SimpleDateTime.fromDateAndTime(fDate, time)));
+                    }
+
+                }
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
+            }
+        }).start();
     }
 
     private void runQuickTests ()
