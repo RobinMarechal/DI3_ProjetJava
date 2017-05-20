@@ -1,6 +1,5 @@
 package views.employees;
 
-import controllers.DepartmentsController;
 import controllers.EmployeesController;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
@@ -15,9 +14,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import lib.time.SimpleDate;
 import lib.time.SimpleTime;
-import lib.util.Closure;
 import lib.views.Template;
-import lib.views.custom.components.Link;
 import models.CheckInOut;
 import models.Employee;
 import models.StandardDepartment;
@@ -47,6 +44,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
     @FXML private TableColumn<Row, ObjectProperty<SimpleTime>> columnEndingHour;
     @FXML private TableColumn<Row, ObjectProperty<SimpleTime>> columnArrivedAt;
     @FXML private TableColumn<Row, ObjectProperty<SimpleTime>> columnLeftAt;
+    @FXML private TableColumn<Row, DoubleProperty> columnOvertime;
 
     // constants
     private final String classEmployeeCell = "employees-table-cell";
@@ -124,7 +122,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
             row.setOnMouseClicked(event ->
             {
                 Row cRow = row.getItem();
-                if(cRow != null)
+                if (cRow != null)
                 {
                     Employee emp = cRow.getEmployeeInstance();
                     new EmployeesController().show(emp);
@@ -151,6 +149,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
         columnEndingHour.setCellValueFactory(new PropertyValueFactory<>("endingHour"));
         columnArrivedAt.setCellValueFactory(new PropertyValueFactory<>("arrivedAt"));
         columnLeftAt.setCellValueFactory(new PropertyValueFactory<>("leftAt"));
+        columnOvertime.setCellValueFactory(new PropertyValueFactory<>("overtime"));
 
         table.setItems(obs);
     }
@@ -349,7 +348,6 @@ public class EmployeeList extends EmployeesViewController implements Initializab
                 if (item != null && !empty)
                 {
                     textProperty().bind(item);
-                    setTooltip(new Tooltip("Clickez pour voir le profil de l'employé."));
                 }
             }
         });
@@ -364,7 +362,6 @@ public class EmployeeList extends EmployeesViewController implements Initializab
                 if (item != null && !empty)
                 {
                     textProperty().bind(item);
-                    setTooltip(new Tooltip("Clickez pour voir le profil de l'employé."));
                 }
             }
         });
@@ -379,7 +376,6 @@ public class EmployeeList extends EmployeesViewController implements Initializab
                 if (item != null && !empty)
                 {
                     textProperty().bind(item.asString());
-                    setTooltip(new Tooltip("Clickez pour voir le profil de l'employé."));
                 }
             }
         });
@@ -393,23 +389,24 @@ public class EmployeeList extends EmployeesViewController implements Initializab
 
                 if (item != null && !empty)
                 {
-                    //                    textProperty().bind(((SimpleObjectProperty<StandardDepartment>) item.property()).as);
                     textProperty().bind(item);
-                    setTooltip(new Tooltip("Clickez pour voir le détail du département."));
                 }
             }
         });
-    }
 
-    private void setUpLinkCell (TableCell<Row, Link> tableCell, Link item)
-    {
-        tableCell.setOnMouseClicked(event ->
+        columnOvertime.setCellFactory(column -> new TableCell<Row, DoubleProperty>()
         {
-            item.trigger();
-        });
+            @Override
+            protected void updateItem (DoubleProperty item, boolean empty)
+            {
+                super.updateItem(item, empty);
 
-        tableCell.getStyleClass().add("mouse-hand");
-        tableCell.getStyleClass().add("link");
+                if (item != null && !empty)
+                {
+                    textProperty().bind(item.asString());
+                }
+            }
+        });
     }
 
     // Inner class that represents an employee with all its relative information
@@ -429,61 +426,62 @@ public class EmployeeList extends EmployeesViewController implements Initializab
         private ObjectProperty<SimpleTime> endingHour;
         private ObjectProperty<SimpleTime> arrivedAt = new SimpleObjectProperty<>(this, "arrivedAt");
         private ObjectProperty<SimpleTime> leftAt = new SimpleObjectProperty<>(this, "leftAt");
+        private DoubleProperty overtime;
 
-        private Row (Employee e)
+        private Row (Employee employee)
         {
-            employeeInstance = e;
-            departmentInstance = e.getDepartment();
+            employeeInstance = employee;
+            departmentInstance = employee.getDepartment();
+            int empId = employee.getId();
 
-            int empId = e.getId();
+            id = employee.idProperty();
+            firstName = employee.firstNameProperty();
+            lastName = employee.lastNameProperty();
 
-            Closure employeeClosure = () -> new EmployeesController().show(employeeInstance);
-            Closure depClosure      = () -> new DepartmentsController().show(departmentInstance);
-
-            id = e.idProperty();
-            firstName = e.firstNameProperty();
-            lastName = e.lastNameProperty();
-
-            if (e.departmentProperty().getValue() == null) // The employee was just created and has no department yet...
+            // department property : null at the creation of the employee -> need to handle it differently
+            if (employee.departmentProperty().getValue() == null) // The employee was just created and has no department yet...
             {
                 // We create an empty tmp StringProperty
                 department = new SimpleStringProperty(this, "department", "");
 
                 // When we set set employee's department, we override the tmp StringProperty with the good one
-                e.departmentProperty()
-                 .addListener((observable, oldValue, newValue) -> {
-                     final StandardDepartment value = e.departmentProperty().getValue();
-                     if(value != null)
+                employee.departmentProperty().addListener((observable, oldValue, newValue) ->
+                {
+                    final StandardDepartment value = employee.departmentProperty().getValue();
+                    if (value != null)
+                    {
                         department = value.nameProperty();
-                 });
+                    }
+                });
             }
             else // The employee has a department, easy
             {
-                department = e.departmentProperty().getValue().nameProperty();
+                department = employee.departmentProperty().getValue().nameProperty();
             }
-
 
             if (departmentInstance != null)
             {
                 manager = departmentInstance.getManager().getId() == empId ? true : false;
             }
 
-            startingHour = e.startingHourProperty();
-            endingHour = e.endingHourProperty();
+            // Starting and ending hour properties
+            startingHour = employee.startingHourProperty();
+            endingHour = employee.endingHourProperty();
 
-            arrivedAt.addListener((observable, oldValue, newValue) -> System.out.println("In (" + empId + ") : from '" + oldValue + "' to '" + newValue + "'"));
-            leftAt.addListener((observable, oldValue, newValue) -> System.out.println("Out (" + empId + ") : from '" + oldValue + "' to '" + newValue + "'"));
+            // overtime property
+            overtime = employee.overtimeProperty();
 
-            if (e.arrivingTimePropertyAt(date) != null)
+            // arriving and leaving hour properties
+            if (employee.arrivingTimePropertyAt(date) != null)
             {
-                arrivedAt.bind(e.arrivingTimePropertyAt(date));
+                arrivedAt.bind(employee.arrivingTimePropertyAt(date));
+            }
+            if (employee.leavingTimePropertyAt(date) != null)
+            {
+                leftAt.bind(employee.leavingTimePropertyAt(date));
             }
 
-            if (e.leavingTimePropertyAt(date) != null)
-            {
-                leftAt.bind(e.leavingTimePropertyAt(date));
-            }
-
+            // If the CheckInOut list changes, typically when an employee checks in or out...
             employeeInstance.getChecksInOut().addListener(new ListChangeListener<CheckInOut>()
             {
                 @Override
@@ -491,23 +489,33 @@ public class EmployeeList extends EmployeesViewController implements Initializab
                 {
                     while (change.next())
                     {
-                        if (change.wasAdded())
+                        if (change.wasAdded()) // If the employee checks in or out
                         {
-                            CheckInOut added = change.getAddedSubList().get(0);
-                            if (added != null && added.getDate() != null && added.getDate().equals(date))
+                            // In case we add more than 1 check...
+                            List<CheckInOut> added = (List<CheckInOut>) change.getAddedSubList();
+
+                            for (CheckInOut addedItem : added)
                             {
-                                if (added.getLeftAt() != null)
+                                // If the addedItem is not null, it's date isn't null and corresponding to the view's date parameter
+                                if (addedItem != null && addedItem.getDate() != null && addedItem.getDate()
+                                                                                                 .equals(date))
                                 {
-                                    leftAt.setValue(added.getLeftAt());
-                                }
-                                else if (added.getArrivedAt() != null)
-                                {
-                                    arrivedAt.setValue(added.getArrivedAt());
-                                }
+                                    // If what we added was a checkOut
+                                    if (addedItem.getLeftAt() != null)
+                                    {
+                                        leftAt.setValue(addedItem.getLeftAt());
+                                    }
+                                    // Otherwise, it was maybe a checkIn
+                                    else if (addedItem.getArrivedAt() != null)
+                                    {
+                                        arrivedAt.setValue(addedItem.getArrivedAt());
+                                    }
 
-                                int index = table.getItems().indexOf(Row.this);
-                                table.getItems().set(index, Row.this);
-
+                                    // We retrieve the concerned TableView row
+                                    int index = table.getItems().indexOf(Row.this);
+                                    // And we refresh it
+                                    table.getItems().set(index, Row.this);
+                                }
                             }
                         }
                     }
@@ -573,6 +581,11 @@ public class EmployeeList extends EmployeesViewController implements Initializab
         public StandardDepartment getDepartmentInstance ()
         {
             return departmentInstance;
+        }
+
+        public DoubleProperty getOvertime ()
+        {
+            return overtime;
         }
     }
 

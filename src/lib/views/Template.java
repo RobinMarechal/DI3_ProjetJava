@@ -25,10 +25,10 @@ import views.company.HomeCompany;
  */
 public class Template
 {
-    public static final int CENTER_WIDTH = 1200;
-    public static final int STAGE_HEIGHT = 700;
+    public static final int CENTER_WIDTH = 1100;
+    public static final int STAGE_HEIGHT = 600;
 
-    public static final int LEFT_WIDTH = 250;
+    public static final int LEFT_WIDTH = 200;
 
     // singleton
     private static Template instance = new Template();
@@ -125,7 +125,7 @@ public class Template
 
             navTabs[index].setBasePadding(new Insets(10, 0, 10, 20));
             navTabs[index].setAdditionalPadding(new Insets(0, 0, 0, 10));
-            navTabs[index].prepareTransition();
+            navTabs[index].prepareAnimation();
             navTabs[index].setMaxWidth(Double.MAX_VALUE);
 
             navTabs[index].setOnMouseClicked(e ->

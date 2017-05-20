@@ -6,13 +6,13 @@ import javafx.geometry.Insets;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import lib.views.Template;
-import lib.views.custom.effects.Animation;
+import lib.views.custom.effects.Animated;
 import lib.views.custom.effects.transitions.LabelSlider;
 
 /**
  * Created by Robin on 05/05/2017.
  */
-public class SlidingLabel extends Label implements Animation
+public class SlidingLabel extends Label implements Animated
 {
     private int animationDuration = 120;
     private int paddingTop = 10;
@@ -198,7 +198,7 @@ public class SlidingLabel extends Label implements Animation
     }
 
     @Override
-    public void prepareTransition ()
+    public void prepareAnimation ()
     {
         slider = new LabelSlider(this, animationDuration);
         slider.setBasePadding(paddingTop, paddingRight, paddingBottom, paddingLeft);

@@ -1,5 +1,10 @@
 package views.company;
 
+import javafx.beans.binding.Bindings;
+import javafx.beans.binding.DoubleBinding;
+import javafx.beans.binding.IntegerBinding;
+import javafx.beans.binding.StringExpression;
+import javafx.beans.property.StringProperty;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -23,6 +28,10 @@ import java.util.ResourceBundle;
 public class HomeCompany extends CompanyViewController implements Initializable
 {
     private Company company;
+
+    // Constants
+    /** progressBar animation duration in millisecond */
+    private final int animationDuration = 300;
 
     // components
     @FXML private Label labelCompany;
@@ -61,18 +70,6 @@ public class HomeCompany extends CompanyViewController implements Initializable
     @Override
     public void initialize (URL location, ResourceBundle resources)
     {
-        assert labelCompany != null;
-        assert labelBossName != null;
-        assert labelNbEmployees != null;
-        assert labelNbDepartments != null;
-        assert btnAddEmployee != null;
-        assert btnAddDepartment != null;
-        assert btnEditCompany != null;
-        assert progressChecksIn != null;
-        assert progressChecksOut != null;
-        assert labelChecksInProgress != null;
-        assert labelChecksOutProgress != null;
-
         display(company);
     }
 
@@ -85,29 +82,31 @@ public class HomeCompany extends CompanyViewController implements Initializable
     {
 
         // constants
-
         final String nbEmployeesPrefix      = "Employés : ";
         final String nbDepartmentsPrefix    = "Départements : ";
         final String addEmployeeBtnString   = "Ajouter un employé";
         final String addDepartmentBtnString = "Ajouter un départment";
         final String editCompanyBtnString   = "Modifier la compagnie";
 
-        // Properties
-        final String   companyName            = company.getName();
-        final String   bossFirstName          = company.getBoss().getFirstName();
-        final String   bossLastName           = company.getBoss().getLastName();
-        final int   nbEmployees            = company.getNbEmployees();
-        final int   nbDepartments          = company.getNbStandardDepartments();
-        final int nbChecksIn  = company.getTotalChecksInAt(SimpleDate.TODAY);
-        final int nbChecksOut = company.getTotalChecksOutAt(SimpleDate.TODAY);
-        final String checksInProgressTitle  = "Checks-in du jour : (" + nbChecksIn + "/" + nbEmployees + ")";
-        final String checksOutProgressTitle = "Checks-out du jour : ("+ nbChecksOut+ "/"+ nbEmployees + ")";
+        // Properties... Have fun
+        final StringProperty   companyName            = company.nameProperty();
+        final StringProperty   bossFirstName          = company.getBoss().firstNameProperty();
+        final StringProperty   bossLastName           = company.getBoss().lastNameProperty();
+        final StringExpression bossName               = Bindings.concat(bossFirstName, " ", bossLastName);
+        final IntegerBinding   nbEmployeesInt         = Bindings.size(company.getEmployeesList());
+        final StringExpression nbEmployees            = Bindings.concat(nbEmployeesPrefix, nbEmployeesInt);
+        final StringExpression nbDepartments          = Bindings.concat(nbDepartmentsPrefix, Bindings.size(company.getStandardDepartmentsList()));
+        final DoubleBinding    nbChecksIn             = Bindings.doubleValueAt(company.getTotalChecksInPerDay(), SimpleDate.TODAY);
+        final DoubleBinding    nbChecksOut            = Bindings.doubleValueAt(company.getTotalChecksOutPerDay(), SimpleDate.TODAY);
+        final StringExpression checksInProgressTitle  = Bindings.concat("Checks-in du jour : (", IntegerBinding.integerExpression(nbChecksIn), "/", nbEmployeesInt, ")");
+        final StringExpression checksOutProgressTitle = Bindings.concat("Checks-out du jour : (", IntegerBinding.integerExpression(nbChecksOut), "/", nbEmployeesInt, ")");
 
         // middle labels
-        labelCompany.setText(companyName);
-        labelBossName.setText(bossFirstName+ " "+ bossLastName);
-        labelNbEmployees.setText(nbEmployeesPrefix + nbEmployees);
-        labelNbDepartments.setText(nbDepartmentsPrefix + nbDepartments);
+        labelCompany.textProperty().bind(companyName);
+        labelBossName.textProperty().bind(bossName);
+        labelNbEmployees.textProperty().bind(nbEmployees);
+        labelNbDepartments.textProperty().bind(nbDepartments);
+
 
         // Buttons
         btnAddEmployee.setText(addEmployeeBtnString);
@@ -115,23 +114,9 @@ public class HomeCompany extends CompanyViewController implements Initializable
         btnEditCompany.setText(editCompanyBtnString);
 
         // Progress bars
-        progressChecksIn.setProgress((double) nbChecksIn / nbEmployees);
-        progressChecksOut.setProgress((double) nbChecksOut / nbEmployees);
-        labelChecksInProgress.setText(checksInProgressTitle);
-        labelChecksOutProgress.setText(checksOutProgressTitle);
-
-        // refresh proggress bar on : checkin, checkout ou employee added/fired.
-//        nbChecksInProp.addListener((observable, oldValue, newValue) -> {
-//            progressChecksIn.setProgress(newValue.doubleValue() / nbEmployees.getValue());
-//        });
-//
-//        nbChecksOutProp.addListener((observable, oldValue, newValue) -> {
-//            progressChecksOut.setProgress(newValue.doubleValue() / nbEmployees.getValue());
-//        });
-//
-//        nbEmployees.addListener((observable, oldValue, newValue) -> {
-//            progressChecksIn.setProgress( progressChecksIn.getProgress() / newValue.doubleValue());
-//            progressChecksOut.setProgress( progressChecksOut.getProgress() / newValue.doubleValue());
-//        });
+        progressChecksIn.progressProperty().bind(Bindings.divide(nbChecksIn, nbEmployeesInt));
+        progressChecksOut.progressProperty().bind(Bindings.divide(nbChecksOut, nbEmployeesInt));
+        labelChecksInProgress.textProperty().bind(checksInProgressTitle);
+        labelChecksOutProgress.textProperty().bind(checksOutProgressTitle);
     }
 }

@@ -93,6 +93,12 @@ public class Main extends Application
 
         window.show();
 
+        runQuickTests();
+    }
+
+    private void runQuickTests ()
+    {
+
         new Thread(new Runnable()
         {
             @Override
@@ -106,6 +112,14 @@ public class Main extends Application
                         @Override
                         public void run ()
                         {
+                            try
+                            {
+                                Company.createEmployee("Robin", "Marechal", 50);
+                            }
+                            catch (Exception e)
+                            {
+                                e.printStackTrace();
+                            }
                             Company.getCompany().getEmployeesList().get(0).setFirstName("AAAAAAA");
                             System.out.println("Done");
                         }
@@ -116,6 +130,8 @@ public class Main extends Application
                         @Override
                         public void run ()
                         {
+                            final Employee e = Company.getCompany().getEmployee(50);
+                            Company.getCompany().getStandardDepartmentsList().get(0).addEmployee(e);
                             Company.getCompany().getEmployeesList().get(0).setFirstName("BBBBBBB");
                             System.out.println("Done");
                         }
@@ -126,6 +142,8 @@ public class Main extends Application
                         @Override
                         public void run ()
                         {
+                            final Employee e = Company.getCompany().getEmployee(50);
+                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY, SimpleTime.of(8, 30)));
                             Company.getCompany().getEmployeesList().get(0).setFirstName("CCCCCCCC");
                             System.out.println("Done");
                         }
@@ -136,6 +154,8 @@ public class Main extends Application
                         @Override
                         public void run ()
                         {
+                            final Employee e = Company.getCompany().getEmployee(50);
+                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY, SimpleTime.of(17, 30)));
                             Company.getCompany().getEmployeesList().get(0).setFirstName("DDDDDDDD");
                             System.out.println("Done");
                         }
@@ -146,6 +166,8 @@ public class Main extends Application
                         @Override
                         public void run ()
                         {
+                            final Employee e = Company.getCompany().getEmployee(50);
+                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(1), SimpleTime.of(8, 10)));
                             Company.getCompany().getEmployeesList().get(0).setFirstName("EEEEEEEE");
                             System.out.println("Done");
                         }
@@ -156,219 +178,66 @@ public class Main extends Application
                         @Override
                         public void run ()
                         {
+                            final Employee e = Company.getCompany().getEmployee(50);
+                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(1), SimpleTime.of(17, 35)));
                             Company.getCompany().getEmployeesList().get(0).setFirstName("FFFFFFF");
                             System.out.println("Done");
                         }
                     });
+                    Thread.sleep(1000);
+                    Platform.runLater(new Runnable()
+                    {
+                        @Override
+                        public void run ()
+                        {
+                            final Employee e = Company.getCompany().getEmployee(50);
+                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(2), SimpleTime.of(7, 42)));
+                            Company.getCompany().getEmployeesList().get(0).setFirstName("GGGGGGGG");
+                            System.out.println("Done");
+                        }
+                    });
+                    Thread.sleep(1000);
+                    Platform.runLater(new Runnable()
+                    {
+                        @Override
+                        public void run ()
+                        {
+                            final Employee e = Company.getCompany().getEmployee(50);
+                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(2), SimpleTime.of(16, 55)));
+                            Company.getCompany().getEmployeesList().get(0).setFirstName("HHHHHHHH");
+                            System.out.println("Done");
+                        }
+                    });
+                    Thread.sleep(1000);
+                    Platform.runLater(new Runnable()
+                    {
+                        @Override
+                        public void run ()
+                        {
+                            Employee e = Company.getCompany().getEmployee(50);
+                            Company.getCompany().getStandardDepartmentsList().get(1).addEmployee(e);
+                            Company.getCompany().getEmployeesList().get(0).setFirstName("IIIIIIIIII");
+                            System.out.println("Done");
+                        }
+                    });
+                    Thread.sleep(1000);
+                    Platform.runLater(new Runnable()
+                    {
+                        @Override
+                        public void run ()
+                        {
+                            Employee e = Company.getCompany().getEmployee(50);
+                            e.setFirstName("AAAA");
+                            Company.getCompany().getEmployeesList().get(0).setFirstName("JJJJJJJJJ");
+                            System.out.println("Done");
+                        }
+                    });
                 }
-                catch (InterruptedException e)
+                catch (Exception e)
                 {
                     e.printStackTrace();
                 }
             }
         }).start();
-
-        //        Platform.runLater(new Runnable()
-        //        {
-        //            @Override
-        //            public void run ()
-        //            {
-        //                try
-        //                {
-        //
-        //                    Thread.sleep(1000);
-        //
-        //                    for (int i = 0; i < 2; i++)
-        //                    {
-        //                        Thread.sleep(500);
-        //                        //                    Company.getCompany().searchEmployee("manager", "1").get(0).setStartingHour(SimpleTime.of(2, 0));
-        //
-        //                        Thread.sleep(500);
-        //
-        //                        Employee e = Company.createEmployee("Robin", "Marechal");
-        //
-        //                        Thread.sleep(500);
-        //                        Company.getCompany().getStandardDepartmentsList().get(0).addEmployee(e);
-        //
-        //                        Thread.sleep(500);
-        //                        System.out.println("Check in");
-        //                        e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY, SimpleTime.of(8, 30)));
-        //
-        //                        Thread.sleep(500);
-        //                        System.out.println("Check out");
-        //                        e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY, SimpleTime.of(17, 25)));
-        //
-        //                        Thread.sleep(500);
-        //                        System.out.println("Check in 2");
-        //                        e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(1), SimpleTime.of(8, 20)));
-        //
-        //                        Thread.sleep(500);
-        //                        System.out.println("Check out 2");
-        //                        e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(1), SimpleTime.of(17, 5)));
-        //
-        //                        Thread.sleep(500);
-        //                        System.out.println("Check in 3");
-        //                        e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(2), SimpleTime.of(7, 50)));
-        //
-        //                        Thread.sleep(500);
-        //                        System.out.println("Check out 3");
-        //                        e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(2), SimpleTime.of(17, 33)));
-        //
-        //
-        //                        Company.getCompany().getStandardDepartmentsList().get(1).addEmployee(e);
-        //
-        //                        e.setFirstName("AAAAAA");
-        //                    }
-        //                }
-        //                catch (InterruptedException e)
-        //                {
-        //                    e.printStackTrace();
-        //                }
-        //            }
-        //        });
-
-        //        Task<Void> t1 = new Task<Void>()
-        //        {
-        //            @Override
-        //            protected Void call () throws Exception
-        //            {
-        //                System.out.println(1);
-        //                Thread.sleep(500);
-        //                Company.createEmployee("Robin", "Marechal", 50);
-        //                return null;
-        //            }
-        //        };
-        //
-        //        Task<Void> t2 = new Task<Void>()
-        //        {
-        //            @Override
-        //            protected Void call () throws Exception
-        //            {
-        //                System.out.println(2);
-        //                final Employee e = Company.getCompany().getEmployee(50);
-        //                Company.getCompany().getStandardDepartmentsList().get(0).addEmployee(e);
-        //                return null;
-        //            }
-        //        };
-        //
-        //        Task<Void> t3 = new Task<Void>()
-        //        {
-        //            @Override
-        //            protected Void call () throws Exception
-        //            {
-        //                System.out.println(3);
-        //                final Employee e = Company.getCompany().getEmployee(50);
-        //                e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY, SimpleTime.of(8, 30)));
-        //                return null;
-        //            }
-        //        };
-        //
-        //        Task<Void> t4 = new Task<Void>()
-        //        {
-        //            @Override
-        //            protected Void call () throws Exception
-        //            {
-        //
-        //                System.out.println(4);
-        //                final Employee e = Company.getCompany().getEmployee(50);
-        //                e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY, SimpleTime.of(17, 30)));
-        //                return null;
-        //            }
-        //        };
-        //
-        //        Task<Void> t5 = new Task<Void>()
-        //        {
-        //            @Override
-        //            protected Void call () throws Exception
-        //            {
-        //
-        //                System.out.println(5);
-        //                final Employee e = Company.getCompany().getEmployee(50);
-        //                e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(1), SimpleTime.of(8, 10)));
-        //                return null;
-        //            }
-        //        };
-        //
-        //        Task<Void> t6 = new Task<Void>()
-        //        {
-        //            @Override
-        //            protected Void call () throws Exception
-        //            {
-        //                System.out.println(6);
-        //                final Employee e = Company.getCompany().getEmployee(50);
-        //                e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(1), SimpleTime.of(17, 35)));
-        //                return null;
-        //            }
-        //        };
-        //
-        //        Task<Void> t7 = new Task<Void>()
-        //        {
-        //            @Override
-        //            protected Void call () throws Exception
-        //            {
-        //                System.out.println(7);
-        //                final Employee e = Company.getCompany().getEmployee(50);
-        //                e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(2), SimpleTime.of(7, 42)));
-        //                return null;
-        //            }
-        //        };
-        //
-        //        Task<Void> t8 = new Task<Void>()
-        //        {
-        //            @Override
-        //            protected Void call () throws Exception
-        //            {
-        //                System.out.println(8);
-        //                final Employee e = Company.getCompany().getEmployee(50);
-        //                e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(2), SimpleTime.of(16, 55)));
-        //                return null;
-        //            }
-        //        };
-        //
-        //        Task<Void> t9 = new Task<Void>()
-        //        {
-        //            @Override
-        //            protected Void call () throws Exception
-        //            {
-        //                System.out.println(9);
-        //                Employee e = Company.getCompany().getEmployee(50);
-        //                Company.getCompany().getStandardDepartmentsList().get(1).addEmployee(e);
-        //                return null;
-        //            }
-        //        };
-        //
-        //        Task<Void> t10 = new Task<Void>()
-        //        {
-        //            @Override
-        //            protected Void call () throws Exception
-        //            {
-        //                System.out.println(10);
-        //                Employee e = Company.getCompany().getEmployee(50);
-        //                e.setFirstName("AAAA");
-        //                return null;
-        //            }
-        //        };
-        //
-        //        ScheduledExecutorService exec = Executors.newScheduledThreadPool(10);
-        //
-        //        exec.execute(t1);
-        //        exec.schedule(t2, 1, TimeUnit.SECONDS);
-        //        exec.schedule(t3, 2, TimeUnit.SECONDS);
-        //        exec.schedule(t4, 3, TimeUnit.SECONDS);
-        //        exec.schedule(t5, 4, TimeUnit.SECONDS);
-        //        exec.schedule(t6, 5, TimeUnit.SECONDS);
-        //        exec.schedule(t7, 6, TimeUnit.SECONDS);
-        //        exec.schedule(t8, 7, TimeUnit.SECONDS);
-        //        exec.schedule(t9, 8, TimeUnit.SECONDS);
-        //        exec.schedule(t10, 9, TimeUnit.SECONDS);
-        //        exec.schedule(new Task<Void>()
-        //        {
-        //            @Override
-        //            protected Void call () throws Exception
-        //            {
-        //                System.exit(-1);
-        //                return null;
-        //            }
-        //        }, 12, TimeUnit.SECONDS);
     }
 }

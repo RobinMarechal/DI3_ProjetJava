@@ -36,7 +36,7 @@ public class Employee extends Person implements JsonSaver, Jsonable
     private ObjectProperty<SimpleTime> endingHour = new SimpleObjectProperty<>(this, "endingHour", SimpleTime.of(17, 0));
 
     /** The additional time in minutes (can be < 0) */
-    private double overtime = 0;
+    private DoubleProperty overtime = new SimpleDoubleProperty(this, "overtime", 0);
 
     /** The department where this employee is working */
     private ObjectProperty<StandardDepartment> department = new SimpleObjectProperty<>(this, "department", null);
@@ -187,12 +187,17 @@ public class Employee extends Person implements JsonSaver, Jsonable
      */
     public double getOvertime ()
     {
-        return overtime;
+        return overtime.getValue();
     }
 
     public void setOvertime (double overtime)
     {
-        this.overtime = overtime;
+        this.overtime.setValue(overtime);
+    }
+
+    public DoubleProperty overtimeProperty()
+    {
+        return overtime;
     }
 
     /**
@@ -322,7 +327,9 @@ public class Employee extends Person implements JsonSaver, Jsonable
             //            checksInOut.
 
             // We update the additional working time
-            overtime -= ((double) endingHour.getValue().diff(time)) / 60.0;
+            double tmp = overtime.getValue();
+            tmp -= ((double) endingHour.getValue().diff(time)) / 60.0;
+            overtime.setValue(tmp);
         }
         else // Check out
         {
@@ -332,7 +339,9 @@ public class Employee extends Person implements JsonSaver, Jsonable
             checksInOut.add(check);
 
             // We update the additional working time
-            overtime += ((double) startingHour.getValue().diff(time)) / 60.0;
+            double tmp = overtime.getValue();
+            tmp += ((double) startingHour.getValue().diff(time)) / 60.0;
+            overtime.set(tmp);
         }
 
         return this;

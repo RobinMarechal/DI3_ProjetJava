@@ -3,8 +3,8 @@ package lib.views.custom.effects;
 /**
  * Created by Robin on 05/05/2017.
  */
-public interface Animation
+public interface Animated
 {
-    void prepareTransition();
+    void prepareAnimation();
     //void prepareEventHandler();
 }
