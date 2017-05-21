@@ -16,12 +16,14 @@ public abstract class Person implements Jsonable, Serializable
     private StringProperty lastName = new SimpleStringProperty(this, "lastName", "");
 
 
-    public Person(){}
+    public Person ()
+    {
+    }
 
     public Person (String firstName, String lastName)
     {
-        this.firstName.setValue(firstName);
-        this.lastName.setValue(lastName);
+        this.firstName.setValue(formatName(firstName));
+        this.lastName.setValue(formatName(lastName));
     }
 
     public String getFirstName ()
@@ -36,7 +38,7 @@ public abstract class Person implements Jsonable, Serializable
 
     public Person setFirstName (String firstName)
     {
-        this.firstName.set(firstName);
+        this.firstName.set(formatName(firstName));
         return this;
     }
 
@@ -52,16 +54,18 @@ public abstract class Person implements Jsonable, Serializable
 
     public Person setLastName (String lastName)
     {
-        this.lastName.set(lastName);
+        this.lastName.set(formatName(lastName));
         return this;
     }
 
     /**
      * Creates a string representing the Person instance
+     *
      * @return the string representing the Person instance
      */
     @Override
-    public String toString() {
+    public String toString ()
+    {
         return firstName.getValueSafe() + " " + lastName.getValueSafe();
     }
 
@@ -72,7 +76,7 @@ public abstract class Person implements Jsonable, Serializable
      * @return the json object containing the class instance data.
      */
     @Override
-    public JSONObject toJson()
+    public JSONObject toJson ()
     {
         JSONObject json = new JSONObject();
 
@@ -80,5 +84,27 @@ public abstract class Person implements Jsonable, Serializable
         json.put("lastName", lastName.getValueSafe());
 
         return json;
+    }
+
+    private String formatName (String str)
+    {
+        String result = "";
+
+        String[] arraySpace = str.trim().split(" ");
+
+        for (String s : arraySpace)
+        {
+            String[] arrayDash = s.split("-");
+            for (String part : arrayDash)
+            {
+                if (part.length() > 1)
+                {
+                    result += part.substring(0, 1).toUpperCase() + part.substring(1);
+                }
+            }
+            result += " ";
+        }
+
+        return result;
     }
 }

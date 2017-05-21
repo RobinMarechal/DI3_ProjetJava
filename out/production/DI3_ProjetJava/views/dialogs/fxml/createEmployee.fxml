@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.Stage?>
+<?import javafx.scene.Scene?>
+<?import java.lang.String?>
+
+<Stage fx:id="dialog" title="Creation of an employee" resizable="false" height="310.0" width="530.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <scene>
+        <Scene stylesheets="@../../../lib/views/style.css">
+            <root>
+                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                      prefHeight="300.0"
+                      prefWidth="500.0" styleClass="bg-transparent" xmlns="http://javafx.com/javafx/8.0.102"
+                      xmlns:fx="http://javafx.com/fxml/1">
+                    <children>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="h2"
+                               text="Create a new employee"
+                               textAlignment="CENTER">
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                            <children>
+                                <TextField fx:id="fieldFirstName" prefHeight="30.0" prefWidth="300.0"
+                                           promptText="First name">
+                                    <HBox.margin>
+                                        <Insets/>
+                                    </HBox.margin>
+                                </TextField>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                            <children>
+                                <TextField fx:id="fieldLastName" prefHeight="30.0" prefWidth="300.0"
+                                           promptText="Last name">
+                                    <HBox.margin>
+                                        <Insets/>
+                                    </HBox.margin>
+                                </TextField>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                            <children>
+                                <ComboBox fx:id="comboDepartments" prefHeight="30.0" prefWidth="300.0"
+                                          promptText="Choose a department..."/>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                            <children>
+                                <Button fx:id="btnSubmit" mnemonicParsing="false" prefHeight="20.0" prefWidth="200.0"
+                                        text="Submit">
+                                    <styleClass>
+                                        <String fx:value="btn-primary"/>
+                                        <String fx:value="text-white"/>
+                                        <String fx:value="text-big"/>
+                                    </styleClass>
+                                    <padding>
+                                        <Insets bottom="8.0" top="8.0"/>
+                                    </padding>
+                                    <HBox.margin>
+                                        <Insets top="10.0"/>
+                                    </HBox.margin>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </root>
+        </Scene>
+    </scene>
+</Stage>

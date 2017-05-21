@@ -65,24 +65,8 @@
                 <Insets/>
             </opaqueInsets>
             <children>
-                <Button fx:id="btnEditCompany" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-                        prefWidth="300.0" text="Ajouter un employé" textFill="WHITE">
-                    <font>
-                        <Font name="Arial" size="17.0"/>
-                    </font>
-                    <HBox.margin>
-                        <Insets left="30.0" right="30.0"/>
-                    </HBox.margin>
-                    <styleClass>
-                        <String fx:value="btn-primary"/>
-                        <String fx:value="btn"/>
-                    </styleClass>
-                    <cursor>
-                        <Cursor fx:constant="HAND"/>
-                    </cursor>
-                </Button>
                 <Button fx:id="btnAddEmployee" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-                        prefWidth="300.0" text="Ajouter un département" textAlignment="CENTER" textFill="WHITE">
+                        prefWidth="300.0" text="Add an employee" textFill="WHITE">
                     <font>
                         <Font name="Arial" size="17.0"/>
                     </font>
@@ -90,15 +74,31 @@
                         <Insets left="30.0" right="30.0"/>
                     </HBox.margin>
                     <styleClass>
-                        <String fx:value="btn"/>
                         <String fx:value="btn-primary"/>
+                        <String fx:value="btn"/>
                     </styleClass>
                     <cursor>
                         <Cursor fx:constant="HAND"/>
                     </cursor>
                 </Button>
                 <Button fx:id="btnAddDepartment" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
-                        prefWidth="300.0" text="Modifier la compagnie" textFill="WHITE">
+                        prefWidth="300.0" text="Add a department" textAlignment="CENTER" textFill="WHITE">
+                    <font>
+                        <Font name="Arial" size="17.0"/>
+                    </font>
+                    <HBox.margin>
+                        <Insets left="30.0" right="30.0"/>
+                    </HBox.margin>
+                    <styleClass>
+                        <String fx:value="btn"/>
+                        <String fx:value="btn-primary"/>
+                    </styleClass>
+                    <cursor>
+                        <Cursor fx:constant="HAND"/>
+                    </cursor>
+                </Button>
+                <Button fx:id="btnEditCompany" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false"
+                        prefWidth="300.0" text="Edit company's information" textFill="WHITE">
                     <font>
                         <Font name="Arial" size="17.0"/>
                     </font>

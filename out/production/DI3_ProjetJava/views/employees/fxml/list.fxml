@@ -6,26 +6,26 @@
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.BorderPane?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1200.0" styleClass="bg-transparent" stylesheets="@../../../lib/views/style.css" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1200.0" styleClass="bg-transparent" stylesheets="@../../../lib/views/style.css" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1">
    <top>
-      <Label styleClass="h2" text="Employee List :" textAlignment="CENTER" BorderPane.alignment="CENTER">
+      <Label styleClass="h2" text="Employee List" textAlignment="CENTER" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets bottom="10.0" top="10.0" />
          </BorderPane.margin></Label>
    </top>
    <center>
-        <TableView fx:id="table" prefWidth="1100.0" BorderPane.alignment="CENTER" styleClass="employees-list">
+        <TableView fx:id="table" prefWidth="1100.0" styleClass="employees-list" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="columnId" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="40.0" resizable="false" text="ID" />
-                <TableColumn fx:id="columnFirstName" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="140" resizable="false" text="First name" />
-                <TableColumn fx:id="columnLastName" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="140.0" resizable="false" text="Last name" />
-                <TableColumn fx:id="columnDepartment" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="190.0" resizable="false" text="Department" />
-                <TableColumn fx:id="columnManager" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="80.0" resizable="false" text="Is manager" />
-                <TableColumn fx:id="columnStartingHour" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="110.0" resizable="false" text="Starting hour" />
-                <TableColumn fx:id="columnEndingHour" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="110.0" resizable="false" text="Ending Hour" />
-                <TableColumn fx:id="columnArrivedAt" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="90.0" resizable="false" text="Arrived at" />
-                <TableColumn fx:id="columnLeftAt" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="90.0" resizable="false" text="Left at" />
-                <TableColumn fx:id="columnOvertime" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="95.0" resizable="false" text="Overtime (h)" />
+                <TableColumn fx:id="columnId" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="40.0" resizable="false" text="ID" sortable="false" />
+                <TableColumn fx:id="columnFirstName" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="140" resizable="false" text="First name" sortable="false" />
+                <TableColumn fx:id="columnLastName" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="140.0" resizable="false" text="Last name" sortable="false" />
+                <TableColumn fx:id="columnDepartment" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="190.0" resizable="false" text="Department" sortable="false" />
+                <TableColumn fx:id="columnManager" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="80.0" resizable="false" text="Is manager" sortable="false" />
+                <TableColumn fx:id="columnStartingHour" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="110.0" resizable="false" text="Starting hour" sortable="false" />
+                <TableColumn fx:id="columnEndingHour" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="110.0" resizable="false" text="Ending Hour" sortable="false" />
+                <TableColumn fx:id="columnArrivedAt" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="90.0" resizable="false" text="Arrived at" sortable="false" />
+                <TableColumn fx:id="columnLeftAt" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="90.0" resizable="false" text="Left at" sortable="false" />
+                <TableColumn fx:id="columnOvertime" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="95.0" resizable="false" text="Overtime (h)" sortable="false" />
             </columns>
         </TableView>
    </center>

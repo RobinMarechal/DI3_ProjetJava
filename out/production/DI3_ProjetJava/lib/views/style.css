@@ -50,6 +50,10 @@
     -fx-margin: 0 30px;
 }
 
+.btn:hover, .btn-primary:hover{
+    -fx-cursor:hand;
+}
+
 .btn-primary{
     -fx-background-color: rgb(52, 73, 94);
 }
@@ -102,4 +106,22 @@
 
 .text-italic{
     -fx-font-style: italic;
+}
+
+.text-big{
+    -fx-font-size: 16;
+}
+
+.text-white{
+    -fx-text-fill: white;
+}
+
+.border-red{
+    -fx-border-color:red;
+}
+
+.input-invalid{
+    -fx-border-color: rgb(200, 0, 0, 0.4);
+    -fx-border-radius: 2px;
+    -fx-border-width: 2px;
 }

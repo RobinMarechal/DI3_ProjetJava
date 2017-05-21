@@ -1,5 +1,8 @@
 package views.company;
 
+import controllers.CompanyController;
+import controllers.DepartmentsController;
+import controllers.EmployeesController;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.binding.IntegerBinding;
@@ -84,11 +87,8 @@ public class HomeCompany extends CompanyViewController implements Initializable
     {
 
         // constants
-        final String nbEmployeesPrefix      = "Employés : ";
-        final String nbDepartmentsPrefix    = "Départements : ";
-        final String addEmployeeBtnString   = "Ajouter un employé";
-        final String addDepartmentBtnString = "Ajouter un départment";
-        final String editCompanyBtnString   = "Modifier la compagnie";
+        final String nbEmployeesPrefix      = "Employees: ";
+        final String nbDepartmentsPrefix    = "Departments: ";
 
         // Properties... Have fun
         final StringProperty   companyName            = company.nameProperty();
@@ -100,8 +100,8 @@ public class HomeCompany extends CompanyViewController implements Initializable
         final StringExpression nbDepartments          = Bindings.concat(nbDepartmentsPrefix, Bindings.size(company.getStandardDepartmentsList()));
         final DoubleBinding    nbChecksIn             = Bindings.doubleValueAt(company.getTotalChecksInPerDay(), date);
         final DoubleBinding    nbChecksOut            = Bindings.doubleValueAt(company.getTotalChecksOutPerDay(), date);
-        final StringExpression checksInProgressTitle  = Bindings.concat("Checks-in du jour : (", IntegerBinding.integerExpression(nbChecksIn), "/", nbEmployeesInt, ")");
-        final StringExpression checksOutProgressTitle = Bindings.concat("Checks-out du jour : (", IntegerBinding.integerExpression(nbChecksOut), "/", nbEmployeesInt, ")");
+        final StringExpression checksInProgressTitle  = Bindings.concat("Today's checks in: (", IntegerBinding.integerExpression(nbChecksIn), "/", nbEmployeesInt, ")");
+        final StringExpression checksOutProgressTitle = Bindings.concat("Today's checks out : (", IntegerBinding.integerExpression(nbChecksOut), "/", nbEmployeesInt, ")");
 
         // middle labels
         labelCompany.textProperty().bind(companyName);
@@ -111,9 +111,9 @@ public class HomeCompany extends CompanyViewController implements Initializable
 
 
         // Buttons
-        btnAddEmployee.setText(addEmployeeBtnString);
-        btnAddDepartment.setText(addDepartmentBtnString);
-        btnEditCompany.setText(editCompanyBtnString);
+        btnAddEmployee.setOnAction(event -> new EmployeesController().openCreationEmployeeDialog());
+        btnAddDepartment.setOnAction(event -> new DepartmentsController().openCreationDepartmentDialog());
+        btnEditCompany.setOnAction(event -> new CompanyController().openEditCompanyDialog());
 
         // Progress bars
         progressChecksIn.progressProperty().bind(Bindings.divide(nbChecksIn, nbEmployeesInt));

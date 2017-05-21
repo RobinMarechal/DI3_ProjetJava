@@ -108,11 +108,11 @@ public class EmployeeList extends EmployeesViewController implements Initializab
 
         // Initialization of cell factories in order to color cell's content based on its value
 
-        table.setOnSort(event ->
-        {
-            initCellFactories();
-            display();
-        });
+//        table.setOnSort(event -> new Thread(() -> Platform.runLater(() ->
+//        {
+//            initCellFactories();
+//            display();
+//        })).start());
 
         table.setRowFactory(e ->
         {
@@ -153,7 +153,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
         columnArrivedAt.setCellValueFactory(new PropertyValueFactory<>("arrivedAt"));
         columnLeftAt.setCellValueFactory(new PropertyValueFactory<>("leftAt"));
         columnOvertime.setCellValueFactory(new PropertyValueFactory<>("overtime"));
-
+        
         table.setItems(rows);
     }
 
@@ -442,7 +442,8 @@ public class EmployeeList extends EmployeesViewController implements Initializab
             lastName = employee.lastNameProperty();
 
             // department property : null at the creation of the employee -> need to handle it differently
-            if (employee.departmentProperty().getValue() == null) // The employee was just created and has no department yet...
+            if (employee.departmentProperty()
+                        .getValue() == null) // The employee was just created and has no department yet...
             {
                 // We create an empty tmp StringProperty
                 department = new SimpleStringProperty(this, "department", "");
@@ -462,6 +463,8 @@ public class EmployeeList extends EmployeesViewController implements Initializab
                 department = employee.departmentProperty().getValue().nameProperty();
             }
 
+            // We don't only want to know if he is a manager,
+            // we also want to know if he is THE manager of the department
             if (departmentInstance != null)
             {
                 manager = departmentInstance.getManager().getId() == empId ? true : false;

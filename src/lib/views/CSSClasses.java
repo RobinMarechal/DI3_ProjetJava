@@ -5,6 +5,9 @@ package lib.views;
  */
 public final class CSSClasses
 {
+    public static final String BORDER_RED = "border-red";
+    public static final String INPUT_INVALID = "input-invalid";
+
     public static final class Text{
         // colors
         public static final String RED = "text-red";

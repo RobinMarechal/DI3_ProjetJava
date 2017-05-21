@@ -41,11 +41,11 @@ public class EmployeeProfile extends EmployeesViewController implements Initiali
     private ObservableList<CheckInOut> checks;
 
     // Constants
-    private final StringProperty prefixDep = new SimpleStringProperty(this, "prefixDep", "Département : ");
+    private final StringProperty prefixDep = new SimpleStringProperty(this, "prefixDep", "Department: ");
     private final StringProperty prefixId = new SimpleStringProperty(this, "prefixDep", "ID : ");
-    private final StringProperty prefixStartsAt = new SimpleStringProperty(this, "prefixDep", "Embauche à : ");
-    private final StringProperty prefixEndsAt = new SimpleStringProperty(this, "prefixDep", "Débauche à : ");
-    private final StringProperty prefixOvertime = new SimpleStringProperty(this, "prefixDep", "Heures supplémentaires : ");
+    private final StringProperty prefixStartsAt = new SimpleStringProperty(this, "prefixDep", "Starting hour: ");
+    private final StringProperty prefixEndsAt = new SimpleStringProperty(this, "prefixDep", "Ending hour: ");
+    private final StringProperty prefixOvertime = new SimpleStringProperty(this, "prefixDep", "Overtime: ");
 
     // UI components
     @FXML private Label labName;

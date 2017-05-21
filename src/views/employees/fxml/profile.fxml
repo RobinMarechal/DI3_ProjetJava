@@ -30,12 +30,12 @@
     <center>
         <VBox BorderPane.alignment="CENTER">
             <children>
-                <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="h3" text="Historique des checks-in et des checks-out :" textAlignment="CENTER" />
+                <Label alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" styleClass="h3" text="Checks' history:" textAlignment="CENTER" />
                 <TableView fx:id="table" maxHeight="1.7976931348623157E308" prefWidth="560.0" VBox.vgrow="ALWAYS">
                     <columns>
                         <TableColumn fx:id="colDate" maxWidth="Infinity" minWidth="-1.0" prefWidth="205.0" resizable="false" text="Date" />
-                        <TableColumn fx:id="colArrivedAt" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="205.0" resizable="false" text="Heure d'arrivée" />
-                        <TableColumn fx:id="colLeftAt" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="205.0" resizable="false" text="Heure de départ" />
+                        <TableColumn fx:id="colArrivedAt" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="205.0" resizable="false" text="Arriving hour" />
+                        <TableColumn fx:id="colLeftAt" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="205.0" resizable="false" text="Leaving Hour" />
                     </columns>
                 </TableView>
             </children>

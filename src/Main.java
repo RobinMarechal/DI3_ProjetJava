@@ -19,8 +19,12 @@ import java.util.Collections;
  */
 public class Main extends Application
 {
+    private static final int TIMEOUT = 500;
+
     public static void main (String args[])
     {
+//        new TCPTests();
+
         launch(args);
     }
 
@@ -128,6 +132,7 @@ public class Main extends Application
                 SimpleDate date = SimpleDate.TODAY;
                 ObservableList<Employee> tmp  = Company.getCompany().getEmployeesList();
                 ArrayList<Employee>      emps = new ArrayList<Employee>(tmp);
+                int nbEmps = emps.size();
 
                 for (int i = 0; i < 20; i++)
                 {
@@ -136,20 +141,27 @@ public class Main extends Application
                     final SimpleDate fDate = date.plusDays(i);
                     System.out.println("Date : " + fDate);
 
+                    SimpleTime sevenH30 = SimpleTime.of(7, 30);
+                    int n = 0;
+
                     for (Employee e : emps)
                     {
-                        SimpleTime time = e.getStartingHour().plusMinutes((int) (Math.random() * 120) - 60);
-                        Thread.sleep(200);
+                        SimpleTime time = sevenH30.plusMinutes(n * 60 / nbEmps);
+                        Thread.sleep(TIMEOUT);
                         Platform.runLater(() -> e.doCheck(SimpleDateTime.fromDateAndTime(fDate, time)));
+                        n++;
                     }
 
                     Collections.shuffle(emps);
+                    SimpleTime sixteenH30 = SimpleTime.of(16, 30);
+                    n = 0;
 
                     for (Employee e : emps)
                     {
-                        SimpleTime time = e.getEndingHour().plusMinutes((int) (Math.random() * 120) - 60);
-                        Thread.sleep(200);
+                        SimpleTime time = sixteenH30.plusMinutes(n * 60 / nbEmps);
+                        Thread.sleep(TIMEOUT);
                         Platform.runLater(() -> e.doCheck(SimpleDateTime.fromDateAndTime(fDate, time)));
+                        n++;
                     }
 
                 }
