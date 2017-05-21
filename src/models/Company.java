@@ -6,21 +6,13 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import lib.json.JsonLoader;
-import lib.json.JsonSaver;
 import lib.json.Jsonable;
 import lib.time.SimpleDate;
-import lib.time.SimpleDateTime;
-import lib.time.SimpleTime;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
 import java.io.*;
-import java.time.LocalDate;
-import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -30,11 +22,21 @@ import java.util.stream.Collectors;
  * Represents the Company. <br/>
  * Singleton
  */
-public class Company implements Jsonable, JsonSaver, JsonLoader, Serializable
+public class Company implements Jsonable, JsonLoader, Serializable
 {
-    private static final String serializationFilename = "data\\company.ser";
+    private static final String serializationFilename = "test.json";
 
-    /** The instance of the class Company  */
+    /** JSON object name keys */
+    private static final String JSON_KEY_COMPANY = "company";
+    private static final String JSON_KEY_BOSS = "boss";
+    private static final String JSON_KEY_MANAGEMENT_DEPARTMENT = "managementDepartment";
+    private static final String JSON_KEY_EMPLOYEES = "employees";
+    private static final String JSON_KEY_MANAGERS = "managers";
+    private static final String JSON_KEY_STANDARD_DEPARTMENTS = "standardDepartments";
+
+    private static final String JSON_KEY_COMPANY_NAME = "name";
+
+    /** The instance of the class Company */
     private static Company companyInstance = new Company();
 
     /** The name of the Company */
@@ -46,10 +48,10 @@ public class Company implements Jsonable, JsonSaver, JsonLoader, Serializable
     /** The number of checks out per day */
     private ObservableMap<SimpleDate, Integer> totalChecksOutPerDay = FXCollections.observableHashMap();
 
-    /**  A list containing every created (and not removed) standard departments  */
+    /** A list containing every created (and not removed) standard departments */
     private ObservableList<StandardDepartment> departments = FXCollections.observableArrayList();
 
-    /**  A list containing every created (and not fired) employees */
+    /** A list containing every created (and not fired) employees */
     private ObservableList<Employee> employees = FXCollections.observableArrayList();
 
 
@@ -467,7 +469,9 @@ public class Company implements Jsonable, JsonSaver, JsonLoader, Serializable
             final String empFnLower = e.getFirstName().toLowerCase();
             final String empLnLower = e.getLastName().toLowerCase();
 
-            return empFnLower.contains(searchLower) || empLnLower.contains(searchLower) || (empFnLower + " " + empLnLower).contains(searchLower);
+            return empFnLower.contains(searchLower) || empLnLower.contains(searchLower) || (empFnLower + " " +
+                    empLnLower)
+                    .contains(searchLower);
         }).collect(Collectors.toList());
 
         return list;
@@ -614,153 +618,98 @@ public class Company implements Jsonable, JsonSaver, JsonLoader, Serializable
     }
 
     /**
-     * Save the data of a class instance into a json file
-     */
-    @Override
-    public void save ()
-    {
-        String path = "data\\files";
-        String filename = "company.json";
-        saveToFile(path, filename, toJson());
-    }
-
-    /**
-     * Creates an instance of {@link JSONObject} from the class instance data.
+     * Creates an instance of {@link JSONObject} containing the entire company's data.
      *
-     * @return the json object containing the class instance data.
+     * @return the json object containing the entire company's data.
      */
     @Override
     public JSONObject toJson ()
     {
         JSONObject json = new JSONObject();
 
-        json.put("name", name.getValueSafe());
+        JSONObject company = new JSONObject();
+        company.put(JSON_KEY_COMPANY_NAME, name.getValueSafe());
+
+        json.put(JSON_KEY_COMPANY, company);
+
+        // ----------------- Boss -----------------
+        JSONObject boss = bossInstance.toJson();
+        json.put(JSON_KEY_BOSS, boss);
+
+        // ----------------- Management department -----------------
+        JSONObject manDep = managementDepartmentInstance.toJson();
+        json.put(JSON_KEY_MANAGEMENT_DEPARTMENT, manDep);
+
+        // ----------------- Employees -----------------
+        JSONArray empArray = employees.stream().map(Employee::toJson).collect(Collectors.toCollection(JSONArray::new));
+        json.put(JSON_KEY_EMPLOYEES, empArray);
+
+        // ----------------- Managers -----------------
+//        JSONArray manArray = managementDepartmentInstance.getManagersList()
+//                                                         .stream()
+//                                                         .map(Manager::toJson)
+//                                                         .collect(Collectors.toCollection(JSONArray::new));
+//        json.put(JSON_KEY_MANAGERS, manArray);
+
+        // ----------------- Standard Departments -----------------
+        JSONArray depArray = departments.stream()
+                                        .map(StandardDepartment::toJson)
+                                        .collect(Collectors.toCollection(JSONArray::new));
+        json.put(JSON_KEY_STANDARD_DEPARTMENTS, depArray);
+
+        try (FileWriter fw = new FileWriter(serializationFilename))
+        {
+            fw.write(json.toJSONString());
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
 
         return json;
     }
 
     /**
-     * Saves all data into json files
-     */
-    public void saveAll ()
-    {
-        this.save();
-        bossInstance.save();
-        managementDepartmentInstance.save();
-
-        for (StandardDepartment dep : departments)
-        {
-            dep.save();
-        }
-
-        for (Employee e : employees)
-        {
-            e.save();
-        }
-    }
-
-    /**
      * Load Employee and Manager instances from json files
      */
-    private void loadEmployeesAndManagers ()
+    private void loadEmployees (JSONArray json)
     {
-        JSONParser parser = new JSONParser();
-
-        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-
-        String directory = "data\\files\\employees";
-
-        File dir = new File(directory);
-
-        if (!dir.exists())
+        if(json == null)
         {
-            System.out.println("There is no employee recorded.");
-            return;
+            System.out.println("Failed to load employees from JSON...");
+            return ;
         }
 
-        for (File file : dir.listFiles())
+        for (Object obj : json)
         {
-            int id = -1;
             try
             {
-                JSONObject obj = (JSONObject) parser.parse(new FileReader(file));
-
-                String firstName = obj.get("firstName").toString();
-                String lastName = obj.get("lastName").toString();
-                id = Integer.parseInt(obj.get("id").toString());
-
-                Employee employee;
-
-                // firstName, lastName sector, id
-                if (obj.get("manager") == Boolean.TRUE)
-                {
-                    employee = new Manager(firstName, lastName, id);
-                }
-                else
-                {
-                    employee = new Employee(firstName, lastName, id);
-                }
-
-
-                // Starting and ending hours
-                LocalTime startingHourTime = null;
-                LocalTime endingHourTime = null;
-
-                Object startingHourObject = obj.get("startingHour");
-                Object endingHourObject = obj.get("endingHour");
-
-                if (startingHourObject != null)
-                {
-                    String startingHourString = startingHourObject == null ? null : startingHourObject.toString();
-                    startingHourTime = LocalTime.parse(startingHourString, timeFormatter);
-                }
-
-                if (endingHourObject != null)
-                {
-                    String endingHourString = startingHourObject == null ? null : startingHourObject.toString();
-                    endingHourTime = LocalTime.parse(endingHourString, timeFormatter);
-                }
-
-                employee.setStartingHour(SimpleTime.fromLocalTime(startingHourTime));
-                employee.setEndingHour(SimpleTime.fromLocalTime(endingHourTime));
-
-                // checks
-                JSONArray checks = (JSONArray) obj.get("checks");
-
-                for (Object object : checks)
-                {
-                    // retrieve the information...
-                    JSONObject check = (JSONObject) object;
-                    String dateStr = check.get("date").toString();
-
-                    Object arrivedAtObject = check.get("arrivedAt");
-                    Object leftAtObject = check.get("leftAt");
-                    LocalDate date = LocalDate.parse(dateStr, dateFormatter);
-
-                    if (arrivedAtObject != null)
-                    {
-                        String arrivedAtStr = arrivedAtObject == null ? null : arrivedAtObject.toString();
-                        LocalTime arrivedAt = LocalTime.parse(arrivedAtStr, timeFormatter);
-                        employee.doCheck(SimpleDateTime.fromLocalTime(arrivedAt)); // in
-
-                        if (leftAtObject != null)
-                        {
-                            String leftAtStr = leftAtObject == null ? null : arrivedAtObject.toString();
-                            LocalTime leftAt = LocalTime.parse(leftAtStr, timeFormatter);
-                            employee.doCheck(SimpleDateTime.fromLocalTime(leftAt)); // in
-                        }
-                    }
-                }
-            }
-            catch (IOException | ParseException e)
-            {
-                System.err.println("The standard department with id " + id + " could not be created.");
-                System.exit(0);
+                Employee.loadFromJson((JSONObject) obj);
             }
             catch (Exception e)
             {
-                System.err.println("An error occurred while trying to parse an employee's file : " + e.getMessage());
+                e.printStackTrace();
+            }
+        }
+    }
+
+    private void loadManagers (JSONArray json)
+    {
+        if(json == null)
+        {
+            System.out.println("Failed to load managers from JSON...");
+            return ;
+        }
+
+        for (Object obj : json)
+        {
+            try
+            {
+                Manager.loadFromJson((JSONObject) obj);
+            }
+            catch (Exception e)
+            {
+                e.printStackTrace();
             }
         }
     }
@@ -768,56 +717,23 @@ public class Company implements Jsonable, JsonSaver, JsonLoader, Serializable
     /**
      * Created StandardDepartment instances from json files
      */
-    private void loadStandardDepartments ()
+    private void loadStandardDepartments (JSONArray json)
     {
-        JSONParser parser = new JSONParser();
-
-        String directory = "data\\files\\departments";
-
-        File dir = new File(directory);
-
-        if (!dir.exists())
+        if(json == null)
         {
-            System.out.println("There is no standard department recorded.");
-            return;
+            System.out.println("Failed to load standard departments from JSON...");
+            return ;
         }
 
-        for (File file : dir.listFiles())
+        for (Object obj : json)
         {
-            int id = -1;
             try
             {
-                JSONObject obj = (JSONObject) parser.parse(new FileReader(file));
-
-                String name = obj.get("name").toString();
-                String activitySector = obj.get("activitySector").toString();
-                id = Integer.parseInt(obj.get("id").toString());
-
-                int managerId = Integer.parseInt(obj.get("manager").toString());
-                Manager manager = ManagementDepartment.getManagementDepartment().getManager(managerId);
-
-                // name, activity sector, id
-                StandardDepartment dep = new StandardDepartment(name, activitySector, id);
-
-                // manager
-                dep.setManager(manager);
-
-                // employees
-                JSONArray employees = (JSONArray) obj.get("employees");
-
-                for (Object employeeId : employees)
-                {
-                    int empId = Integer.parseInt(employeeId.toString());
-                    dep.addEmployee(getEmployee(empId));
-                }
-            }
-            catch (IOException | ParseException e)
-            {
-                System.err.println("The standard department with id " + id + " could not be created.");
+                StandardDepartment.loadFromJson((JSONObject) obj);
             }
             catch (Exception e)
             {
-                System.err.println("An error occurred while trying to parse a standard department's file : " + e.getMessage());
+                e.printStackTrace();
             }
         }
     }
@@ -825,88 +741,88 @@ public class Company implements Jsonable, JsonSaver, JsonLoader, Serializable
     /**
      * load Company's data from a json file
      */
-    private void loadCompany ()
+    private void loadCompany (JSONObject json)
     {
-        JSONParser parser = new JSONParser();
-
-        String path = "data\\files\\company.json";
-
-        try
+        if(json == null)
         {
-            JSONObject obj = (JSONObject) parser.parse(new FileReader(path));
-            setName(obj.get("name").toString());
+            System.out.println("Failed to load Boss from JSON...");
+            return ;
         }
-        catch (IOException | ParseException e)
-        {
-            System.err.println("The management department could not be created.");
-            System.exit(0);
-        }
+
+        name.setValue(json.getOrDefault(JSON_KEY_COMPANY_NAME, "").toString());
     }
 
     /**
      * load Boss' data from a json file
      */
-    private void loadBoss ()
+    private void loadBoss (JSONObject json)
     {
-        JSONParser parser = new JSONParser();
-
-        String path = "data\\files\\boss.json";
-
-        try
+        if(json == null)
         {
-            JSONObject obj = (JSONObject) parser.parse(new FileReader(path));
-            bossInstance.setFirstName(obj.get("firstName").toString());
-            bossInstance.setLastName(obj.get("lastName").toString());
+            System.out.println("Failed to load Boss from JSON...");
+            return ;
         }
-        catch (IOException | ParseException e)
-        {
-            System.err.println("The management department could not be created.");
-            System.exit(0);
-        }
+
+        Boss.loadFromJson(json);
     }
 
     /**
      * load ManagementDepartment's data from a json file
      */
-    private void loadManagementDepartment ()
+    private void loadManagementDepartment (JSONObject json)
     {
-        JSONParser parser = new JSONParser();
-
-        String path = "data\\files\\management_department.json";
-
-        try
+        if(json == null)
         {
-            JSONObject obj = (JSONObject) parser.parse(new FileReader(path));
-            managementDepartmentInstance.setName(obj.get("name").toString());
-            managementDepartmentInstance.setActivitySector(obj.get("activitySector").toString());
+            System.out.println("Failed to load Management Department from JSON...");
+            return ;
         }
-        catch (IOException | ParseException e)
-        {
-            System.err.println("The management department could not be created.");
-            System.exit(0);
-        }
+
+        ManagementDepartment.loadFromJson(json);
     }
 
     /**
      * Load all data from json files.
      */
     @Override
-    public void load ()
+    public void load (JSONObject json)
     {
-        loadCompany();
-        loadBoss();
-        loadManagementDepartment();
-        loadEmployeesAndManagers();
-        loadStandardDepartments();
+        loadCompany((JSONObject) json.get(JSON_KEY_COMPANY));
+        loadBoss((JSONObject) json.get(JSON_KEY_BOSS));
+        loadManagementDepartment((JSONObject) json.get(JSON_KEY_MANAGEMENT_DEPARTMENT));
+        loadEmployees((JSONArray) json.get(JSON_KEY_EMPLOYEES));
+        loadStandardDepartments((JSONArray) json.get(JSON_KEY_STANDARD_DEPARTMENTS));
+    }
+
+    public void deserialize ()
+    {
+        File f = new File(serializationFilename);
+        if (f.exists())
+        {
+            try
+            {
+                JSONParser parser = new JSONParser();
+                JSONObject json   = (JSONObject) parser.parse(new FileReader(f));
+                load(json);
+            }
+            catch (Exception e)
+            {
+                System.out.println("Loading json from file failed...");
+                e.printStackTrace();
+            }
+        }
+        else
+        {
+            System.out.println("Loading json from file failed: file '" + serializationFilename + "' not found.");
+        }
     }
 
     public void serialiaze ()
     {
         try
         {
-            File f = new File(serializationFilename);
-            FileOutputStream fileOut = new FileOutputStream(f);
-            ObjectOutputStream out = new ObjectOutputStream(fileOut);
+            File               f       = new File(serializationFilename);
+            FileOutputStream   fileOut = new FileOutputStream(f);
+            ObjectOutputStream out     = new ObjectOutputStream(fileOut);
             out.writeObject(this);
             out.close();
             fileOut.close();
@@ -919,62 +835,62 @@ public class Company implements Jsonable, JsonSaver, JsonLoader, Serializable
         }
     }
 
-    private void deserialize ()
-    {
-        Company tmp = null;
-        try
-        {
-            File f = new File(serializationFilename);
-            FileInputStream fileIn = new FileInputStream(f);
-            ObjectInputStream in = new ObjectInputStream(fileIn);
-            tmp = (Company) in.readObject();
-            in.close();
-            fileIn.close();
-
-            name = tmp.name;
-            employees = tmp.employees;
-            departments = tmp.departments;
-            totalChecksOutPerDay = tmp.totalChecksOutPerDay;
-            totalChecksInPerDay = tmp.totalChecksInPerDay;
-
-            int maxId = -1;
-            for (Employee e : employees)
-            {
-                int id = e.getId();
-                if (id > maxId)
-                {
-                    maxId = id;
-                }
-            }
-
-            maxId = Collections.max(employees.stream().map(Employee::getId).collect(Collectors.toList()));
-
-            Employee.setNextId(maxId + 1);
-
-            maxId = -1;
-            for (StandardDepartment d : departments)
-            {
-                int id = d.getId();
-                if (id > maxId)
-                {
-                    maxId = id;
-                }
-            }
-
-            StandardDepartment.setNextId(maxId + 1);
-
-            bossInstance.loadFromDeserialization(tmp.bossInstance);
-            bossInstance = Boss.getBoss();
-
-            managementDepartmentInstance.loadFromDeserialization(tmp.managementDepartmentInstance);
-            managementDepartmentInstance = ManagementDepartment.getManagementDepartment();
-        }
-        catch (Exception e)
-        {
-            System.out.println("Deserialization failed...");
-            System.err.println(e.getMessage());
-        }
-    }
+    //    private void deserialize ()
+    //    {
+    //        Company tmp = null;
+    //        try
+    //        {
+    //            File              f      = new File(serializationFilename);
+    //            FileInputStream   fileIn = new FileInputStream(f);
+    //            ObjectInputStream in     = new ObjectInputStream(fileIn);
+    //            tmp = (Company) in.readObject();
+    //            in.close();
+    //            fileIn.close();
+    //
+    //            name = tmp.name;
+    //            employees = tmp.employees;
+    //            departments = tmp.departments;
+    //            totalChecksOutPerDay = tmp.totalChecksOutPerDay;
+    //            totalChecksInPerDay = tmp.totalChecksInPerDay;
+    //
+    //            int maxId = -1;
+    //            for (Employee e : employees)
+    //            {
+    //                int id = e.getId();
+    //                if (id > maxId)
+    //                {
+    //                    maxId = id;
+    //                }
+    //            }
+    //
+    //            maxId = Collections.max(employees.stream().map(Employee::getId).collect(Collectors.toList()));
+    //
+    //            Employee.setNextId(maxId + 1);
+    //
+    //            maxId = -1;
+    //            for (StandardDepartment d : departments)
+    //            {
+    //                int id = d.getId();
+    //                if (id > maxId)
+    //                {
+    //                    maxId = id;
+    //                }
+    //            }
+    //
+    //            StandardDepartment.setNextId(maxId + 1);
+    //
+    //            bossInstance.loadFromDeserialization(tmp.bossInstance);
+    //            bossInstance = Boss.getBoss();
+    //
+    //            managementDepartmentInstance.loadFromDeserialization(tmp.managementDepartmentInstance);
+    //            managementDepartmentInstance = ManagementDepartment.getManagementDepartment();
+    //        }
+    //        catch (Exception e)
+    //        {
+    //            System.out.println("Deserialization failed...");
+    //            System.err.println(e.getMessage());
+    //        }
+    //    }
 
     public void incrementChecksOutAt (SimpleDate date)
     {
@@ -996,5 +912,26 @@ public class Company implements Jsonable, JsonSaver, JsonLoader, Serializable
         }
 
         totalChecksInPerDay.put(date, total + 1);
+    }
+    public void decrementChecksOutAt (SimpleDate date)
+    {
+        int total = 0;
+        if (totalChecksOutPerDay.containsKey(date))
+        {
+            total = totalChecksOutPerDay.get(date);
+        }
+
+        totalChecksOutPerDay.put(date, total - 1);
+    }
+
+    public void decrementChecksInAt (SimpleDate date)
+    {
+        int total = 0;
+        if (totalChecksInPerDay.containsKey(date))
+        {
+            total = totalChecksInPerDay.get(date);
+        }
+
+        totalChecksInPerDay.put(date, total - 1);
     }
 }

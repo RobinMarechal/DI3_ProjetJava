@@ -1,16 +1,14 @@
 package models;
 
-import lib.json.JsonSaver;
 import lib.json.Jsonable;
-
-import java.io.Serializable;
+import org.json.simple.JSONObject;
 
 /**
  * Created by Robin on 27/03/2017. <br/>
  * Represents the Boss of the Company. <br/>
  * Singleton
  */
-public class Boss extends Person implements Jsonable, JsonSaver, Serializable
+public class Boss extends Person implements Jsonable
 {
     /**
      * Instance of Boss class
@@ -50,19 +48,15 @@ public class Boss extends Person implements Jsonable, JsonSaver, Serializable
         return "Boss : " + getFirstName() + " " + getLastName();
     }
 
-    /**
-     * Save the data of a class instance into a json file
-     */
-    @Override
-    public void save ()
-    {
-        String path = "data\\files";
-        String filename = "boss.json";
-        saveToFile(path, filename, toJson());
-    }
-
     public void loadFromDeserialization (Boss instance)
     {
         bossInstance = instance;
+    }
+
+    public static void loadFromJson (JSONObject json)
+    {
+        Boss obj = getBoss();
+        obj.setFirstName(json.get(JSON_KEY_FIRSTNAME).toString());
+        obj.setLastName(json.get(JSON_KEY_LASTNAME).toString());
     }
 }

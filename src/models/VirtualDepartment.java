@@ -1,17 +1,22 @@
 package models;
 
+import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import lib.json.Jsonable;
 import org.json.simple.JSONObject;
 
-import java.io.Serializable;
+import java.util.ArrayList;
 
 /**
  * Created by Robin on 27/03/2017.
  */
-public abstract class VirtualDepartment implements Jsonable, Serializable
+public abstract class VirtualDepartment implements Jsonable
 {
+    protected final static String JSON_KEY_NAME = "name";
+    protected final static String JSON_KEY_ACTIVITY_SECTOR = "activitySector";
+    protected final static String JSON_KEY_EMPLOYEES = "employees";
+
     /** The name of the department  */
     private StringProperty name = new SimpleStringProperty(this, "name", "");
 
@@ -100,8 +105,8 @@ public abstract class VirtualDepartment implements Jsonable, Serializable
     {
         JSONObject json = new JSONObject();
 
-        json.put("name", this.name.getValueSafe());
-        json.put("activitySector", this.activitySector.getValueSafe());
+        json.put(JSON_KEY_NAME, this.name.getValueSafe());
+        json.put(JSON_KEY_ACTIVITY_SECTOR, this.activitySector.getValueSafe());
 
         return json;
     }

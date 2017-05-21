@@ -4,7 +4,6 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -101,7 +100,7 @@ public class StandardDepartmentTest
     @Test
     public void saving ()
     {
-        dep1.save();
+//        dep1.save();
 
         String filepath = "data\\files\\departments\\" + dep1.getId() + ".json";
 

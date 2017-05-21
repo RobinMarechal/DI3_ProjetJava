@@ -3,7 +3,6 @@ package models;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.junit.Before;
 import org.junit.Test;
 
 import java.io.File;
@@ -47,7 +46,7 @@ public class ManagementDepartmentTest
     @Test
     public void saving ()
     {
-        ManagementDepartment.getManagementDepartment().save();
+//        ManagementDepartment.getManagementDepartment().save();
 
         String filepath = "data\\files\\management_department.json";
 

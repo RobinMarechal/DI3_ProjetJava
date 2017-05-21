@@ -3,7 +3,6 @@ package models;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
-import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -11,7 +10,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
-import java.time.LocalTime;
 
 import static org.junit.Assert.*;
 
@@ -71,7 +69,7 @@ public class EmployeeTest
     @Test
     public void saving ()
     {
-        e1.save();
+//        e1.save();
 
         String filepath = "data\\files\\employees\\" + e1.getId() + ".json";
 

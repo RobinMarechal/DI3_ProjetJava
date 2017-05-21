@@ -1,6 +1,7 @@
 package views.employees;
 
 import controllers.DepartmentsController;
+import controllers.EmployeesController;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.StringExpression;
 import javafx.beans.property.ObjectProperty;
@@ -11,6 +12,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -58,6 +60,8 @@ public class EmployeeProfile extends EmployeesViewController implements Initiali
     @FXML private TableColumn<CheckInOut, ObjectProperty<SimpleDate>> colDate;
     @FXML private TableColumn<CheckInOut, ObjectProperty<SimpleTime>> colArrivedAt;
     @FXML private TableColumn<CheckInOut, ObjectProperty<SimpleTime>> colLeftAt;
+    @FXML private Button btnEdit;
+    @FXML private Button btnFire;
 
     public EmployeeProfile (Employee emp)
     {
@@ -97,23 +101,8 @@ public class EmployeeProfile extends EmployeesViewController implements Initiali
     {
         display();
 
-        // Initialization of cell factories in order to color cell's content based on its value
-
-//        table.setOnSort(event ->
-//        {
-//            try
-//            {
-//                new Thread(() ->
-//                {
-//                    initCellValueFactories();
-//                    displayRightComponents();
-//                }).start();
-//            }
-//            catch (IllegalStateException e)
-//            {
-//                System.out.println("IllegalStateException has been thrown, Couldn't sort the table...");
-//            }
-//        });
+        btnEdit.setOnAction(event -> new EmployeesController().openEditionEmployeeDialog(employee));
+        btnFire.setOnAction(event -> new EmployeesController().fireEmployee(employee));
     }
 
     private void display ()

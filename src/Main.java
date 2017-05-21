@@ -19,13 +19,14 @@ import java.util.Collections;
  */
 public class Main extends Application
 {
-    private static final int TIMEOUT = 500;
+    private static final int TIMEOUT = 50;
 
     public static void main (String args[])
     {
-//        new TCPTests();
-
+        Company.getCompany().deserialize();
         launch(args);
+
+//        Company.getCompany().toJson();
     }
 
     private static void testData ()
@@ -107,7 +108,7 @@ public class Main extends Application
     @Override
     public void start (Stage window) throws Exception
     {
-        testData();
+//        testData();
         window.setTitle("Pointeuse");
         window.setScene(Template.getInstance().getScene());
         window.setResizable(false);
@@ -118,7 +119,7 @@ public class Main extends Application
 
         window.show();
 
-        runAutomaticTests();
+//        runAutomaticTests();
 
         //runQuickTests();
     }
@@ -129,10 +130,10 @@ public class Main extends Application
         {
             try
             {
-                SimpleDate date = SimpleDate.TODAY;
-                ObservableList<Employee> tmp  = Company.getCompany().getEmployeesList();
-                ArrayList<Employee>      emps = new ArrayList<Employee>(tmp);
-                int nbEmps = emps.size();
+                SimpleDate               date   = SimpleDate.TODAY;
+                ObservableList<Employee> tmp    = Company.getCompany().getEmployeesList();
+                ArrayList<Employee>      emps   = new ArrayList<Employee>(tmp);
+                int                      nbEmps = emps.size();
 
                 for (int i = 0; i < 20; i++)
                 {
@@ -142,7 +143,7 @@ public class Main extends Application
                     System.out.println("Date : " + fDate);
 
                     SimpleTime sevenH30 = SimpleTime.of(7, 30);
-                    int n = 0;
+                    int        n        = 0;
 
                     for (Employee e : emps)
                     {
@@ -244,7 +245,8 @@ public class Main extends Application
                         public void run ()
                         {
                             final Employee e = Company.getCompany().getEmployee(50);
-                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(1), SimpleTime.of(8, 10)));
+                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(1), SimpleTime.of(8,
+                                    10)));
                             Company.getCompany().getEmployeesList().get(0).setFirstName("EEEEEEEE");
                             System.out.println("Done");
                         }
@@ -256,7 +258,8 @@ public class Main extends Application
                         public void run ()
                         {
                             final Employee e = Company.getCompany().getEmployee(50);
-                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(1), SimpleTime.of(17, 35)));
+                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(1), SimpleTime.of(17,
+                                    35)));
                             Company.getCompany().getEmployeesList().get(0).setFirstName("FFFFFFF");
                             System.out.println("Done");
                         }
@@ -268,7 +271,8 @@ public class Main extends Application
                         public void run ()
                         {
                             final Employee e = Company.getCompany().getEmployee(50);
-                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(2), SimpleTime.of(7, 42)));
+                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(2), SimpleTime.of(7,
+                                    42)));
                             Company.getCompany().getEmployeesList().get(0).setFirstName("GGGGGGGG");
                             System.out.println("Done");
                         }
@@ -280,7 +284,8 @@ public class Main extends Application
                         public void run ()
                         {
                             final Employee e = Company.getCompany().getEmployee(50);
-                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(2), SimpleTime.of(16, 55)));
+                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(2), SimpleTime.of(16,
+                                    55)));
                             Company.getCompany().getEmployeesList().get(0).setFirstName("HHHHHHHH");
                             System.out.println("Done");
                         }

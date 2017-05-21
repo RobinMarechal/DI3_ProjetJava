@@ -140,7 +140,7 @@ public class ModelsTest
 
         clearDirectories();
 
-        Company.getCompany().saveAll();
+//        Company.getCompany().saveAll();
 
         File dirEmployees = new File(paths[0]);
         File dirDepartments = new File(paths[1]);

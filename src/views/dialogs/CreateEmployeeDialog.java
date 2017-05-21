@@ -47,7 +47,7 @@ public class CreateEmployeeDialog extends Dialog implements Initializable
         {
             dialog = new Stage();
             dialog.setTitle("Error");
-            System.out.println("Failed to load employee's creation's dialog...");
+            System.out.println("Failed to load employee's creation dialog...");
             e.printStackTrace();
         }
     }

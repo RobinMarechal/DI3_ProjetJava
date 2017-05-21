@@ -1,5 +1,5 @@
 .navbar .label{
-    -fx-font-size: 16px;
+    -fx-font-size: 15px;
     -fx-cursor: hand;
 }
 
@@ -8,19 +8,19 @@
 }
 
 .h2{
-    -fx-font-size:20px;
+    -fx-font-size:22px;
     -fx-padding:10px 0;
     -fx-margin: 10px 10px !important;
 }
 
 .h3{
-    -fx-font-size:18px;
+    -fx-font-size:20px;
     -fx-padding: 10px 0;
     -fx-margin: 5px 5px;
 }
 
 .p{
-    -fx-font-size:14px;
+    -fx-font-size:16px;
     -fx-padding:5px 0;
     -fx-margin:5px 5px;
 }
@@ -46,7 +46,7 @@
 }
 
 .btn{
-    -fx-padding: 15px 0;
+    -fx-padding: 10px 0;
     -fx-margin: 0 30px;
 }
 
@@ -109,7 +109,7 @@
 }
 
 .text-big{
-    -fx-font-size: 16;
+    -fx-font-size: 18;
 }
 
 .text-white{
@@ -124,4 +124,13 @@
     -fx-border-color: rgb(200, 0, 0, 0.4);
     -fx-border-radius: 2px;
     -fx-border-width: 2px;
+}
+
+
+.btn-danger{
+    -fx-background-color: rgb(160, 50, 50);
+}
+
+.btn-danger:hover{
+    -fx-background-color: rgb(150, 40, 40);
 }

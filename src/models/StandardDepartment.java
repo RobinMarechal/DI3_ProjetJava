@@ -6,16 +6,20 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import lib.json.JsonSaver;
 import lib.json.Jsonable;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import java.util.stream.Collectors;
+
 /**
  * Created by Robin on 27/03/2017.
  */
-public class StandardDepartment extends VirtualDepartment implements Jsonable, JsonSaver
+public class StandardDepartment extends VirtualDepartment implements Jsonable
 {
+    protected static final String JSON_KEY_ID = "id";
+    protected static final String JSON_KEY_MANAGER = "manager";
+
     /** The ID of the next instance */
     private static int NEXT_ID = 1;
 
@@ -337,17 +341,6 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
     }
 
     /**
-     * Save the data of a class instance into a json file
-     */
-    @Override
-    public void save ()
-    {
-        String path = "data\\files\\departments";
-        String filename = id.getValue() + ".json";
-        saveToFile(path, filename, toJson());
-    }
-
-    /**
      * Creates an instance of {@link JSONObject} from the class instance data.
      *
      * @return the json object containing the class instance data.
@@ -358,15 +351,11 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
         JSONObject json = super.toJson();
         JSONArray employeesArray = new JSONArray();
 
-        json.put("id", id.getValue());
-        json.put("manager", manager.getValue() == null ? null : manager.getValue().getId());
+        json.put(JSON_KEY_ID, id.getValue());
+        json.put(JSON_KEY_MANAGER, manager.getValue() == null ? null : manager.getValue().getId());
+        employeesArray.addAll(employees.stream().map(Employee::getId).collect(Collectors.toList()));
 
-        for (Employee e : employees)
-        {
-            employeesArray.add(e.getId());
-        }
-
-        json.put("employees", employeesArray);
+        json.put(JSON_KEY_EMPLOYEES, employeesArray);
 
         return json;
     }
@@ -379,5 +368,27 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable, J
     public ObservableList<Employee> getEmployeesList ()
     {
         return employees;
+    }
+
+    public static void loadFromJson (JSONObject json) throws Exception
+    {
+        String name = json.get(JSON_KEY_NAME).toString();
+        String sector = json.get(JSON_KEY_ACTIVITY_SECTOR).toString();
+        int id = Integer.parseInt(json.get(JSON_KEY_ID).toString());
+        int managerId = Integer.parseInt(json.get(JSON_KEY_MANAGER).toString());
+        JSONArray employeesJson = (JSONArray) json.get(JSON_KEY_EMPLOYEES);
+
+        StandardDepartment dep = new StandardDepartment(name, sector, id);
+
+        Company company = Company.getCompany();
+        Manager manager = company.getManagementDepartment().getManager(managerId);
+        dep.setManager(manager);
+
+        for (Object obj : employeesJson)
+        {
+            int       empId   = Integer.parseInt(obj.toString());
+            Employee  e       = company.getEmployee(empId);
+            dep.addEmployee(e);
+        }
     }
 }

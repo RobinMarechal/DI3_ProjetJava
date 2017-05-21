@@ -5,7 +5,6 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lib.exceptions.ModelException;
 import lib.exceptions.codes.EmployeeCodes;
-import lib.json.JsonSaver;
 import lib.json.Jsonable;
 import lib.time.SimpleDate;
 import lib.time.SimpleDateTime;
@@ -15,12 +14,19 @@ import org.json.simple.JSONObject;
 
 import java.time.format.DateTimeFormatter;
 import java.util.Optional;
+import java.util.stream.Collectors;
+
+import static models.StandardDepartment.JSON_KEY_MANAGER;
 
 /**
  * Created by Robin on 27/03/2017.
  */
-public class Employee extends Person implements JsonSaver, Jsonable
+public class Employee extends Person implements Jsonable
 {
+    protected static final String JSON_KEY_ID = "id";
+    protected static final String JSON_KEY_CHECKS = "checks";
+    protected static final String JSON_KEY_STARTING_HOUR = "startingHour";
+    protected static final String JSON_KEY_ENDING_HOUR = "endingHour";
 
     /** Next employee ID */
     private static int NEXT_ID = 1;
@@ -30,10 +36,12 @@ public class Employee extends Person implements JsonSaver, Jsonable
     private IntegerProperty id = new SimpleIntegerProperty(this, "id", -1);
 
     /** The time when the employee must arrive at work every morning */
-    private ObjectProperty<SimpleTime> startingHour = new SimpleObjectProperty<>(this, "startingHour", SimpleTime.of(8, 0));
+    private ObjectProperty<SimpleTime> startingHour = new SimpleObjectProperty<>(this, "startingHour", SimpleTime.of
+            (8, 0));
 
     /** The time when the employee must leave every day */
-    private ObjectProperty<SimpleTime> endingHour = new SimpleObjectProperty<>(this, "endingHour", SimpleTime.of(17, 0));
+    private ObjectProperty<SimpleTime> endingHour = new SimpleObjectProperty<>(this, "endingHour", SimpleTime.of(17,
+            0));
 
     /** The additional time in minutes (can be < 0) */
     private DoubleProperty overtime = new SimpleDoubleProperty(this, "overtime", 0);
@@ -195,7 +203,7 @@ public class Employee extends Person implements JsonSaver, Jsonable
         this.overtime.setValue(overtime);
     }
 
-    public DoubleProperty overtimeProperty()
+    public DoubleProperty overtimeProperty ()
     {
         return overtime;
     }
@@ -209,8 +217,10 @@ public class Employee extends Person implements JsonSaver, Jsonable
     public int verifyCheckInTimeAt (SimpleDate date) throws ModelException
     {
         final SimpleTime checkInTime = getArrivingTimeAt(date);
-        if(checkInTime == null)
+        if (checkInTime == null)
+        {
             throw new ModelException(EmployeeCodes.NO_CHECK_IN_THIS_DATE);
+        }
         return startingHour.getValue().compareTo(checkInTime);
     }
 
@@ -223,8 +233,10 @@ public class Employee extends Person implements JsonSaver, Jsonable
     public int verifyCheckOutTimeAt (SimpleDate date) throws ModelException
     {
         final SimpleTime checkOutTime = getLeavingTimeAt(date);
-        if(checkOutTime == null)
+        if (checkOutTime == null)
+        {
             throw new ModelException(EmployeeCodes.NO_CHECK_OUT_THIS_DATE);
+        }
         return -endingHour.getValue().compareTo(checkOutTime);
     }
 
@@ -276,11 +288,25 @@ public class Employee extends Person implements JsonSaver, Jsonable
      *
      * @return this
      */
-    public Employee fire ()
+    public Employee fire () throws Exception
     {
         Company.getCompany().removeEmployee(this);
 
+        checksInOut.stream().filter(check -> check.getArrivedAt() != null).forEach(check ->
+        {
+            Company.getCompany().decrementChecksInAt(check.getDate());
+            if (check.getLeftAt() != null)
+            {
+                Company.getCompany().decrementChecksOutAt(check.getDate());
+            }
+        });
+
         return this;
+    }
+
+    public Manager upgradeToManager ()
+    {
+        return Company.getCompany().getManagementDepartment().addEmployeeAsManager(this);
     }
 
     /**
@@ -305,6 +331,13 @@ public class Employee extends Person implements JsonSaver, Jsonable
         return checksInOut;
     }
 
+    void setChecksInOut (ObservableList<CheckInOut> checks)
+    {
+        // In order to notify view of the change
+        checksInOut.clear();
+        checksInOut.addAll(checks);
+    }
+
     /**
      * Makes the employee perform a check in or out.
      *
@@ -317,12 +350,12 @@ public class Employee extends Person implements JsonSaver, Jsonable
         SimpleTime time = SimpleTime.fromSimpleDateTime(dateTime);
 
         CheckInOut check = getCheckInOutAt(date);
-        int index = checksInOut.indexOf(check);
+        int        index = checksInOut.indexOf(check);
 
         // If there already is a CheckInOut instance associate with this Employee...
         if (check != null) // Check in
         {
-            if(check.getLeftAt() == null)
+            if (check.getLeftAt() == null)
             {
                 check.check(dateTime);
                 checksInOut.set(index, check);
@@ -361,16 +394,6 @@ public class Employee extends Person implements JsonSaver, Jsonable
         return "Employee n°" + id.getValue() + " : " + super.toString();
     }
 
-    /**
-     * Save an Employee instance into a json file.
-     */
-    @Override
-    public void save ()
-    {
-        String path = "data\\files\\employees";
-        String filename = this.id.getValue() + ".json";
-        saveToFile(path, filename, toJson());
-    }
 
     /**
      * Creates an instance of {@link JSONObject} from the class instance data.
@@ -380,28 +403,56 @@ public class Employee extends Person implements JsonSaver, Jsonable
     @Override
     public JSONObject toJson ()
     {
-        JSONObject json = super.toJson();
-        JSONArray checksArray = new JSONArray();
+        JSONObject json        = super.toJson();
+        JSONArray  checksArray = new JSONArray();
 
         String startingHourStr = startingHour.getValue() == null ? null : startingHour.getValue()
                                                                                       .toLocalTime()
-                                                                                      .format(DateTimeFormatter.ofPattern("HH:mm"));
+                                                                                      .format(DateTimeFormatter
+                                                                                              .ofPattern("HH:mm"));
         String endingHourStr = endingHour.getValue() == null ? null : endingHour.getValue()
                                                                                 .toLocalTime()
-                                                                                .format(DateTimeFormatter.ofPattern("HH:mm"));
+                                                                                .format(DateTimeFormatter.ofPattern
+                                                                                        ("HH:mm"));
 
-        json.put("id", id.getValue());
-        json.put("startingHour", startingHourStr);
-        json.put("endingHour", endingHourStr);
-        json.put("manager", false);
-
-        for (CheckInOut check : checksInOut)
+        json.put(JSON_KEY_ID, id.getValue());
+        json.put(JSON_KEY_STARTING_HOUR, startingHourStr);
+        json.put(JSON_KEY_ENDING_HOUR, endingHourStr);
+        if (this instanceof Manager)
         {
-            checksArray.add(check.toJson());
+            json.put(JSON_KEY_MANAGER, true);
         }
 
-        json.put("checks", checksArray);
+        checksArray.addAll(checksInOut.stream().map(CheckInOut::toJson).collect(Collectors.toList()));
+
+        json.put(JSON_KEY_CHECKS, checksArray);
 
         return json;
+    }
+
+    public static Employee loadFromJson (JSONObject json) throws Exception
+    {
+        String fName = json.get(JSON_KEY_FIRSTNAME).toString();
+        String lName = json.get(JSON_KEY_LASTNAME).toString();
+        int    id    = Integer.parseInt(json.get(JSON_KEY_ID).toString());
+
+        Employee employee;
+        if (json.get(JSON_KEY_MANAGER) != null)
+        {
+            employee = new Manager(fName, lName, id);
+        }
+        else
+        {
+            employee = new Employee(fName, lName, id);
+        }
+
+        JSONArray checks = (JSONArray) json.get(JSON_KEY_CHECKS);
+        for (Object obj : checks)
+        {
+            CheckInOut check = CheckInOut.loadFromJson(employee, (JSONObject) obj);
+            employee.checksInOut.add(check);
+        }
+
+        return employee;
     }
 }

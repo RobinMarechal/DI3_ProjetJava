@@ -165,7 +165,7 @@ public class CompanyTest
     @Test
     public void saving ()
     {
-        Company.getCompany().save();
+//        Company.getCompany().save();
         String filepath = "data\\files\\company.json";
 
         File f = new File(filepath);

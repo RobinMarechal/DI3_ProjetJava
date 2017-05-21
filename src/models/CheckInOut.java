@@ -8,7 +8,8 @@ import lib.time.SimpleDateTime;
 import lib.time.SimpleTime;
 import org.json.simple.JSONObject;
 
-import java.io.Serializable;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
 import static lib.time.SimpleDate.fromSimpleDateTime;
@@ -18,8 +19,12 @@ import static lib.time.SimpleDate.fromSimpleDateTime;
  * This class represents a check-in AND a check-out for a day, for an employee (including managers). <br/>
  * An instance of CheckInOut represents both check-in and check-out.
  */
-public class CheckInOut implements Jsonable, Serializable
+public class CheckInOut implements Jsonable
 {
+    protected static final String JSON_KEY_DATE = "date";
+    protected static final String JSON_KEY_ARRIVED_AT = "arrivedAt";
+    protected static final String JSON_KEY_LEFT_AT = "leftAt";
+
     /**
      * The time (HH:MM) when this employee arrived at work this day
      */
@@ -237,13 +242,45 @@ public class CheckInOut implements Jsonable, Serializable
         JSONObject checkObject = new JSONObject();
 
         String dateStr = date.getValue().toLocalDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
-        String arrivedAtStr = arrivedAt.getValue() == null ? null : arrivedAt.getValue().toLocalDateTime().format(DateTimeFormatter.ofPattern("HH:mm"));
-        String leftAtStr = leftAt.getValue() == null ? null : leftAt.getValue().toLocalTime().format(DateTimeFormatter.ofPattern("HH:mm"));
+        String arrivedAtStr = arrivedAt.getValue() == null ? null : arrivedAt.getValue()
+                                                                             .toLocalDateTime()
+                                                                             .format(DateTimeFormatter.ofPattern
+                                                                                     ("HH:mm"));
+        String leftAtStr = leftAt.getValue() == null ? null : leftAt.getValue()
+                                                                    .toLocalTime()
+                                                                    .format(DateTimeFormatter.ofPattern("HH:mm"));
 
-        checkObject.put("date", dateStr);
-        checkObject.put("arrivedAt", arrivedAtStr);
-        checkObject.put("leftAt", leftAtStr);
+        checkObject.put(JSON_KEY_DATE, dateStr);
+        checkObject.put(JSON_KEY_ARRIVED_AT, arrivedAtStr);
+        checkObject.put(JSON_KEY_LEFT_AT, leftAtStr);
 
         return checkObject;
+    }
+
+    public static CheckInOut loadFromJson (Employee employee, JSONObject obj)
+    {
+        LocalDate localDate = LocalDate.parse(obj.get(JSON_KEY_DATE)
+                                                 .toString(), DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+
+
+        LocalTime localIn = LocalTime.parse(obj.get(JSON_KEY_ARRIVED_AT)
+                                               .toString(), DateTimeFormatter.ofPattern("HH:mm"));
+
+        LocalTime localOut = null;
+        Object    leftAt   = obj.get(JSON_KEY_LEFT_AT);
+        if (leftAt != null) // otherwise, the employee simply didn't check out
+        {
+            localOut = LocalTime.parse(leftAt.toString(), DateTimeFormatter.ofPattern("HH:mm"));
+
+        }
+
+        CheckInOut c = new CheckInOut(employee, SimpleDate.fromLocalDate(localDate));
+        c.checkIn(SimpleTime.fromLocalTime(localIn));
+        if (localOut != null)
+        {
+            c.checkOut(SimpleTime.fromLocalTime(localOut));
+        }
+
+        return c;
     }
 }

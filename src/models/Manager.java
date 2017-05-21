@@ -2,14 +2,13 @@ package models;
 
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import lib.json.JsonSaver;
 import lib.json.Jsonable;
 import org.json.simple.JSONObject;
 
 /**
  * Created by Robin on 27/03/2017.
  */
-public class Manager extends Employee implements Jsonable, JsonSaver
+public class Manager extends Employee implements Jsonable
 {
     /**
      * The {@link StandardDepartment} instance managed by this manager
@@ -73,8 +72,13 @@ public class Manager extends Employee implements Jsonable, JsonSaver
      * @return this
      */
     @Override
-    public Manager fire ()
+    public Manager fire () throws Exception
     {
+        if(managedDepartment != null)
+        {
+            throw new Exception("Failed to fire the manager, he is still managing a department.");
+        }
+
         super.fire();
         Company.getCompany().removeManager(this);
         return this;
@@ -134,4 +138,12 @@ public class Manager extends Employee implements Jsonable, JsonSaver
 
         return this;*/
     }
+
+//    public static Manager loadFromJson (Object json) throws Exception
+//    {
+//        int id = Integer.parseInt(json.toString());
+//        Employee employee = Company.getCompany().getEmployee(id);
+//        return employee.upgradeToManager();
+//    }
+
 }

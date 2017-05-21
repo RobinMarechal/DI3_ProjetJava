@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.String?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.Separator?>
 <?import javafx.scene.control.TableColumn?>
@@ -8,7 +10,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1200.0" styleClass="bg-transparent" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0" prefWidth="1200.0" styleClass="bg-transparent" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
     <top>
         <Label styleClass="h2" text="Employee's Profile" textAlignment="CENTER" BorderPane.alignment="CENTER">
             <BorderPane.margin>
@@ -24,7 +26,36 @@
             <Label fx:id="labStartsAt" layoutX="315.0" layoutY="340.0" styleClass="p" text="Embauche à : HH:mm" textAlignment="CENTER" />
             <Label fx:id="labEndsAt" layoutX="315.0" layoutY="349.0" styleClass="p" text="Débauche à : HH:mm" textAlignment="CENTER" />
             <Label fx:id="labAddMin" layoutX="274.0" layoutY="357.0" styleClass="p" text="Heures supplémentaires : X.YH" textAlignment="CENTER" />
-            <Separator orientation="VERTICAL" prefHeight="193.0" prefWidth="154.0" visible="false" />
+         <Separator layoutX="158.0" layoutY="457.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="154.0" visible="false" />
+         <Button fx:id="btnEdit" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="0.0" prefWidth="200.0" text="Edit" textAlignment="CENTER">
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+            <styleClass>
+               <String fx:value="p" />
+               <String fx:value="btn-primary" />
+               <String fx:value="text-white" />
+               <String fx:value="btn" />
+            </styleClass>
+            <VBox.margin>
+               <Insets bottom="15.0" top="15.0" />
+            </VBox.margin>
+         </Button>
+         <Button fx:id="btnFire" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="0.0" prefWidth="200.0" text="Fire" textAlignment="CENTER">
+            <opaqueInsets>
+               <Insets />
+            </opaqueInsets>
+            <styleClass>
+               <String fx:value="p" />
+               <String fx:value="btn-danger" />
+               <String fx:value="text-white" />
+               <String fx:value="btn" />
+            </styleClass>
+            <VBox.margin>
+               <Insets bottom="15.0" top="15.0" />
+            </VBox.margin>
+         </Button>
+            <Separator orientation="VERTICAL" prefHeight="50.0" prefWidth="154.0" visible="false" />
         </VBox>
     </left>
     <center>

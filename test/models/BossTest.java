@@ -27,7 +27,7 @@ public class BossTest {
     @Test
     public void saving ()
     {
-        Boss.getBoss().save();
+//        Boss.getBoss().save();
 
         String filepath = "data\\files\\boss.json";
 

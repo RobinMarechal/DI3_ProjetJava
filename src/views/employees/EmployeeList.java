@@ -153,7 +153,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
         columnArrivedAt.setCellValueFactory(new PropertyValueFactory<>("arrivedAt"));
         columnLeftAt.setCellValueFactory(new PropertyValueFactory<>("leftAt"));
         columnOvertime.setCellValueFactory(new PropertyValueFactory<>("overtime"));
-        
+
         table.setItems(rows);
     }
 
@@ -465,7 +465,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
 
             // We don't only want to know if he is a manager,
             // we also want to know if he is THE manager of the department
-            if (departmentInstance != null)
+            if (departmentInstance != null && departmentInstance.getManager() != null)
             {
                 manager = departmentInstance.getManager().getId() == empId ? true : false;
             }
