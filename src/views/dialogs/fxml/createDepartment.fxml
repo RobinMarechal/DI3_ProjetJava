@@ -8,23 +8,23 @@
 <?import javafx.scene.Scene?>
 <?import java.lang.String?>
 
-<Stage fx:id="dialog" title="Creation of a department" resizable="false" height="365.0" width="530.0" xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1">
+<Stage fx:id="dialog" title="Creation of a department" resizable="false" height="365.0" width="530.0"
+       xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene stylesheets="@../../../lib/views/style.css">
             <root>
-                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
-                      prefHeight="300.0"
-                      prefWidth="500.0" styleClass="bg-transparent" xmlns="http://javafx.com/javafx/8.0.102"
+                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0"
+                      prefWidth="500.0"
+                      styleClass="bg-transparent" stylesheets="@../../../lib/views/style.css" xmlns="http://javafx.com/javafx/8.0.102"
                       xmlns:fx="http://javafx.com/fxml/1">
                     <children>
-                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="h2"
+                        <Label fx:id="labTitle" alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="h2"
                                text="Create a new department"
                                textAlignment="CENTER">
                         </Label>
                         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                             <children>
-                                <TextField fx:id="fieldName" prefHeight="30.0" prefWidth="300.0"
-                                           promptText="Name">
+                                <TextField fx:id="fieldName" prefHeight="30.0" prefWidth="300.0" promptText="Name">
                                     <HBox.margin>
                                         <Insets/>
                                     </HBox.margin>
@@ -33,8 +33,7 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                             <children>
-                                <TextField fx:id="fieldActivitySector" prefHeight="30.0" prefWidth="300.0"
-                                           promptText="Activity Sector">
+                                <TextField fx:id="fieldActivitySector" prefHeight="30.0" prefWidth="300.0" promptText="Activity Sector">
                                     <HBox.margin>
                                         <Insets/>
                                     </HBox.margin>
@@ -43,28 +42,13 @@
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                             <children>
-                                <TextField fx:id="fieldManagerFirstName" prefHeight="30.0" prefWidth="300.0"
-                                           promptText="Manager's first name">
-                                    <HBox.margin>
-                                        <Insets/>
-                                    </HBox.margin>
-                                </TextField>
+                                <ComboBox fx:id="comboManagers" maxWidth="300.0" prefHeight="30.0" promptText="Chose a manager..."
+                                          HBox.hgrow="ALWAYS"/>
                             </children>
                         </HBox>
                         <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
                             <children>
-                                <TextField fx:id="fieldManagerLastName" prefHeight="30.0" prefWidth="300.0"
-                                           promptText="Manager's last name">
-                                    <HBox.margin>
-                                        <Insets/>
-                                    </HBox.margin>
-                                </TextField>
-                            </children>
-                        </HBox>
-                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
-                            <children>
-                                <Button fx:id="btnSubmit" mnemonicParsing="false" prefHeight="20.0" prefWidth="200.0"
-                                        text="Submit">
+                                <Button fx:id="btnSubmit" mnemonicParsing="false" prefHeight="20.0" prefWidth="200.0" text="Submit">
                                     <styleClass>
                                         <String fx:value="btn-primary"/>
                                         <String fx:value="text-white"/>

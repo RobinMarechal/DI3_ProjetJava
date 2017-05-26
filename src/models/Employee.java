@@ -1,14 +1,14 @@
 package models;
 
+import fr.etu.univtours.marechal.SimpleDate;
+import fr.etu.univtours.marechal.SimpleDateTime;
+import fr.etu.univtours.marechal.SimpleTime;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lib.exceptions.ModelException;
 import lib.exceptions.codes.EmployeeCodes;
 import lib.json.Jsonable;
-import lib.time.SimpleDate;
-import lib.time.SimpleDateTime;
-import lib.time.SimpleTime;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -28,6 +28,9 @@ public class Employee extends Person implements Jsonable
     protected static final String JSON_KEY_STARTING_HOUR = "startingHour";
     protected static final String JSON_KEY_ENDING_HOUR = "endingHour";
 
+    public static final SimpleTime DEFAULT_STARTING_HOUR = SimpleTime.of(8, 0);
+    public static final SimpleTime DEFAULT_ENDING_HOUR = SimpleTime.of(17, 0);
+
     /** Next employee ID */
     private static int NEXT_ID = 1;
 
@@ -36,12 +39,10 @@ public class Employee extends Person implements Jsonable
     private IntegerProperty id = new SimpleIntegerProperty(this, "id", -1);
 
     /** The time when the employee must arrive at work every morning */
-    private ObjectProperty<SimpleTime> startingHour = new SimpleObjectProperty<>(this, "startingHour", SimpleTime.of
-            (8, 0));
+    private ObjectProperty<SimpleTime> startingHour = new SimpleObjectProperty<>(this, "startingHour", DEFAULT_STARTING_HOUR);
 
     /** The time when the employee must leave every day */
-    private ObjectProperty<SimpleTime> endingHour = new SimpleObjectProperty<>(this, "endingHour", SimpleTime.of(17,
-            0));
+    private ObjectProperty<SimpleTime> endingHour = new SimpleObjectProperty<>(this, "endingHour", DEFAULT_ENDING_HOUR);
 
     /** The additional time in minutes (can be < 0) */
     private DoubleProperty overtime = new SimpleDoubleProperty(this, "overtime", 0);
@@ -63,8 +64,8 @@ public class Employee extends Person implements Jsonable
     {
         super(firstName, lastName);
         this.id.setValue(Employee.NEXT_ID);
-        Employee.NEXT_ID++;
         Company.getCompany().addEmployee(this);
+        Employee.updateNextId();
     }
 
     /**
@@ -75,22 +76,24 @@ public class Employee extends Person implements Jsonable
      * @param id        the ID to give to this employee
      * @throws Exception if there already is an employee with this ID
      */
-    public Employee (String firstName, String lastName, int id) throws Exception
+    public Employee (String firstName, String lastName, int id)
     {
         super(firstName, lastName);
 
         if (Company.getCompany().getEmployee(id) != null)
         {
-            throw new Exception("There already is an employee with id " + id + ".");
+            System.err.print("An employee with the id " + id + " already exists... ");
+            id = NEXT_ID;
+            System.err.println("The employee was created with id " + id + " instead.");
         }
 
-        if (id > Employee.NEXT_ID)
-        {
-            Employee.NEXT_ID = id + 1;
-        }
 
         this.id.setValue(id);
         Company.getCompany().addEmployee(this);
+        if (id >= Employee.NEXT_ID)
+        {
+            Employee.updateNextId();
+        }
     }
 
     /**
@@ -189,7 +192,7 @@ public class Employee extends Person implements Jsonable
 
     /**
      * Get the total overtime of this employee <br/>
-     * For example, if he came at 8:15 on one day while he's supposed to start at 8:00, <code>overtime = -15</code>.
+     * For example, if he came at 8:15 on one day while he's supposed to fzbfiylzebiuzbflmezjf at 8:00, <code>overtime = -15</code>.
      *
      * @return
      */
@@ -250,10 +253,12 @@ public class Employee extends Person implements Jsonable
         return NEXT_ID;
     }
 
-    static void setNextId (int nextId)
+    public static void updateNextId()
     {
-        NEXT_ID = nextId;
+        final ObservableList<Employee> employees = Company.getCompany().getEmployeesList();
+        NEXT_ID = employees.get(employees.size() - 1).getId() + 1;
     }
+
 
     /**
      * Retrieve the department where this employee is working
@@ -391,7 +396,8 @@ public class Employee extends Person implements Jsonable
     @Override
     public String toString ()
     {
-        return "Employee n°" + id.getValue() + " : " + super.toString();
+        //        return "Employee n°" + id.getValue() + " : " + super.toString();
+        return id.getValue() + " - " + super.toString();
     }
 
 
@@ -408,12 +414,10 @@ public class Employee extends Person implements Jsonable
 
         String startingHourStr = startingHour.getValue() == null ? null : startingHour.getValue()
                                                                                       .toLocalTime()
-                                                                                      .format(DateTimeFormatter
-                                                                                              .ofPattern("HH:mm"));
+                                                                                      .format(DateTimeFormatter.ofPattern("HH:mm"));
         String endingHourStr = endingHour.getValue() == null ? null : endingHour.getValue()
                                                                                 .toLocalTime()
-                                                                                .format(DateTimeFormatter.ofPattern
-                                                                                        ("HH:mm"));
+                                                                                .format(DateTimeFormatter.ofPattern("HH:mm"));
 
         json.put(JSON_KEY_ID, id.getValue());
         json.put(JSON_KEY_STARTING_HOUR, startingHourStr);
@@ -430,7 +434,7 @@ public class Employee extends Person implements Jsonable
         return json;
     }
 
-    public static Employee loadFromJson (JSONObject json) throws Exception
+    public static Employee loadFromJson (JSONObject json)
     {
         String fName = json.get(JSON_KEY_FIRSTNAME).toString();
         String lName = json.get(JSON_KEY_LASTNAME).toString();

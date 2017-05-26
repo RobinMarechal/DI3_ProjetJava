@@ -1,18 +1,18 @@
 package models;
 
+import fr.etu.univtours.marechal.SimpleDate;
+import fr.etu.univtours.marechal.SimpleDateTime;
+import fr.etu.univtours.marechal.SimpleTime;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import lib.json.Jsonable;
-import lib.time.SimpleDate;
-import lib.time.SimpleDateTime;
-import lib.time.SimpleTime;
 import org.json.simple.JSONObject;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 
-import static lib.time.SimpleDate.fromSimpleDateTime;
+import static fr.etu.univtours.marechal.SimpleDate.fromSimpleDateTime;
 
 /**
  * Created by Robin on 27/03/2017. <br/>

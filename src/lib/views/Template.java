@@ -3,6 +3,7 @@ package lib.views;
 import controllers.CompanyController;
 import controllers.DepartmentsController;
 import controllers.EmployeesController;
+import fr.etu.univtours.marechal.SimpleDate;
 import javafx.collections.ObservableList;
 import javafx.geometry.Insets;
 import javafx.scene.Node;
@@ -15,7 +16,6 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import lib.BaseController;
-import lib.time.SimpleDate;
 import lib.views.custom.components.Scene;
 import lib.views.custom.components.SlidingLabel;
 import models.Company;
@@ -143,11 +143,18 @@ public class Template
 
     private void initMenuBar ()
     {
-        MenuItem itemAddEmployee = new MenuItem("Employé");
-        MenuItem itemAddDepartment = new MenuItem("Département");
-        Menu menuAdd = new Menu("Ajouter...");
+        MenuItem itemAddEmployee = new MenuItem("Employee");
+        MenuItem itemAddDepartment = new MenuItem("Department");
+
+        itemAddEmployee.setOnAction(event -> new EmployeesController().openCreationEmployeeDialog());
+        itemAddDepartment.setOnAction(event -> new DepartmentsController().openCreationDepartmentDialog());
+
+        Menu menuAdd = new Menu("Add...");
         menuAdd.getItems().addAll(itemAddEmployee, itemAddDepartment);
         menuBar = new MenuBar(menuAdd);
+
+        itemAddEmployee.setOnAction(e -> new EmployeesController().openCreationEmployeeDialog());
+        itemAddDepartment.setOnAction(e -> new DepartmentsController().openCreationDepartmentDialog());
     }
 
     private void loadHomeView (Tabs wanted)

@@ -1,13 +1,14 @@
 package models;
 
+import fr.etu.univtours.marechal.SimpleDate;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
 import lib.json.JsonLoader;
 import lib.json.Jsonable;
-import lib.time.SimpleDate;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -24,7 +25,8 @@ import java.util.stream.Collectors;
  */
 public class Company implements Jsonable, JsonLoader, Serializable
 {
-    private static final String serializationFilename = "test.json";
+
+    private static final String serializationFilename = "data/company.ser";
 
     /** JSON object name keys */
     private static final String JSON_KEY_COMPANY = "company";
@@ -51,7 +53,10 @@ public class Company implements Jsonable, JsonLoader, Serializable
     /** A list containing every created (and not removed) standard departments */
     private ObservableList<StandardDepartment> departments = FXCollections.observableArrayList();
 
-    /** A list containing every created (and not fired) employees */
+    /**
+     * A list containing every created (and not fired) employees <br/>
+     * It's sorted in ascending order of the emloyees' id
+     */
     private ObservableList<Employee> employees = FXCollections.observableArrayList();
 
 
@@ -66,7 +71,6 @@ public class Company implements Jsonable, JsonLoader, Serializable
      */
     private Company ()
     {
-        //deserialize();
     }
 
     /**
@@ -136,7 +140,21 @@ public class Company implements Jsonable, JsonLoader, Serializable
     {
         if (employee != null && !employees.contains(employee))
         {
-            employees.add(employee);
+            int     id    = employee.getId();
+            boolean added = false;
+            for (int i = 0; i < employees.size() && !added; i++)
+            {
+                if (id < employees.get(i).getId())
+                {
+                    employees.add(i, employee);
+                    added = true;
+                }
+            }
+
+            if (!added)
+            {
+                employees.add(employee);
+            }
         }
 
         return this;
@@ -469,9 +487,8 @@ public class Company implements Jsonable, JsonLoader, Serializable
             final String empFnLower = e.getFirstName().toLowerCase();
             final String empLnLower = e.getLastName().toLowerCase();
 
-            return empFnLower.contains(searchLower) || empLnLower.contains(searchLower) || (empFnLower + " " +
-                    empLnLower)
-                    .contains(searchLower);
+            return empFnLower.contains(searchLower) || empLnLower.contains(searchLower) || (empFnLower + " " + empLnLower).contains
+                    (searchLower);
         }).collect(Collectors.toList());
 
         return list;
@@ -645,26 +662,15 @@ public class Company implements Jsonable, JsonLoader, Serializable
         json.put(JSON_KEY_EMPLOYEES, empArray);
 
         // ----------------- Managers -----------------
-//        JSONArray manArray = managementDepartmentInstance.getManagersList()
-//                                                         .stream()
-//                                                         .map(Manager::toJson)
-//                                                         .collect(Collectors.toCollection(JSONArray::new));
-//        json.put(JSON_KEY_MANAGERS, manArray);
+        //        JSONArray manArray = managementDepartmentInstance.getManagersList()
+        //                                                         .stream()
+        //                                                         .map(Manager::toJson)
+        //                                                         .collect(Collectors.toCollection(JSONArray::new));
+        //        json.put(JSON_KEY_MANAGERS, manArray);
 
         // ----------------- Standard Departments -----------------
-        JSONArray depArray = departments.stream()
-                                        .map(StandardDepartment::toJson)
-                                        .collect(Collectors.toCollection(JSONArray::new));
+        JSONArray depArray = departments.stream().map(StandardDepartment::toJson).collect(Collectors.toCollection(JSONArray::new));
         json.put(JSON_KEY_STANDARD_DEPARTMENTS, depArray);
-
-        try (FileWriter fw = new FileWriter(serializationFilename))
-        {
-            fw.write(json.toJSONString());
-        }
-        catch (IOException e)
-        {
-            e.printStackTrace();
-        }
 
         return json;
     }
@@ -674,10 +680,10 @@ public class Company implements Jsonable, JsonLoader, Serializable
      */
     private void loadEmployees (JSONArray json)
     {
-        if(json == null)
+        if (json == null)
         {
             System.out.println("Failed to load employees from JSON...");
-            return ;
+            return;
         }
 
         for (Object obj : json)
@@ -688,28 +694,7 @@ public class Company implements Jsonable, JsonLoader, Serializable
             }
             catch (Exception e)
             {
-                e.printStackTrace();
-            }
-        }
-    }
-
-    private void loadManagers (JSONArray json)
-    {
-        if(json == null)
-        {
-            System.out.println("Failed to load managers from JSON...");
-            return ;
-        }
-
-        for (Object obj : json)
-        {
-            try
-            {
-                Manager.loadFromJson((JSONObject) obj);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
+                System.err.println(e.getMessage());
             }
         }
     }
@@ -719,22 +704,15 @@ public class Company implements Jsonable, JsonLoader, Serializable
      */
     private void loadStandardDepartments (JSONArray json)
     {
-        if(json == null)
+        if (json == null)
         {
             System.out.println("Failed to load standard departments from JSON...");
-            return ;
+            return;
         }
 
         for (Object obj : json)
         {
-            try
-            {
-                StandardDepartment.loadFromJson((JSONObject) obj);
-            }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+            StandardDepartment.loadFromJson((JSONObject) obj);
         }
     }
 
@@ -743,10 +721,10 @@ public class Company implements Jsonable, JsonLoader, Serializable
      */
     private void loadCompany (JSONObject json)
     {
-        if(json == null)
+        if (json == null)
         {
             System.out.println("Failed to load Boss from JSON...");
-            return ;
+            return;
         }
 
         name.setValue(json.getOrDefault(JSON_KEY_COMPANY_NAME, "").toString());
@@ -757,10 +735,10 @@ public class Company implements Jsonable, JsonLoader, Serializable
      */
     private void loadBoss (JSONObject json)
     {
-        if(json == null)
+        if (json == null)
         {
             System.out.println("Failed to load Boss from JSON...");
-            return ;
+            return;
         }
 
         Boss.loadFromJson(json);
@@ -771,10 +749,10 @@ public class Company implements Jsonable, JsonLoader, Serializable
      */
     private void loadManagementDepartment (JSONObject json)
     {
-        if(json == null)
+        if (json == null)
         {
             System.out.println("Failed to load Management Department from JSON...");
-            return ;
+            return;
         }
 
         ManagementDepartment.loadFromJson(json);
@@ -800,8 +778,13 @@ public class Company implements Jsonable, JsonLoader, Serializable
         {
             try
             {
-                JSONParser parser = new JSONParser();
-                JSONObject json   = (JSONObject) parser.parse(new FileReader(f));
+                JSONParser        parser     = new JSONParser();
+                FileInputStream   fileIn     = new FileInputStream(f);
+                ObjectInputStream in         = new ObjectInputStream(fileIn);
+                String            jsonString = in.readUTF();
+                JSONObject        json       = (JSONObject) parser.parse(jsonString);
+                in.close();
+                fileIn.close();
                 load(json);
             }
             catch (Exception e)
@@ -823,7 +806,10 @@ public class Company implements Jsonable, JsonLoader, Serializable
             File               f       = new File(serializationFilename);
             FileOutputStream   fileOut = new FileOutputStream(f);
             ObjectOutputStream out     = new ObjectOutputStream(fileOut);
-            out.writeObject(this);
+
+            JSONObject json = toJson();
+
+            out.writeUTF(json.toJSONString());
             out.close();
             fileOut.close();
             System.out.println("Serialized data is saved in " + serializationFilename);
@@ -913,6 +899,7 @@ public class Company implements Jsonable, JsonLoader, Serializable
 
         totalChecksInPerDay.put(date, total + 1);
     }
+
     public void decrementChecksOutAt (SimpleDate date)
     {
         int total = 0;
@@ -933,5 +920,29 @@ public class Company implements Jsonable, JsonLoader, Serializable
         }
 
         totalChecksInPerDay.put(date, total - 1);
+    }
+
+    public ObservableList<Employee> getEmployeesWithoutDepartment ()
+    {
+        ObservableList<Employee> list = employees.stream()
+                                                       .filter(employee -> employee.getDepartment() == null)
+                                                       .collect(Collectors.toCollection(FXCollections::observableArrayList));
+
+        employees.addListener(new ListChangeListener<Employee>()
+        {
+            @Override
+            public void onChanged (ListChangeListener.Change<? extends Employee> c)
+            {
+                while (c.next())
+                {
+                    list.clear();
+                    list.addAll(employees.stream()
+                                         .filter(employee -> employee.getDepartment() == null)
+                                         .collect(Collectors.toCollection(FXCollections::observableArrayList)));
+                }
+            }
+        });
+
+        return list;
     }
 }

@@ -46,8 +46,9 @@
 }
 
 .btn{
-    -fx-padding: 10px 0;
+    -fx-padding: 10px;
     -fx-margin: 0 30px;
+    -fx-font-size:16px;
 }
 
 .btn:hover, .btn-primary:hover{
@@ -60,6 +61,10 @@
 
 .btn-primary:hover{
     -fx-background-color: rgb(44, 62, 80);
+}
+
+.button{
+    -fx-cursor: hand;
 }
 
 .menu-bar{
@@ -121,7 +126,8 @@
 }
 
 .input-invalid{
-    -fx-border-color: rgb(200, 0, 0, 0.4);
+    -fx-border-color: rgba(200, 0, 0, 0.4);
+    -fx-background-color: rgba(200,0,0,0.1);
     -fx-border-radius: 2px;
     -fx-border-width: 2px;
 }
@@ -133,4 +139,12 @@
 
 .btn-danger:hover{
     -fx-background-color: rgb(150, 40, 40);
+}
+
+.text-underline{
+    -fx-underline: true;
+}
+
+.input-title{
+    -fx-font-size:  16px;
 }

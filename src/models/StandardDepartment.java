@@ -4,7 +4,6 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import lib.json.Jsonable;
 import org.json.simple.JSONArray;
@@ -15,7 +14,7 @@ import java.util.stream.Collectors;
 /**
  * Created by Robin on 27/03/2017.
  */
-public class StandardDepartment extends VirtualDepartment implements Jsonable
+public class StandardDepartment extends VirtualDepartment<Employee> implements Jsonable
 {
     protected static final String JSON_KEY_ID = "id";
     protected static final String JSON_KEY_MANAGER = "manager";
@@ -23,11 +22,8 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable
     /** The ID of the next instance */
     private static int NEXT_ID = 1;
 
-    /**  The ID of the instance */
+    /** The ID of the instance */
     private IntegerProperty id = new SimpleIntegerProperty(this, "id", -1);
-
-    /** A list of all employees working in this department  */
-    private ObservableList<Employee> employees = FXCollections.observableArrayList();
 
     /** The manager of the department */
     private ObjectProperty<Manager> manager = new SimpleObjectProperty<>(this, "manager");
@@ -53,22 +49,24 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable
      * @param id             the id to give to this department
      * @throws Exception if there already is a department with this ID
      */
-    public StandardDepartment (String name, String activitySector, int id) throws Exception
+    public StandardDepartment (String name, String activitySector, int id)
     {
         super(name, activitySector);
 
         if (Company.getCompany().getStandardDepartment(id) != null)
         {
-            throw new Exception("There already is an employee with id " + id + ".");
-        }
-
-        if (id > StandardDepartment.NEXT_ID)
-        {
-            StandardDepartment.NEXT_ID = id + 1;
+            System.err.print("A department with the id " + id + " already exists... ");
+            id = NEXT_ID;
+            System.err.println("The department was created with id " + id + " instead.");
         }
 
         this.id.setValue(id);
         Company.getCompany().addStandardDepartment(this);
+
+        if (id >= StandardDepartment.NEXT_ID)
+        {
+            StandardDepartment.updateNextId();
+        }
     }
 
     /**
@@ -81,8 +79,8 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable
     {
         super(name, activitySector);
         id.setValue(StandardDepartment.NEXT_ID);
-        StandardDepartment.NEXT_ID++;
         Company.getCompany().addStandardDepartment(this);
+        StandardDepartment.updateNextId();
     }
 
     /**
@@ -105,20 +103,12 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable
         return StandardDepartment.NEXT_ID;
     }
 
-    static void setNextId(int nextId)
+    private static void updateNextId ()
     {
-        NEXT_ID = nextId;
+        final ObservableList<StandardDepartment> employees = Company.getCompany().getStandardDepartmentsList();
+        NEXT_ID = employees.get(employees.size() - 1).getId() + 1;
     }
 
-    /**
-     * Retrieve the number of employees working in this department
-     *
-     * @return the number of employees working in this department
-     */
-    public int getNbEmployees ()
-    {
-        return employees.size();
-    }
 
     /**
      * Adds a manager to this department as an employee
@@ -154,10 +144,25 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable
         if (employee != null && !employees.contains(employee))
         {
             // We add this employee the list
-            this.employees.add(employee);
+            //            this.employees.add(employee);
+            int     id    = employee.getId();
+            boolean added = false;
+            for (int i = 0; i < employees.size() && !added; i++)
+            {
+                if (id < employees.get(i).getId())
+                {
+                    employees.add(i, employee);
+                    added = true;
+                }
+            }
+
+            if (!added)
+            {
+                employees.add(employee);
+            }
 
             // The former employee's department does not contain him anymore
-            StandardDepartment oldDep = (StandardDepartment) employee.getDepartment();
+            StandardDepartment oldDep = employee.getDepartment();
             if (oldDep != null && oldDep != this)
             {
                 oldDep.removeEmployee(employee);
@@ -194,7 +199,7 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable
      */
     public StandardDepartment removeEmployee (Employee employee)
     {
-        if (employee != null && employees.contains(employee))
+        if (employee != null && employees.contains(employee) && employee != this.manager.getValue())
         {
             this.employees.remove(employee);
             employee.setDepartment(null);
@@ -256,16 +261,6 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable
         return id;
     }
 
-    public ObservableList<Employee> getEmployees ()
-    {
-        return employees;
-    }
-
-    public void setEmployees (ObservableList<Employee> employees)
-    {
-        this.employees = employees;
-    }
-
     public ObjectProperty<Manager> managerProperty ()
     {
         return manager;
@@ -296,51 +291,6 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable
     }
 
     /**
-     * Creates a String representing the department and all his employees
-     *
-     * @return
-     */
-    public String toStringWithEmployees ()
-    {
-        String str;
-        int size = employees.size();
-        if (employees.size() == 0)
-        {
-            str = "There is no employee in the department " + getName() + ".  "; // 2 spaces because there is a substring(0, length-2) later.
-        }
-        else if (employees.size() == 1)
-        {
-            str = "There 1 employee in the department " + getName() + " :" + System.lineSeparator();
-        }
-        else
-        {
-            str = "There are " + size + " employees in the department " + getName() + " :" + System.lineSeparator();
-        }
-
-        for (Employee e : employees)
-        {
-            str += "\t - " + e + "," + System.lineSeparator();
-        }
-
-        str = str.substring(0, str.length() - 2);
-
-        return str;
-    }
-
-
-    /**
-     * Creates a String representing the department
-     *
-     * @return
-     */
-    @Override
-    public String toString ()
-    {
-//        return "StandardDepartment : " + getName() + ", activity sector : " + getActivitySector() + ", managed by : " + manager;
-        return getName();
-    }
-
-    /**
      * Creates an instance of {@link JSONObject} from the class instance data.
      *
      * @return the json object containing the class instance data.
@@ -348,8 +298,8 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable
     @Override
     public JSONObject toJson ()
     {
-        JSONObject json = super.toJson();
-        JSONArray employeesArray = new JSONArray();
+        JSONObject json           = super.toJson();
+        JSONArray  employeesArray = new JSONArray();
 
         json.put(JSON_KEY_ID, id.getValue());
         json.put(JSON_KEY_MANAGER, manager.getValue() == null ? null : manager.getValue().getId());
@@ -370,15 +320,16 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable
         return employees;
     }
 
-    public static void loadFromJson (JSONObject json) throws Exception
+    public static StandardDepartment loadFromJson (JSONObject json)
     {
-        String name = json.get(JSON_KEY_NAME).toString();
-        String sector = json.get(JSON_KEY_ACTIVITY_SECTOR).toString();
-        int id = Integer.parseInt(json.get(JSON_KEY_ID).toString());
-        int managerId = Integer.parseInt(json.get(JSON_KEY_MANAGER).toString());
+        String    name          = json.get(JSON_KEY_NAME).toString();
+        String    sector        = json.get(JSON_KEY_ACTIVITY_SECTOR).toString();
+        int       id            = Integer.parseInt(json.get(JSON_KEY_ID).toString());
+        int       managerId     = Integer.parseInt(json.get(JSON_KEY_MANAGER).toString());
         JSONArray employeesJson = (JSONArray) json.get(JSON_KEY_EMPLOYEES);
 
-        StandardDepartment dep = new StandardDepartment(name, sector, id);
+        StandardDepartment dep;
+        dep = new StandardDepartment(name, sector, id);
 
         Company company = Company.getCompany();
         Manager manager = company.getManagementDepartment().getManager(managerId);
@@ -386,9 +337,11 @@ public class StandardDepartment extends VirtualDepartment implements Jsonable
 
         for (Object obj : employeesJson)
         {
-            int       empId   = Integer.parseInt(obj.toString());
-            Employee  e       = company.getEmployee(empId);
+            int      empId = Integer.parseInt(obj.toString());
+            Employee e     = company.getEmployee(empId);
             dep.addEmployee(e);
         }
+
+        return dep;
     }
 }

@@ -2,12 +2,9 @@ package views.employees;
 
 import controllers.DepartmentsController;
 import controllers.EmployeesController;
-import javafx.beans.binding.Bindings;
-import javafx.beans.binding.StringExpression;
+import fr.etu.univtours.marechal.SimpleDate;
+import fr.etu.univtours.marechal.SimpleTime;
 import javafx.beans.property.ObjectProperty;
-import javafx.beans.property.SimpleStringProperty;
-import javafx.beans.property.StringProperty;
-import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -18,14 +15,13 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
-import lib.time.SimpleDate;
-import lib.time.SimpleTime;
 import lib.util.Closure;
 import lib.views.CSSClasses;
 import lib.views.Template;
 import lib.views.custom.components.Link;
 import models.CheckInOut;
 import models.Employee;
+import models.Manager;
 import models.StandardDepartment;
 import views.EmployeesViewController;
 
@@ -42,20 +38,18 @@ public class EmployeeProfile extends EmployeesViewController implements Initiali
     private final Employee employee;
     private ObservableList<CheckInOut> checks;
 
-    // Constants
-    private final StringProperty prefixDep = new SimpleStringProperty(this, "prefixDep", "Department: ");
-    private final StringProperty prefixId = new SimpleStringProperty(this, "prefixDep", "ID : ");
-    private final StringProperty prefixStartsAt = new SimpleStringProperty(this, "prefixDep", "Starting hour: ");
-    private final StringProperty prefixEndsAt = new SimpleStringProperty(this, "prefixDep", "Ending hour: ");
-    private final StringProperty prefixOvertime = new SimpleStringProperty(this, "prefixDep", "Overtime: ");
+    private String testV = "abc";
 
     // UI components
-    @FXML private Label labName;
+    @FXML private Label labFirstName;
+    @FXML private Label labLastName;
     @FXML private Label labId;
     @FXML private Label labDep;
     @FXML private Label labStartsAt;
     @FXML private Label labEndsAt;
-    @FXML private Label labAddMin;
+    @FXML private Label labOvertime;
+    @FXML private Label labOvertimeSuff;
+    @FXML private Label labIsManager;
     @FXML private TableView<CheckInOut> table;
     @FXML private TableColumn<CheckInOut, ObjectProperty<SimpleDate>> colDate;
     @FXML private TableColumn<CheckInOut, ObjectProperty<SimpleTime>> colArrivedAt;
@@ -69,15 +63,6 @@ public class EmployeeProfile extends EmployeesViewController implements Initiali
 
         this.employee = emp;
         checks = emp.getChecksInOut();
-        
-        checks.addListener(new ListChangeListener<CheckInOut>()
-        {
-            @Override
-            public void onChanged (Change<? extends CheckInOut> c)
-            {
-                System.out.println("Changed employee " + emp.getId());
-            }
-        });
 
         // constant
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/employees/fxml/profile.fxml"));
@@ -101,8 +86,10 @@ public class EmployeeProfile extends EmployeesViewController implements Initiali
     {
         display();
 
-        btnEdit.setOnAction(event -> new EmployeesController().openEditionEmployeeDialog(employee));
-        btnFire.setOnAction(event -> new EmployeesController().fireEmployee(employee));
+        final EmployeesController employeesController = new EmployeesController();
+
+        btnEdit.setOnAction(event -> employeesController.openEditionEmployeeDialog(employee));
+        btnFire.setOnAction(event -> employeesController.fireEmployee(employee));
     }
 
     private void display ()
@@ -127,35 +114,45 @@ public class EmployeeProfile extends EmployeesViewController implements Initiali
 
     private void displayLeftComponents ()
     {
-        StandardDepartment dep     = employee.getDepartment();
-        Closure            closure = () -> new DepartmentsController().show(dep);
+        ObjectProperty<StandardDepartment> dep            = employee.departmentProperty();
+        Closure                            closure        = () -> new DepartmentsController().show(dep.getValue(), SimpleDate.TODAY);
+        final ObservableList<String>       styleClass     = labOvertime.getStyleClass();
+        final ObservableList<String>       styleClassSuff = labOvertimeSuff.getStyleClass();
 
 
         Link depLink = new Link(closure);
-        depLink.textProperty().bind(Bindings.concat(prefixDep, dep.nameProperty()));
-        depLink.setTooltipValue("Clickez pour voir le détail du département.");
-        final StringExpression nameBinding = Bindings.concat(employee.firstNameProperty(), " ", employee.lastNameProperty());
+        depLink.textProperty().bind(dep.asString());
+        depLink.setTooltipValue("Click to see the department profile.");
 
-        labName.textProperty().bind(nameBinding);
-        labId.textProperty().bind(Bindings.concat(prefixId, employee.idProperty()));
+        labFirstName.textProperty().bind(employee.firstNameProperty());
+        labLastName.textProperty().bind(employee.lastNameProperty());
+        labId.textProperty().bind(employee.idProperty().asString());
         labDep.setText(null);
         labDep.setGraphic(depLink);
-        labStartsAt.textProperty().bind(Bindings.concat(prefixStartsAt, employee.startingHourProperty()));
-        labEndsAt.textProperty().bind(Bindings.concat(prefixEndsAt, employee.endingHourProperty()));
-        labAddMin.textProperty().bind(Bindings.concat(prefixOvertime, employee.overtimeProperty()));
+        labStartsAt.textProperty().bind(employee.startingHourProperty().asString());
+        labEndsAt.textProperty().bind(employee.endingHourProperty().asString());
+        labOvertime.textProperty().bind(employee.overtimeProperty().asString());
+        labIsManager.setText(employee instanceof Manager ? "yes" : "no");
 
-        labAddMin.textProperty().addListener((observable, oldValue, newValue) ->
+        if(employee.getOvertime() < 0)
+        {
+            styleClass.add(CSSClasses.Text.RED);
+            styleClassSuff.add(CSSClasses.Text.RED);
+        }
+
+        labOvertime.textProperty().addListener((observable, oldValue, newValue) ->
         {
             final double                 overtime   = employee.getOvertime();
-            final ObservableList<String> styleClass = labAddMin.getStyleClass();
 
             // reset style class
             styleClass.removeAll(CSSClasses.Text.RED);
+            styleClassSuff.removeAll(CSSClasses.Text.RED);
 
             // Set the style class based on the employee's overtime's value
             if (overtime < 0)
             {
                 styleClass.add(CSSClasses.Text.RED);
+                styleClassSuff.add(CSSClasses.Text.RED);
 //                styleClass.add(CSSClasses.Text.BOLD);
             }
         });

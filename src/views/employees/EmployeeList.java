@@ -1,6 +1,8 @@
 package views.employees;
 
 import controllers.EmployeesController;
+import fr.etu.univtours.marechal.SimpleDate;
+import fr.etu.univtours.marechal.SimpleTime;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
@@ -12,8 +14,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import lib.time.SimpleDate;
-import lib.time.SimpleTime;
 import lib.views.Template;
 import models.CheckInOut;
 import models.Employee;
@@ -24,6 +24,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
+import java.util.stream.Collectors;
 
 /**
  * Created by Robin on 09/05/2017.
@@ -34,6 +35,9 @@ public class EmployeeList extends EmployeesViewController implements Initializab
     private ObservableList<Row> rows;
 
     // components
+    @FXML private Button btnPrevDate;
+    @FXML private Button btnNextDate;
+    @FXML private DatePicker datePicker;
     @FXML private TableView<Row> table;
     @FXML private TableColumn<Row, IntegerProperty> columnId;
     @FXML private TableColumn<Row, StringProperty> columnFirstName;
@@ -47,14 +51,14 @@ public class EmployeeList extends EmployeesViewController implements Initializab
     @FXML private TableColumn<Row, DoubleProperty> columnOvertime;
 
     // constants
-    private final String classEmployeeCell = "employees-table-cell";
-    private final String classStartingHour = "starting-hour";
-    private final String classEndingHour = "ending-hour";
-    private final String classLeft = "left";
-    private final String classArrived = "arrived";
-    private final String classNotArrivedYet = "not-arrived-yet";
-    private final String classNotLeftYet = "not-left-yet";
-    private final String rowTooltipText = "Clickez ici pour voir le profil de l'employé.";
+//    private final String classEmployeeCell = "employees-table-cell";
+//    private final String classStartingHour = "starting-hour";
+//    private final String classEndingHour = "ending-hour";
+//    private final String classLeft = "left";
+//    private final String classArrived = "arrived";
+//    private final String classNotArrivedYet = "not-arrived-yet";
+//    private final String classNotLeftYet = "not-left-yet";
+    private final String rowTooltipText = "Click here to see the employee's profile.";
 
     public EmployeeList (ObservableList<Employee> employees, SimpleDate date)
     {
@@ -67,10 +71,22 @@ public class EmployeeList extends EmployeesViewController implements Initializab
             {
                 while (change.next())
                 {
-                    List list = change.getAddedSubList();
-                    for (Object o : list)
+                    if(change.wasAdded())
                     {
-                        rows.add(new Row((Employee) o));
+                        List list = change.getAddedSubList();
+                        for (Object o : list)
+                        {
+                            rows.add(new Row((Employee) o));
+                        }
+                    }
+                    else if(change.wasRemoved())
+                    {
+                        List list = change.getRemoved();
+                        for (Object o : list)
+                        {
+                            final int id = ((Employee) o).getId();
+                            rows.removeIf(row -> row.getId().getValue() == id);
+                        }
                     }
                 }
             }
@@ -78,10 +94,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
 
         rows = FXCollections.observableArrayList();
 
-        for (Employee e : employees)
-        {
-            rows.add(new Row(e));
-        }
+        rows.addAll(employees.stream().map(Row::new).collect(Collectors.toList()));
 
         // constant
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/employees/fxml/list.fxml"));
@@ -112,7 +125,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
 //        {
 //            initCellFactories();
 //            display();
-//        })).start());
+//        })).fzbfiylzebiuzbflmezjf());
 
         table.setRowFactory(e ->
         {
@@ -143,6 +156,12 @@ public class EmployeeList extends EmployeesViewController implements Initializab
 
     private void display ()
     {
+        btnPrevDate.setOnAction(event -> new EmployeesController().listAt(date.minusDays(1)));
+        btnNextDate.setOnAction(event -> new EmployeesController().listAt(date.plusDays(1)));
+        datePicker.setOnAction(event -> new EmployeesController().listAt(SimpleDate.fromLocalDate(datePicker.getValue())));
+        datePicker.setShowWeekNumbers(false);
+        datePicker.setPromptText(date.toString());
+
         columnId.setCellValueFactory(new PropertyValueFactory<>("id"));
         columnFirstName.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         columnLastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -159,7 +178,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
 
     private void initCellFactories ()
     {
-        prepareClickEvents();
+        prepareCellFactories();
 
         prepareColumnManagerCellFactory();
         prepareColumnArrivedAtCellFactory();
@@ -195,7 +214,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
 
             //            private void updateStyle (Employee emp, ObjectProperty<SimpleTime> item, boolean empty)
             //            {
-            //                if (emp == null || item.getValue() == null || empty)
+            //                if (emp == null || item.getRegexp() == null || empty)
             //                {
             //                    return;
             //                }
@@ -269,7 +288,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
 
             //            private void updateStyle (Employee emp, ObjectProperty<SimpleTime> item, boolean empty)
             //            {
-            //                if (emp == null || item.getValue() == null || empty)
+            //                if (emp == null || item.getRegexp() == null || empty)
             //                {
             //                    return;
             //                }
@@ -339,7 +358,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
         //        });
     }
 
-    private void prepareClickEvents ()
+    private void prepareCellFactories ()
     {
         columnFirstName.setCellFactory(column -> new TableCell<Row, StringProperty>()
         {

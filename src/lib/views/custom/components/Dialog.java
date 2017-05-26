@@ -8,7 +8,7 @@ import javafx.scene.input.KeyEvent;
  */
 public class Dialog
 {
-    public void setDialogCloseShortcut (javafx.stage.Stage stage)
+    public void setDialogShortcut (javafx.stage.Stage stage)
     {
         if (stage != null)
         {

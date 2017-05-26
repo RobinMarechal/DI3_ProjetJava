@@ -1,6 +1,7 @@
 package views.dialogs;
 
 import controllers.CompanyController;
+import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
@@ -8,6 +9,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import lib.util.form.FieldValueTypes;
+import lib.util.form.Form;
 import lib.views.custom.components.Dialog;
 import models.Company;
 
@@ -55,7 +58,7 @@ public class EditCompanyDialog extends Dialog implements Initializable
     @Override
     public void initialize (URL location, ResourceBundle resources)
     {
-        setDialogCloseShortcut(dialog);
+        setDialogShortcut(dialog);
         dialog.initStyle(StageStyle.UTILITY);
         dialog.show();
 
@@ -65,12 +68,19 @@ public class EditCompanyDialog extends Dialog implements Initializable
         fieldManagementDepartmentName.setText(company.getManagementDepartment().getName());
         fieldManagementDepartmentActivitySector.setText(company.getManagementDepartment().getActivitySector());
 
-        btnSubmit.setOnAction(event ->
-        {
-            if(new CompanyController().updateCompany(fieldName, fieldBossFirstName, fieldBossLastName,
-                    fieldManagementDepartmentName, fieldManagementDepartmentActivitySector))
-                dialog.close();
+        Form form = new Form();
+        form.add("companyName", FieldValueTypes.NAME, fieldName);
+        form.add("bossFirstName", FieldValueTypes.FIRSTNAME, fieldBossFirstName);
+        form.add("bossLastName", FieldValueTypes.LASTNAME, fieldBossLastName);
+        form.add("managementDepartmentName", FieldValueTypes.NAME, fieldManagementDepartmentName);
+        form.add("managementDepartmentActivitySector", FieldValueTypes.NAME, fieldManagementDepartmentActivitySector);
 
-        });
+        btnSubmit.setOnAction(event -> new Thread(() -> Platform.runLater(() ->
+        {
+            if (new CompanyController().updateCompany(form))
+            {
+                dialog.close();
+            }
+        })).start());
     }
 }

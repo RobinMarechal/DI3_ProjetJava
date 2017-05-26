@@ -1,66 +1,79 @@
 package lib.util.validator;
 
-import javafx.scene.control.TextInputControl;
+import javafx.scene.control.Control;
+import javafx.scene.control.TextField;
+import lib.util.form.FieldTypes;
+import lib.util.form.FieldValueTypes;
+import lib.util.form.Form;
 
 /**
  * Created by Robin on 21/05/2017.
  */
 public class Validator
 {
-    private TextInputControl input;
-    private String regexp;
-
-    public Validator (TextInputControl input, String regexp)
-    {
-        this();
-        this.input = input;
-        this.regexp = regexp;
-    }
-
-    public Validator (TextInputControl input)
-    {
-        this();
-        this.input = input;
-    }
-
-    public Validator (String regexp)
-    {
-        this();
-        this.regexp = regexp;
-    }
+    private Form form;
 
     public Validator ()
     {
     }
 
-    public TextInputControl getInput ()
+    public Validator (Form form)
     {
-        return input;
+        this.form = form;
     }
 
-    public void setInput (TextInputControl input)
+    public Form getForm ()
     {
-        this.input = input;
+        return form;
     }
 
-    public String getRegexp ()
+    public void setForm (Form form)
     {
-        return regexp;
+        this.form = form;
     }
 
-    public void setRegexp (String regexp)
+    public boolean validateForm()
     {
-        this.regexp = regexp;
+        boolean result = true;
+
+        for (Form.Entry<String, Form.Field> entry : form.entrySet())
+        {
+            if (!validateField(entry.getValue()))
+                result = false;
+        }
+        
+        return result;
     }
 
-    public boolean validate()
+    public boolean validateField (Form.Field value)
     {
-        String value = input.getText().trim();
-        return value.matches(regexp);
-    }
+        final FieldTypes type = value.getType();
+        final Control control = value.getField();
+        final FieldValueTypes valueTypes = value.getValueTypes();
 
-    public static boolean make(TextInputControl input, String regexp)
-    {
-        return new Validator(input, regexp).validate();
+        if(type == FieldTypes.TEXTFIELD)
+        {
+            try
+            {
+                TextField field = (TextField) control;
+                if(field.getText().matches(valueTypes.getRegexp()))
+                {
+                    value.validate();
+                    return true;
+                }
+                else
+                {
+                    value.unValidate();
+                    return false;
+                }
+            }
+            catch(ClassCastException e)
+            {
+                value.unValidate();
+                return false;
+            }
+        }
+
+        return true;
     }
 }

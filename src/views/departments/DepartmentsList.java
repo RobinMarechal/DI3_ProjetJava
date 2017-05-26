@@ -2,6 +2,7 @@ package views.departments;
 
 import controllers.DepartmentsController;
 import controllers.EmployeesController;
+import fr.etu.univtours.marechal.SimpleDate;
 import javafx.beans.binding.Bindings;
 import javafx.beans.binding.IntegerBinding;
 import javafx.beans.property.IntegerProperty;
@@ -134,8 +135,6 @@ public class DepartmentsList extends DepartmentsViewController implements Initia
                         final Row row = (Row) tableRow.getItem();
                         if (row != null)
                         {
-                            Closure closure = () -> new DepartmentsController().show(row.getDepartment());
-
                             textProperty().bind(item.textProperty());
 
                             addEventHandler(MouseEvent.MOUSE_CLICKED, event -> item.trigger());
@@ -231,15 +230,16 @@ public class DepartmentsList extends DepartmentsViewController implements Initia
 
             // Links
             // name
-            Closure closureName = () -> new DepartmentsController().show(department);
+            Closure closureName = () -> new DepartmentsController().show(department, SimpleDate.TODAY);
             name = new Link(department.nameProperty(), closureName);
 
             // manager
             Manager managerInstance = department.getManager();
             Closure closureManager  = () -> new EmployeesController().show(managerInstance);
             manager = new Link(closureManager);
-            manager.textProperty()
-                   .bind(Bindings.concat(managerInstance.firstNameProperty(), " ", managerInstance.lastNameProperty()));
+            manager.textProperty().bind(department.managerProperty().asString());
+//            manager.textProperty()
+//                   .bind(Bindings.concat(managerInstance.firstNameProperty(), " ", managerInstance.lastNameProperty()));
         }
 
         public IntegerProperty getId ()

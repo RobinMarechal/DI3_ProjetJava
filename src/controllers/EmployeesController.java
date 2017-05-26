@@ -1,22 +1,18 @@
 package controllers;
 
+import fr.etu.univtours.marechal.SimpleDate;
+import fr.etu.univtours.marechal.SimpleTime;
 import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import lib.BaseController;
-import lib.time.SimpleDate;
-import lib.util.validator.Validator;
+import lib.util.form.Form;
 import lib.views.BaseViewController;
-import lib.views.CSSClasses;
 import lib.views.Tabs;
 import lib.views.Template;
 import models.Company;
 import models.Employee;
 import models.Manager;
 import models.StandardDepartment;
-import org.intellij.lang.annotations.Language;
 import views.dialogs.CreateEmployeeDialog;
 import views.dialogs.EditEmployeeDialog;
 import views.employees.EmployeeList;
@@ -29,8 +25,6 @@ import java.util.Optional;
  */
 public class EmployeesController extends BaseController
 {
-    @Language ("RegExp") private String nameRegexp = "^([A-Z]?[a-z]+)(([ -][A-Z]?[a-z]+))*$";
-
     public EmployeesController ()
     {
     }
@@ -71,83 +65,113 @@ public class EmployeesController extends BaseController
         new CreateEmployeeDialog(list);
     }
 
-    public Employee createEmploye (TextField fieldFirstName, TextField fieldLastName, ComboBox comboDepartments)
+    public Employee createEmployee (Form form)
     {
-        return createEmploye(fieldFirstName, fieldLastName, comboDepartments, false);
+        boolean allPassed = validateForm(form);
+
+        if (!allPassed)
+        {
+            return null;
+        }
+        else
+        {
+            try
+            {
+                Employee           employee;
+                StandardDepartment dep;
+
+                final Form.Field shHoursField   = form.get("startingHourHour");
+                final Form.Field shMinutesField = form.get("startingHourMinutes");
+                final Form.Field ehHoursField   = form.get("endingHourHour");
+                final Form.Field ehMinutesField = form.get("endingHourMinutes");
+
+                // we retrieve the values
+                final String  firstName      = ((TextField) form.get("firstName").getField()).getText();
+                final String  lastName       = ((TextField) form.get("lastName").getField()).getText();
+                final int     shHoursValue   = Integer.valueOf(((TextField) shHoursField.getField()).getText());
+                final int     shMinutesValue = Integer.valueOf(((TextField) shMinutesField.getField()).getText());
+                final int     ehHoursValue   = Integer.valueOf(((TextField) ehHoursField.getField()).getText());
+                final int     ehMinutesValue = Integer.valueOf(((TextField) ehMinutesField.getField()).getText());
+                final boolean isManager      = ((CheckBox) form.get("cbManager").getField()).isSelected();
+
+                SimpleTime endingHour;
+                SimpleTime startingHour;
+
+                // Are the times values valid or not
+                boolean timesAreValids = checkHoursFieldValue(shHoursValue, shHoursField);
+                timesAreValids &= checkHoursFieldValue(ehHoursValue, ehHoursField);
+                timesAreValids &= checkMinutesFieldValue(shMinutesValue, shMinutesField);
+                timesAreValids &= checkMinutesFieldValue(ehMinutesValue, ehMinutesField);
+
+                // If not, we prevent the creation and the dialog from closing
+                if (!timesAreValids)
+                {
+                    return null;
+                }
+
+                // otherwise, we create the employee (or manager) with the value of the fields
+                startingHour = SimpleTime.of(shHoursValue, shMinutesValue);
+                endingHour = SimpleTime.of(ehHoursValue, ehMinutesValue);
+
+                if (isManager)
+                {
+                    employee = Company.createManager(firstName, lastName);
+                }
+                else
+                {
+                    employee = Company.createEmployee(firstName, lastName);
+                }
+
+                employee.setStartingHour(startingHour);
+                employee.setEndingHour(endingHour);
+
+                dep = ((ComboBox<StandardDepartment>) form.get("department").getField()).getValue();
+
+                // If a department was selected
+                if (dep != null)
+                {
+                    dep.addEmployee(employee);
+                }
+
+                // Everything worked fine, we clear all the fields
+                form.clearAll();
+
+                // re-set default values
+                ((TextField) shHoursField.getField()).setText(Employee.DEFAULT_STARTING_HOUR.getHour() + "");
+                ((TextField) shMinutesField.getField()).setText(Employee.DEFAULT_STARTING_HOUR.getMinute() + "");
+                ((TextField) ehHoursField.getField()).setText(Employee.DEFAULT_ENDING_HOUR.getHour() + "");
+                ((TextField) ehMinutesField.getField()).setText(Employee.DEFAULT_ENDING_HOUR.getMinute() + "");
+
+                return employee;
+            }
+            catch (NullPointerException e)
+            {
+                // A field is missing
+                return null;
+            }
+        }
     }
 
-    public Employee createEmploye (TextField fieldFirstName, TextField fieldLastName, ComboBox comboDepartments,
-                                   boolean isManager)
+    private boolean checkHoursFieldValue (int value, Form.Field field)
     {
-        String firstName = null;
-        String lastName  = null;
-
-        if (Validator.make(fieldFirstName, nameRegexp))
+        if (value < 0 || value >= 24)
         {
-            firstName = fieldFirstName.getText().trim();
-            fieldFirstName.getStyleClass().remove(CSSClasses.INPUT_INVALID);
-        }
-        else
-        {
-            fieldFirstName.getStyleClass().add(CSSClasses.INPUT_INVALID);
+            field.unValidate();
+            return false;
         }
 
-        if (Validator.make(fieldLastName, nameRegexp))
-        {
-            lastName = fieldLastName.getText().trim();
-            fieldLastName.getStyleClass().remove(CSSClasses.INPUT_INVALID);
-        }
-        else
-        {
-            fieldLastName.getStyleClass().add(CSSClasses.INPUT_INVALID);
-        }
+        return true;
+    }
 
-        StandardDepartment dep = null;
-        if (comboDepartments != null)
+    private boolean checkMinutesFieldValue (int value, Form.Field field)
+    {
+        if (value < 0 || value >= 60)
         {
-            dep = (StandardDepartment) comboDepartments.getValue();
-
-            if (dep == null)
-            {
-                comboDepartments.getStyleClass().add(CSSClasses.INPUT_INVALID);
-            }
-            else
-            {
-                comboDepartments.getStyleClass().remove(CSSClasses.INPUT_INVALID);
-            }
+            field.unValidate();
+            return false;
         }
 
-        if (firstName != null && lastName != null)
-        {
-            Employee e;
-            if (isManager)
-            {
-                e = Company.createManager(firstName, lastName);
-            }
-            else
-            {
-                e = Company.createEmployee(firstName, lastName);
-            }
-
-            if (dep != null)
-            {
-                dep.addEmployee(e);
-            }
-
-            fieldFirstName.clear();
-            fieldLastName.clear();
-            fieldFirstName.getStyleClass().remove(CSSClasses.INPUT_INVALID);
-            fieldLastName.getStyleClass().remove(CSSClasses.INPUT_INVALID);
-            if (comboDepartments != null)
-            {
-                comboDepartments.getStyleClass().remove(CSSClasses.INPUT_INVALID);
-                comboDepartments.valueProperty().set(null);
-            }
-
-            return e;
-        }
-
-        return null;
+        return true;
     }
 
     public void openEditionEmployeeDialog (Employee employee)
@@ -156,86 +180,96 @@ public class EmployeesController extends BaseController
         new EditEmployeeDialog(employee, list);
     }
 
-    public boolean updateEmployee (Employee employee, TextField fieldFirstName, TextField fieldLastName, ComboBox
-            comboDepartments)
+    public boolean updateEmployee (Employee employee, Form form)
     {
-        String firstName = null;
-        String lastName  = null;
+        boolean allPassed = validateForm(form);
 
-        if (Validator.make(fieldFirstName, nameRegexp))
+        if (!allPassed)
         {
-            firstName = fieldFirstName.getText().trim();
-            fieldFirstName.getStyleClass().remove(CSSClasses.INPUT_INVALID);
+            return false;
         }
         else
         {
-            fieldFirstName.getStyleClass().add(CSSClasses.INPUT_INVALID);
-        }
-
-        if (Validator.make(fieldLastName, nameRegexp))
-        {
-            lastName = fieldLastName.getText().trim();
-            fieldLastName.getStyleClass().remove(CSSClasses.INPUT_INVALID);
-        }
-        else
-        {
-            fieldLastName.getStyleClass().add(CSSClasses.INPUT_INVALID);
-        }
-
-        StandardDepartment dep = null;
-        if (comboDepartments != null)
-        {
-            dep = (StandardDepartment) comboDepartments.getValue();
-
-            if (dep == null)
+            try
             {
-                comboDepartments.getStyleClass().add(CSSClasses.INPUT_INVALID);
-            }
-            else
-            {
-                comboDepartments.getStyleClass().remove(CSSClasses.INPUT_INVALID);
-            }
-        }
+                StandardDepartment dep;
 
-        if (firstName != null && lastName != null)
-        {
-            employee.setFirstName(firstName);
-            employee.setLastName(lastName);
+                final Form.Field shHoursField   = form.get("startingHourHour");
+                final Form.Field shMinutesField = form.get("startingHourMinutes");
+                final Form.Field ehHoursField   = form.get("endingHourHour");
+                final Form.Field ehMinutesField = form.get("endingHourMinutes");
 
-            // if the selected a department
-            if (dep != null)
-            {
-                // If (he's not a manager) || (he is but he isn't the manager of his department)
-                if (!(employee instanceof Manager) || ((Manager) employee).getManagedDepartment() == null)
+                // we retrieve the values
+                final String  firstName      = ((TextField) form.get("firstName").getField()).getText();
+                final String  lastName       = ((TextField) form.get("lastName").getField()).getText();
+                final int     shHoursValue   = Integer.valueOf(((TextField) shHoursField.getField()).getText());
+                final int     shMinutesValue = Integer.valueOf(((TextField) shMinutesField.getField()).getText());
+                final int     ehHoursValue   = Integer.valueOf(((TextField) ehHoursField.getField()).getText());
+                final int     ehMinutesValue = Integer.valueOf(((TextField) ehMinutesField.getField()).getText());
+                final boolean isManager      = ((CheckBox) form.get("cbManager").getField()).isSelected();
+
+
+                SimpleTime endingHour;
+                SimpleTime startingHour;
+
+                // Are the times values valid or not
+                boolean timesAreValids = checkHoursFieldValue(shHoursValue, shHoursField);
+                timesAreValids &= checkHoursFieldValue(ehHoursValue, ehHoursField);
+                timesAreValids &= checkMinutesFieldValue(shMinutesValue, shMinutesField);
+                timesAreValids &= checkMinutesFieldValue(ehMinutesValue, ehMinutesField);
+
+                // If not, we prevent the edition and the dialog from closing
+                if (!timesAreValids)
+                {
+                    return false;
+                }
+
+                // If we wasn't manager but the checkbox is checked
+                if (isManager && !(employee instanceof Manager))
+                {
+                    // We upgrade him
+                    employee = employee.upgradeToManager();
+
+                    // then we reload the view because the employee instance the view is showing is now invalid
+                    show(employee);
+                }
+
+                // otherwise, we create the employee (or manager) with the value of the fields
+                startingHour = SimpleTime.of(shHoursValue, shMinutesValue);
+                endingHour = SimpleTime.of(ehHoursValue, ehMinutesValue);
+
+
+                employee.setFirstName(firstName);
+                employee.setLastName(lastName);
+                employee.setStartingHour(startingHour);
+                employee.setEndingHour(endingHour);
+
+                dep = ((ComboBox<StandardDepartment>) form.get("department").getField()).getValue();
+
+                // If a department was selected
+                if (dep != null)
                 {
                     dep.addEmployee(employee);
                 }
-                else if(dep != employee.getDepartment())
-                {
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                    alert.setTitle("Information");
-                    alert.setHeaderText("The department has not beed updated.");
-                    alert.setContentText("Reason: The employee is the manager of his department, you can't move him " +
-                            "to another department while it's the case.");
-                    alert.show();
-                }
-            }
 
-            fieldFirstName.clear();
-            fieldLastName.clear();
-            fieldFirstName.getStyleClass().remove(CSSClasses.INPUT_INVALID);
-            fieldLastName.getStyleClass().remove(CSSClasses.INPUT_INVALID);
-            if (comboDepartments != null)
+                // Everything worked fine, we clear all the fields
+                form.clearAll();
+
+                // re-set default values
+                ((TextField) shHoursField.getField()).setText(Employee.DEFAULT_STARTING_HOUR.getHour() + "");
+                ((TextField) shMinutesField.getField()).setText(Employee.DEFAULT_STARTING_HOUR.getMinute() + "");
+                ((TextField) ehHoursField.getField()).setText(Employee.DEFAULT_ENDING_HOUR.getHour() + "");
+                ((TextField) ehMinutesField.getField()).setText(Employee.DEFAULT_ENDING_HOUR.getMinute() + "");
+
+                return true;
+            }
+            catch (NullPointerException e)
             {
-                comboDepartments.getStyleClass().remove(CSSClasses.INPUT_INVALID);
-                comboDepartments.valueProperty().set(null);
+                // A field is missing
+                System.out.println("NullPointerException");
+                return false;
             }
-
-            show(employee);
-            return true;
         }
-
-        return false;
     }
 
     public void fireEmployee (Employee employee)

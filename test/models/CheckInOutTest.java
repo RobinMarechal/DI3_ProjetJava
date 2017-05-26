@@ -1,8 +1,9 @@
 package models;
 
-import lib.time.SimpleDate;
-import lib.time.SimpleDateTime;
-import lib.time.SimpleTime;
+
+import fr.etu.univtours.marechal.SimpleDate;
+import fr.etu.univtours.marechal.SimpleDateTime;
+import fr.etu.univtours.marechal.SimpleTime;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
@@ -43,7 +44,7 @@ public class CheckInOutTest {
         assertNull(c.getArrivedAt());
         assertNull(c.getLeftAt());
 
-        SimpleTime in = SimpleTime.of(8, 5, 30);
+        SimpleTime in  = SimpleTime.of(8, 5, 30);
         SimpleTime out = SimpleTime.of(16, 56, 30);
 
         SimpleTime roundedIn = SimpleTime.of(8, 0);
@@ -65,7 +66,7 @@ public class CheckInOutTest {
     {
         //2017-04-10 7h55 & 2017-04-10 17h09
         SimpleDateTime arrivingDT1 = SimpleDateTime.of(2017, 4, 10, 7, 55);
-        SimpleDateTime leavingDT1 = SimpleDateTime.of(2017, 4, 10, 17, 9);
+        SimpleDateTime leavingDT1  = SimpleDateTime.of(2017, 4, 10, 17, 9);
 
         //2017-04-11 8h23 & 2017-04-11 16h35
         SimpleDateTime arrivingDT2 = SimpleDateTime.of(2017, 4, 11, 8, 23);

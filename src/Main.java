@@ -1,29 +1,30 @@
+import fr.etu.univtours.marechal.SimpleDate;
+import fr.etu.univtours.marechal.SimpleDateTime;
+import fr.etu.univtours.marechal.SimpleTime;
 import javafx.application.Application;
 import javafx.application.Platform;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
-import lib.time.SimpleDate;
-import lib.time.SimpleDateTime;
-import lib.time.SimpleTime;
 import lib.views.Template;
 import models.Company;
 import models.Employee;
 import models.Manager;
 import models.StandardDepartment;
 
-import java.util.ArrayList;
 import java.util.Collections;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
  * Created by Robin on 27/03/2017.
  */
 public class Main extends Application
 {
-    private static final int TIMEOUT = 50;
+    private static final int TIMEOUT = 200;
 
     public static void main (String args[])
     {
-        Company.getCompany().deserialize();
+//        Company.getCompany().deserialize();
         launch(args);
 
 //        Company.getCompany().toJson();
@@ -92,7 +93,7 @@ public class Main extends Application
 
     /**
      * The main entry point for all JavaFX applications.
-     * The start method is called after the init method has returned,
+     * The fzbfiylzebiuzbflmezjf method is called after the init method has returned,
      * and after the system is ready for the application to begin running.
      * <p>
      * <p>
@@ -108,31 +109,47 @@ public class Main extends Application
     @Override
     public void start (Stage window) throws Exception
     {
-//        testData();
+//        Company.getCompany().deserialize();
         window.setTitle("Pointeuse");
         window.setScene(Template.getInstance().getScene());
         window.setResizable(false);
-
         window.sizeToScene();
-
-        //window.setOnCloseRequest(event -> Company.getCompany().serialiaze());
+        window.setOnCloseRequest(event -> Company.getCompany().serialiaze());
 
         window.show();
 
-//        runAutomaticTests();
-
+        testData();
+        checksSimulation();
         //runQuickTests();
     }
 
-    private void runAutomaticTests ()
+    private void checksSimulation ()
     {
         new Thread(() ->
         {
             try
             {
-                SimpleDate               date   = SimpleDate.TODAY;
-                ObservableList<Employee> tmp    = Company.getCompany().getEmployeesList();
-                ArrayList<Employee>      emps   = new ArrayList<Employee>(tmp);
+                SimpleDate                     date = SimpleDate.TODAY;
+                ObservableList<Employee>       tmp  = Company.getCompany().getEmployeesList();
+                CopyOnWriteArrayList<Employee> emps = new CopyOnWriteArrayList<Employee>(tmp);
+                tmp.addListener(new ListChangeListener<Employee>() {
+                    @Override
+                    public void onChanged (Change<? extends Employee> c)
+                    {
+                        while(c.next())
+                        {
+                            if(c.wasAdded())
+                            {
+                                emps.addAll(c.getAddedSubList());
+                            }
+                            else if(c.wasRemoved())
+                            {
+                                emps.removeAll(c.getAddedSubList());
+                            }
+                        }
+                    }
+                });
+
                 int                      nbEmps = emps.size();
 
                 for (int i = 0; i < 20; i++)

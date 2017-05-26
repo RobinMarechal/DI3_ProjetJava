@@ -1,7 +1,7 @@
 <component name="libraryTable">
-  <library name="joda-time">
+  <library name="simpletime">
     <CLASSES>
-      <root url="jar://$PROJECT_DIR$/libs/joda-time-2.9.9.jar!/" />
+      <root url="jar://F:/Java Dev/libs/simpletime.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES />

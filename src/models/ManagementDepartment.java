@@ -1,25 +1,22 @@
 package models;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import lib.json.Jsonable;
 import org.json.simple.JSONObject;
 
+import java.util.stream.Collectors;
+
 /**
  * Created by Robin on 27/03/2017.
  */
-public class ManagementDepartment extends VirtualDepartment implements Jsonable
+public class ManagementDepartment extends VirtualDepartment<Manager> implements Jsonable
 {
     protected final static String JSON_KEY_MANAGERS = "managers";
 
-    /**
-     * Instance of the ManagementDepartment singleton class
-     */
+    /** Instance of the ManagementDepartment singleton class */
     private static ManagementDepartment managementDepartmentInstance = new ManagementDepartment();
-
-
-    /** A list of all Company's managers */
-    private ObservableList<Manager> managers = FXCollections.observableArrayList();
 
 
     /**
@@ -47,7 +44,7 @@ public class ManagementDepartment extends VirtualDepartment implements Jsonable
      */
     public int getNbManagers ()
     {
-        return managers.size();
+        return employees.size();
     }
 
     /**
@@ -58,7 +55,7 @@ public class ManagementDepartment extends VirtualDepartment implements Jsonable
      */
     public Manager getManager (int id)
     {
-        for (Manager m : managers)
+        for (Manager m : employees)
         {
             if (m.getId() == id)
             {
@@ -76,7 +73,30 @@ public class ManagementDepartment extends VirtualDepartment implements Jsonable
      */
     public ObservableList<Manager> getManagersList ()
     {
-        return this.managers;
+        return this.employees;
+    }
+
+    public ObservableList<Manager> getManagersThatDontManage()
+    {
+        final ObservableList<Manager> list = employees.stream()
+                                                        .filter(manager -> manager.getManagedDepartment() == null)
+                                                        .collect(Collectors.toCollection(FXCollections::observableArrayList));
+
+        getEmployees().addListener(new ListChangeListener<Manager>() {
+            @Override
+            public void onChanged (Change<? extends Manager> c)
+            {
+                while (c.next())
+                {
+                    list.clear();
+                    list.addAll(employees.stream()
+                                                 .filter(manager -> manager.getManagedDepartment() == null)
+                                                 .collect(Collectors.toCollection(FXCollections::observableArrayList)));
+                }
+            }
+        });
+
+        return list;
     }
 
     /**
@@ -87,9 +107,24 @@ public class ManagementDepartment extends VirtualDepartment implements Jsonable
      */
     public ManagementDepartment addManager (Manager manager)
     {
-        if (manager != null && !managers.contains(manager))
+        if (manager != null && !employees.contains(manager))
         {
-            this.managers.add(manager);
+//            this.employees.add(manager);
+            int     id    = manager.getId();
+            boolean added = false;
+            for (int i = 0; i < employees.size() && !added; i++)
+            {
+                if (id < employees.get(i).getId())
+                {
+                    employees.add(i, manager);
+                    added = true;
+                }
+            }
+
+            if (!added)
+            {
+                employees.add(manager);
+            }
         }
 
         return this;
@@ -152,7 +187,7 @@ public class ManagementDepartment extends VirtualDepartment implements Jsonable
     {
         if (manager != null)
         {
-            managers.remove(manager);
+            employees.remove(manager);
 
             // The department he managed has no longer a manager...
             StandardDepartment managedDep = manager.getManagedDepartment();
@@ -179,7 +214,7 @@ public class ManagementDepartment extends VirtualDepartment implements Jsonable
     public String toStringWithManagers ()
     {
         String str = "List of managers : " + System.lineSeparator();
-        for (Manager m : managers)
+        for (Manager m : employees)
         {
             str += "\t - " + m + System.lineSeparator();
         }

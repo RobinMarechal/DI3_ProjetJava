@@ -18,5 +18,8 @@ public final class CSSClasses
         // style
         public static final String BOLD = "text-bold";
         public static final String ITALIC = "text-italic";
+
+        // Decoration
+        public static final String UNDERLINE = "text-undeline";
     }
 }

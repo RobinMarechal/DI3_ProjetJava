@@ -1,16 +1,22 @@
 package views.dialogs;
 
 import controllers.EmployeesController;
+import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
+import lib.util.form.FieldTypes;
+import lib.util.form.FieldValueTypes;
+import lib.util.form.Form;
 import lib.views.custom.components.Dialog;
+import models.Employee;
 import models.StandardDepartment;
 
 import java.io.IOException;
@@ -30,6 +36,11 @@ public class CreateEmployeeDialog extends Dialog implements Initializable
     @FXML private TextField fieldLastName;
     @FXML private ComboBox comboDepartments;
     @FXML private Button btnSubmit;
+    @FXML private TextField startingHourHour;
+    @FXML private TextField startingHourMin;
+    @FXML private TextField endingHourHour;
+    @FXML private TextField endingHourMin;
+    @FXML private CheckBox cbManager;
 
 
     public CreateEmployeeDialog (ObservableList<StandardDepartment> departments)
@@ -55,14 +66,27 @@ public class CreateEmployeeDialog extends Dialog implements Initializable
     @Override
     public void initialize (URL location, ResourceBundle resources)
     {
-        setDialogCloseShortcut(dialog);
+        setDialogShortcut(dialog);
         dialog.initStyle(StageStyle.UTILITY);
         dialog.show();
 
         comboDepartments.setItems(departments);
 
-        btnSubmit.setOnAction(event -> {
-            new EmployeesController().createEmploye(fieldFirstName, fieldLastName, comboDepartments);
-        });
+        startingHourHour.setText(Employee.DEFAULT_STARTING_HOUR.getHour() + "");
+        startingHourMin.setText(Employee.DEFAULT_STARTING_HOUR.getMinute() + "");
+        endingHourHour.setText(Employee.DEFAULT_ENDING_HOUR.getHour() + "");
+        endingHourMin.setText(Employee.DEFAULT_ENDING_HOUR.getMinute() + "");
+
+        Form form = new Form();
+        form.add("firstName", FieldValueTypes.FIRSTNAME, fieldFirstName);
+        form.add("lastName", FieldValueTypes.LASTNAME, fieldLastName);
+        form.add("startingHourHour", FieldValueTypes.HOURS, startingHourHour);
+        form.add("startingHourMinutes", FieldValueTypes.MINUTES, startingHourMin);
+        form.add("endingHourHour", FieldValueTypes.HOURS, endingHourHour);
+        form.add("endingHourMinutes", FieldValueTypes.MINUTES, endingHourMin);
+        form.add("department", FieldValueTypes.UNDEFINED, comboDepartments, FieldTypes.COMBOBOX);
+        form.add("cbManager", FieldValueTypes.UNDEFINED, cbManager, FieldTypes.CHECKBOX);
+
+        btnSubmit.setOnAction(event -> new Thread(() -> Platform.runLater(() -> new EmployeesController().createEmployee(form))).start());
     }
 }

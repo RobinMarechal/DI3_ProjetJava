@@ -39,7 +39,7 @@ public class Manager extends Employee implements Jsonable
      * @param id        the ID of the manager.
      * @throws Exception if there already is an {@link Manager} or {@link Employee} instance (by inheritance) with the given ID.
      */
-    public Manager (String firstName, String lastName, int id) throws Exception
+    public Manager (String firstName, String lastName, int id)
     {
         super(firstName, lastName, id);
         Company.getCompany().getManagementDepartment().addManager(this);
@@ -92,13 +92,7 @@ public class Manager extends Employee implements Jsonable
     @Override
     public String toString ()
     {
-        String name = "no department";
-        if (managedDepartment.getValue() != null)
-        {
-            name = managedDepartment.getValue().getName();
-        }
-
-        return super.toString() + " (Manager of " + name + ")";
+        return super.toString() + " (manager)";
     }
 
     /**
