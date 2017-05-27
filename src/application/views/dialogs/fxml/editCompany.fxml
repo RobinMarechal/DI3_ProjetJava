@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.stage.Stage?>
+<?import javafx.scene.Scene?>
+<?import java.lang.String?>
+
+<Stage fx:id="dialog" title="Edition of the company's information" resizable="false" height="540.0" width="530.0"
+       xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1">
+    <scene>
+        <Scene stylesheets="@../../../../application/lib/views/style.css">
+            <root>
+                <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0"
+                      prefWidth="600.0"
+                      spacing="15.0" styleClass="bg-transparent"
+                      xmlns="http://javafx.com/javafx/8.0.102"
+                      xmlns:fx="http://javafx.com/fxml/1">
+                    <children>
+                        <Label alignment="CENTER" maxWidth="1.7976931348623157E308" styleClass="h2" text="Create a new department"
+                               textAlignment="CENTER">
+                        </Label>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                            <children>
+                                <VBox>
+                                    <HBox.margin>
+                                        <Insets/>
+                                    </HBox.margin>
+                                    <children>
+                                        <Label styleClass="input-title" text="Company's name:"/>
+                                        <TextField fx:id="fieldName" minHeight="30.0" prefHeight="30.0" prefWidth="300.0"
+                                                   promptText="Company's name"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                            <children>
+                                <VBox>
+                                    <HBox.margin>
+                                        <Insets/>
+                                    </HBox.margin>
+                                    <children>
+                                        <Label styleClass="input-title" text="Boss' first name:"/>
+                                        <TextField fx:id="fieldBossFirstName" minHeight="30.0" prefHeight="30.0" prefWidth="300.0"
+                                                   promptText="Boss' first name"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                            <children>
+                                <VBox>
+                                    <children>
+                                        <Label styleClass="input-title" text="Boss' last name:"/>
+                                        <TextField fx:id="fieldBossLastName" minHeight="30.0" prefHeight="30.0" prefWidth="300.0"
+                                                   promptText="Boss's last name"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                            <children>
+                                <VBox>
+                                    <HBox.margin>
+                                        <Insets/>
+                                    </HBox.margin>
+                                    <children>
+                                        <Label styleClass="input-title" text="Management department's name"/>
+                                        <TextField fx:id="fieldManagementDepartmentName" minHeight="30.0" prefHeight="30.0"
+                                                   prefWidth="300.0"
+                                                   promptText="Management department's name"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                            <children>
+                                <VBox>
+                                    <HBox.margin>
+                                        <Insets/>
+                                    </HBox.margin>
+                                    <children>
+                                        <Label styleClass="input-title" text="Management department's activity sector:"/>
+                                        <TextField fx:id="fieldManagementDepartmentActivitySector" minHeight="30.0" prefHeight="30.0"
+                                                   prefWidth="300.0"
+                                                   promptText="Management department's activity sector"/>
+                                    </children>
+                                </VBox>
+                            </children>
+                        </HBox>
+                        <HBox alignment="CENTER" prefHeight="50.0" prefWidth="200.0">
+                            <children>
+                                <Button fx:id="btnSubmit" mnemonicParsing="false" prefHeight="20.0" prefWidth="200.0" text="Submit">
+                                    <styleClass>
+                                        <String fx:value="btn-primary"/>
+                                        <String fx:value="text-white"/>
+                                        <String fx:value="text-big"/>
+                                    </styleClass>
+                                    <padding>
+                                        <Insets bottom="8.0" top="8.0"/>
+                                    </padding>
+                                    <HBox.margin>
+                                        <Insets top="15.0"/>
+                                    </HBox.margin>
+                                </Button>
+                            </children>
+                        </HBox>
+                    </children>
+                </VBox>
+            </root>
+        </Scene>
+    </scene>
+</Stage>
