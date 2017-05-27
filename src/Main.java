@@ -11,6 +11,7 @@ import models.Company;
 import models.Employee;
 import models.Manager;
 import models.StandardDepartment;
+import tcp.server.Server;
 
 import java.util.Collections;
 import java.util.concurrent.CopyOnWriteArrayList;
@@ -25,6 +26,7 @@ public class Main extends Application
     public static void main (String args[])
     {
 //        Company.getCompany().deserialize();
+        new Thread(new Server(8080)).start();
         launch(args);
 
 //        Company.getCompany().toJson();
@@ -119,7 +121,7 @@ public class Main extends Application
         window.show();
 
         testData();
-        checksSimulation();
+//        checksSimulation();
         //runQuickTests();
     }
 

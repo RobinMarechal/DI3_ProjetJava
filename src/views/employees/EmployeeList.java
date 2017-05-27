@@ -96,7 +96,6 @@ public class EmployeeList extends EmployeesViewController implements Initializab
 
         rows.addAll(employees.stream().map(Row::new).collect(Collectors.toList()));
 
-        // constant
         FXMLLoader loader = new FXMLLoader(getClass().getResource("/views/employees/fxml/list.fxml"));
         loader.setController(this);
 

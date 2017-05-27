@@ -1,7 +1,17 @@
 package tcp.server;
 
+import fr.etu.univtours.marechal.SimpleDateTime;
+import javafx.application.Platform;
+import javafx.collections.ObservableList;
+import models.Company;
+import models.Employee;
+
+import java.io.DataOutputStream;
+import java.io.IOException;
+import java.io.OutputStream;
 import java.net.Socket;
-import java.util.Scanner;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 /**
  * Created by Robin on 21/05/2017.
@@ -16,8 +26,6 @@ public class Server extends ServerBuilder implements Runnable
     @Override
     public void run ()
     {
-        Scanner sc = new Scanner(System.in);
-        String  msg;
         while (true)
         {
             try
@@ -25,31 +33,28 @@ public class Server extends ServerBuilder implements Runnable
                 setConnection();
                 println("Connected");
                 Socket client = serverSocket.accept();
+                println("Accepted");
 
                 String receive = receive(client);
                 println(receive);
 
-                if (receive.equalsIgnoreCase("stop"))
+                OutputStream     outputStream = client.getOutputStream();
+                DataOutputStream out          = new DataOutputStream(outputStream);
+
+                if (receive.equals("SYNC"))
                 {
-                    client.close();
-                    serverSocket.close();
-                    println("Connection closed");
-                    break;
+                    sendEmployeeList(out);
+                    System.out.println("SYNC done");
                 }
-
-                msg = "You said : '" + receive + "'";//sc.nextLine();
-                send(msg, client);
-
-                if (msg.equalsIgnoreCase("stop"))
+                else
                 {
-                    client.close();
-                    serverSocket.close();
-                    println("Connection closed");
-                    break;
+                    out.writeInt(0);
+                    simulateCheck(receive);
                 }
 
                 client.close();
                 serverSocket.close();
+                Thread.sleep(50);
             }
             catch (Exception e)
             {
@@ -57,6 +62,43 @@ public class Server extends ServerBuilder implements Runnable
                 break;
 
             }
+        }
+    }
+
+    private void simulateCheck (String receive)
+    {
+        //datetime;id
+        try{
+            int id = Integer.parseInt(receive.split(";")[1]);
+            String strDT = receive.split(";")[0];
+
+            LocalDateTime  ldt = LocalDateTime.parse(strDT, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+            SimpleDateTime std = SimpleDateTime.fromLocalDateTime(ldt);
+
+            Employee e = Company.getCompany().getEmployee(id);
+
+            if(e != null)
+            {
+                Platform.runLater(() ->  e.doCheck(std));
+            }
+        }
+        catch (ArrayIndexOutOfBoundsException | NumberFormatException e)
+        {
+            System.err.println("check failed");
+        }
+
+    }
+
+    private void sendEmployeeList (DataOutputStream out) throws IOException
+    {
+        ObservableList<Employee> list = Company.getCompany().getEmployeesList();
+
+        out.writeInt(list.size());
+
+        for (Employee e : list)
+        {
+            String str = e.getId() + ";" + e.getFirstName() + e.getLastName();
+            out.writeUTF(str);
         }
     }
 }

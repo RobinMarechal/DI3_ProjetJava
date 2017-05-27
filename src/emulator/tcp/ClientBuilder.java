@@ -1,4 +1,4 @@
-package tcp;
+package emulator.tcp;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -7,13 +7,29 @@ import java.io.OutputStream;
 import java.net.Socket;
 
 /**
- * Created by Robin on 21/05/2017.
+ * Created by Robin on 26/05/2017.
  */
-public abstract class Builder
+public class ClientBuilder
 {
-    public abstract void setConnection () throws Exception;
+    protected int port;
+    protected String IP;
+    protected Socket socketClient;
 
-    public abstract void println (String msg);
+    public ClientBuilder (String IP, int port)
+    {
+        this.port = port;
+        this.IP = IP;
+    }
+
+    public void setConnection () throws Exception
+    {
+        socketClient = new Socket(IP, port);
+    }
+
+    public void println (String msg)
+    {
+        System.out.println("Client > " + msg);
+    }
 
     public void send (String msg, Socket client) throws Exception
     {

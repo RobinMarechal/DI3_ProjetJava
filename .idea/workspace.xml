@@ -6,65 +6,43 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a42b8b50-aefd-421b-83b0-cc876e1f8c7e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/libraries/simpletime.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/emulator/Main.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lib/util/form/FieldTypes.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lib/util/form/FieldValueTypes.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/lib/util/form/Form.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/views/departments/DepartmentProfile.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/views/dialogs/EditDepartmentDialog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/views/dialogs/ManageEmployeesDialog.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/views/dialogs/fxml/manageEmployees.fxml" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.idea/libraries/joda_time.xml" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$1$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$1$10.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$1$2.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$1$3.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$1$4.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$1$5.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$1$6.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$1$7.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$1$8.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$1$9.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/controllers/DepartmentsController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/controllers/EmployeesController.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/lib/time/SimpleDate.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/lib/time/SimpleDateTime.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/lib/time/SimpleTime.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/dialogs/EditEmployeeDialog.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeProfile$1.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/lib/time/SimpleDate.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/lib/time/SimpleDateTime.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/lib/time/SimpleTime.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features.png" afterPath="$PROJECT_DIR$/features.png" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/emulator/ClientMain.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/emulator/controllers/Controller.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/emulator/models/Employee.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/emulator/tcp/Client.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/emulator/tcp/ClientBuilder.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/emulator/views/View.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/emulator/views/fxml/view.fxml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/emulator/Main.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/tcp/Builder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/tcp/client/Client.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/tcp/client/ClientBuilder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/tcp/client/ClientView$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/tcp/client/ClientView.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/tcp/server/ServerMain.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/emulator/Main.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/tcp/Builder.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/tcp/Main.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/tcp/client/Client.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/tcp/client/ClientBuilder.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/tcp/client/ClientView.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/tcp/server/ServerMain.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/tcp/Builder.java" afterPath="$PROJECT_DIR$/src/tcp/server/ServerBuilder.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$1.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$1.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$10.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$10.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$2.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$2.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$3.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$3.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$4.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$4.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$5.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$5.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$6.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$6.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$7.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$7.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$8.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$8.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$9.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2$9.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/Main.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/controllers/CompanyController.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/controllers/CompanyController.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/lib/util/validator/Validator.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/lib/util/validator/Validator.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/lib/views/CSSClasses$Text.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/lib/views/CSSClasses$Text.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/lib/views/Template.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/lib/views/Template.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/lib/views/custom/components/Dialog.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/lib/views/custom/components/Dialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/models/CheckInOut.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/models/CheckInOut.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/models/Company.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/models/Company.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/models/Employee.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/models/Employee.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/models/ManagementDepartment.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/models/ManagementDepartment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/models/Manager.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/models/Manager.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/models/Person.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/models/Person.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/models/StandardDepartment.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/models/StandardDepartment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/models/VirtualDepartment.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/models/VirtualDepartment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/company/HomeCompany.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/company/HomeCompany.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/DepartmentsList$1.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/DepartmentsList$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/DepartmentsList$2.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/DepartmentsList$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/DepartmentsList$3.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/DepartmentsList$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/DepartmentsList$4.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/DepartmentsList$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/DepartmentsList$5.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/DepartmentsList$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/DepartmentsList$6.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/DepartmentsList$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/DepartmentsList$Row.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/DepartmentsList$Row.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/DepartmentsList.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/DepartmentsList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/dialogs/CreateDepartmentDialog.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/dialogs/CreateDepartmentDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/dialogs/CreateEmployeeDialog.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/dialogs/CreateEmployeeDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/dialogs/EditCompanyDialog.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/dialogs/EditCompanyDialog.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeList$1.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeList$1.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/tcp/server/Server.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/tcp/server/Server.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/tcp/server/ServerBuilder.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/tcp/server/ServerBuilder.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeList$2.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeList$2.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeList$3.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeList$3.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeList$4.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeList$4.class" />
@@ -75,53 +53,11 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeList$Row$1.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeList$Row$1.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeList$Row.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeList$Row.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeList.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeList.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeProfile.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/EmployeeProfile.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/test/DI3_ProjetJava/models/CheckInOutTest.class" afterPath="$PROJECT_DIR$/out/test/DI3_ProjetJava/models/CheckInOutTest.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DI3_ProjetJava.iml" afterPath="$PROJECT_DIR$/DI3_ProjetJava.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/company.ser" afterPath="$PROJECT_DIR$/data/company.ser" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/lib/views/style.css" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/lib/views/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/fxml/list.fxml" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/departments/fxml/list.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/dialogs/fxml/createDepartment.fxml" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/dialogs/fxml/createDepartment.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/dialogs/fxml/createEmployee.fxml" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/dialogs/fxml/createEmployee.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/dialogs/fxml/editCompany.fxml" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/dialogs/fxml/editCompany.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/fxml/list.fxml" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/fxml/list.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/fxml/profile.fxml" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/views/employees/fxml/profile.fxml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/CompanyController.java" afterPath="$PROJECT_DIR$/src/controllers/CompanyController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/DepartmentsController.java" afterPath="$PROJECT_DIR$/src/controllers/DepartmentsController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controllers/EmployeesController.java" afterPath="$PROJECT_DIR$/src/controllers/EmployeesController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/BaseController.java" afterPath="$PROJECT_DIR$/src/lib/BaseController.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/util/validator/Validator.java" afterPath="$PROJECT_DIR$/src/lib/util/validator/Validator.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/views/CSSClasses.java" afterPath="$PROJECT_DIR$/src/lib/views/CSSClasses.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/views/Template.java" afterPath="$PROJECT_DIR$/src/lib/views/Template.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/views/custom/components/Dialog.java" afterPath="$PROJECT_DIR$/src/lib/views/custom/components/Dialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/lib/views/style.css" afterPath="$PROJECT_DIR$/src/lib/views/style.css" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/CheckInOut.java" afterPath="$PROJECT_DIR$/src/models/CheckInOut.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/Company.java" afterPath="$PROJECT_DIR$/src/models/Company.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/Employee.java" afterPath="$PROJECT_DIR$/src/models/Employee.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/ManagementDepartment.java" afterPath="$PROJECT_DIR$/src/models/ManagementDepartment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/Manager.java" afterPath="$PROJECT_DIR$/src/models/Manager.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/Person.java" afterPath="$PROJECT_DIR$/src/models/Person.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/StandardDepartment.java" afterPath="$PROJECT_DIR$/src/models/StandardDepartment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/models/VirtualDepartment.java" afterPath="$PROJECT_DIR$/src/models/VirtualDepartment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tcp/Main.java" afterPath="$PROJECT_DIR$/src/tcp/Main.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/company/HomeCompany.java" afterPath="$PROJECT_DIR$/src/views/company/HomeCompany.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/departments/DepartmentsList.java" afterPath="$PROJECT_DIR$/src/views/departments/DepartmentsList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/departments/fxml/list.fxml" afterPath="$PROJECT_DIR$/src/views/departments/fxml/list.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/dialogs/CreateDepartmentDialog.java" afterPath="$PROJECT_DIR$/src/views/dialogs/CreateDepartmentDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/dialogs/CreateEmployeeDialog.java" afterPath="$PROJECT_DIR$/src/views/dialogs/CreateEmployeeDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/dialogs/EditCompanyDialog.java" afterPath="$PROJECT_DIR$/src/views/dialogs/EditCompanyDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/dialogs/EditEmployeeDialog.java" afterPath="$PROJECT_DIR$/src/views/dialogs/EditEmployeeDialog.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/dialogs/fxml/createDepartment.fxml" afterPath="$PROJECT_DIR$/src/views/dialogs/fxml/createDepartment.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/dialogs/fxml/createEmployee.fxml" afterPath="$PROJECT_DIR$/src/views/dialogs/fxml/createEmployee.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/dialogs/fxml/editCompany.fxml" afterPath="$PROJECT_DIR$/src/views/dialogs/fxml/editCompany.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/tcp/server/Server.java" afterPath="$PROJECT_DIR$/src/tcp/server/Server.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/employees/EmployeeList.java" afterPath="$PROJECT_DIR$/src/views/employees/EmployeeList.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/employees/EmployeeProfile.java" afterPath="$PROJECT_DIR$/src/views/employees/EmployeeProfile.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/employees/fxml/list.fxml" afterPath="$PROJECT_DIR$/src/views/employees/fxml/list.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/views/employees/fxml/profile.fxml" afterPath="$PROJECT_DIR$/src/views/employees/fxml/profile.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test.json" afterPath="$PROJECT_DIR$/test.json" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/models/CheckInOutTest.java" afterPath="$PROJECT_DIR$/test/models/CheckInOutTest.java" />
     </list>
     <ignored path="DI3_ProjetJava.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -172,35 +108,29 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DepartmentsController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controllers/DepartmentsController.java">
+      <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/emulator/tcp/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="320">
-              <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
+            <state relative-caret-position="253">
+              <caret line="61" column="21" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4724#4725#0" expanded="true" />
-                <element signature="e#4799#4800#0" expanded="true" />
+                <element signature="e#4032#4033#0" expanded="true" />
+                <element signature="e#4059#4060#0" expanded="true" />
+                <element signature="e#4110#4111#0" expanded="true" />
+                <element signature="e#4138#4139#0" expanded="true" />
+                <element signature="e#4285#4286#0" expanded="true" />
+                <element signature="e#4316#4317#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditEmployeeDialog.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/dialogs/EditEmployeeDialog.java">
+      <file leaf-file-name="ClientBuilder.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/emulator/tcp/ClientBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
-              <caret line="94" column="87" selection-start-line="94" selection-start-column="87" selection-end-line="94" selection-end-column="87" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="BaseController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/lib/BaseController.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
+            <state relative-caret-position="199">
+              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -208,80 +138,60 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CompanyController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controllers/CompanyController.java">
+      <file leaf-file-name="View.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/emulator/views/View.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="21">
-              <caret line="48" column="29" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
+            <state relative-caret-position="-440">
+              <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
               <folding>
-                <element signature="e#612#613#0" expanded="true" />
-                <element signature="e#648#649#0" expanded="true" />
+                <element signature="imports" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EmployeesController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/controllers/EmployeesController.java">
+      <file leaf-file-name="ServerBuilder.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/tcp/server/ServerBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="235">
-              <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
-              <folding />
+            <state relative-caret-position="252">
+              <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="createEmployee.fxml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/dialogs/fxml/createEmployee.fxml">
+      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/tcp/server/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="30" column="54" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
-              <folding />
-            </state>
-          </provider>
-          <provider editor-type-id="JavaFX-Scene-Builder">
-            <state />
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="HomeCompany.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/company/HomeCompany.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="268">
-              <caret line="115" column="68" selection-start-line="115" selection-start-column="68" selection-end-line="115" selection-end-column="68" />
-              <folding />
+            <state relative-caret-position="232">
+              <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+              <folding>
+                <element signature="imports" expanded="true" />
+                <element signature="e#526#527#0" expanded="true" />
+                <element signature="e#553#554#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="EditCompanyDialog.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/dialogs/EditCompanyDialog.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="172">
-              <caret line="73" column="77" selection-start-line="73" selection-start-column="77" selection-end-line="73" selection-end-column="77" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CreateDepartmentDialog.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/views/dialogs/CreateDepartmentDialog.java">
+      <file leaf-file-name="ClientMain.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/emulator/ClientMain.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="147">
-              <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
+              <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Main.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Main.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="236">
-              <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
-              <folding>
-                <element signature="e#4412#4422#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="105">
+              <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -291,7 +201,6 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Singleton" />
         <option value="JUnit3 Test Class" />
         <option value="JUnit4 Test Class" />
         <option value="XSLT Stylesheet" />
@@ -300,6 +209,7 @@
         <option value="package-info" />
         <option value="JavaMain" />
         <option value="Enum" />
+        <option value="Singleton" />
         <option value="Class" />
       </list>
     </option>
@@ -373,22 +283,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/tcp/client/Client.java" />
-        <option value="$PROJECT_DIR$/src/Fanch.java" />
-        <option value="$PROJECT_DIR$/src/App.java" />
-        <option value="$PROJECT_DIR$/src/views/dialogs/fxml/dateListChoice.fxml" />
-        <option value="$PROJECT_DIR$/src/views/dialogs/DateListChoiceDialog.java" />
-        <option value="$PROJECT_DIR$/src/views/employees/fxml/list.fxml" />
-        <option value="$PROJECT_DIR$/src/lib/views/CSSClasses.java" />
-        <option value="$PROJECT_DIR$/src/views/departments/fxml/list.fxml" />
-        <option value="F:/bin/al_aliases.json" />
-        <option value="$PROJECT_DIR$/src/emulator/Main.java" />
-        <option value="$PROJECT_DIR$/src/models/CheckInOut.java" />
-        <option value="$PROJECT_DIR$/src/views/company/HomeCompany.java" />
-        <option value="$PROJECT_DIR$/test/models/CheckInOutTest.java" />
-        <option value="$PROJECT_DIR$/src/lib/util/validator/ValueTypes.java" />
-        <option value="$PROJECT_DIR$/src/lib/util/validator/FormValidator.java" />
-        <option value="$PROJECT_DIR$/src/lib/util/form/Form.java" />
         <option value="$PROJECT_DIR$/src/lib/util/validator/Validator.java" />
         <option value="$PROJECT_DIR$/src/Main2.java" />
         <option value="$PROJECT_DIR$/src/lib/views/Template.java" />
@@ -403,7 +297,6 @@
         <option value="$PROJECT_DIR$/src/views/dialogs/CreateEmployeeDialog.java" />
         <option value="$PROJECT_DIR$/src/views/employees/fxml/profile.fxml" />
         <option value="$PROJECT_DIR$/src/views/departments/DepartmentsList.java" />
-        <option value="$PROJECT_DIR$/src/views/employees/EmployeeList.java" />
         <option value="$PROJECT_DIR$/src/models/Manager.java" />
         <option value="$PROJECT_DIR$/src/models/Employee.java" />
         <option value="$PROJECT_DIR$/src/lib/views/style.css" />
@@ -423,7 +316,24 @@
         <option value="$PROJECT_DIR$/src/controllers/EmployeesController.java" />
         <option value="$PROJECT_DIR$/src/controllers/CompanyController.java" />
         <option value="$PROJECT_DIR$/src/views/dialogs/EditCompanyDialog.java" />
+        <option value="$PROJECT_DIR$/src/emulator/View.java" />
+        <option value="$PROJECT_DIR$/src/emulator/models/Employee.java" />
+        <option value="$PROJECT_DIR$/src/emulator/Emulator.java" />
+        <option value="$PROJECT_DIR$/src/views/employees/EmployeeList.java" />
+        <option value="$PROJECT_DIR$/src/emulator/Template.java" />
+        <option value="$PROJECT_DIR$/src/emulator/views/fxml/view.fxml" />
+        <option value="$PROJECT_DIR$/src/emulator/views/View.java" />
+        <option value="$PROJECT_DIR$/src/emulator/tcp/ClientBuilder.java" />
+        <option value="$PROJECT_DIR$/src/tcp/Builder.java" />
+        <option value="$PROJECT_DIR$/src/emulator/Client.java" />
+        <option value="$PROJECT_DIR$/src/emulator/Main.java" />
+        <option value="$PROJECT_DIR$/src/emulator/ClientMain.java" />
         <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/src/tcp/server/Server.java" />
+        <option value="$PROJECT_DIR$/src/emulator/tcp/Client.java" />
+        <option value="$PROJECT_DIR$/src/emulator/controllers/Controller.java" />
+        <option value="$PROJECT_DIR$/src/tcp/Main.java" />
+        <option value="$PROJECT_DIR$/src/tcp/server/ServerBuilder.java" />
       </list>
     </option>
   </component>
@@ -590,120 +500,6 @@
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
             <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="DI3_ProjetJava">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="views">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="DI3_ProjetJava">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="views">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="dialogs">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="DI3_ProjetJava">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="views">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="dialogs">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="fxml">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="DI3_ProjetJava">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="views">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="departments">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT USER_OBJECT="Root">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="DI3_ProjetJava">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="src">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="views">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="departments">
-              <option name="myItemId" value="" />
-              <option name="myItemType" value="" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT USER_OBJECT="fxml">
               <option name="myItemId" value="" />
               <option name="myItemType" value="" />
             </PATH_ELEMENT>
@@ -931,37 +727,17 @@
       <recent name="C:\Users\Robin\Desktop\Divers\Work\Polytech\S6\Java\DI3_ProjetJava\src\views\dialogs\fxml" />
     </key>
     <key name="CreateClassDialog.RecentsKey">
+      <recent name="emulator.tcp" />
+      <recent name="emulator" />
       <recent name="lib.util.form" />
       <recent name="views.dialogs" />
       <recent name="lib.views.custom.components" />
-      <recent name="tcp.client" />
-      <recent name="" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Main">
+  <component name="RunManager" selected="Multirun.Multirun">
     <configuration default="false" name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
       <option name="MAIN_CLASS_NAME" value="Main" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
-      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
-      <option name="ALTERNATIVE_JRE_PATH" />
-      <option name="ENABLE_SWING_INSPECTOR" value="false" />
-      <option name="ENV_VARIABLES" />
-      <option name="PASS_PARENT_ENVS" value="true" />
-      <module name="DI3_ProjetJava" />
-      <envs />
-      <method />
-    </configuration>
-    <configuration default="false" name="ClientView" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
-        <pattern>
-          <option name="PATTERN" value="tcp.client.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <option name="MAIN_CLASS_NAME" value="tcp.client.ClientView" />
       <option name="VM_PARAMETERS" />
       <option name="PROGRAM_PARAMETERS" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
@@ -1007,14 +783,34 @@
     <configuration default="false" name="Main (1)" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
         <pattern>
+          <option name="PATTERN" value="tcp.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="MAIN_CLASS_NAME" value="tcp.Main" />
+      <option name="VM_PARAMETERS" />
+      <option name="PROGRAM_PARAMETERS" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
+      <option name="ALTERNATIVE_JRE_PATH" />
+      <option name="ENABLE_SWING_INSPECTOR" value="false" />
+      <option name="ENV_VARIABLES" />
+      <option name="PASS_PARENT_ENVS" value="true" />
+      <module name="DI3_ProjetJava" />
+      <envs />
+      <method />
+    </configuration>
+    <configuration default="false" name="ClientMain" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea">
+        <pattern>
           <option name="PATTERN" value="emulator.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="MAIN_CLASS_NAME" value="emulator.Main" />
-      <option name="VM_PARAMETERS" />
-      <option name="PROGRAM_PARAMETERS" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
+      <option name="MAIN_CLASS_NAME" value="emulator.ClientMain" />
+      <option name="VM_PARAMETERS" value="" />
+      <option name="PROGRAM_PARAMETERS" value="" />
+      <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" />
       <option name="ENABLE_SWING_INSPECTOR" value="false" />
@@ -1327,26 +1123,24 @@
       <method />
     </configuration>
     <configuration default="false" name="Multirun" type="Multirun" factoryName="Multirun" separateTabs="true" startOneByOne="true" markFailedProcess="true" hideSuccessProcess="false" delayTime="0">
-      <runConfiguration name="ServerMain" type="Application" />
-      <runConfiguration name="ClientView" type="Application" />
+      <runConfiguration name="Main" type="Application" />
+      <runConfiguration name="ClientMain" type="Application" />
       <method />
     </configuration>
     <list size="7">
       <item index="0" class="java.lang.String" itemvalue="JUnit.models" />
       <item index="1" class="java.lang.String" itemvalue="Multirun.Multirun" />
       <item index="2" class="java.lang.String" itemvalue="Application.Main" />
-      <item index="3" class="java.lang.String" itemvalue="Application.ClientView" />
-      <item index="4" class="java.lang.String" itemvalue="Application.Fanch" />
-      <item index="5" class="java.lang.String" itemvalue="Application.Main2" />
-      <item index="6" class="java.lang.String" itemvalue="Application.Main (1)" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Fanch" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Main2" />
+      <item index="5" class="java.lang.String" itemvalue="Application.Main (1)" />
+      <item index="6" class="java.lang.String" itemvalue="Application.ClientMain" />
     </list>
     <recent_temporary>
-      <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Application.Main" />
-        <item index="1" class="java.lang.String" itemvalue="Application.Main2" />
+      <list size="3">
+        <item index="0" class="java.lang.String" itemvalue="Application.ClientMain" />
+        <item index="1" class="java.lang.String" itemvalue="Application.Main" />
         <item index="2" class="java.lang.String" itemvalue="Application.Main (1)" />
-        <item index="3" class="java.lang.String" itemvalue="Application.Fanch" />
-        <item index="4" class="java.lang.String" itemvalue="Application.ClientView" />
       </list>
     </recent_temporary>
   </component>
@@ -1420,35 +1214,35 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23095824" sideWeight="0.4275" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23095824" sideWeight="0.425625" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31331593" sideWeight="0.185" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26781327" sideWeight="0.365" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35135135" sideWeight="0.4975" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23095824" sideWeight="0.52" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.35929647" sideWeight="0.4975" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.178125" sideWeight="0.49306932" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.149375" sideWeight="0.49306932" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32309583" sideWeight="0.48" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09125" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="383" y="218" width="400" height="575" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16875" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14974293" sideWeight="0.5069307" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23218673" sideWeight="0.635" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23218673" sideWeight="0.635" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.305625" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32309583" sideWeight="0.4825" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1480,183 +1274,10 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/lib/views/custom/components/Dialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="27" column="15" selection-start-line="27" selection-start-column="15" selection-end-line="27" selection-end-column="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/util/validator/Validator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1218">
-          <caret line="71" column="35" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/views/custom/components/Link.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/util/form/Form.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="13" column="11" selection-start-line="13" selection-start-column="11" selection-end-line="13" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/util/form/FieldValueTypes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/scene/layout/Region.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="194">
-          <caret line="1068" column="27" selection-start-line="1068" selection-start-column="27" selection-end-line="1068" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/models/VirtualDepartment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="159" column="25" selection-start-line="159" selection-start-column="25" selection-end-line="159" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/lang/annotation/ElementType.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-387">
-          <caret line="72" column="12" selection-start-line="72" selection-start-column="12" selection-end-line="72" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/fxml/FXML.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="38" column="18" selection-start-line="38" selection-start-column="18" selection-end-line="38" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/util/form/FieldTypes.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="12" selection-start-line="10" selection-start-column="12" selection-end-line="10" selection-end-column="12" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/dialogs/CreateEmployeeDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="87" column="27" selection-start-line="87" selection-start-column="27" selection-end-line="87" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/employees/fxml/profile.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="51" column="27" selection-start-line="51" selection-start-column="27" selection-end-line="51" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/test.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/views/Template.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="113">
-          <caret line="73" column="0" selection-start-line="73" selection-start-column="0" selection-end-line="73" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/departments/DepartmentsList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="22">
-          <caret line="239" column="34" selection-start-line="239" selection-start-column="34" selection-end-line="239" selection-end-column="34" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/employees/fxml/list.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="11" column="9" selection-start-line="11" selection-start-column="9" selection-end-line="29" selection-end-column="15" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/departments/fxml/list.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/views/employees/EmployeeList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="134" column="56" selection-start-line="134" selection-start-column="56" selection-end-line="134" selection-end-column="56" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#10480#13472#0" expanded="true" />
-            <element signature="e#13471#13472#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/com/sun/glass/ui/InvokeLaterDispatcher.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="96" column="37" selection-start-line="96" selection-start-column="37" selection-end-line="96" selection-end-column="37" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/lib/views/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="41" column="1" selection-start-line="41" selection-start-column="1" selection-end-line="41" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/views/employees/EmployeeProfile.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="420">
           <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1664,7 +1285,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="161">
           <caret line="50" column="30" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1675,7 +1295,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
           <caret line="5" column="32" selection-start-line="5" selection-start-column="32" selection-end-line="7" selection-end-column="29" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1686,9 +1305,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
           <caret line="70" column="0" selection-start-line="70" selection-start-column="0" selection-end-line="70" selection-end-column="0" />
-          <folding>
-            <element signature="e#1483#1484#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1696,7 +1312,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="337">
           <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1704,7 +1319,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="15" column="0" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1712,7 +1326,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1720,11 +1333,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="201">
           <caret line="179" column="0" selection-start-line="179" selection-start-column="0" selection-end-line="179" selection-end-column="0" />
-          <folding>
-            <element signature="e#7418#7419#0" expanded="false" />
-            <element signature="e#7869#7870#0" expanded="false" />
-            <element signature="e#7912#7913#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1732,12 +1340,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="318">
           <caret line="153" column="0" selection-start-line="153" selection-start-column="0" selection-end-line="153" selection-end-column="0" />
-          <folding>
-            <element signature="e#2767#2768#0" expanded="true" />
-            <element signature="e#2805#2806#0" expanded="true" />
-            <element signature="e#6428#6429#0" expanded="true" />
-            <element signature="e#6484#6485#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1745,7 +1347,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="1308" column="0" selection-start-line="1308" selection-start-column="0" selection-end-line="1308" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1753,7 +1354,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="189">
           <caret line="45" column="49" selection-start-line="45" selection-start-column="49" selection-end-line="45" selection-end-column="49" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1764,10 +1364,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="273" column="0" selection-start-line="273" selection-start-column="0" selection-end-line="273" selection-end-column="0" />
-          <folding>
-            <element signature="e#19641#19642#0" expanded="true" />
-            <element signature="e#19669#19670#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1775,7 +1371,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="421">
           <caret line="154" column="0" selection-start-line="154" selection-start-column="0" selection-end-line="154" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1783,7 +1378,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
           <caret line="132" column="28" selection-start-line="132" selection-start-column="28" selection-end-line="132" selection-end-column="28" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1791,10 +1385,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="138">
           <caret line="311" column="31" selection-start-line="311" selection-start-column="31" selection-end-line="311" selection-end-column="31" />
-          <folding>
-            <element signature="e#8938#8939#0" expanded="true" />
-            <element signature="e#9034#9035#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1802,7 +1392,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
           <caret line="118" column="15" selection-start-line="118" selection-start-column="15" selection-end-line="118" selection-end-column="15" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1810,7 +1399,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="224" column="0" selection-start-line="224" selection-start-column="0" selection-end-line="224" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1818,7 +1406,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="273">
           <caret line="19" column="30" selection-start-line="19" selection-start-column="30" selection-end-line="19" selection-end-column="30" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1829,7 +1416,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="206">
           <caret line="127" column="80" selection-start-line="127" selection-start-column="80" selection-end-line="127" selection-end-column="80" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1837,7 +1423,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-739">
           <caret line="46" column="11" selection-start-line="46" selection-start-column="11" selection-end-line="46" selection-end-column="11" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -1845,29 +1430,20 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="12">
           <caret line="64" column="0" selection-start-line="64" selection-start-column="0" selection-end-line="64" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/DepartmentsController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="320">
+        <state relative-caret-position="315">
           <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#4724#4725#0" expanded="true" />
-            <element signature="e#4799#4800#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/dialogs/fxml/createEmployee.fxml">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
+        <state relative-caret-position="630">
           <caret line="30" column="54" selection-start-line="30" selection-start-column="54" selection-end-line="30" selection-end-column="54" />
-          <folding />
         </state>
       </provider>
       <provider editor-type-id="JavaFX-Scene-Builder">
@@ -1876,46 +1452,36 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/lib/BaseController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
+        <state relative-caret-position="546">
           <caret line="27" column="0" selection-start-line="27" selection-start-column="0" selection-end-line="27" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/dialogs/EditEmployeeDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
+        <state relative-caret-position="1575">
           <caret line="94" column="87" selection-start-line="94" selection-start-column="87" selection-end-line="94" selection-end-column="87" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/company/HomeCompany.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="268">
+        <state relative-caret-position="1806">
           <caret line="115" column="68" selection-start-line="115" selection-start-column="68" selection-end-line="115" selection-end-column="68" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/views/dialogs/EditCompanyDialog.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="172">
+        <state relative-caret-position="1197">
           <caret line="73" column="77" selection-start-line="73" selection-start-column="77" selection-end-line="73" selection-end-column="77" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/CompanyController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
+        <state relative-caret-position="0">
           <caret line="48" column="29" selection-start-line="48" selection-start-column="29" selection-end-line="48" selection-end-column="29" />
-          <folding>
-            <element signature="e#612#613#0" expanded="true" />
-            <element signature="e#648#649#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1923,24 +1489,181 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="147">
           <caret line="30" column="13" selection-start-line="30" selection-start-column="13" selection-end-line="30" selection-end-column="13" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/controllers/EmployeesController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
+        <state relative-caret-position="0">
           <caret line="51" column="5" selection-start-line="51" selection-start-column="5" selection-end-line="51" selection-end-column="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/emulator/Template.java" />
+    <entry file="file://$PROJECT_DIR$/src/lib/views/BaseViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="37" selection-start-line="7" selection-start-column="37" selection-end-line="7" selection-end-column="37" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/lib/views/Template.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="42" column="6" selection-start-line="42" selection-start-column="6" selection-end-line="42" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/views/employees/EmployeeList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="294">
+          <caret line="98" column="0" selection-start-line="98" selection-start-column="0" selection-end-line="98" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/emulator/ClientMain.java" />
+    <entry file="file://$PROJECT_DIR$/src/emulator/Template.java" />
+    <entry file="file://$PROJECT_DIR$/src/tcp/client/ClientBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="9" column="46" selection-start-line="9" selection-start-column="46" selection-end-line="9" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tcp/client/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="36" selection-start-line="7" selection-start-column="36" selection-end-line="7" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/emulator/models/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/emulator/views/fxml/view.fxml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+      <provider editor-type-id="JavaFX-Scene-Builder">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/emulator/tcp/ClientBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="199">
+          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tcp/server/ServerMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="13" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tcp/Builder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="15" column="46" selection-start-line="15" selection-start-column="46" selection-end-line="15" selection-end-column="46" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/emulator/ClientMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="9" column="23" selection-start-line="9" selection-start-column="23" selection-end-line="9" selection-end-column="23" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="236">
-          <caret line="117" column="0" selection-start-line="117" selection-start-column="0" selection-end-line="117" selection-end-column="0" />
+        <state relative-caret-position="105">
+          <caret line="21" column="13" selection-start-line="21" selection-start-column="13" selection-end-line="21" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/emulator/views/View.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-440">
+          <caret line="18" column="13" selection-start-line="18" selection-start-column="13" selection-end-line="18" selection-end-column="13" />
           <folding>
-            <element signature="e#4412#4422#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/emulator/controllers/Controller.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="109">
+          <caret line="40" column="5" selection-start-line="40" selection-start-column="4" selection-end-line="54" selection-end-column="5" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#2500#2501#0" expanded="true" />
+            <element signature="e#2535#2536#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/emulator/tcp/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="253">
+          <caret line="61" column="21" selection-start-line="61" selection-start-column="21" selection-end-line="61" selection-end-column="21" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#4032#4033#0" expanded="true" />
+            <element signature="e#4059#4060#0" expanded="true" />
+            <element signature="e#4110#4111#0" expanded="true" />
+            <element signature="e#4138#4139#0" expanded="true" />
+            <element signature="e#4285#4286#0" expanded="true" />
+            <element signature="e#4316#4317#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tcp/server/Server.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="232">
+          <caret line="38" column="33" selection-start-line="38" selection-start-column="33" selection-end-line="38" selection-end-column="33" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="e#526#527#0" expanded="true" />
+            <element signature="e#553#554#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tcp/Main.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="42">
+          <caret line="2" column="13" selection-start-line="2" selection-start-column="13" selection-end-line="2" selection-end-column="13" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/tcp/server/ServerBuilder.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="12" column="35" selection-start-line="12" selection-start-column="35" selection-end-line="12" selection-end-column="35" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
