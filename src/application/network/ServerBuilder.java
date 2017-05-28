@@ -1,9 +1,10 @@
 package application.network;
 
+import org.json.simple.JSONObject;
+
 import java.io.DataInputStream;
-import java.io.DataOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
-import java.io.OutputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -12,31 +13,37 @@ import java.net.Socket;
  */
 public abstract class ServerBuilder
 {
+    protected final String syncRequest;
+    protected final String employeeDataFormat;
+    protected final String checkDataFormat;
+    protected final String dateTimeFormat;
+    protected final int timeout;
+    protected final int port;
+    protected final int sleepDuration;
     protected ServerSocket serverSocket;
-    protected int port;
 
-    public ServerBuilder (int port)
+    public ServerBuilder (JSONObject config)
     {
-        this.port = port;
+        JSONObject network = (JSONObject) config.get("network");
+
+        this.port = Integer.parseInt(network.get("port").toString());
+        this.syncRequest = (String) network.get("sync_request");
+        this.employeeDataFormat = (String) network.get("employee_data_format");
+        this.checkDataFormat = (String) network.get("check_data_format");
+        this.dateTimeFormat = (String) network.get("datetime_format");
+        this.timeout = Integer.parseInt(network.get("server_timeout").toString());
+        this.sleepDuration = Integer.parseInt(network.get("sleep_duration").toString());
     }
 
-    public void setConnection () throws Exception
+    public void setConnection () throws IOException, IllegalArgumentException
     {
         serverSocket = new ServerSocket(port);
-        serverSocket.setSoTimeout(10000);
+        serverSocket.setSoTimeout(timeout);
     }
 
     public void println (String msg)
     {
         System.out.println("Server > " + msg);
-    }
-
-    public void send (String msg, Socket client) throws Exception
-    {
-        OutputStream     os  = client.getOutputStream();
-        DataOutputStream out = new DataOutputStream(os);
-
-        out.writeUTF(msg);
     }
 
     public String receive (Socket client) throws Exception

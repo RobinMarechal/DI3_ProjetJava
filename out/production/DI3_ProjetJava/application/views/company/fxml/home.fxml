@@ -13,7 +13,7 @@
 <?import javafx.scene.text.Font?>
 
 <VBox alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="700.0"
-      prefWidth="1450.0" styleClass="bg-transparent" stylesheets="@../../../application/lib/views/style.css"
+      prefWidth="1450.0" styleClass="bg-transparent" stylesheets="@../../../../application/lib/views/style.css"
       xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Label fx:id="labelCompany" alignment="CENTER" contentDisplay="CENTER" maxWidth="1.7976931348623157E308"

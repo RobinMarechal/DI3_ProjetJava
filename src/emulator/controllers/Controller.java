@@ -1,7 +1,8 @@
 package emulator.controllers;
 
+import emulator.models.Check;
 import emulator.models.Employee;
-import emulator.tcp.Client;
+import emulator.network.Client;
 import emulator.views.View;
 import fr.etu.univtours.marechal.SimpleDate;
 import fr.etu.univtours.marechal.SimpleDateTime;
@@ -11,7 +12,6 @@ import javafx.scene.Parent;
 import javafx.scene.control.TextField;
 
 import java.time.LocalTime;
-import java.time.format.DateTimeFormatter;
 
 /**
  * Created by Robin on 26/05/2017.
@@ -114,9 +114,7 @@ public class Controller
             SimpleTime     time = SimpleTime.of(hours, minutes);
             SimpleDateTime sdt  = SimpleDateTime.fromDateAndTime(date, time);
 
-            String s = sdt.toLocalDateTime().format(DateTimeFormatter.ISO_LOCAL_DATE_TIME) + ";" + selectedItem.getId();
-
-            client.addToQueue(s);
+            client.addToQueue(new Check(sdt, selectedItem.getId()));
         }
 
     }

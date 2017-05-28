@@ -1,15 +1,17 @@
 package application.network;
 
+import application.models.Company;
+import application.models.Employee;
 import fr.etu.univtours.marechal.SimpleDateTime;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
-import application.models.Company;
-import application.models.Employee;
+import org.json.simple.JSONObject;
 
 import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
+import java.net.SocketTimeoutException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -18,9 +20,9 @@ import java.time.format.DateTimeFormatter;
  */
 public class Server extends ServerBuilder implements Runnable
 {
-    public Server (int port)
+    public Server (JSONObject config)
     {
-        super(port);
+        super(config);
     }
 
     @Override
@@ -41,10 +43,10 @@ public class Server extends ServerBuilder implements Runnable
                 OutputStream     outputStream = client.getOutputStream();
                 DataOutputStream out          = new DataOutputStream(outputStream);
 
-                if (receive.equals("SYNC"))
+                if (receive.equals(syncRequest))
                 {
                     sendEmployeeList(out);
-                    System.out.println("SYNC done");
+                    System.out.println(syncRequest + " done");
                 }
                 else
                 {
@@ -54,32 +56,54 @@ public class Server extends ServerBuilder implements Runnable
 
                 client.close();
                 serverSocket.close();
-                Thread.sleep(50);
+                Thread.sleep(sleepDuration);
+            }
+            catch (SocketTimeoutException e)
+            {
+                println("The server has timed-out.");
+            }
+            catch (IOException e)
+            {
+                println("IOException");
             }
             catch (Exception e)
             {
-                e.printStackTrace();
-                break;
-
+                println("Exception : " + e.getClass().getSimpleName());
+                break; // ?
             }
         }
     }
 
     private void simulateCheck (String receive)
     {
-        //datetime;id
-        try{
-            int id = Integer.parseInt(receive.split(";")[1]);
-            String strDT = receive.split(";")[0];
+        try
+        {
+            String data[]       = receive.split(";");
+            String dataFormat[] = checkDataFormat.split(";");
 
-            LocalDateTime  ldt = LocalDateTime.parse(strDT, DateTimeFormatter.ISO_LOCAL_DATE_TIME);
+            int    id    = -1;
+            String strDT = null;
+
+            for (int i = 0; i < dataFormat.length; i++)
+            {
+                if (dataFormat[i].equals("{id}"))
+                {
+                    id = Integer.parseInt(data[i]);
+                }
+                else
+                {
+                    strDT = data[i];
+                }
+            }
+
+            LocalDateTime  ldt = LocalDateTime.parse(strDT, DateTimeFormatter.ofPattern(dateTimeFormat));
             SimpleDateTime std = SimpleDateTime.fromLocalDateTime(ldt);
 
             Employee e = Company.getCompany().getEmployee(id);
 
-            if(e != null)
+            if (e != null)
             {
-                Platform.runLater(() ->  e.doCheck(std));
+                Platform.runLater(() -> e.doCheck(std));
             }
         }
         catch (ArrayIndexOutOfBoundsException | NumberFormatException e)
@@ -97,8 +121,9 @@ public class Server extends ServerBuilder implements Runnable
 
         for (Employee e : list)
         {
-            String str = e.getId() + ";" + e.getFirstName() + e.getLastName();
-            out.writeUTF(str);
+            String format = new String(employeeDataFormat);
+            String toSend = format.replace("{id}", e.getId() + "").replace("{name}", e.getFirstName() + " " + e.getLastName());
+            out.writeUTF(toSend);
         }
     }
 }

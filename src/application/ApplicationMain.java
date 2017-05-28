@@ -1,5 +1,11 @@
 package application;
 
+import application.lib.views.Template;
+import application.models.Company;
+import application.models.Employee;
+import application.models.Manager;
+import application.models.StandardDepartment;
+import application.network.Server;
 import fr.etu.univtours.marechal.SimpleDate;
 import fr.etu.univtours.marechal.SimpleDateTime;
 import fr.etu.univtours.marechal.SimpleTime;
@@ -8,13 +14,11 @@ import javafx.application.Platform;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.stage.Stage;
-import application.lib.views.Template;
-import application.models.Company;
-import application.models.Employee;
-import application.models.Manager;
-import application.models.StandardDepartment;
-import application.network.Server;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 
+import java.io.File;
+import java.io.FileReader;
 import java.util.Collections;
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -27,8 +31,6 @@ public class ApplicationMain extends Application
 
     public static void main (String args[])
     {
-        Company.getCompany().deserialize();
-        new Thread(new Server(8080)).start();
         launch(args);
 
 //        Company.getCompany().toJson();
@@ -113,6 +115,16 @@ public class ApplicationMain extends Application
     @Override
     public void start (Stage window) throws Exception
     {
+        File       configFile = new File("src/config/network.json");
+        System.out.println(configFile.getAbsolutePath());
+        FileReader reader     = new FileReader(configFile);
+        JSONParser parser     = new JSONParser();
+        JSONObject json       = (JSONObject) parser.parse(reader);
+
+        new Thread(new Server(json)).start();
+
+        Company.getCompany().deserialize();
+
 //        Company.getCompany().deserialize();
         window.setTitle("Pointeuse");
         window.setScene(Template.getInstance().getScene());
