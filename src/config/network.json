@@ -2,7 +2,7 @@
     "network" : {
         "hostname" : "localhost",
         "port" : 8080,
-        "server_timeout" : 10000,
+        "server_timeout" : 0,
         "sleep_duration" : 50,
         "sync_frequency": 60000,
         "sync_request" : "SYNC",

@@ -33,6 +33,7 @@ public class Client extends ClientBuilder implements Runnable
         window.setScene(new Scene(this.controller.displayView()));
         window.setResizable(false);
         window.show();
+        window.setOnCloseRequest(event -> System.exit(1));
 
         new Thread(this).start();
     }

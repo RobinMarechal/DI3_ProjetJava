@@ -130,7 +130,10 @@ public class ApplicationMain extends Application
         window.setScene(Template.getInstance().getScene());
         window.setResizable(false);
         window.sizeToScene();
-        window.setOnCloseRequest(event -> Company.getCompany().serialiaze());
+        window.setOnCloseRequest(event -> {
+            Company.getCompany().serialiaze();
+            System.exit(1);
+        });
 
         window.show();
 

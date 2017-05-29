@@ -349,7 +349,7 @@ public class Employee extends Person implements Jsonable
      * @param dateTime The datetime of the check
      * @return this
      */
-    public synchronized Employee doCheck (SimpleDateTime dateTime)
+    public Employee doCheck (SimpleDateTime dateTime)
     {
         SimpleDate date = SimpleDate.fromSimpleDateTime(dateTime);
         SimpleTime time = SimpleTime.fromSimpleDateTime(dateTime);

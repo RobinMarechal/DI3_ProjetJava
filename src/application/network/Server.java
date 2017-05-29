@@ -11,7 +11,6 @@ import java.io.DataOutputStream;
 import java.io.IOException;
 import java.io.OutputStream;
 import java.net.Socket;
-import java.net.SocketTimeoutException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
@@ -28,53 +27,71 @@ public class Server extends ServerBuilder implements Runnable
     @Override
     public void run ()
     {
-        while (true)
+        try
+        {
+            setConnection();
+            println("Connected");
+            while (true)
+            {
+                // We can accept multiple clients
+                Socket client = serverSocket.accept();
+                println("Client accepted");
+
+                // For each new client, we start a new Thread
+
+                new Thread(() ->
+                {
+                    try
+                    {
+                        String receive = receive(client);
+                        println(receive);
+
+                        OutputStream     outputStream = client.getOutputStream();
+                        DataOutputStream out          = new DataOutputStream(outputStream);
+
+                        if (receive.equals(syncRequest))
+                        {
+                            sendEmployeeList(out);
+                            System.out.println(syncRequest + " done");
+                        }
+                        else
+                        {
+                            out.writeInt(0);
+                            simulateCheck(receive);
+                        }
+
+                        client.close();
+                    }
+                    catch (IOException e)
+                    {
+                        e.printStackTrace();
+                    }
+                    catch (Exception e)
+                    {
+                        println("Exception");
+                    }
+
+                }).start();
+            }
+        }
+        catch (IOException e)
+        {
+            e.printStackTrace();
+        }
+        finally
         {
             try
             {
-                setConnection();
-                println("Connected");
-                Socket client = serverSocket.accept();
-                println("Accepted");
-
-                String receive = receive(client);
-                println(receive);
-
-                OutputStream     outputStream = client.getOutputStream();
-                DataOutputStream out          = new DataOutputStream(outputStream);
-
-                if (receive.equals(syncRequest))
-                {
-                    sendEmployeeList(out);
-                    System.out.println(syncRequest + " done");
-                }
-                else
-                {
-                    out.writeInt(0);
-                    simulateCheck(receive);
-                }
-
-                client.close();
                 serverSocket.close();
-                Thread.sleep(sleepDuration);
-            }
-            catch (SocketTimeoutException e)
-            {
-                println("The server has timed-out.");
             }
             catch (IOException e)
             {
-                println("IOException");
-            }
-            catch (Exception e)
-            {
-                println("Exception : " + e.getClass().getSimpleName());
-                break; // ?
+                e.printStackTrace();
             }
         }
     }
 
-    private void simulateCheck (String receive)
+    private synchronized void simulateCheck (String receive)
     {
         try
         {

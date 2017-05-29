@@ -6,41 +6,17 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a42b8b50-aefd-421b-83b0-cc876e1f8c7e" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/config/network.json" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/emulator/models/Check.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/emulator/network/ClientBuilder.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/emulator/tcp/Client.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/emulator/tcp/ClientBuilder.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/emulator/tcp/ClientBuilder.java" afterPath="" />
-      <change type="MOVED" beforePath="$PROJECT_DIR$/src/emulator/tcp/Client.java" afterPath="$PROJECT_DIR$/src/emulator/network/Client.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features.png" afterPath="$PROJECT_DIR$/features.png" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$1.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$1.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$10.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$2.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$3.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$4.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$5.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$6.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$7.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$8.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$9.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/models/Employee.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/models/Employee.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/network/Server.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/network/Server.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/network/ServerBuilder.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/network/ServerBuilder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/emulator/EmulatorMain.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/emulator/EmulatorMain.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/emulator/controllers/Controller.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/emulator/controllers/Controller.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/emulator/network/Client.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/emulator/network/Client.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/company.ser" afterPath="$PROJECT_DIR$/data/company.ser" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/company/fxml/home.fxml" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/company/fxml/home.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/departments/fxml/list.fxml" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/departments/fxml/list.fxml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/employees/fxml/list.fxml" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/employees/fxml/list.fxml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/config/network.json" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/config/network.json" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/ApplicationMain.java" afterPath="$PROJECT_DIR$/src/application/ApplicationMain.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/models/Employee.java" afterPath="$PROJECT_DIR$/src/application/models/Employee.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/network/Server.java" afterPath="$PROJECT_DIR$/src/application/network/Server.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/network/ServerBuilder.java" afterPath="$PROJECT_DIR$/src/application/network/ServerBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/emulator/EmulatorMain.java" afterPath="$PROJECT_DIR$/src/emulator/EmulatorMain.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/emulator/controllers/Controller.java" afterPath="$PROJECT_DIR$/src/emulator/controllers/Controller.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/config/network.json" afterPath="$PROJECT_DIR$/src/config/network.json" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/emulator/network/Client.java" afterPath="$PROJECT_DIR$/src/emulator/network/Client.java" />
     </list>
     <ignored path="DI3_ProjetJava.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -91,11 +67,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="network.json" pinned="false" current-in-tab="true">
+      <file leaf-file-name="network.json" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/config/network.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+            <state relative-caret-position="336">
+              <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -104,11 +80,13 @@
       <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/emulator/network/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
+            <state relative-caret-position="148">
+              <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
               <folding>
-                <element signature="e#1175#1176#0" expanded="true" />
-                <element signature="e#1224#1225#0" expanded="true" />
+                <element signature="e#1234#1235#0" expanded="true" />
+                <element signature="e#1283#1284#0" expanded="true" />
+                <element signature="e#4552#4553#0" expanded="true" />
+                <element signature="e#4580#4581#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -119,7 +97,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="714">
               <caret line="37" column="77" selection-start-line="37" selection-start-column="77" selection-end-line="37" selection-end-column="77" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#1447#1448#0" expanded="false" />
+                <element signature="e#1500#1501#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -127,8 +109,8 @@
       <file leaf-file-name="EmulatorMain.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/emulator/EmulatorMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="315">
-              <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
+            <state relative-caret-position="546">
+              <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -141,7 +123,11 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="2121">
               <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-              <folding />
+              <folding>
+                <element signature="imports" expanded="false" />
+                <element signature="e#2491#2492#0" expanded="false" />
+                <element signature="e#2526#2527#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -149,8 +135,8 @@
       <file leaf-file-name="Employee.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/models/Employee.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="8274">
-              <caret line="455" column="47" selection-start-line="455" selection-start-column="47" selection-end-line="455" selection-end-column="47" />
+            <state relative-caret-position="140">
+              <caret line="351" column="11" selection-start-line="351" selection-start-column="11" selection-end-line="351" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -159,18 +145,18 @@
       <file leaf-file-name="ServerBuilder.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/network/ServerBuilder.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+            <state relative-caret-position="165">
+              <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ApplicationMain.java" pinned="false" current-in-tab="false">
+      <file leaf-file-name="ApplicationMain.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/application/ApplicationMain.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2037">
-              <caret line="117" column="47" selection-start-line="117" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
+            <state relative-caret-position="315">
+              <caret line="131" column="29" selection-start-line="131" selection-start-column="29" selection-end-line="131" selection-end-column="29" />
               <folding />
             </state>
           </provider>
@@ -179,11 +165,21 @@
       <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/application/network/Server.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+            <state relative-caret-position="-906">
+              <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Company.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/models/Company.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="262">
+              <caret line="773" column="16" selection-start-line="773" selection-start-column="16" selection-end-line="773" selection-end-column="16" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -275,7 +271,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/models/Company.java" />
         <option value="$PROJECT_DIR$/src/views/dialogs/fxml/manageEmployees.fxml" />
         <option value="$PROJECT_DIR$/src/views/departments/DepartmentProfile.java" />
         <option value="$PROJECT_DIR$/src/models/StandardDepartment.java" />
@@ -319,13 +314,14 @@
         <option value="$PROJECT_DIR$/src/emulator/tcp/ClientBuilder.java" />
         <option value="$PROJECT_DIR$/src/emulator/tcp/Client.java" />
         <option value="$PROJECT_DIR$/src/emulator/controllers/Controller.java" />
-        <option value="$PROJECT_DIR$/src/application/ApplicationMain.java" />
         <option value="$PROJECT_DIR$/src/emulator/EmulatorMain.java" />
-        <option value="$PROJECT_DIR$/src/emulator/network/Client.java" />
         <option value="$PROJECT_DIR$/src/emulator/network/ClientBuilder.java" />
         <option value="$PROJECT_DIR$/src/application/network/ServerBuilder.java" />
         <option value="$PROJECT_DIR$/src/application/network/Server.java" />
+        <option value="$PROJECT_DIR$/src/application/models/Employee.java" />
         <option value="$PROJECT_DIR$/src/config/network.json" />
+        <option value="$PROJECT_DIR$/src/emulator/network/Client.java" />
+        <option value="$PROJECT_DIR$/src/application/ApplicationMain.java" />
       </list>
     </option>
   </component>
@@ -1183,30 +1179,24 @@
       <patterns />
       <method />
     </configuration>
-    <configuration default="false" name="2 Clients" type="Multirun" factoryName="Multirun" separateTabs="true" startOneByOne="true" markFailedProcess="true" hideSuccessProcess="false" delayTime="0">
-      <runConfiguration name="ApplicationMain" type="Application" />
-      <runConfiguration name="EmulatorMain" type="Application" />
-      <method />
-    </configuration>
     <configuration default="false" name="1 Client" type="Multirun" factoryName="Multirun" separateTabs="true" startOneByOne="true" markFailedProcess="true" hideSuccessProcess="false" delayTime="0">
       <runConfiguration name="ApplicationMain" type="Application" />
       <runConfiguration name="EmulatorMain" type="Application" />
       <method />
     </configuration>
-    <list size="8">
+    <list size="7">
       <item index="0" class="java.lang.String" itemvalue="JUnit.application.models" />
-      <item index="1" class="java.lang.String" itemvalue="Multirun.2 Clients" />
-      <item index="2" class="java.lang.String" itemvalue="Multirun.1 Client" />
-      <item index="3" class="java.lang.String" itemvalue="Application.ApplicationMain" />
-      <item index="4" class="java.lang.String" itemvalue="Application.Fanch" />
-      <item index="5" class="java.lang.String" itemvalue="Application.Main2" />
-      <item index="6" class="java.lang.String" itemvalue="Application.Main (1)" />
-      <item index="7" class="java.lang.String" itemvalue="Application.EmulatorMain" />
+      <item index="1" class="java.lang.String" itemvalue="Multirun.1 Client" />
+      <item index="2" class="java.lang.String" itemvalue="Application.ApplicationMain" />
+      <item index="3" class="java.lang.String" itemvalue="Application.Fanch" />
+      <item index="4" class="java.lang.String" itemvalue="Application.Main2" />
+      <item index="5" class="java.lang.String" itemvalue="Application.Main (1)" />
+      <item index="6" class="java.lang.String" itemvalue="Application.EmulatorMain" />
     </list>
     <recent_temporary>
       <list size="3">
-        <item index="0" class="java.lang.String" itemvalue="Application.EmulatorMain" />
-        <item index="1" class="java.lang.String" itemvalue="Application.ApplicationMain" />
+        <item index="0" class="java.lang.String" itemvalue="Application.ApplicationMain" />
+        <item index="1" class="java.lang.String" itemvalue="Application.EmulatorMain" />
         <item index="2" class="java.lang.String" itemvalue="Application.Main (1)" />
       </list>
     </recent_temporary>
@@ -1281,7 +1271,7 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -1291,12 +1281,13 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31331593" sideWeight="0.185" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.22972973" sideWeight="0.57625" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25675675" sideWeight="0.4975" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2985258" sideWeight="0.53125" order="2" side_tool="true" content_ui="tabs" x="445" y="386" width="843" height="243" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25675675" sideWeight="0.46125" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1525" sideWeight="0.49306932" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2985258" sideWeight="0.46875" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09125" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="383" y="218" width="400" height="575" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16875" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -1309,7 +1300,6 @@
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Coverage" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.305625" sideWeight="0.5" order="6" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32309583" sideWeight="0.48" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -1341,13 +1331,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/application/controllers/DepartmentsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="32" column="8" selection-start-line="32" selection-start-column="8" selection-end-line="32" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/application/views/company/HomeCompany.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1806">
@@ -1489,6 +1472,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="294">
           <caret line="38" column="37" selection-start-line="38" selection-start-column="37" selection-end-line="38" selection-end-column="37" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1569,6 +1553,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
           <caret line="10" column="173" selection-start-line="10" selection-start-column="173" selection-end-line="10" selection-end-column="173" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1579,6 +1564,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
           <caret line="15" column="45" selection-start-line="15" selection-start-column="45" selection-end-line="15" selection-end-column="45" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1587,18 +1573,11 @@
         <state />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/models/Company.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="174">
-          <caret line="780" column="26" selection-start-line="780" selection-start-column="16" selection-end-line="780" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/emulator/models/Employee.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="383">
           <caret line="40" column="5" selection-start-line="40" selection-start-column="5" selection-end-line="40" selection-end-column="5" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1613,24 +1592,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2121">
           <caret line="115" column="0" selection-start-line="115" selection-start-column="0" selection-end-line="115" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/ApplicationMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2037">
-          <caret line="117" column="47" selection-start-line="117" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/EmulatorMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="25" column="0" selection-start-line="25" selection-start-column="0" selection-end-line="25" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#2491#2492#0" expanded="false" />
+            <element signature="e#2526#2527#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -1639,25 +1604,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="192">
           <caret line="259" column="29" selection-start-line="259" selection-start-column="29" selection-end-line="259" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/models/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="8274">
-          <caret line="455" column="47" selection-start-line="455" selection-start-column="47" selection-end-line="455" selection-end-column="47" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/network/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="20" column="13" selection-start-line="20" selection-start-column="13" selection-end-line="20" selection-end-column="13" />
-          <folding>
-            <element signature="e#1175#1176#0" expanded="true" />
-            <element signature="e#1224#1225#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -1665,22 +1612,42 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="714">
           <caret line="37" column="77" selection-start-line="37" selection-start-column="77" selection-end-line="37" selection-end-column="77" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#1447#1448#0" expanded="false" />
+            <element signature="e#1500#1501#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Syncro Java/DI3_ProjetSyncro/src/polytech/tours/di/parallel/tsp/example/ConcurrentSearchCallable.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="74" column="7" selection-start-line="0" selection-start-column="0" selection-end-line="139" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/models/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="351" column="11" selection-start-line="351" selection-start-column="11" selection-end-line="351" selection-end-column="11" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/network/ServerBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="13" column="22" selection-start-line="13" selection-start-column="22" selection-end-line="13" selection-end-column="22" />
+        <state relative-caret-position="165">
+          <caret line="39" column="0" selection-start-line="39" selection-start-column="0" selection-end-line="39" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/network/Server.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="38" column="0" selection-start-line="38" selection-start-column="0" selection-end-line="38" selection-end-column="0" />
+        <state relative-caret-position="-906">
+          <caret line="31" column="0" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -1689,8 +1656,47 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/config/network.json">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="126">
-          <caret line="6" column="31" selection-start-line="6" selection-start-column="31" selection-end-line="6" selection-end-column="31" />
+        <state relative-caret-position="336">
+          <caret line="16" column="1" selection-start-line="16" selection-start-column="1" selection-end-line="16" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/emulator/EmulatorMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="546">
+          <caret line="29" column="17" selection-start-line="29" selection-start-column="17" selection-end-line="29" selection-end-column="17" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/emulator/network/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="34" column="22" selection-start-line="34" selection-start-column="22" selection-end-line="34" selection-end-column="22" />
+          <folding>
+            <element signature="e#1234#1235#0" expanded="true" />
+            <element signature="e#1283#1284#0" expanded="true" />
+            <element signature="e#4552#4553#0" expanded="true" />
+            <element signature="e#4580#4581#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/models/Company.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="773" column="16" selection-start-line="773" selection-start-column="16" selection-end-line="773" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/ApplicationMain.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="131" column="29" selection-start-line="131" selection-start-column="29" selection-end-line="131" selection-end-column="29" />
           <folding />
         </state>
       </provider>
