@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<jnlp spec="1.0" xmlns:jfx="http://javafx.com" href="DI3_ProjetJava.jnlp">
+  <information>
+    <title>DI3_ProjetJava</title>
+    <vendor>Unknown</vendor>
+    <description>DI3_ProjetJava</description>
+    <offline-allowed/>
+  </information>
+  <resources>
+    <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
+    <jar href="DI3_ProjetJava.jar" size="198428" download="eager" />
+    <jar href="annotations-java8.jar" size="25240" download="eager" />
+    <jar href="json-simple-1.1.1.jar" size="23737" download="eager" />
+    <jar href="simpletime.jar" size="7552" download="eager" />
+  </resources>
+  <jfx:javafx-desc  width="600" height="400" main-class="application.ApplicationMain"  name="DI3_ProjetJava" />
+  <update check="background"/>
+</jnlp>

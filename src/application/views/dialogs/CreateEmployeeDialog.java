@@ -70,13 +70,36 @@ public class CreateEmployeeDialog extends Dialog implements Initializable
         dialog.initStyle(StageStyle.UTILITY);
         dialog.show();
 
-        comboDepartments.setItems(departments);
+        display();
+        prepareClickEvent();
+        formatTimeFieldsInput(startingHourMin, 60);
+        formatTimeFieldsInput(endingHourMin, 60);
+        formatTimeFieldsInput(startingHourHour, 24);
+        formatTimeFieldsInput(endingHourHour, 24);
+    }
 
-        startingHourHour.setText(Employee.DEFAULT_STARTING_HOUR.getHour() + "");
-        startingHourMin.setText(Employee.DEFAULT_STARTING_HOUR.getMinute() + "");
-        endingHourHour.setText(Employee.DEFAULT_ENDING_HOUR.getHour() + "");
-        endingHourMin.setText(Employee.DEFAULT_ENDING_HOUR.getMinute() + "");
+    private void formatTimeFieldsInput (TextField field, int limit)
+    {
+        field.textProperty().addListener((observable, oldValue, newValue) ->
+        {
+            if (!newValue.matches("\\d*"))
+            {
+                field.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+            else if (!newValue.isEmpty())
+            {
+                int v = Integer.parseInt(newValue);
+                if (v >= limit)
+                {
+                    field.setText(oldValue);
+                }
 
+            }
+        });
+    }
+
+    private void prepareClickEvent ()
+    {
         Form form = new Form();
         form.add("firstName", FieldValueTypes.FIRSTNAME, fieldFirstName);
         form.add("lastName", FieldValueTypes.LASTNAME, fieldLastName);
@@ -88,5 +111,15 @@ public class CreateEmployeeDialog extends Dialog implements Initializable
         form.add("cbManager", FieldValueTypes.UNDEFINED, cbManager, FieldTypes.CHECKBOX);
 
         btnSubmit.setOnAction(event -> new Thread(() -> Platform.runLater(() -> new EmployeesController().createEmployee(form))).start());
+    }
+
+    private void display ()
+    {
+        comboDepartments.setItems(departments);
+
+        startingHourHour.setText(Employee.DEFAULT_STARTING_HOUR.getHour() + "");
+        startingHourMin.setText(Employee.DEFAULT_STARTING_HOUR.getMinute() + "");
+        endingHourHour.setText(Employee.DEFAULT_ENDING_HOUR.getHour() + "");
+        endingHourMin.setText(Employee.DEFAULT_ENDING_HOUR.getMinute() + "");
     }
 }

@@ -22,10 +22,14 @@ public class EmulatorMain extends Application
     @Override
     public void start (Stage window) throws Exception
     {
-        File       configFile = new File("src/config/network.json");
-        FileReader reader     = new FileReader(configFile);
-        JSONParser parser     = new JSONParser();
-        JSONObject json       = (JSONObject) parser.parse(reader);
+        JSONObject json = null;
+        File configFile = new File(new File(".").getCanonicalPath() + "/data/config/network.json");
+        if(configFile.exists())
+        {
+            FileReader reader = new FileReader(configFile);
+            JSONParser parser = new JSONParser();
+            json   = (JSONObject) parser.parse(reader);
+        }
 
         Client.start(window, json);
     }

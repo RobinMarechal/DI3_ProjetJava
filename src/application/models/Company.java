@@ -26,7 +26,12 @@ import java.util.stream.Collectors;
 public class Company implements Jsonable, JsonLoader, Serializable
 {
 
-    private static final String serializationFilename = "data/company.ser";
+    /**
+     *
+     */
+    private static final long serialVersionUID = 1697406778784975282L;
+
+    private String serializationFilePath;
 
     /** JSON object name keys */
     private static final String JSON_KEY_COMPANY = "company";
@@ -71,6 +76,14 @@ public class Company implements Jsonable, JsonLoader, Serializable
      */
     private Company ()
     {
+        try
+        {
+            serializationFilePath = new File(".").getCanonicalPath() + "/data/company.ser";
+        }
+        catch (IOException e)
+        {
+            serializationFilePath = null;
+        }
     }
 
     /**
@@ -773,7 +786,7 @@ public class Company implements Jsonable, JsonLoader, Serializable
 
     public void deserialize ()
     {
-        File f = new File(serializationFilename);
+        File f = new File(serializationFilePath);
         if (f.exists())
         {
             try
@@ -795,7 +808,7 @@ public class Company implements Jsonable, JsonLoader, Serializable
         }
         else
         {
-            System.out.println("Loading json from file failed: file '" + serializationFilename + "' not found.");
+            System.out.println("Loading json from file failed: file '" + serializationFilePath + "' not found.");
         }
     }
 
@@ -803,7 +816,7 @@ public class Company implements Jsonable, JsonLoader, Serializable
     {
         try
         {
-            File               f       = new File(serializationFilename);
+            File               f       = new File(serializationFilePath);
             FileOutputStream   fileOut = new FileOutputStream(f);
             ObjectOutputStream out     = new ObjectOutputStream(fileOut);
 
@@ -812,7 +825,7 @@ public class Company implements Jsonable, JsonLoader, Serializable
             out.writeUTF(json.toJSONString());
             out.close();
             fileOut.close();
-            System.out.println("Serialized data is saved in " + serializationFilename);
+            System.out.println("Serialized data is saved in " + serializationFilePath);
         }
         catch (IOException e)
         {
@@ -826,7 +839,7 @@ public class Company implements Jsonable, JsonLoader, Serializable
     //        Company tmp = null;
     //        try
     //        {
-    //            File              f      = new File(serializationFilename);
+    //            File              f      = new File(serializationFilePath);
     //            FileInputStream   fileIn = new FileInputStream(f);
     //            ObjectInputStream in     = new ObjectInputStream(fileIn);
     //            tmp = (Company) in.readObject();
@@ -925,8 +938,8 @@ public class Company implements Jsonable, JsonLoader, Serializable
     public ObservableList<Employee> getEmployeesWithoutDepartment ()
     {
         ObservableList<Employee> list = employees.stream()
-                                                       .filter(employee -> employee.getDepartment() == null)
-                                                       .collect(Collectors.toCollection(FXCollections::observableArrayList));
+                                                 .filter(employee -> employee.getDepartment() == null)
+                                                 .collect(Collectors.toCollection(FXCollections::observableArrayList));
 
         employees.addListener(new ListChangeListener<Employee>()
         {

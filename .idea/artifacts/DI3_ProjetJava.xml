@@ -1,0 +1,26 @@
+<component name="ArtifactManager">
+  <artifact type="javafx" name="DI3_ProjetJava">
+    <output-path>$PROJECT_DIR$/out/artifacts/DI3_ProjetJava</output-path>
+    <properties id="javafx-properties">
+      <options>
+        <option name="appClass" value="application.ApplicationMain" />
+        <option name="description" value="" />
+        <option name="htmlPlaceholderId" value="" />
+        <option name="title" value="" />
+        <option name="vendor" value="" />
+        <option name="version" value="" />
+      </options>
+    </properties>
+    <root id="root">
+      <element id="archive" name="DI3_ProjetJava.jar">
+        <element id="module-output" name="DI3_ProjetJava" />
+      </element>
+      <element id="file-copy" path="$APPLICATION_HOME_DIR$/redist/annotations-java8.jar" />
+      <element id="library" level="project" name="simpletime" />
+      <element id="file-copy" path="$PROJECT_DIR$/json-simple-1.1.1.jar" />
+      <element id="directory" name="data">
+        <element id="dir-copy" path="$PROJECT_DIR$/data" />
+      </element>
+    </root>
+  </artifact>
+</component>

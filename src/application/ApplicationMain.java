@@ -99,7 +99,7 @@ public class ApplicationMain extends Application
 
     /**
      * The main entry point for all JavaFX applications.
-     * The fzbfiylzebiuzbflmezjf method is called after the init method has returned,
+     * The start method is called after the init method has returned,
      * and after the system is ready for the application to begin running.
      * <p>
      * <p>
@@ -115,11 +115,14 @@ public class ApplicationMain extends Application
     @Override
     public void start (Stage window) throws Exception
     {
-        File       configFile = new File("src/config/network.json");
-        System.out.println(configFile.getAbsolutePath());
-        FileReader reader     = new FileReader(configFile);
-        JSONParser parser     = new JSONParser();
-        JSONObject json       = (JSONObject) parser.parse(reader);
+        JSONObject json = null;
+        File configFile = new File(new File(".").getCanonicalPath() + "/data/config/network.json");
+        if(configFile.exists())
+        {
+            FileReader reader = new FileReader(configFile);
+            JSONParser parser = new JSONParser();
+            json   = (JSONObject) parser.parse(reader);
+        }
 
         new Thread(new Server(json)).start();
 

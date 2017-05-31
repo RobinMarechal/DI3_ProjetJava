@@ -11,6 +11,7 @@
        xmlns="http://javafx.com/javafx/8.0.76-ea" xmlns:fx="http://javafx.com/fxml/1">
     <scene>
         <Scene stylesheets="@../../../../application/lib/views/style.css">
+        <Scene stylesheets="@../../../../application/lib/views/style.css">
             <root>
                 <GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefWidth="650.0"
                           styleClass="bg-transparent" xmlns="http://javafx.com/javafx/8.0.102" xmlns:fx="http://javafx.com/fxml/1">

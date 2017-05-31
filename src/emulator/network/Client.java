@@ -64,7 +64,7 @@ public class Client extends ClientBuilder implements Runnable
                     {
                         sync(out);
                         syncIsDone();
-                        counter = 0;
+                        counter = 1;
                     }
                     else if (!queue.isEmpty())
                     {
@@ -87,7 +87,7 @@ public class Client extends ClientBuilder implements Runnable
                     socketClient.close();
                 }
 
-                counter++;
+//                counter++;
                 Thread.sleep(sleepDuration);
             }
             catch (SocketTimeoutException e)

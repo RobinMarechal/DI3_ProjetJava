@@ -1,6 +1,13 @@
 package application.views.dialogs;
 
 import application.controllers.EmployeesController;
+import application.lib.util.form.FieldTypes;
+import application.lib.util.form.FieldValueTypes;
+import application.lib.util.form.Form;
+import application.lib.views.custom.components.Dialog;
+import application.models.Employee;
+import application.models.Manager;
+import application.models.StandardDepartment;
 import javafx.application.Platform;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -9,13 +16,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-import application.lib.util.form.FieldTypes;
-import application.lib.util.form.FieldValueTypes;
-import application.lib.util.form.Form;
-import application.lib.views.custom.components.Dialog;
-import application.models.Employee;
-import application.models.Manager;
-import application.models.StandardDepartment;
 
 import java.io.IOException;
 import java.net.URL;
@@ -73,17 +73,58 @@ public class EditEmployeeDialog extends Dialog implements Initializable
         dialog.initStyle(StageStyle.UTILITY);
         dialog.show();
 
-        comboDepartments.setItems(departments);
+        display();
+        prepareClickEvent();
+        formatTimeFieldsInput(startingHourHour, 24);
+        formatTimeFieldsInput(endingHourHour, 24);
+        formatTimeFieldsInput(startingHourMin, 60);
+        formatTimeFieldsInput(endingHourMin, 60);
 
-        fieldFirstName.setText(employee.getFirstName());
-        fieldLastName.setText(employee.getLastName());
-        startingHourHour.setText(employee.getStartingHour().getHour() + "");
-        startingHourMin.setText(employee.getStartingHour().getMinute() + "");
-        endingHourHour.setText(employee.getEndingHour().getHour() + "");
-        endingHourMin.setText(employee.getEndingHour().getMinute() + "");
-        cbManager.setSelected(employee instanceof Manager);
+        //        comboDepartments.setItems(departments);
+        //
+        //        fieldFirstName.setText(employee.getFirstName());
+        //        fieldLastName.setText(employee.getLastName());
+        //        startingHourHour.setText(employee.getStartingHour().getHour() + "");
+        //        startingHourMin.setText(employee.getStartingHour().getMinute() + "");
+        //        endingHourHour.setText(employee.getEndingHour().getHour() + "");
+        //        endingHourMin.setText(employee.getEndingHour().getMinute() + "");
+        //        cbManager.setSelected(employee instanceof Manager);
 
 
+        //        Form form = new Form();
+        //        form.add("firstName", FieldValueTypes.FIRSTNAME, fieldFirstName);
+        //        form.add("lastName", FieldValueTypes.LASTNAME, fieldLastName);
+        //        form.add("startingHourHour", FieldValueTypes.HOURS, startingHourHour);
+        //        form.add("startingHourMinutes", FieldValueTypes.MINUTES, startingHourMin);
+        //        form.add("endingHourHour", FieldValueTypes.HOURS, endingHourHour);
+        //        form.add("endingHourMinutes", FieldValueTypes.MINUTES, endingHourMin);
+        //        form.add("department", FieldValueTypes.UNDEFINED, comboDepartments, FieldTypes.COMBOBOX);
+        //        form.add("cbManager", FieldValueTypes.UNDEFINED, cbManager, FieldTypes.CHECKBOX);
+
+    }
+
+    private void formatTimeFieldsInput (TextField field, int limit)
+    {
+        field.textProperty().addListener((observable, oldValue, newValue) ->
+        {
+            if (!newValue.matches("\\d*"))
+            {
+                field.setText(newValue.replaceAll("[^\\d]", ""));
+            }
+            else if (!newValue.isEmpty())
+            {
+                int v = Integer.parseInt(newValue);
+                if (v >= limit)
+                {
+                    field.setText(oldValue);
+                }
+
+            }
+        });
+    }
+
+    private void prepareClickEvent ()
+    {
         Form form = new Form();
         form.add("firstName", FieldValueTypes.FIRSTNAME, fieldFirstName);
         form.add("lastName", FieldValueTypes.LASTNAME, fieldLastName);
@@ -101,6 +142,23 @@ public class EditEmployeeDialog extends Dialog implements Initializable
                 dialog.close();
             }
         })).start());
+    }
+
+    private void display ()
+    {
+        comboDepartments.setItems(departments);
+        if (employee.getDepartment() != null)
+        {
+            comboDepartments.getSelectionModel().select(employee.getDepartment());
+        }
+
+        fieldFirstName.setText(employee.getFirstName());
+        fieldLastName.setText(employee.getLastName());
+        startingHourHour.setText(employee.getStartingHour().getHour() + "");
+        startingHourMin.setText(employee.getStartingHour().getMinute() + "");
+        endingHourHour.setText(employee.getEndingHour().getHour() + "");
+        endingHourMin.setText(employee.getEndingHour().getMinute() + "");
+        cbManager.setSelected(employee instanceof Manager);
     }
 }
 

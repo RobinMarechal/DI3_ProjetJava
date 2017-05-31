@@ -1,3 +1,2 @@
-- QUESTION : concurrence
-
-- Update style des cells (listener sur les properties + arrivedEarlierAt() et leftLateAt())
+- Serialisation de la pointeuse (liste + queue)
+- csv

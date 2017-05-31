@@ -50,7 +50,7 @@
             <Separator layoutX="158.0" layoutY="457.0" orientation="VERTICAL" prefHeight="30.0" prefWidth="154.0" visible="false"/>
             <Button fx:id="btnManageEmployees" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="0.0"
                     prefWidth="200.0"
-                    text="Add employees" textAlignment="CENTER">
+                    text="Manage employees" textAlignment="CENTER">
                 <opaqueInsets>
                     <Insets/>
                 </opaqueInsets>
