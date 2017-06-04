@@ -42,7 +42,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
     @FXML private TableColumn<Row, IntegerProperty> columnId;
     @FXML private TableColumn<Row, StringProperty> columnFirstName;
     @FXML private TableColumn<Row, StringProperty> columnLastName;
-    @FXML private TableColumn<Row, StringProperty> columnDepartment;
+    @FXML private TableColumn<Row, ObjectProperty<StandardDepartment>> columnDepartment;
     @FXML private TableColumn<Row, Boolean> columnManager;
     @FXML private TableColumn<Row, ObjectProperty<SimpleTime>> columnStartingHour;
     @FXML private TableColumn<Row, ObjectProperty<SimpleTime>> columnEndingHour;
@@ -63,7 +63,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
             {
                 while (change.next())
                 {
-                    if(change.wasAdded())
+                    if (change.wasAdded())
                     {
                         List list = change.getAddedSubList();
                         for (Object o : list)
@@ -71,7 +71,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
                             rows.add(new Row((Employee) o));
                         }
                     }
-                    else if(change.wasRemoved())
+                    else if (change.wasRemoved())
                     {
                         List list = change.getRemoved();
                         for (Object o : list)
@@ -342,16 +342,16 @@ public class EmployeeList extends EmployeesViewController implements Initializab
             }
         });
 
-        columnDepartment.setCellFactory(column -> new TableCell<Row, StringProperty>()
+        columnDepartment.setCellFactory(column -> new TableCell<Row, ObjectProperty<StandardDepartment>>()
         {
             @Override
-            protected void updateItem (StringProperty item, boolean empty)
+            protected void updateItem (ObjectProperty<StandardDepartment> item, boolean empty)
             {
                 super.updateItem(item, empty);
 
                 if (item != null && !empty)
                 {
-                    textProperty().bind(item);
+                    textProperty().bind(item.asString());
                 }
             }
         });
@@ -382,7 +382,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
         private IntegerProperty id;
         private StringProperty firstName;
         private StringProperty lastName;
-        private StringProperty department;
+        private ObjectProperty<StandardDepartment> department;
         private boolean manager = false;
         private ObjectProperty<SimpleTime> startingHour;
         private ObjectProperty<SimpleTime> endingHour;
@@ -400,27 +400,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
             firstName = employee.firstNameProperty();
             lastName = employee.lastNameProperty();
 
-            // department property : null at the creation of the employee -> need to handle it differently
-            if (employee.departmentProperty()
-                        .getValue() == null) // The employee was just created and has no department yet...
-            {
-                // We create an empty tmp StringProperty
-                department = new SimpleStringProperty(this, "department", "");
-
-                // When we set set employee's department, we override the tmp StringProperty with the good one
-                employee.departmentProperty().addListener((observable, oldValue, newValue) ->
-                {
-                    final StandardDepartment value = employee.departmentProperty().getValue();
-                    if (value != null)
-                    {
-                        department = value.nameProperty();
-                    }
-                });
-            }
-            else // The employee has a department, easy
-            {
-                department = employee.departmentProperty().getValue().nameProperty();
-            }
+            department = employee.departmentProperty();
 
             // We don't only want to know if he is a manager,
             // we also want to know if he is THE manager of the department
@@ -462,8 +442,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
                             for (CheckInOut addedItem : added)
                             {
                                 // If the addedItem is not null, it's date isn't null and corresponding to the view's date parameter
-                                if (addedItem != null && addedItem.getDate() != null && addedItem.getDate()
-                                                                                                 .equals(date))
+                                if (addedItem != null && addedItem.getDate() != null && addedItem.getDate().equals(date))
                                 {
                                     // If what we added was a checkOut
                                     if (addedItem.getLeftAt() != null)
@@ -503,7 +482,7 @@ public class EmployeeList extends EmployeesViewController implements Initializab
             return lastName;
         }
 
-        public StringProperty getDepartment ()
+        public ObjectProperty<StandardDepartment> getDepartment ()
         {
             return department;
         }

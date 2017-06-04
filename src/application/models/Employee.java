@@ -1,5 +1,8 @@
 package application.models;
 
+import application.lib.csv.CSVLine;
+import application.lib.csv.CSVParser;
+import application.lib.csv.interfaces.CSVBuilder;
 import application.lib.exceptions.ModelException;
 import application.lib.exceptions.codes.EmployeeCodes;
 import application.lib.json.Jsonable;
@@ -21,7 +24,7 @@ import static application.models.StandardDepartment.JSON_KEY_MANAGER;
 /**
  * Created by Robin on 27/03/2017.
  */
-public class Employee extends Person implements Jsonable
+public class Employee extends Person implements Jsonable, CSVBuilder
 {
     protected static final String JSON_KEY_ID = "id";
     protected static final String JSON_KEY_CHECKS = "checks";
@@ -253,7 +256,7 @@ public class Employee extends Person implements Jsonable
         return NEXT_ID;
     }
 
-    public static void updateNextId()
+    public static void updateNextId ()
     {
         final ObservableList<Employee> employees = Company.getCompany().getEmployeesList();
         NEXT_ID = employees.get(employees.size() - 1).getId() + 1;
@@ -458,5 +461,26 @@ public class Employee extends Person implements Jsonable
         }
 
         return employee;
+    }
+
+    @Override
+    public void buildCSV (CSVParser parser)
+    {
+        CSVLine line = new CSVLine();
+        line.add(getId(), getFirstName(), getLastName(), this instanceof Manager, getStartingHour(), getEndingHour(), getOvertime());
+        parser.addLine(line);
+
+        for (CheckInOut check : checksInOut)
+        {
+            CSVLine checkLine = new CSVLine();
+            checkLine.add(check.getDate());
+            checkLine.add(check.getArrivedAt());
+            if (check.getLeftAt() != null)
+            {
+                checkLine.add(check.getLeftAt());
+            }
+
+            parser.addLine(checkLine);
+        }
     }
 }

@@ -146,15 +146,31 @@ public class Template
         MenuItem itemAddEmployee = new MenuItem("Employee");
         MenuItem itemAddDepartment = new MenuItem("Department");
 
+        MenuItem itemExportEmployeesToCSV = new MenuItem("Employees & checks");
+        MenuItem itemExportDepartmentsToCSV = new MenuItem("Departments");
+
+        MenuItem itemImportEmployeesCSV = new MenuItem("Employees & checks");
+        MenuItem itemImportDepartmentsCSV = new MenuItem("Departments");
+
         itemAddEmployee.setOnAction(event -> new EmployeesController().openCreationEmployeeDialog());
         itemAddDepartment.setOnAction(event -> new DepartmentsController().openCreationDepartmentDialog());
 
+        itemExportEmployeesToCSV.setOnAction(event -> new CompanyController().exportEmployees());
+        itemExportDepartmentsToCSV.setOnAction(event -> new CompanyController().exportDepartments());
+
+        itemImportEmployeesCSV.setOnAction(event -> new CompanyController().openImportEmployeesDialog());
+        itemImportDepartmentsCSV.setOnAction(event -> new CompanyController().openImportDepartmentsDialog());
+
         Menu menuAdd = new Menu("Add...");
         menuAdd.getItems().addAll(itemAddEmployee, itemAddDepartment);
-        menuBar = new MenuBar(menuAdd);
 
-        itemAddEmployee.setOnAction(e -> new EmployeesController().openCreationEmployeeDialog());
-        itemAddDepartment.setOnAction(e -> new DepartmentsController().openCreationDepartmentDialog());
+        Menu menuExport = new Menu("Export...");
+        menuExport.getItems().addAll(itemExportEmployeesToCSV, itemExportDepartmentsToCSV);
+
+        Menu menuImport = new Menu("Import...");
+        menuImport.getItems().addAll(itemImportEmployeesCSV, itemImportDepartmentsCSV);
+
+        menuBar = new MenuBar(menuAdd, menuExport, menuImport);
     }
 
     private void loadHomeView (Tabs wanted)

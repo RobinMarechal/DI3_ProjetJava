@@ -33,35 +33,35 @@ public class ApplicationMain extends Application
     {
         launch(args);
 
-//        JFrame f = new JFrame();
-//        JPanel panel = new JPanel();
-//        panel.setLayout(null);
-//        f.setContentPane(panel);
-//
-//        String[] tab = {"abc", "def", "ghi"};
-//
-//        JList<String> list = new JList<>();
-//        list.setListData(tab);
-//
-//        panel.add(list);
-//
-//        f.setSize(500,300);
-//        panel.setSize(500,300);
-//        list.setSize(500,300);
-//
-//        f.setVisible(true);
-//
-//        try
-//        {
-//            Thread.sleep(1000);
-//        }
-//        catch (InterruptedException e)
-//        {
-//            e.printStackTrace();
-//        }
-//
-//        String[] tab2 = {"azer"};
-//        list.setListData(tab2);
+        //        JFrame f = new JFrame();
+        //        JPanel panel = new JPanel();
+        //        panel.setLayout(null);
+        //        f.setContentPane(panel);
+        //
+        //        String[] tab = {"abc", "def", "ghi"};
+        //
+        //        JList<String> list = new JList<>();
+        //        list.setListData(tab);
+        //
+        //        panel.add(list);
+        //
+        //        f.setSize(500,300);
+        //        panel.setSize(500,300);
+        //        list.setSize(500,300);
+        //
+        //        f.setVisible(true);
+        //
+        //        try
+        //        {
+        //            Thread.sleep(1000);
+        //        }
+        //        catch (InterruptedException e)
+        //        {
+        //            e.printStackTrace();
+        //        }
+        //
+        //        String[] tab2 = {"azer"};
+        //        list.setListData(tab2);
 
     }
 
@@ -144,33 +144,34 @@ public class ApplicationMain extends Application
     @Override
     public void start (Stage window) throws Exception
     {
-        JSONObject json = null;
-        File configFile = new File(new File(".").getCanonicalPath() + "/data/config/network.json");
-        if(configFile.exists())
+        JSONObject json       = null;
+        File       configFile = new File(new File(".").getCanonicalPath() + "/data/config/network.json");
+        if (configFile.exists())
         {
             FileReader reader = new FileReader(configFile);
             JSONParser parser = new JSONParser();
-            json   = (JSONObject) parser.parse(reader);
+            json = (JSONObject) parser.parse(reader);
         }
 
         new Thread(new Server(json)).start();
 
         Company.getCompany().deserialize();
 
-//        Company.getCompany().deserialize();
+        //        Company.getCompany().deserialize();
         window.setTitle("Pointeuse");
         window.setScene(Template.getInstance().getScene());
         window.setResizable(false);
         window.sizeToScene();
-        window.setOnCloseRequest(event -> {
+        window.setOnCloseRequest(event ->
+        {
             Company.getCompany().serialiaze();
             System.exit(1);
         });
 
         window.show();
 
-//        testData();
-//        checksSimulation();
+        //        testData();
+        //        checksSimulation();
         //runQuickTests();
     }
 
@@ -183,17 +184,18 @@ public class ApplicationMain extends Application
                 SimpleDate                     date = SimpleDate.TODAY;
                 ObservableList<Employee>       tmp  = Company.getCompany().getEmployeesList();
                 CopyOnWriteArrayList<Employee> emps = new CopyOnWriteArrayList<>(tmp);
-                tmp.addListener(new ListChangeListener<Employee>() {
+                tmp.addListener(new ListChangeListener<Employee>()
+                {
                     @Override
                     public void onChanged (Change<? extends Employee> c)
                     {
-                        while(c.next())
+                        while (c.next())
                         {
-                            if(c.wasAdded())
+                            if (c.wasAdded())
                             {
                                 emps.addAll(c.getAddedSubList());
                             }
-                            else if(c.wasRemoved())
+                            else if (c.wasRemoved())
                             {
                                 emps.removeAll(c.getAddedSubList());
                             }
@@ -201,7 +203,7 @@ public class ApplicationMain extends Application
                     }
                 });
 
-                int                      nbEmps = emps.size();
+                int nbEmps = emps.size();
 
                 for (int i = 0; i < 20; i++)
                 {
@@ -313,8 +315,7 @@ public class ApplicationMain extends Application
                         public void run ()
                         {
                             final Employee e = Company.getCompany().getEmployee(50);
-                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(1), SimpleTime.of(8,
-                                    10)));
+                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(1), SimpleTime.of(8, 10)));
                             Company.getCompany().getEmployeesList().get(0).setFirstName("EEEEEEEE");
                             System.out.println("Done");
                         }
@@ -326,8 +327,7 @@ public class ApplicationMain extends Application
                         public void run ()
                         {
                             final Employee e = Company.getCompany().getEmployee(50);
-                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(1), SimpleTime.of(17,
-                                    35)));
+                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(1), SimpleTime.of(17, 35)));
                             Company.getCompany().getEmployeesList().get(0).setFirstName("FFFFFFF");
                             System.out.println("Done");
                         }
@@ -339,8 +339,7 @@ public class ApplicationMain extends Application
                         public void run ()
                         {
                             final Employee e = Company.getCompany().getEmployee(50);
-                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(2), SimpleTime.of(7,
-                                    42)));
+                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(2), SimpleTime.of(7, 42)));
                             Company.getCompany().getEmployeesList().get(0).setFirstName("GGGGGGGG");
                             System.out.println("Done");
                         }
@@ -352,8 +351,7 @@ public class ApplicationMain extends Application
                         public void run ()
                         {
                             final Employee e = Company.getCompany().getEmployee(50);
-                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(2), SimpleTime.of(16,
-                                    55)));
+                            e.doCheck(SimpleDateTime.fromDateAndTime(SimpleDate.TODAY.plusDays(2), SimpleTime.of(16, 55)));
                             Company.getCompany().getEmployeesList().get(0).setFirstName("HHHHHHHH");
                             System.out.println("Done");
                         }

@@ -1,8 +1,13 @@
 package application.models;
 
+import application.lib.csv.CSVLine;
+import application.lib.csv.CSVParser;
+import application.lib.csv.interfaces.CSVSaver;
 import application.lib.json.JsonLoader;
 import application.lib.json.Jsonable;
 import fr.etu.univtours.marechal.SimpleDate;
+import fr.etu.univtours.marechal.SimpleDateTime;
+import fr.etu.univtours.marechal.SimpleTime;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
@@ -14,6 +19,9 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -22,25 +30,25 @@ import java.util.stream.Collectors;
  * Represents the Company. <br/>
  * Singleton
  */
-public class Company implements Jsonable, JsonLoader, Serializable
+public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
 {
 
     /**
      *
      */
     private static final long serialVersionUID = 1697406778784975282L;
-
     private String serializationFilePath;
 
     /** JSON object name keys */
     private static final String JSON_KEY_COMPANY = "company";
+
     private static final String JSON_KEY_BOSS = "boss";
     private static final String JSON_KEY_MANAGEMENT_DEPARTMENT = "managementDepartment";
     private static final String JSON_KEY_EMPLOYEES = "employees";
     private static final String JSON_KEY_MANAGERS = "managers";
     private static final String JSON_KEY_STANDARD_DEPARTMENTS = "standardDepartments";
-
     private static final String JSON_KEY_COMPANY_NAME = "name";
+
 
     /** The instance of the class Company */
     private static Company companyInstance = new Company();
@@ -523,7 +531,7 @@ public class Company implements Jsonable, JsonLoader, Serializable
 
         for (StandardDepartment e : departments)
         {
-            String tmpName = e.getName().toLowerCase();
+            String tmpName   = e.getName().toLowerCase();
             String tmpSector = e.getActivitySector().toLowerCase();
             if (tmpName.contains(name) && tmpSector.contains(activitySector))
             {
@@ -960,5 +968,222 @@ public class Company implements Jsonable, JsonLoader, Serializable
         return list;
     }
 
+    public void saveEmployeesToCSV (File file)
+    {
+        CSVParser parser         = new CSVParser();
+        CSVLine   headerEmployee = new CSVLine();
+        CSVLine   headerCheck    = new CSVLine();
+        headerEmployee.add(CSVParser.HEADER_INDICATOR + "ID", "FIRSTNAME", "LASTNAME", "IS-MANAGER", "STARTING-HOUR", "ENDING-HOUR",
+                "OVERTIME");
+        headerCheck.add(CSVParser.HEADER_INDICATOR + "DATE", "ARRIVED-AT", "LEFT-AT");
 
+        parser.addLine(headerEmployee);
+        parser.addLine(headerCheck);
+
+        if (!employees.isEmpty())
+        {
+            employees.get(0).buildCSV(parser);
+            for (int i = 1; i < employees.size(); i++)
+            {
+                parser.addLine("-");
+                employees.get(i).buildCSV(parser);
+            }
+        }
+
+        saveCSVToFile(file, parser);
+    }
+
+    public void saveDepartmentsToCSV (File file)
+    {
+        CSVParser parser           = new CSVParser();
+        CSVLine   headerDepartment = new CSVLine();
+        CSVLine   headerEmployees  = new CSVLine();
+        headerDepartment.add(CSVParser.HEADER_INDICATOR + "ID", "NAME", "ACTIVITY-SECTOR", "MANAGER-ID");
+        headerEmployees.add(CSVParser.HEADER_INDICATOR + "EMPLOYEE1", "EMPLOYEE2", "EMPLOYEE3", "...");
+
+        parser.addLine(headerDepartment);
+        parser.addLine(headerEmployees);
+
+        if (!departments.isEmpty())
+        {
+            departments.get(0).buildCSV(parser);
+            for (int i = 1; i < departments.size(); i++)
+            {
+                parser.addLine(CSVParser.SECTION_SEPARATOR + "");
+                departments.get(i).buildCSV(parser);
+            }
+        }
+
+        saveCSVToFile(file, parser);
+    }
+
+    public void loadEmployeesFromCSVFile (File file) throws Exception
+    {
+        final CSVParser parser = CSVParser.loadFromFile(file);
+
+        Employee employee = null;
+
+        while (parser.hasNext())
+        {
+            CSVLine line = parser.next();
+            if (line.charAt(0) == CSVParser.HEADER_INDICATOR || line.charAt(0) == CSVParser.SECTION_SEPARATOR)
+            {
+                employee = null;
+                continue;
+            }
+
+            if (employee == null)
+            {
+                int id = Integer.parseInt(line.get(0));
+                employee = getEmployee(id);
+
+                if (employee == null)
+                {
+                    if (line.size() < 6)
+                    {
+                        continue;
+                    }
+
+                    String firstName = line.get(1);
+                    String lastName  = line.get(2);
+
+                    boolean isManager = Boolean.valueOf(line.get(3));
+
+                    String shStr = line.get(4);
+                    String ehStr = line.get(5);
+
+                    if (shStr.charAt(1) == ':')
+                    {
+                        shStr = "0" + shStr;
+                    }
+
+                    if (ehStr.charAt(1) == ':')
+                    {
+                        ehStr = "0" + ehStr;
+                    }
+
+                    SimpleTime sh = SimpleTime.fromLocalTime(LocalTime.parse(shStr, DateTimeFormatter.ofPattern("HH:mm")));
+                    SimpleTime eh = SimpleTime.fromLocalTime(LocalTime.parse(ehStr, DateTimeFormatter.ofPattern("HH:mm")));
+
+                    if (id < 0)
+                    {
+                        employee = new Employee(firstName, lastName);
+                    }
+                    else
+                    {
+                        employee = new Employee(firstName, lastName, id);
+                    }
+
+                    if (isManager)
+                    {
+                        employee = employee.upgradeToManager();
+                    }
+
+                    employee.setStartingHour(sh);
+                    employee.setStartingHour(eh);
+                }
+            }
+            else
+            {
+                if (employee != null)
+                {
+                    if (line.size() < 2)
+                    {
+                        continue;
+                    }
+
+                    SimpleDate date = SimpleDate.fromLocalDate(LocalDate.parse(line.get(0), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
+
+                    String checkInStr = line.get(1);
+
+                    if (checkInStr.charAt(1) == ':')
+                    {
+                        checkInStr = "0" + checkInStr;
+                    }
+
+                    SimpleTime checkIn = SimpleTime.fromLocalTime(LocalTime.parse(checkInStr, DateTimeFormatter.ofPattern("HH:mm")));
+
+                    employee.doCheck(SimpleDateTime.fromDateAndTime(date, checkIn));
+
+                    SimpleTime checkOut;
+                    if (line.size() >= 3)
+                    {
+                        String checkOutStr = line.get(2);
+                        if (checkOutStr.charAt(1) == ':')
+                        {
+                            checkOutStr = "0" + checkOutStr;
+                        }
+
+                        checkOut = SimpleTime.fromLocalTime(LocalTime.parse(checkOutStr, DateTimeFormatter.ofPattern("HH:mm")));
+                        employee.doCheck(SimpleDateTime.fromDateAndTime(date, checkOut));
+                    }
+                }
+            }
+        }
+    }
+
+    public void loadDepartmentsFromCSVFile (File file) throws Exception
+    {
+        final CSVParser parser = CSVParser.loadFromFile(file);
+
+        StandardDepartment dep = null;
+
+        while (parser.hasNext())
+        {
+            CSVLine line = parser.next();
+            if (line.charAt(0) == CSVParser.HEADER_INDICATOR || line.charAt(0) == CSVParser.SECTION_SEPARATOR)
+            {
+                dep = null;
+                continue;
+            }
+
+            if (dep == null)
+            {
+                if (line.size() < 4)
+                {
+                    continue;
+                }
+
+                int id = Integer.parseInt(line.get(0));
+                dep = getStandardDepartment(id);
+
+                if (dep == null)
+                {
+                    String name   = line.get(1);
+                    String sector = line.get(2);
+                    int    manId  = Integer.parseInt(line.get(3));
+
+                    if (id < 0)
+                    {
+                        dep = new StandardDepartment(name, sector);
+                    }
+                    else
+                    {
+                        dep = new StandardDepartment(name, sector, id);
+                    }
+
+                    Employee empMan = getEmployee(manId);
+                    if (empMan != null)
+                    {
+                        Manager manager = empMan.upgradeToManager();
+                        dep.setManager(manager);
+                    }
+                }
+            }
+            else
+            {
+                for (String idStr : line)
+                {
+                    int      id = Integer.parseInt(idStr);
+                    Employee e  = getEmployee(id);
+                    if (e != null)
+                    {
+                        dep.addEmployee(e);
+                    }
+                }
+            }
+
+
+        }
+    }
 }

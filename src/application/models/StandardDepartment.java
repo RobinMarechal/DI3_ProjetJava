@@ -1,11 +1,14 @@
 package application.models;
 
+import application.lib.csv.CSVLine;
+import application.lib.csv.CSVParser;
+import application.lib.csv.interfaces.CSVBuilder;
+import application.lib.json.Jsonable;
 import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ObservableList;
-import application.lib.json.Jsonable;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -14,7 +17,7 @@ import java.util.stream.Collectors;
 /**
  * Created by Robin on 27/03/2017.
  */
-public class StandardDepartment extends VirtualDepartment<Employee> implements Jsonable
+public class StandardDepartment extends VirtualDepartment<Employee> implements Jsonable, CSVBuilder
 {
     protected static final String JSON_KEY_ID = "id";
     protected static final String JSON_KEY_MANAGER = "manager";
@@ -343,5 +346,22 @@ public class StandardDepartment extends VirtualDepartment<Employee> implements J
         }
 
         return dep;
+    }
+
+    @Override
+    public void buildCSV (CSVParser parser)
+    {
+        CSVLine line = new CSVLine();
+        line.add(getId(), getName(), getActivitySector(), getManager() == null ? -1 : getManager().getId());
+        parser.addLine(line);
+
+        CSVLine empLine = new CSVLine();
+
+        for (Employee e : employees)
+        {
+            empLine.add(e.getId());
+        }
+
+        parser.addLine(empLine);
     }
 }

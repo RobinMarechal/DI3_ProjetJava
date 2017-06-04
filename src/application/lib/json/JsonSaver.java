@@ -24,7 +24,7 @@ public interface JsonSaver
      * @param filename the filename (including extension)
      * @param json the json instance to write in the file
      */
-    default void saveToFile (String path, String filename, JSONObject json)
+    default void saveJsonToFile (String path, String filename, JSONObject json)
     {
         File f = new File(path);
 

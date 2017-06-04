@@ -27,5 +27,4 @@ abstract public class BaseController
 
         return allPassed;
     }
-
 }
