@@ -122,11 +122,11 @@
                     <columns>
                         <TableColumn fx:id="colId" maxWidth="Infinity" minWidth="-1.0" prefWidth="45.0" resizable="false" text="ID"/>
                         <TableColumn fx:id="colFirstName" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="165.0"
-                                     resizable="false" text="First name"/>
+                                     resizable="false" text="First name" sortable="false"/>
                         <TableColumn fx:id="colLastName" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="165.0"
-                                     resizable="false" text="Last name"/>
+                                     resizable="false" text="Last name" sortable="false"/>
                         <TableColumn fx:id="colArrivedAt" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="120.0"
-                                     resizable="false" text="Check-in"/>
+                                     resizable="false" text="Check-in" sortable="false"/>
                         <TableColumn fx:id="colLeftAt" maxWidth="1.7976931348623157E308" minWidth="-1.0" prefWidth="120.0" resizable="false"
                                      text="Check-out"/>
                     </columns>

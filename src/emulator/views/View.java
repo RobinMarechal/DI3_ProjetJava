@@ -3,11 +3,12 @@ package emulator.views;
 import emulator.controllers.Controller;
 import emulator.models.Employee;
 import fr.etu.univtours.marechal.SimpleDate;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -22,8 +23,10 @@ public class View implements Initializable
     public static final int HEIGHT = 340;
 
     private final Controller controller;
-    private HBox layout;
+    private VBox layout;
 
+    @FXML private Label labServerState;
+    @FXML private Label labPendingChecks;
     @FXML private DatePicker datePicker;
     @FXML private TextField fieldHours;
     @FXML private TextField fieldMinutes;
@@ -49,7 +52,7 @@ public class View implements Initializable
         }
         catch (IOException e)
         {
-            layout = new HBox();
+            layout = new VBox();
             System.out.println("Failed to load emulator's view...");
         }
     }
@@ -58,16 +61,18 @@ public class View implements Initializable
     public void initialize (URL location, ResourceBundle resources)
     {
         datePicker.setValue(SimpleDate.TODAY.toLocalDate());
-//        prepareTimeFieldsBehavior();
+        //        prepareTimeFieldsBehavior();
         prepareButtonEvents();
+        preparePendingChecksLabel();
+        prepareServerStateLabel();
     }
 
-//    private void prepareTimeFieldsBehavior ()
-//    {
-//        LocalTime now = LocalTime.now();
-//        fieldHours.setText(now.getHour() + "");
-//        fieldMinutes.setText(now.getMinute() + "");
-//    }
+    //    private void prepareTimeFieldsBehavior ()
+    //    {
+    //        LocalTime now = LocalTime.now();
+    //        fieldHours.setText(now.getHour() + "");
+    //        fieldMinutes.setText(now.getMinute() + "");
+    //    }
 
     private void prepareButtonEvents ()
     {
@@ -76,9 +81,43 @@ public class View implements Initializable
         btnReset.setOnAction(event -> controller.resetTimeFields());
     }
 
+    private void preparePendingChecksLabel ()
+    {
+        labPendingChecks.textProperty().bind(controller.getClient().pendingChecksProperty().asString());
+    }
+
+    private void prepareServerStateLabel ()
+    {
+        ObservableList<String> styleClass = labServerState.getStyleClass();
+
+        styleClass.addAll("text-bold", "text-red");
+        btnSync.getStyleClass().add("btn-desactivated");
+        btnSync.setDisable(true);
+
+        controller.getClient().isServerOnlineProperty().addListener((observable, oldValue, newValue) ->
+        {
+            if (newValue.booleanValue())
+            {
+                styleClass.remove("text-red");
+                styleClass.add("text-green");
+                labServerState.setText("Online");
+                btnSync.getStyleClass().remove("btn-desactivated");
+                btnSync.setDisable(false);
+            }
+            else
+            {
+                styleClass.remove("text-green");
+                styleClass.add("text-red");
+                labServerState.setText("Offline");
+                btnSync.getStyleClass().add("btn-desactivated");
+                btnSync.setDisable(true);
+            }
+        });
+    }
+
     // Getters
 
-    public HBox getLayout ()
+    public VBox getLayout ()
     {
         return layout;
     }
@@ -91,11 +130,6 @@ public class View implements Initializable
     public TextField getFieldMinutes ()
     {
         return fieldMinutes;
-    }
-
-    public Button getBtnReset ()
-    {
-        return btnReset;
     }
 
     public Label getLabHours ()
@@ -116,5 +150,15 @@ public class View implements Initializable
     public DatePicker getDatePicker ()
     {
         return datePicker;
+    }
+
+    public Label getLabServerState ()
+    {
+        return labServerState;
+    }
+
+    public Label getLabPendingChecks ()
+    {
+        return labPendingChecks;
     }
 }

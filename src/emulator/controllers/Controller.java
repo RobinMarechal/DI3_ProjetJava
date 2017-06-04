@@ -7,41 +7,87 @@ import emulator.views.View;
 import fr.etu.univtours.marechal.SimpleDate;
 import fr.etu.univtours.marechal.SimpleDateTime;
 import fr.etu.univtours.marechal.SimpleTime;
-import javafx.collections.ObservableList;
+import javafx.collections.FXCollections;
 import javafx.scene.Parent;
+import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 
+import java.io.Serializable;
 import java.time.LocalTime;
+import java.util.ArrayList;
+import java.util.stream.Collectors;
 
 /**
  * Created by Robin on 26/05/2017.
  */
-public class Controller
+public class Controller implements Serializable
 {
-    private View view;
-    private final Client client;
-    private ObservableList<Employee> employees;
+    private static final long serialVersionUID = -4666892423167245858L;
 
-    public Controller (Client client, ObservableList<Employee> employees)
+    private transient View view;
+    private final Client client;
+    private ArrayList<Employee> employees;
+
+    public Controller (Client client, ArrayList<Employee> employees)
     {
         this.client = client;
         this.employees = employees;
     }
 
-    public void setEmployees (ObservableList<Employee> employees)
+    public void setEmployees (ArrayList<Employee> employees)
     {
         this.employees = employees;
         if (view != null)
         {
-            view.getListView().setItems(employees);
+            ListView<Employee> listView = view.getListView();
+
+            int      idSelected       = -1; // No employee selected
+            Employee employeeToSelect = null;
+
+            // We try to get the ID of the employee selected, if there is one
+            try
+            {
+                idSelected = listView.getSelectionModel().getSelectedItem().getId();
+            }
+            catch (NullPointerException e)
+            {
+                // No employee selected, we don't need to do anything
+            }
+
+            // We reload the items of the listView
+            listView.setItems(FXCollections.observableArrayList(employees));
+
+            // We try to get the employee with the ID idSelected
+            try
+            {
+                final int finalIdSelected = idSelected;
+                employeeToSelect = listView.getItems()
+                                           .stream()
+                                           .filter(employee -> employee.getId() == finalIdSelected)
+                                           .limit(1)
+                                           .collect(Collectors.toList())
+                                           .get(0);
+            }
+            catch (IndexOutOfBoundsException e)
+            {
+                // No employee selected, we don't need to do anything
+            }
+
+            // We select the employee selected, if there was one
+            if(employeeToSelect != null)
+            {
+                listView.getSelectionModel().select(employeeToSelect);
+            }
         }
     }
 
     public Parent displayView ()
     {
         view = new View(this);
-
-        view.getListView().setItems(employees);
+        if (employees != null)
+        {
+            view.getListView().setItems(FXCollections.observableArrayList(employees));
+        }
 
         TextField fieldHours   = view.getFieldHours();
         TextField fieldMinutes = view.getFieldMinutes();
@@ -105,7 +151,7 @@ public class Controller
     {
         Employee selectedItem = view.getListView().getSelectionModel().getSelectedItem();
 
-        if(selectedItem != null)
+        if (selectedItem != null)
         {
             int hours   = Integer.parseInt(view.getFieldHours().getText());
             int minutes = Integer.parseInt(view.getFieldMinutes().getText());
@@ -117,5 +163,22 @@ public class Controller
             client.addToQueue(new Check(sdt, selectedItem.getId()));
         }
 
+    }
+
+    public void printList ()
+    {
+        if (employees != null)
+        {
+            employees.forEach(System.out::println);
+        }
+        else
+        {
+            System.out.println("employees list null");
+        }
+    }
+
+    public Client getClient ()
+    {
+        return client;
     }
 }

@@ -1,11 +1,5 @@
 package application.controllers;
 
-import fr.etu.univtours.marechal.SimpleDate;
-import javafx.collections.ObservableList;
-import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
 import application.lib.BaseController;
 import application.lib.util.form.Form;
 import application.lib.views.Tabs;
@@ -13,9 +7,15 @@ import application.lib.views.Template;
 import application.models.*;
 import application.views.departments.DepartmentProfile;
 import application.views.departments.DepartmentsList;
-import application.views.dialogs.CreateDepartmentDialog;
 import application.views.dialogs.EditDepartmentDialog;
 import application.views.dialogs.ManageEmployeesDialog;
+import fr.etu.univtours.marechal.SimpleDate;
+import javafx.application.Platform;
+import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextField;
 
 import java.util.Optional;
 
@@ -55,7 +55,9 @@ public class DepartmentsController extends BaseController
         final ObservableList<Manager>  managers  = ManagementDepartment.getManagementDepartment().getManagersThatDontManage();
         final ObservableList<Employee> employees = Company.getCompany().getEmployeesWithoutDepartment();
         employees.removeAll(managers);
-        new CreateDepartmentDialog(managers, employees);
+        EditDepartmentDialog dialog = new EditDepartmentDialog(null, managers, employees);
+        dialog.getBtnSubmit().setOnAction(event -> new Thread(() -> Platform.runLater(() -> createDepartment(dialog.getForm()))).start());
+
     }
 
     public StandardDepartment createDepartment (Form form)
@@ -115,7 +117,17 @@ public class DepartmentsController extends BaseController
         final ObservableList<Manager>  managers  = ManagementDepartment.getManagementDepartment().getManagersThatDontManage();
         final ObservableList<Employee> employees = Company.getCompany().getEmployeesWithoutDepartment();
         employees.removeAll(managers);
-        new EditDepartmentDialog(department, managers, employees);
+        EditDepartmentDialog dialog = new EditDepartmentDialog(department, managers, employees);
+        dialog.getBtnSubmit().setOnAction(event ->
+        {
+            new Thread(() -> Platform.runLater(() ->
+            {
+                if (updateDepartment(department, dialog.getForm()))
+                {
+                    dialog.close();
+                }
+            })).start();
+        });
     }
 
     public boolean updateDepartment (StandardDepartment department, Form form)

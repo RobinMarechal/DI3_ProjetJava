@@ -1,5 +1,9 @@
 package application.views.dialogs;
 
+import application.lib.views.custom.components.Dialog;
+import application.models.Company;
+import application.models.Employee;
+import application.models.StandardDepartment;
 import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -8,11 +12,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ListView;
-import javafx.stage.Stage;
-import application.lib.views.custom.components.Dialog;
-import application.models.Company;
-import application.models.Employee;
-import application.models.StandardDepartment;
+import javafx.scene.layout.GridPane;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,7 +26,7 @@ public class ManageEmployeesDialog extends Dialog implements Initializable
     private StandardDepartment department;
     private Company company;
 
-    @FXML private Stage dialog;
+    @FXML private GridPane root;
     @FXML private ListView<Employee> listOfDepEmployees;
     @FXML private ListView<Employee> listOfNoDepEmployees;
     @FXML private Button btnAddToDep;
@@ -43,27 +43,28 @@ public class ManageEmployeesDialog extends Dialog implements Initializable
 
         try
         {
-            dialog = loader.load();
+            root = loader.load();
         }
         catch (IOException e)
         {
-            dialog = new Stage();
-            dialog.setTitle("Error");
+            root = new GridPane();
+            stage.setTitle("Error");
             System.out.println("Failed to load employee's edition dialog...");
             e.printStackTrace();
+        }
+        finally
+        {
+            setContent(root);
         }
     }
 
     @Override
     public void initialize (URL location, ResourceBundle resources)
     {
-        dialog.setTitle("Manage the department's employees");
-        setDialogShortcut(dialog);
+        stage.setTitle("Manage the department's employees");
 
         fillLists();
         prepareButtonClickEvents();
-
-        dialog.show();
     }
 
     private void fillLists ()
@@ -106,7 +107,7 @@ public class ManageEmployeesDialog extends Dialog implements Initializable
             })).start();
         });
 
-        btnSubmit.setOnAction(event -> dialog.close());
+        btnSubmit.setOnAction(event -> stage.close());
     }
 
 

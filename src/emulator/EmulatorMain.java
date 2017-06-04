@@ -29,8 +29,11 @@ public class EmulatorMain extends Application
             FileReader reader = new FileReader(configFile);
             JSONParser parser = new JSONParser();
             json   = (JSONObject) parser.parse(reader);
+            reader.close();
         }
 
-        Client.start(window, json);
+        String serializationDataPath = new File(".").getCanonicalPath() + "/data/serialized/emulator.ser";
+
+        Client.start(window, json, serializationDataPath);
     }
 }

@@ -1,10 +1,14 @@
 package emulator.models;
 
+import java.io.Serializable;
+
 /**
  * Created by Robin on 26/05/2017.
  */
-public class Employee
+public class Employee implements Serializable
 {
+    private static final long serialVersionUID = 6244788787823435122L;
+
     private String name;
     private int id;
 

@@ -1,9 +1,5 @@
 package application.controllers;
 
-import fr.etu.univtours.marechal.SimpleDate;
-import fr.etu.univtours.marechal.SimpleTime;
-import javafx.collections.ObservableList;
-import javafx.scene.control.*;
 import application.lib.BaseController;
 import application.lib.util.form.Form;
 import application.lib.views.BaseViewController;
@@ -13,10 +9,13 @@ import application.models.Company;
 import application.models.Employee;
 import application.models.Manager;
 import application.models.StandardDepartment;
-import application.views.dialogs.CreateEmployeeDialog;
 import application.views.dialogs.EditEmployeeDialog;
 import application.views.employees.EmployeeList;
 import application.views.employees.EmployeeProfile;
+import fr.etu.univtours.marechal.SimpleDate;
+import fr.etu.univtours.marechal.SimpleTime;
+import javafx.collections.ObservableList;
+import javafx.scene.control.*;
 
 import java.util.Optional;
 
@@ -38,8 +37,8 @@ public class EmployeesController extends BaseController
     public void listAt (SimpleDate date)
     {
         ObservableList<Employee> employees = Company.getCompany().getEmployeesList();
-        BaseViewController       view      = new EmployeeList(employees, date);
 
+        EmployeeList view = new EmployeeList(employees, date);
         Template.getInstance().setView(Tabs.EMPLOYEES, view);
     }
 
@@ -62,7 +61,9 @@ public class EmployeesController extends BaseController
     public void openCreationEmployeeDialog ()
     {
         final ObservableList<StandardDepartment> list = Company.getCompany().getStandardDepartmentsList();
-        new CreateEmployeeDialog(list);
+
+        EditEmployeeDialog dialog = new EditEmployeeDialog(null, list);
+        dialog.getBtnSubmit().setOnAction(event -> createEmployee(dialog.getForm()));
     }
 
     public Employee createEmployee (Form form)
@@ -177,7 +178,15 @@ public class EmployeesController extends BaseController
     public void openEditionEmployeeDialog (Employee employee)
     {
         final ObservableList<StandardDepartment> list = Company.getCompany().getStandardDepartmentsList();
-        new EditEmployeeDialog(employee, list);
+
+        EditEmployeeDialog dialog = new EditEmployeeDialog(employee, list);
+        dialog.getBtnSubmit().setOnAction(event ->
+        {
+            if (updateEmployee(employee, dialog.getForm()))
+            {
+                dialog.close();
+            }
+        });
     }
 
     public boolean updateEmployee (Employee employee, Form form)

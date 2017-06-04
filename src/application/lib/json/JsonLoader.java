@@ -10,5 +10,5 @@ public interface JsonLoader
     /**
      * Load all data from json files.
      */
-    public void load (JSONObject json);
+    void load (JSONObject json);
 }

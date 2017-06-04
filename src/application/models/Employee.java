@@ -1,14 +1,14 @@
 package application.models;
 
+import application.lib.exceptions.ModelException;
+import application.lib.exceptions.codes.EmployeeCodes;
+import application.lib.json.Jsonable;
 import fr.etu.univtours.marechal.SimpleDate;
 import fr.etu.univtours.marechal.SimpleDateTime;
 import fr.etu.univtours.marechal.SimpleTime;
 import javafx.beans.property.*;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import application.lib.exceptions.ModelException;
-import application.lib.exceptions.codes.EmployeeCodes;
-import application.lib.json.Jsonable;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 

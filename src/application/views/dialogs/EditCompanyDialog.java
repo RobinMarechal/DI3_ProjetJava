@@ -1,18 +1,17 @@
 package application.views.dialogs;
 
 import application.controllers.CompanyController;
+import application.lib.util.form.FieldValueTypes;
+import application.lib.util.form.Form;
+import application.lib.views.custom.components.Dialog;
+import application.models.Company;
 import javafx.application.Platform;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
-import javafx.stage.Stage;
-import javafx.stage.StageStyle;
-import application.lib.util.form.FieldValueTypes;
-import application.lib.util.form.Form;
-import application.lib.views.custom.components.Dialog;
-import application.models.Company;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.net.URL;
@@ -26,7 +25,7 @@ public class EditCompanyDialog extends Dialog implements Initializable
     private Company company;
 
     // FXML
-    @FXML private Stage dialog;
+    @FXML private VBox root;
     @FXML private TextField fieldName;
     @FXML private TextField fieldBossFirstName;
     @FXML private TextField fieldBossLastName;
@@ -44,23 +43,24 @@ public class EditCompanyDialog extends Dialog implements Initializable
 
         try
         {
-            dialog = loader.load();
+            root = loader.load();
         }
         catch (IOException e)
         {
-            dialog = new Stage();
-            dialog.setTitle("Error");
+            root = new VBox();
+            stage.setTitle("Error");
             System.out.println("Failed to load company's edition's dialog...");
             e.printStackTrace();
+        }
+        finally
+        {
+            setContent(root);
         }
     }
 
     @Override
     public void initialize (URL location, ResourceBundle resources)
     {
-        setDialogShortcut(dialog);
-        dialog.initStyle(StageStyle.UTILITY);
-        dialog.show();
 
         fieldName.setText(company.getName());
         fieldBossFirstName.setText(company.getBoss().getFirstName());
@@ -79,7 +79,7 @@ public class EditCompanyDialog extends Dialog implements Initializable
         {
             if (new CompanyController().updateCompany(form))
             {
-                dialog.close();
+                stage.close();
             }
         })).start());
     }

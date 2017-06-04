@@ -4,15 +4,15 @@ import emulator.controllers.Controller;
 import emulator.models.Check;
 import emulator.models.Employee;
 import javafx.application.Platform;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import org.json.simple.JSONObject;
 
 import java.io.*;
-import java.net.SocketTimeoutException;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.concurrent.CopyOnWriteArrayList;
 
 /**
@@ -20,29 +20,83 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 public class Client extends ClientBuilder implements Runnable
 {
-    private Stage window;
-    private CopyOnWriteArrayList<String> queue = new CopyOnWriteArrayList<>();
+    private static final long serialVersionUID = -1001635844537299371L;
+
+    private String serializationFilePath;
+    private transient Stage window;
     private Controller controller;
-    private boolean sync = false;
+    private transient boolean sync = false;
+
+    private CopyOnWriteArrayList<String> queue = new CopyOnWriteArrayList<>();
+    private transient IntegerProperty pendingChecks;
+
+    public Client ()
+    {
+    }
 
     public Client (Stage window, JSONObject config)
     {
         super(config);
-        this.window = window;
-        this.controller = new Controller(this, null);
-        window.setScene(new Scene(this.controller.displayView()));
-        window.setResizable(false);
-        window.show();
-        window.setOnCloseRequest(event -> System.exit(1));
+        setWindow(window);
+        startClient();
+    }
 
+    private void startClient ()
+    {
         new Thread(this).start();
     }
 
-    public static Client start (Stage window, JSONObject config)
+    private void serialize ()
     {
-        return new Client(window, config);
+        try
+        {
+            FileOutputStream   fileOut = new FileOutputStream(serializationFilePath);
+            ObjectOutputStream out     = new ObjectOutputStream(fileOut);
+            out.writeObject(this);
+            out.close();
+            fileOut.close();
+            System.out.printf("Serialized data is saved in " + serializationFilePath);
+        }
+        catch (IOException e)
+        {
+            System.out.println("Serialization failed");
+            e.printStackTrace();
+        }
     }
 
+    public static Client start (Stage window, JSONObject config, String serializedDataPath)
+    {
+        Client client;
+
+        try
+        {
+            File file = new File(serializedDataPath);
+
+            FileInputStream   fileIn = new FileInputStream(file);
+            ObjectInputStream in     = new ObjectInputStream(fileIn);
+            client = (Client) in.readObject();
+            in.close();
+            fileIn.close();
+
+            client.initialize();
+            client.setConfig(config);
+            client.setWindow(window);
+            client.pendingChecks.setValue(client.queue.size());
+
+            System.out.println("Client emulator deserialization OK");
+        }
+        catch (Exception e)
+        {
+            System.out.println("Client emulator deserialization failed");
+            e.printStackTrace();
+            client = new Client(window, config);
+        }
+
+        client.setSerializationFilePath(serializedDataPath);
+        client.startClient();
+
+        return client;
+    }
 
     @Override
     public void run ()
@@ -57,8 +111,8 @@ public class Client extends ClientBuilder implements Runnable
                     setConnection();
                     println("Connected");
 
-                    OutputStream     outputStream = socketClient.getOutputStream();
-                    DataOutputStream out          = new DataOutputStream(outputStream);
+                    OutputStream     os  = socketClient.getOutputStream();
+                    DataOutputStream out = new DataOutputStream(os);
 
                     if (counter % syncFrequency == 0 || sync)
                     {
@@ -87,28 +141,27 @@ public class Client extends ClientBuilder implements Runnable
                     socketClient.close();
                 }
 
-//                counter++;
+                //                counter++;
+                counter++;
                 Thread.sleep(sleepDuration);
-            }
-            catch (SocketTimeoutException e)
-            {
-                println("The client has timed-out.");
             }
             catch (IOException e)
             {
-                println("IOException");
+                println("Server offline");
+                Platform.runLater(() -> isServerOnline.setValue(false));
             }
             catch (Exception e)
             {
                 println("Exception : " + e.getClass().getSimpleName());
-                break; // ?
+                Platform.runLater(() -> isServerOnline.setValue(false));
+                break;
             }
         }
     }
 
     protected void receiveEmployeeList (int response, DataInputStream in) throws IOException
     {
-        ObservableList<Employee> employees = FXCollections.observableArrayList();
+        ArrayList<Employee> employees = new ArrayList<>();
         for (int i = 0; i < response; i++)
         {
             String[] received       = in.readUTF().split(";");
@@ -140,13 +193,13 @@ public class Client extends ClientBuilder implements Runnable
     protected void sendCheck (DataOutputStream out) throws IOException
     {
         out.writeUTF(queue.get(0));
-        System.out.println(queue.get(0));
+        println("Check : " + queue.get(0));
     }
 
     protected void sync (DataOutputStream out) throws IOException
     {
         out.writeUTF(syncRequest);
-        System.out.println(syncRequest);
+        println(syncRequest);
     }
 
     public synchronized void askForSync ()
@@ -168,10 +221,54 @@ public class Client extends ClientBuilder implements Runnable
         String toSend = format.replace("{id}", id + "").replace("{datetime}", strDateTime);
 
         queue.add(toSend);
+        Platform.runLater(() -> pendingChecks.setValue(pendingChecks.getValue() + 1));
     }
 
     private synchronized void removeFirstFromQueue ()
     {
         queue.remove(0);
+        Platform.runLater(() -> pendingChecks.setValue(pendingChecks.getValue() - 1));
+    }
+
+    public void setWindow (Stage window)
+    {
+        this.window = window;
+
+        if (this.controller == null)
+        {
+            this.controller = new Controller(this, null);
+        }
+
+        window.setTitle("Emulator");
+        window.setScene(new Scene(this.controller.displayView()));
+        window.setResizable(false);
+        window.show();
+        window.setOnCloseRequest(event ->
+        {
+            serialize();
+            System.exit(1);
+        });
+    }
+
+    public void setSerializationFilePath (String serializationFilePath)
+    {
+        this.serializationFilePath = serializationFilePath;
+    }
+
+    public int getPendingChecks ()
+    {
+        return pendingChecks.get();
+    }
+
+    public IntegerProperty pendingChecksProperty ()
+    {
+        return pendingChecks;
+    }
+
+    @Override
+    protected void initialize ()
+    {
+        super.initialize();
+        pendingChecks = new SimpleIntegerProperty(this, "pendingChecks", 0);
     }
 }

@@ -2,6 +2,7 @@ package application.views.departments;
 
 import application.controllers.DepartmentsController;
 import application.controllers.EmployeesController;
+import application.models.*;
 import fr.etu.univtours.marechal.SimpleDate;
 import fr.etu.univtours.marechal.SimpleTime;
 import javafx.beans.binding.Bindings;
@@ -21,14 +22,12 @@ import javafx.scene.layout.BorderPane;
 import application.lib.util.Closure;
 import application.lib.views.Template;
 import application.lib.views.custom.components.Link;
-import application.models.CheckInOut;
-import application.models.Employee;
-import application.models.Manager;
-import application.models.StandardDepartment;
 import application.views.DepartmentsViewController;
+import javafx.util.Callback;
 
 import java.io.IOException;
 import java.net.URL;
+import java.util.Comparator;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.stream.Collectors;
@@ -119,6 +118,7 @@ public class DepartmentProfile extends DepartmentsViewController implements Init
                         }
                     }
                     table.refresh();
+                    table.sort();
                 }
             }
         });
@@ -144,23 +144,22 @@ public class DepartmentProfile extends DepartmentsViewController implements Init
         initDatePickerBar();
 
         table.setItems(rows);
-        //        table.setRowFactory(param ->
-        //        {
-        //            TableRow<Employee> row = new TableRow<>();
-        //            Employee emp = row.getItem();
-        //            row.getStyleClass().add(CSSClasses.Text.UNDERLINE);
-        //            row.setTooltip(new Tooltip("Click on the row to see the employee's department."));
-        ////            if (emp != null)
-        //            {
-        //                row.setOnMouseEntered(event -> row.setUnderline(true));
-        //                row.setOnMouseExited(event -> row.setUnderline(true));
-        //                row.setOnMouseClicked(event -> System.out.println("oui"));
-        //                row.setCursor(Cursor.HAND);
-        //            }
-        //
-        //            return row;
-        //        });
+        table.setSortPolicy(new Callback<TableView<Row>, Boolean>() {
+            @Override
+            public Boolean call (TableView<Row> param)
+            {
+                Comparator<Row> comparator = new Comparator<Row>() {
+                    @Override
+                    public int compare (Row o1, Row o2)
+                    {
+                        return o1.getId().getValue().compareTo(o2.getId().getValue());
+                    }
+                };
 
+                FXCollections.sort(table.getItems(), comparator);
+                return true;
+            }
+        });
     }
 
     private void prepareRowEvent ()

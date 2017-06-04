@@ -1,5 +1,7 @@
 package application.models;
 
+import application.lib.json.JsonLoader;
+import application.lib.json.Jsonable;
 import fr.etu.univtours.marechal.SimpleDate;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -7,14 +9,11 @@ import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.collections.ObservableMap;
-import application.lib.json.JsonLoader;
-import application.lib.json.Jsonable;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 
 import java.io.*;
-import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
@@ -78,7 +77,7 @@ public class Company implements Jsonable, JsonLoader, Serializable
     {
         try
         {
-            serializationFilePath = new File(".").getCanonicalPath() + "/data/company.ser";
+            serializationFilePath = new File(".").getCanonicalPath() + "/data/serialized/company.ser";
         }
         catch (IOException e)
         {
@@ -465,18 +464,18 @@ public class Company implements Jsonable, JsonLoader, Serializable
      * @param lastName
      * @return a list of {@link Employee} instances matching with the parameters
      */
-    public List<Employee> searchEmployee (String firstName, String lastName)
+    public ObservableList<Employee> searchEmployee (String firstName, String lastName)
     {
         final String searchFnLower = firstName.toLowerCase();
         final String searchLnLower = lastName.toLowerCase();
 
-        List<Employee> list = employees.stream().filter(e ->
+        ObservableList<Employee> list = employees.stream().filter(e ->
         {
             final String empFnLower = e.getFirstName().toLowerCase();
             final String empLnLower = e.getLastName().toLowerCase();
 
             return empFnLower.contains(searchFnLower) && empLnLower.contains(searchLnLower);
-        }).collect(Collectors.toList());
+        }).collect(Collectors.toCollection(FXCollections::observableArrayList));
 
         return list;
     }
@@ -491,18 +490,18 @@ public class Company implements Jsonable, JsonLoader, Serializable
      * @param name a part of the name of the wanted employee
      * @return a list of {@link Employee} instances found
      */
-    public List<Employee> searchEmployee (String name)
+    public ObservableList<Employee> searchEmployee (String name)
     {
         final String searchLower = name.toLowerCase();
 
-        List<Employee> list = employees.stream().filter(e ->
+        ObservableList<Employee> list = employees.stream().filter(e ->
         {
             final String empFnLower = e.getFirstName().toLowerCase();
             final String empLnLower = e.getLastName().toLowerCase();
 
             return empFnLower.contains(searchLower) || empLnLower.contains(searchLower) || (empFnLower + " " + empLnLower).contains
                     (searchLower);
-        }).collect(Collectors.toList());
+        }).collect(Collectors.toCollection(FXCollections::observableArrayList));
 
         return list;
     }
@@ -518,13 +517,15 @@ public class Company implements Jsonable, JsonLoader, Serializable
      */
     public ObservableList<StandardDepartment> searchStandardDepartment (String name, String activitySector)
     {
+        name = name.toLowerCase();
+        activitySector = activitySector.toLowerCase();
         ObservableList<StandardDepartment> list = FXCollections.observableArrayList();
 
         for (StandardDepartment e : departments)
         {
-            if (e.getName().toLowerCase().contains(name.toLowerCase()) && e.getActivitySector()
-                                                                           .toLowerCase()
-                                                                           .contains(activitySector.toLowerCase()))
+            String tmpName = e.getName().toLowerCase();
+            String tmpSector = e.getActivitySector().toLowerCase();
+            if (tmpName.contains(name) && tmpSector.contains(activitySector))
             {
                 list.add(e);
             }
@@ -958,4 +959,6 @@ public class Company implements Jsonable, JsonLoader, Serializable
 
         return list;
     }
+
+
 }

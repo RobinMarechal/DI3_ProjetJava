@@ -1,6 +1,11 @@
 package application.views.employees;
 
 import application.controllers.EmployeesController;
+import application.lib.views.Template;
+import application.models.CheckInOut;
+import application.models.Employee;
+import application.models.StandardDepartment;
+import application.views.EmployeesViewController;
 import fr.etu.univtours.marechal.SimpleDate;
 import fr.etu.univtours.marechal.SimpleTime;
 import javafx.beans.property.*;
@@ -14,11 +19,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
-import application.lib.views.Template;
-import application.models.CheckInOut;
-import application.models.Employee;
-import application.models.StandardDepartment;
-import application.views.EmployeesViewController;
 
 import java.io.IOException;
 import java.net.URL;
@@ -50,14 +50,6 @@ public class EmployeeList extends EmployeesViewController implements Initializab
     @FXML private TableColumn<Row, ObjectProperty<SimpleTime>> columnLeftAt;
     @FXML private TableColumn<Row, DoubleProperty> columnOvertime;
 
-    // constants
-//    private final String classEmployeeCell = "employees-table-cell";
-//    private final String classStartingHour = "starting-hour";
-//    private final String classEndingHour = "ending-hour";
-//    private final String classLeft = "left";
-//    private final String classArrived = "arrived";
-//    private final String classNotArrivedYet = "not-arrived-yet";
-//    private final String classNotLeftYet = "not-left-yet";
     private final String rowTooltipText = "Click here to see the employee's profile.";
 
     public EmployeeList (ObservableList<Employee> employees, SimpleDate date)
@@ -118,14 +110,6 @@ public class EmployeeList extends EmployeesViewController implements Initializab
         initCellFactories();
         display();
 
-        // Initialization of cell factories in order to color cell's content based on its value
-
-//        table.setOnSort(event -> new Thread(() -> Platform.runLater(() ->
-//        {
-//            initCellFactories();
-//            display();
-//        })).fzbfiylzebiuzbflmezjf());
-
         table.setRowFactory(e ->
         {
             TableRow<Row> row = new TableRow<>();
@@ -179,14 +163,12 @@ public class EmployeeList extends EmployeesViewController implements Initializab
     {
         prepareCellFactories();
 
-        prepareColumnManagerCellFactory();
         prepareColumnArrivedAtCellFactory();
         prepareColumnLeftAtCellFactory();
     }
 
     private void prepareColumnLeftAtCellFactory ()
     {
-        // leftAt colum : red if left earlier, green if left on time (or later)
         columnLeftAt.setCellFactory(column -> new TableCell<Row, ObjectProperty<SimpleTime>>()
         {
             @Override
@@ -198,16 +180,10 @@ public class EmployeeList extends EmployeesViewController implements Initializab
 
                 if (item != null && r != null)
                 {
-                    if (item.getValue() == null) // Not left yet
-                    {
-                        //                        textProperty().setValue("...");
-                    }
-                    else // Left
+                    if (item.getValue() != null)
                     {
                         textProperty().bind(item.asString());
                     }
-                    //                    updateStyle(r.getEmployeeInstance(), item, empty);
-                    //                    textProperty().addListener((observable, oldValue, newValue) -> updateStyle(r.getEmployeeInstance(), item, empty));
                 }
             }
 
@@ -271,17 +247,10 @@ public class EmployeeList extends EmployeesViewController implements Initializab
 
                 if (item != null && r != null)
                 {
-                    if (item.getValue() == null) // Not arrived yet
-                    {
-                        //                        textProperty().setValue("...");
-                    }
-                    else // Arrived
+                    if (item.getValue() != null)
                     {
                         textProperty().bind(item.asString());
                     }
-
-                    //                    updateStyle(r.getEmployeeInstance(), item, empty);
-                    //                    textProperty().addListener((observable, oldValue, newValue) -> updateStyle(r.getEmployeeInstance(), item, empty));
                 }
             }
 
@@ -327,34 +296,6 @@ public class EmployeeList extends EmployeesViewController implements Initializab
             //                }
             //            }
         });
-    }
-
-    private void prepareColumnManagerCellFactory ()
-    {
-        // managerColumn : blue if manager
-        //        columnManager.setCellFactory(column -> new TableCell<Row, Boolean>()
-        //        {
-        //            @Override
-        //            protected void updateItem (Boolean item, boolean empty)
-        //            {
-        //                super.updateItem(item, empty);
-        //
-        //                String styleClass = "";
-        //
-        //                if (item != null && !empty)
-        //                {
-        //                    boolean isManager = item.booleanValue();
-        //                    if (isManager)
-        //                    {
-        //                        styleClass = "text-blue";
-        //                    }
-        //
-        //                    setText(isManager ? "Oui" : "Non");
-        //
-        //                    getStyleClass().addAll(classEmployeeCell, "manager", styleClass);
-        //                }
-        //            }
-        //        });
     }
 
     private void prepareCellFactories ()

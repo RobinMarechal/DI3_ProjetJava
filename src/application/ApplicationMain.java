@@ -33,7 +33,36 @@ public class ApplicationMain extends Application
     {
         launch(args);
 
-//        Company.getCompany().toJson();
+//        JFrame f = new JFrame();
+//        JPanel panel = new JPanel();
+//        panel.setLayout(null);
+//        f.setContentPane(panel);
+//
+//        String[] tab = {"abc", "def", "ghi"};
+//
+//        JList<String> list = new JList<>();
+//        list.setListData(tab);
+//
+//        panel.add(list);
+//
+//        f.setSize(500,300);
+//        panel.setSize(500,300);
+//        list.setSize(500,300);
+//
+//        f.setVisible(true);
+//
+//        try
+//        {
+//            Thread.sleep(1000);
+//        }
+//        catch (InterruptedException e)
+//        {
+//            e.printStackTrace();
+//        }
+//
+//        String[] tab2 = {"azer"};
+//        list.setListData(tab2);
+
     }
 
     private static void testData ()
@@ -153,7 +182,7 @@ public class ApplicationMain extends Application
             {
                 SimpleDate                     date = SimpleDate.TODAY;
                 ObservableList<Employee>       tmp  = Company.getCompany().getEmployeesList();
-                CopyOnWriteArrayList<Employee> emps = new CopyOnWriteArrayList<Employee>(tmp);
+                CopyOnWriteArrayList<Employee> emps = new CopyOnWriteArrayList<>(tmp);
                 tmp.addListener(new ListChangeListener<Employee>() {
                     @Override
                     public void onChanged (Change<? extends Employee> c)

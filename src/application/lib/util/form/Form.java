@@ -1,5 +1,6 @@
 package application.lib.util.form;
 
+import javafx.scene.control.CheckBox;
 import javafx.scene.control.Control;
 import javafx.scene.control.TextField;
 import application.lib.views.CSSClasses;
@@ -30,6 +31,8 @@ public class Form extends HashMap<String, Form.Field>
         forEach((s, field) -> {
             if(field.getType() == FieldTypes.TEXTFIELD)
                 ((TextField) field.getField()).clear();
+            else if(field.getType() == FieldTypes.CHECKBOX)
+                ((CheckBox) field.getField()).setSelected(false);
         });
     }
 

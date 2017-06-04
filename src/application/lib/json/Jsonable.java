@@ -12,5 +12,5 @@ public interface Jsonable
      *
      * @return the json object containing the class instance data.
      */
-    public JSONObject toJson ();
+    JSONObject toJson ();
 }
