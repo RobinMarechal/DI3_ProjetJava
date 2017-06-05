@@ -1,7 +1,9 @@
 package application.controllers;
 
 import application.lib.BaseController;
-import application.lib.util.form.Form;
+import application.lib.annotations.DisplayView;
+import application.lib.annotations.UpdateModel;
+import application.lib.form.Form;
 import application.lib.views.Tabs;
 import application.lib.views.Template;
 import application.models.Boss;
@@ -16,22 +18,22 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.TextField;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
-import java.util.Observable;
-import java.util.Observer;
 
 /**
- * Created by Robin on 26/04/2017.
+ * Created by Robin on 26/04/2017. <br/>
+ * MVC Controller class that handle every <br/>
+ * actions related to the company data only
  */
-public class CompanyController extends BaseController implements Observer
+public class CompanyController extends BaseController
 {
-    public CompanyController ()
-    {
-        Company.getCompany();
-    }
-
+    /**
+     * Display the Company's tab home view
+     */
     @Override
+    @DisplayView
     public void home ()
     {
         CompanyViewController view = new HomeCompany(Company.getCompany(), SimpleDate.TODAY);
@@ -39,19 +41,27 @@ public class CompanyController extends BaseController implements Observer
         Template.getInstance().setView(Tabs.COMPANY, view);
     }
 
-    @Override
-    public void update (Observable o, Object arg)
-    {
-        System.out.println("Company's home view updated...");
-        home();
-    }
+    // Dialog boxes
 
+    /**
+     * Open a diamlog box to update the company's information
+     */
+    @DisplayView
     public void openEditCompanyDialog ()
     {
         new EditCompanyDialog(Company.getCompany());
     }
 
-    public boolean updateCompany (Form form)
+
+    /**
+     * Update the company's information <br/>
+     *
+     * @param form the form containing the company's information.
+     * @return  - true : The company has been updated. <br>
+     *          - false : at least one field has been unvalidated, the company has not been updated.
+     */
+    @UpdateModel
+    public boolean updateCompany (@NotNull Form form)
     {
         boolean allPassed = validateForm(form);
 
@@ -61,27 +71,56 @@ public class CompanyController extends BaseController implements Observer
         }
         else
         {
-            String companyName   = ((TextField) form.get("companyName").getField()).getText();
-            String bossFirstName = ((TextField) form.get("bossFirstName").getField()).getText();
-            String bossLastName  = ((TextField) form.get("bossLastName").getField()).getText();
-            String manDepName    = ((TextField) form.get("managementDepartmentName").getField()).getText();
-            String manDepSector  = ((TextField) form.get("managementDepartmentActivitySector").getField()).getText();
+            Company company = Company.getCompany();
 
-            Company              company              = Company.getCompany();
-            Boss                 boss                 = company.getBoss();
+            Boss boss = company.getBoss();
+
             ManagementDepartment managementDepartment = company.getManagementDepartment();
 
-            company.setName(companyName);
-            boss.setFirstName(bossFirstName);
-            boss.setLastName(bossLastName);
-            managementDepartment.setName(manDepName);
-            managementDepartment.setActivitySector((manDepSector));
+            try
+            {
+                String companyName = ((TextField) form.get("companyName").getField()).getText();
+                company.setName(companyName);
+            }
+            catch (Exception e)
+            {
+                System.out.println("Company's name couldn't be updated.");
+            }
+
+            try
+            {
+                String bossFirstName = ((TextField) form.get("bossFirstName").getField()).getText();
+                String bossLastName  = ((TextField) form.get("bossLastName").getField()).getText();
+                boss.setFirstName(bossFirstName);
+                boss.setLastName(bossLastName);
+            }
+            catch (Exception e)
+            {
+                System.out.println("Boss's firstname and lastname couldn't be updated.");
+            }
+
+            try
+            {
+                String manDepName   = ((TextField) form.get("managementDepartmentName").getField()).getText();
+                String manDepSector = ((TextField) form.get("managementDepartmentActivitySector").getField()).getText();
+                managementDepartment.setName(manDepName);
+                managementDepartment.setActivitySector((manDepSector));
+            }
+            catch (Exception e)
+            {
+                System.out.println("Management department's name and activity sector couldn't be updated.");
+            }
 
             return true;
         }
     }
 
-    public void openImportEmployeesDialog ()
+    // CSV import/export
+
+    /**
+     * Open a file chooser to import a .csv file containing employees information (including checks)
+     */
+    public void importEmployeesCSV ()
     {
         FileChooser fc = new FileChooser();
         fc.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("CSV files", "*.csv"));
@@ -103,14 +142,17 @@ public class CompanyController extends BaseController implements Observer
             {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Failure");
-                alert.setContentText("An error occurred, your file might have not be imported entirely.");
+                alert.setContentText("An error occurred, your file might have not been imported entirely.");
                 alert.show();
                 e.printStackTrace();
             }
         })).start();
     }
 
-    public void openImportDepartmentsDialog ()
+    /**
+     * Open a file chooser to import a .csv file containing departments information (including list of employees)
+     */
+    public void importDepartmentsCSV ()
     {
         FileChooser fc = new FileChooser();
         fc.setSelectedExtensionFilter(new FileChooser.ExtensionFilter("CSV files", "*.csv"));
@@ -139,7 +181,10 @@ public class CompanyController extends BaseController implements Observer
         })).start();
     }
 
-    public void exportEmployees ()
+    /**
+     * Open a file chooser to save the employees (including checks) into a .csv file
+     */
+    public void exportEmployeesCSV ()
     {
         new Thread(() -> Platform.runLater(() ->
         {
@@ -152,7 +197,10 @@ public class CompanyController extends BaseController implements Observer
         })).start();
     }
 
-    public void exportDepartments ()
+    /**
+     * Open a file chooser to save the departments (including list of employees) into a .csv file
+     */
+    public void exportDepartmentsCSV ()
     {
         new Thread(() -> Platform.runLater(() ->
         {

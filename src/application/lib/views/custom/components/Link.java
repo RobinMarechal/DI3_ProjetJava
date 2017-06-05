@@ -1,35 +1,43 @@
 package application.lib.views.custom.components;
 
-import javafx.beans.property.Property;
-import javafx.beans.property.SimpleStringProperty;
+import application.lib.util.Closure;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
-import application.lib.util.Closure;
 
 /**
  * Created by Robin on 10/05/2017.
+ * This class is a custom javafx {@link Label} allowing to simulate hyperlinks
  */
 public class Link extends Label
 {
+    /** The closure to call on click */
     private Closure closure;
-    private Property property = new SimpleStringProperty(this, "property");
-    private String cssClassName = "link";
 
-    public Link (Property text, Closure closure)
+    /** The associated css class */
+    private final static String CSS_CLASS_NAME = "link";
+
+    /**
+     * Closure parameter constructor <br/>
+     * The closure will be automatically called on click
+     *
+     * @param closure the closure to execute on click
+     */
+    public Link (Closure closure)
     {
-        this(text, closure, true);
+        this(closure, true);
     }
 
-    public Link(Closure closure)
+    /**
+     * 2 parameters constructor <br/>
+     *
+     * @param closure the closure to execute on click
+     * @param automaticCall true if you want to call the closure automatically, false otherwise. This can be useful if you want to do
+     *                      some stuff before triggering the link
+     */
+    public Link (Closure closure, boolean automaticCall)
     {
-        this("", closure, true);
-    }
-
-    public Link (String text, Closure closure, boolean automaticCall)
-    {
-        super(text);
         this.closure = closure;
-        getStyleClass().add(cssClassName);
+        getStyleClass().add(CSS_CLASS_NAME);
 
         if (automaticCall)
         {
@@ -37,45 +45,34 @@ public class Link extends Label
         }
     }
 
-
-    public Link (Property property, Closure closure, boolean automaticCall)
-    {
-        textProperty().bind(property);
-        this.closure = closure;
-        this.property = property;
-        getStyleClass().add(cssClassName);
-
-        if (automaticCall)
-        {
-            prepareClickEvent();
-        }
-    }
-
-    public Property property ()
-    {
-        return property;
-    }
-
-    public void setProperty (Property property)
-    {
-        this.property = property;
-    }
-
+    /**
+     * Prepare the click event
+     */
     private void prepareClickEvent ()
     {
         setOnMouseClicked(event -> trigger());
     }
 
-    public void setTooltipValue (String str)
+    /**
+     * Add a tooltip to the Label
+     * @param text the tooltip text
+     */
+    public void setTooltipValue (String text)
     {
-        setTooltip(new Tooltip(str));
+        setTooltip(new Tooltip(text));
     }
 
+    /**
+     * Remove the tooltip
+     */
     public void removeTooltip ()
     {
         setTooltip(null);
     }
 
+    /**
+     * Execute the closure
+     */
     public void trigger ()
     {
         try

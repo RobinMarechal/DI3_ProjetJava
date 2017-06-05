@@ -1,8 +1,8 @@
 package application.views.dialogs;
 
-import application.lib.util.form.FieldTypes;
-import application.lib.util.form.FieldValueTypes;
-import application.lib.util.form.Form;
+import application.lib.form.FieldTypes;
+import application.lib.form.FieldValueTypes;
+import application.lib.form.Form;
 import application.lib.views.custom.components.Dialog;
 import application.models.Employee;
 import application.models.Manager;
@@ -65,7 +65,7 @@ public class EditEmployeeDialog extends Dialog implements Initializable
         catch (IOException e)
         {
             root = new HBox();
-            stage.setTitle("Error");
+            setTitle("Error");
             if (employee == null)
             {
                 System.out.println("Failed to load employee's creation dialog...");
@@ -85,7 +85,7 @@ public class EditEmployeeDialog extends Dialog implements Initializable
     @Override
     public void initialize (URL location, ResourceBundle resources)
     {
-        stage.setTitle(title);
+        setTitle(title);
         labTitle.setText(title);
 
         display();

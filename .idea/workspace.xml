@@ -6,50 +6,114 @@
   </component>
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="DI3_ProjetJava" />
+      <artifact name="Application" />
+      <artifact name="Emulator" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a42b8b50-aefd-421b-83b0-cc876e1f8c7e" name="Default" comment="Time managemen">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/application/lib/csv/CSVLine.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/application/lib/csv/CSVParser.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/application/lib/csv/interfaces/CSVBuilder.java" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/application/lib/csv/interfaces/CSVSaver.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$1.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$1.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$10.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$10.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$2.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$3.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$3.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$4.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$4.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$5.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$5.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$6.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$6.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$7.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$8.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$8.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$9.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2$9.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain$2.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/ApplicationMain.class" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/artifacts/Emulator.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/markdown-navigator.xml" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/application/lib/annotations/DisplayView.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/application/lib/annotations/FormContains.java" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/application/lib/annotations/UpdateModel.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/DI3_ProjetJava/DI3_ProjetJava.html" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/DI3_ProjetJava/DI3_ProjetJava.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/DI3_ProjetJava/DI3_ProjetJava.jnlp" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/DI3_ProjetJava/annotations-java8.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/DI3_ProjetJava/data/company.ser" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/DI3_ProjetJava/data/config/network.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/DI3_ProjetJava/data/files/boss.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/DI3_ProjetJava/data/files/company.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/DI3_ProjetJava/data/files/departments/14.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/DI3_ProjetJava/data/files/employees/1.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/DI3_ProjetJava/data/files/employees/14.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/DI3_ProjetJava/data/files/employees/17.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/DI3_ProjetJava/data/files/management_department.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/DI3_ProjetJava/json-simple-1.1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/artifacts/DI3_ProjetJava/simpletime.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/util/form/FieldTypes.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/util/form/FieldValueTypes.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/util/form/Form$Field.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/util/form/Form.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/util/validator/Validator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/views/custom/components/AnimatedProgressBar$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/views/custom/components/AnimatedProgressBar.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/views/custom/components/Button.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/views/custom/components/Label.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/views/custom/components/Scene.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/views/custom/components/Tab.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/views/custom/components/TabPane.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/views/custom/components/Table.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/views/custom/components/TextField.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/lib/views/custom/components/AnimatedProgressBar.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/lib/views/custom/components/Button.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/lib/views/custom/components/Label.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/lib/views/custom/components/Scene.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/lib/views/custom/components/Stage.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/lib/views/custom/components/Tab.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/lib/views/custom/components/TabPane.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/lib/views/custom/components/Table.java" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/lib/views/custom/components/TextField.java" afterPath="" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/.idea/artifacts/DI3_ProjetJava.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Application.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/application/lib/util/form/FieldTypes.java" afterPath="$PROJECT_DIR$/src/application/lib/form/FieldTypes.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/application/lib/util/form/FieldValueTypes.java" afterPath="$PROJECT_DIR$/src/application/lib/form/FieldValueTypes.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/application/lib/util/form/Form.java" afterPath="$PROJECT_DIR$/src/application/lib/form/Form.java" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/src/application/lib/util/validator/Validator.java" afterPath="$PROJECT_DIR$/src/application/lib/form/validator/Validator.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/features.png" afterPath="$PROJECT_DIR$/features.png" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/controllers/CompanyController.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/controllers/CompanyController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/controllers/DepartmentsController.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/controllers/DepartmentsController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/controllers/EmployeesController.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/controllers/EmployeesController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/BaseController.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/BaseController.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/csv/CSVLine.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/csv/CSVLine.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/csv/CSVParser.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/csv/CSVParser.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/csv/interfaces/CSVSaver.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/csv/interfaces/CSVSaver.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/exceptions/Exception.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/exceptions/Exception.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/exceptions/ModelException.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/exceptions/ModelException.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/exceptions/codes/EmployeeCodes.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/exceptions/codes/EmployeeCodes.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/json/JsonSaver.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/json/JsonSaver.class" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/views/Template.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/views/Template.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/models/Company$1.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/models/Company$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/models/Company.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/models/Company.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/models/Employee.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/models/Employee.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/models/StandardDepartment.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/models/StandardDepartment.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/employees/EmployeeList$7.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/employees/EmployeeList$7.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/employees/EmployeeList$Row$1.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/employees/EmployeeList$Row$1.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/employees/EmployeeList$Row.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/employees/EmployeeList$Row.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/employees/EmployeeList.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/employees/EmployeeList.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/views/custom/components/Dialog.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/views/custom/components/Dialog.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/views/custom/components/Link.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/lib/views/custom/components/Link.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/departments/DepartmentsList$Row.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/departments/DepartmentsList$Row.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/dialogs/EditCompanyDialog.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/dialogs/EditCompanyDialog.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/dialogs/EditDepartmentDialog.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/dialogs/EditDepartmentDialog.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/dialogs/EditEmployeeDialog.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/dialogs/EditEmployeeDialog.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/dialogs/ManageEmployeesDialog.class" afterPath="$PROJECT_DIR$/out/production/DI3_ProjetJava/application/views/dialogs/ManageEmployeesDialog.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/TODO" afterPath="$PROJECT_DIR$/TODO" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/data/serialized/company.ser" afterPath="$PROJECT_DIR$/data/serialized/company.ser" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/ApplicationMain.java" afterPath="$PROJECT_DIR$/src/application/ApplicationMain.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/controllers/CompanyController.java" afterPath="$PROJECT_DIR$/src/application/controllers/CompanyController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/controllers/DepartmentsController.java" afterPath="$PROJECT_DIR$/src/application/controllers/DepartmentsController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/controllers/EmployeesController.java" afterPath="$PROJECT_DIR$/src/application/controllers/EmployeesController.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/BaseController.java" afterPath="$PROJECT_DIR$/src/application/lib/BaseController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/csv/CSVLine.java" afterPath="$PROJECT_DIR$/src/application/lib/csv/CSVLine.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/csv/CSVParser.java" afterPath="$PROJECT_DIR$/src/application/lib/csv/CSVParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/csv/interfaces/CSVBuilder.java" afterPath="$PROJECT_DIR$/src/application/lib/csv/interfaces/CSVBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/csv/interfaces/CSVSaver.java" afterPath="$PROJECT_DIR$/src/application/lib/csv/interfaces/CSVSaver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/exceptions/Exception.java" afterPath="$PROJECT_DIR$/src/application/lib/exceptions/Exception.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/exceptions/ModelException.java" afterPath="$PROJECT_DIR$/src/application/lib/exceptions/ModelException.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/exceptions/codes/EmployeeCodes.java" afterPath="$PROJECT_DIR$/src/application/lib/exceptions/codes/EmployeeCodes.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/json/JsonLoader.java" afterPath="$PROJECT_DIR$/src/application/lib/json/JsonLoader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/json/JsonSaver.java" afterPath="$PROJECT_DIR$/src/application/lib/json/JsonSaver.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/json/Jsonable.java" afterPath="$PROJECT_DIR$/src/application/lib/json/Jsonable.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/util/Closure.java" afterPath="$PROJECT_DIR$/src/application/lib/util/Closure.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/views/BaseViewController.java" afterPath="$PROJECT_DIR$/src/application/lib/views/BaseViewController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/views/CSSClasses.java" afterPath="$PROJECT_DIR$/src/application/lib/views/CSSClasses.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/views/Tabs.java" afterPath="$PROJECT_DIR$/src/application/lib/views/Tabs.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/views/Template.java" afterPath="$PROJECT_DIR$/src/application/lib/views/Template.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/models/Company.java" afterPath="$PROJECT_DIR$/src/application/models/Company.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/models/Employee.java" afterPath="$PROJECT_DIR$/src/application/models/Employee.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/models/StandardDepartment.java" afterPath="$PROJECT_DIR$/src/application/models/StandardDepartment.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/views/employees/EmployeeList.java" afterPath="$PROJECT_DIR$/src/application/views/employees/EmployeeList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/views/custom/components/Dialog.java" afterPath="$PROJECT_DIR$/src/application/lib/views/custom/components/Dialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/views/custom/components/Link.java" afterPath="$PROJECT_DIR$/src/application/lib/views/custom/components/Link.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/views/custom/components/SlidingLabel.java" afterPath="$PROJECT_DIR$/src/application/lib/views/custom/components/SlidingLabel.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/views/custom/effects/Animated.java" afterPath="$PROJECT_DIR$/src/application/lib/views/custom/effects/Animated.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/lib/views/custom/effects/transitions/LabelSlider.java" afterPath="$PROJECT_DIR$/src/application/lib/views/custom/effects/transitions/LabelSlider.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/views/departments/DepartmentsList.java" afterPath="$PROJECT_DIR$/src/application/views/departments/DepartmentsList.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/views/dialogs/EditCompanyDialog.java" afterPath="$PROJECT_DIR$/src/application/views/dialogs/EditCompanyDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/views/dialogs/EditDepartmentDialog.java" afterPath="$PROJECT_DIR$/src/application/views/dialogs/EditDepartmentDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/views/dialogs/EditEmployeeDialog.java" afterPath="$PROJECT_DIR$/src/application/views/dialogs/EditEmployeeDialog.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/views/dialogs/ManageEmployeesDialog.java" afterPath="$PROJECT_DIR$/src/application/views/dialogs/ManageEmployeesDialog.java" />
     </list>
     <ignored path="DI3_ProjetJava.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -100,90 +164,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Company.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/models/Company.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="1094" column="0" selection-start-line="1094" selection-start-column="0" selection-end-line="1094" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Employee.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/models/Employee.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="109">
-              <caret line="465" column="13" selection-start-line="465" selection-start-column="13" selection-end-line="465" selection-end-column="13" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="employees.csv" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/employees.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="168">
-              <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="TODO" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/TODO">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="departments.csv" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/departments.csv">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="EmployeeList.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/views/employees/EmployeeList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="253">
-              <caret line="47" column="78" selection-start-line="47" selection-start-column="78" selection-end-line="47" selection-end-column="78" />
-              <folding>
-                <element signature="e#13203#13610#0" expanded="true" />
-                <element signature="e#13609#13610#0" expanded="true" />
-                <element signature="e#18754#18755#0" expanded="true" />
-                <element signature="e#18795#18796#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CSVBuilder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/lib/csv/interfaces/CSVBuilder.java">
+      <file leaf-file-name="LabelSlider.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/effects/transitions/LabelSlider.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="189">
-              <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CSVSaver.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/lib/csv/interfaces/CSVSaver.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="331">
-              <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
+              <caret line="9" column="69" selection-start-line="9" selection-start-column="69" selection-end-line="9" selection-end-column="69" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -191,24 +176,95 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StandardDepartment.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/models/StandardDepartment.java">
+      <file leaf-file-name="SlidingLabel.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/components/SlidingLabel.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="382">
-              <caret line="359" column="32" selection-start-line="359" selection-start-column="32" selection-end-line="359" selection-end-column="32" />
+            <state relative-caret-position="-192">
+              <caret line="68" column="7" selection-start-line="68" selection-start-column="7" selection-end-line="68" selection-end-column="7" />
+              <folding>
+                <element signature="e#1887#1888#0" expanded="true" />
+                <element signature="e#1945#1946#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Animated.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/effects/Animated.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="84">
+              <caret line="4" column="70" selection-start-line="4" selection-start-column="70" selection-end-line="4" selection-end-column="70" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="CompanyController.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/controllers/CompanyController.java">
+      <file leaf-file-name="BaseViewController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/lib/views/BaseViewController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="190">
-              <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state relative-caret-position="357">
+              <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Link.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/components/Link.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="189">
+              <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Template.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/application/lib/views/Template.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="315">
+              <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CSSClasses.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/lib/views/CSSClasses.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="63">
+              <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Tabs.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/lib/views/Tabs.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="378">
+              <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="BaseController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/lib/BaseController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="126">
+              <caret line="12" column="36" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Helper.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/lib/Helper.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="5" column="19" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -228,6 +284,7 @@
         <option value="Singleton" />
         <option value="Interface" />
         <option value="Class" />
+        <option value="AnnotationType" />
       </list>
     </option>
   </component>
@@ -303,57 +360,57 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/application/views/dialogs/fxml/createDepartment.fxml" />
-        <option value="$PROJECT_DIR$/src/application/views/dialogs/fxml/editEmployee.fxml" />
-        <option value="$PROJECT_DIR$/src/application/views/dialogs/fxml/manageEmployees.fxml" />
-        <option value="$PROJECT_DIR$/src/application/views/dialogs/fxml/editCompany.fxml" />
-        <option value="$PROJECT_DIR$/src/application/lib/util/form/Form.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/views/custom/components/Dialog.java" />
-        <option value="$PROJECT_DIR$/src/application/views/dialogs/EditCompanyDialog.java" />
-        <option value="$PROJECT_DIR$/src/application/views/dialogs/CreateEmployeeDialog.java" />
-        <option value="$PROJECT_DIR$/src/application/views/dialogs/EditEmployeeDialog.java" />
-        <option value="$PROJECT_DIR$/src/application/views/dialogs/ManageEmployeesDialog.java" />
-        <option value="$PROJECT_DIR$/src/application/views/dialogs/CreateDepartmentDialog.java" />
-        <option value="$PROJECT_DIR$/src/application/controllers/DepartmentsController.java" />
-        <option value="$PROJECT_DIR$/src/application/views/dialogs/EditDepartmentDialog.java" />
-        <option value="$PROJECT_DIR$/src/application/views/departments/DepartmentProfile.java" />
-        <option value="$PROJECT_DIR$/src/application/views/departments/fxml/show.fxml" />
-        <option value="$PROJECT_DIR$/src/application/controllers/EmployeesController.java" />
-        <option value="$PROJECT_DIR$/src/emulator/views/fxml/view.fxml" />
-        <option value="$PROJECT_DIR$/src/emulator/network/ClientBuilder.java" />
-        <option value="$PROJECT_DIR$/data/config/network.json" />
-        <option value="$PROJECT_DIR$/src/emulator/network/Client.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/views/style.css" />
-        <option value="$PROJECT_DIR$/src/emulator/views/View.java" />
-        <option value="$PROJECT_DIR$/src/emulator/controllers/Controller.java" />
-        <option value="$PROJECT_DIR$/TODO" />
-        <option value="$PROJECT_DIR$/src/application/lib/csv/CsvSaver.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/json/JsonLoader.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/json/Jsonable.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/csv/CSVStorable.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/csv/CSVBuilder.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/csv/CSVSaver.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/csv/CSVObject.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/csv/CSVFile.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/csv/CSVSection.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/json/JsonSaver.java" />
-        <option value="$PROJECT_DIR$/src/application/views/dialogs/ImportEmployeesDialog.java" />
-        <option value="$PROJECT_DIR$/src/application/views/dialogs/ImportDepartmentsDialog.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/BaseController.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/csv/interfaces/CSVSaver.java" />
         <option value="$PROJECT_DIR$/src/application/ApplicationMain.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/views/Template.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/csv/CSVLine.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/csv/CSVParser.java" />
         <option value="$PROJECT_DIR$/employees.csv" />
-        <option value="$PROJECT_DIR$/src/application/controllers/CompanyController.java" />
         <option value="$PROJECT_DIR$/src/application/models/Company.java" />
         <option value="$PROJECT_DIR$/departments.csv" />
         <option value="$PROJECT_DIR$/src/application/views/employees/EmployeeList.java" />
-        <option value="$PROJECT_DIR$/src/application/lib/csv/interfaces/CSVBuilder.java" />
         <option value="$PROJECT_DIR$/src/application/lib/csv/interfaces/CSVLoader.java" />
         <option value="$PROJECT_DIR$/src/application/models/Employee.java" />
         <option value="$PROJECT_DIR$/src/application/models/StandardDepartment.java" />
+        <option value="$PROJECT_DIR$/TODO" />
+        <option value="$PROJECT_DIR$/src/application/lib/form/FormShouldContains.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/form/FormContains.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/BaseController.java" />
+        <option value="$PROJECT_DIR$/src/application/controllers/EmployeesController.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/annotations/DisplayView.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/annotations/FormContains.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/annotations/UpdateModel.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/csv/interfaces/CSVBuilder.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/csv/interfaces/CSVSaver.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/csv/CSVLine.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/csv/CSVParser.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/form/FieldTypes.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/form/validator/Validator.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/exceptions/ModelException.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/exceptions/Exception.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/exceptions/codes/EmployeeCodes.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/form/FieldValueTypes.java" />
+        <option value="$PROJECT_DIR$/src/application/controllers/CompanyController.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/form/Form.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/json/Jsonable.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/json/JsonLoader.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/json/JsonSaver.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/util/Closure.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/views/custom/components/Button.java" />
+        <option value="$PROJECT_DIR$/src/application/views/dialogs/EditCompanyDialog.java" />
+        <option value="$PROJECT_DIR$/src/application/views/dialogs/EditEmployeeDialog.java" />
+        <option value="$PROJECT_DIR$/src/application/views/dialogs/ManageEmployeesDialog.java" />
+        <option value="$PROJECT_DIR$/src/application/controllers/DepartmentsController.java" />
+        <option value="$PROJECT_DIR$/src/application/views/dialogs/EditDepartmentDialog.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/views/custom/components/Dialog.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/views/custom/components/Label.java" />
+        <option value="$PROJECT_DIR$/src/application/views/departments/DepartmentsList.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/views/custom/components/Link.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/views/custom/components/Scene.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/views/custom/effects/Animated.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/views/custom/components/SlidingLabel.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/views/custom/effects/transitions/LabelSlider.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/views/custom/components/Stage.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/views/BaseViewController.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/views/CSSClasses.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/views/Tabs.java" />
+        <option value="$PROJECT_DIR$/src/application/lib/views/Template.java" />
       </list>
     </option>
   </component>
@@ -384,18 +441,129 @@
             <id>Abstraction issuesJava</id>
           </State>
           <State>
+            <id>Android</id>
+          </State>
+          <State>
+            <id>Android &gt; Lint &gt; Correctness</id>
+          </State>
+          <State>
+            <id>Android &gt; Lint &gt; Performance</id>
+          </State>
+          <State>
+            <id>Android &gt; Lint &gt; Security</id>
+          </State>
+          <State>
+            <id>Android Lint for Kotlin</id>
+          </State>
+          <State>
+            <id>Annotations verifyingGroovy</id>
+          </State>
+          <State>
+            <id>Class structureJava</id>
+          </State>
+          <State>
+            <id>Code maturity issuesJava</id>
+          </State>
+          <State>
+            <id>Code style issuesJava</id>
+          </State>
+          <State>
+            <id>Concurrency annotation issuesJava</id>
+          </State>
+          <State>
+            <id>Data flow issuesJava</id>
+          </State>
+          <State>
+            <id>Declaration redundancyJava</id>
+          </State>
+          <State>
+            <id>Encapsulation issuesJava</id>
+          </State>
+          <State>
+            <id>Error handlingJava</id>
+          </State>
+          <State>
+            <id>General</id>
+          </State>
+          <State>
+            <id>GeneralJava</id>
+          </State>
+          <State>
+            <id>Groovy</id>
+          </State>
+          <State>
+            <id>Inheritance issuesJava</id>
+          </State>
+          <State>
+            <id>Initialization issuesJava</id>
+          </State>
+          <State>
+            <id>Internationalization issuesJava</id>
+          </State>
+          <State>
+            <id>JUnit issuesJava</id>
+          </State>
+          <State>
             <id>Java</id>
           </State>
           <State>
-            <id>Security issuesJava</id>
+            <id>Java language level issuesJava</id>
+          </State>
+          <State>
+            <id>Java language level migration aidsJava</id>
+          </State>
+          <State>
+            <id>JavaFX</id>
+          </State>
+          <State>
+            <id>Javadoc issuesJava</id>
+          </State>
+          <State>
+            <id>Kotlin</id>
+          </State>
+          <State>
+            <id>Language Injection</id>
+          </State>
+          <State>
+            <id>Logging issuesJava</id>
+          </State>
+          <State>
+            <id>Naming ConventionsGroovy</id>
+          </State>
+          <State>
+            <id>Naming conventionsJava</id>
+          </State>
+          <State>
+            <id>Pattern Validation</id>
+          </State>
+          <State>
+            <id>Plugin DevKit</id>
+          </State>
+          <State>
+            <id>Potentially confusing code constructsGroovy</id>
+          </State>
+          <State>
+            <id>Probable bugsJava</id>
+          </State>
+          <State>
+            <id>Properties FilesJava</id>
           </State>
           <State>
             <id>Serialization issuesJava</id>
           </State>
+          <State>
+            <id>TestNGJava</id>
+          </State>
+          <State>
+            <id>Verbose or redundant code constructsJava</id>
+          </State>
+          <State>
+            <id>Visibility issuesJava</id>
+          </State>
         </expanded-state>
         <selected-state>
           <State>
-            <id>SerialVersionUIDNotStaticFinal</id>
+            <id>SimplifiableAnnotation</id>
           </State>
         </selected-state>
       </profile-state>
@@ -426,12 +594,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="PackagesPane">
-        <subPane />
-      </pane>
-      <pane id="Scratches">
-        <subPane />
-      </pane>
       <pane id="Scope">
         <subPane subId="Problems" />
         <subPane subId="Production">
@@ -714,185 +876,51 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DI3_ProjetJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="DI3_ProjetJava" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="application" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="lib" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
               <option name="myItemId" value="views" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="dialogs" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="fxml" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="json" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="csv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="application" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="lib" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="csv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="interfaces" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="serialized" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="csv" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="data" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="config" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
         </subPane>
       </pane>
+      <pane id="Scratches">
+        <subPane />
+      </pane>
+      <pane id="PackagesPane">
+        <subPane />
+      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="settings.editor.selected.configurable" value="Errors" />
+    <property name="settings.editor.selected.configurable" value="preferences.intentionPowerPack" />
     <property name="settings.editor.splitter.proportion" value="0.22924529" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/data" />
-    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary" value="JUnit4" />
@@ -903,7 +931,7 @@
     <property name="extract.method.default.visibility" value="private" />
     <property name="SearchEverywhereHistoryKey" value="navi&#9;null&#9;null" />
     <property name="full.screen.before.presentation.mode" value="false" />
-    <property name="last.edited.regexp" value="&#10;" />
+    <property name="last.edited.regexp" value="azerzrzarzaerzear" />
     <property name="ignore_missing_gitignore" value="true" />
     <property name="GenerateAntBuildDialog.enableUiFormCompile" value="true" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
@@ -911,6 +939,13 @@
     <property name="GenerateAntBuildDialog.outputFileNameProperty" value="di3_projetjava" />
   </component>
   <component name="RecentsManager">
+    <key name="CreateClassDialog.RecentsKey">
+      <recent name="application.views.dialogs" />
+      <recent name="emulator.tcp" />
+      <recent name="emulator" />
+      <recent name="lib.util.form" />
+      <recent name="views.dialogs" />
+    </key>
     <key name="CreateTestDialog.RecentsKey">
       <recent name="models" />
       <recent name="" />
@@ -922,27 +957,21 @@
     <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
       <recent name="application" />
     </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\Robin\Desktop\Divers\Work\Polytech\S6\Java\DI3_ProjetJava\src\application\views\dialogs\fxml" />
+      <recent name="C:\Users\Robin\Desktop\Divers\Work\Polytech\S6\Java\DI3_ProjetJava\src\views\dialogs\fxml" />
+    </key>
+    <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="application.lib.annotations" />
+      <recent name="views.dialogs" />
+      <recent name="tcp" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\Robin\Desktop\Divers\Work\Polytech\S6\Java\DI3_ProjetJava\data\serialized" />
       <recent name="C:\Users\Robin\Desktop\Divers\Work\Polytech\S6\Java\DI3_ProjetJava\src\views\dialogs\fxml" />
       <recent name="C:\Users\Robin\Desktop\Divers\Work\Polytech\S6\Java\DI3_ProjetJava\src\views\company\fxml" />
       <recent name="C:\Users\Robin\Desktop\Divers\Work\Polytech\S6\Java\DI3_ProjetJava\src\views" />
       <recent name="C:\Users\Robin\Desktop\Divers\Work\Polytech\S6\Java\DI3_ProjetJava\src" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="C:\Users\Robin\Desktop\Divers\Work\Polytech\S6\Java\DI3_ProjetJava\src\application\views\dialogs\fxml" />
-      <recent name="C:\Users\Robin\Desktop\Divers\Work\Polytech\S6\Java\DI3_ProjetJava\src\views\dialogs\fxml" />
-    </key>
-    <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="views.dialogs" />
-      <recent name="tcp" />
-    </key>
-    <key name="CreateClassDialog.RecentsKey">
-      <recent name="application.views.dialogs" />
-      <recent name="emulator.tcp" />
-      <recent name="emulator" />
-      <recent name="lib.util.form" />
-      <recent name="views.dialogs" />
     </key>
   </component>
   <component name="RunManager" selected="Application.ApplicationMain">
@@ -1429,25 +1458,25 @@
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23095824" sideWeight="0.403125" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4127764" sideWeight="0.40125" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31331593" sideWeight="0.185" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23218673" sideWeight="0.3775" order="2" side_tool="true" content_ui="tabs" x="445" y="386" width="843" height="243" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.18796068" sideWeight="0.54625" order="2" side_tool="true" content_ui="tabs" x="445" y="386" width="843" height="243" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3144963" sideWeight="0.45625" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.138125" sideWeight="0.49306932" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25625" sideWeight="0.49306932" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2985258" sideWeight="0.46375" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2985258" sideWeight="0.45375" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.09125" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" x="383" y="218" width="400" height="575" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16875" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14974293" sideWeight="0.5069307" order="4" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.23218673" sideWeight="0.6225" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23218673" sideWeight="0.6225" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -1476,7 +1505,7 @@
       <breakpoints-dialog>
         <breakpoints-dialog />
       </breakpoints-dialog>
-      <option name="time" value="67" />
+      <option name="time" value="72" />
     </breakpoint-manager>
     <watches-manager />
   </component>
@@ -1485,474 +1514,499 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/data/serialized/emulator.ser">
+    <entry file="jar://$APPLICATION_HOME_DIR$/redist/annotations-java8.jar!/org/jetbrains/annotations/NotNull.class">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="21">
-          <caret line="1" column="149" selection-start-line="1" selection-start-column="149" selection-end-line="1" selection-end-column="149" />
+        <state relative-caret-position="105">
+          <caret line="12" column="0" selection-start-line="12" selection-start-column="0" selection-end-line="15" selection-end-column="121" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/network/ClientBuilder.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="232">
-          <caret line="41" column="50" selection-start-line="41" selection-start-column="50" selection-end-line="41" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/config/network.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="315">
-          <caret line="15" column="5" selection-start-line="15" selection-start-column="5" selection-end-line="15" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/network/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
-          <caret line="134" column="21" selection-start-line="134" selection-start-column="21" selection-end-line="134" selection-end-column="21" />
-          <folding>
-            <element signature="imports" expanded="false" />
-            <element signature="e#1173#1174#0" expanded="false" />
-            <element signature="e#1213#1214#0" expanded="false" />
-            <element signature="e#7417#7418#0" expanded="false" />
-            <element signature="e#7459#7460#0" expanded="false" />
-            <element signature="e#7518#7519#0" expanded="false" />
-            <element signature="e#7554#7555#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/views/fxml/view.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="276">
-          <caret line="27" column="13" selection-start-line="27" selection-start-column="13" selection-end-line="27" selection-end-column="13" />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
+    <entry file="file://$PROJECT_DIR$/features.png">
+      <provider selected="true" editor-type-id="images">
         <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/lib/views/style.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="429">
-          <caret line="151" column="18" selection-start-line="151" selection-start-column="18" selection-end-line="151" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/views/View.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="256">
-          <caret line="102" column="18" selection-start-line="102" selection-start-column="18" selection-end-line="102" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/EmulatorMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="36" column="0" selection-start-line="36" selection-start-column="0" selection-end-line="36" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/controllers/Controller.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="43">
-          <caret line="76" column="40" selection-start-line="76" selection-start-column="40" selection-end-line="76" selection-end-column="40" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/models/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="10" column="0" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/lib/json/JsonLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/lib/json/Jsonable.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="17" selection-start-line="7" selection-start-column="17" selection-end-line="7" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/lib/csv/CSVSection.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="546">
-          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/beans/property/IntegerPropertyBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/beans/binding/IntegerExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="68" column="0" selection-start-line="68" selection-start-column="0" selection-end-line="68" selection-end-column="0" />
-          <folding>
-            <element signature="e#1408#1409#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/beans/property/StringPropertyBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="129" column="0" selection-start-line="129" selection-start-column="0" selection-end-line="129" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/models/Person.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="527">
-          <caret line="47" column="0" selection-start-line="47" selection-start-column="0" selection-end-line="47" selection-end-column="0" />
-          <folding>
-            <element signature="e#853#854#0" expanded="false" />
-            <element signature="e#891#892#0" expanded="false" />
-            <element signature="e#1189#1190#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/beans/property/ObjectPropertyBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="131" column="0" selection-start-line="131" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/beans/binding/ObjectExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="49" column="0" selection-start-line="49" selection-start-column="0" selection-end-line="49" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#7202#0" expanded="false" />
-            <element signature="imports" expanded="false" />
-            <element signature="e#2249#2250#0" expanded="false" />
-            <element signature="e#2316#2317#0" expanded="false" />
-            <element signature="e#2396#2397#0" expanded="false" />
-            <element signature="e#2462#2463#0" expanded="false" />
-            <element signature="e#3229#3230#0" expanded="false" />
-            <element signature="e#3279#3280#0" expanded="false" />
-            <element signature="e#3608#3609#0" expanded="false" />
-            <element signature="e#3658#3659#0" expanded="false" />
-            <element signature="e#4138#4139#0" expanded="false" />
-            <element signature="e#4191#4192#0" expanded="false" />
-            <element signature="e#4527#4528#0" expanded="false" />
-            <element signature="e#4580#4581#0" expanded="false" />
-            <element signature="e#4812#4813#0" expanded="false" />
-            <element signature="e#4856#4857#0" expanded="false" />
-            <element signature="e#5095#5096#0" expanded="false" />
-            <element signature="e#5142#5143#0" expanded="false" />
-            <element signature="e#5564#5565#0" expanded="false" />
-            <element signature="e#5632#5633#0" expanded="false" />
-            <element signature="e#6282#6283#0" expanded="false" />
-            <element signature="e#6350#6351#0" expanded="false" />
-            <element signature="e#7122#7123#0" expanded="false" />
-            <element signature="e#7198#7199#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/beans/property/DoublePropertyBase.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="220">
-          <caret line="132" column="0" selection-start-line="132" selection-start-column="0" selection-end-line="132" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/javafx-src.zip!/javafx/beans/binding/DoubleExpression.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="199">
-          <caret line="69" column="0" selection-start-line="69" selection-start-column="0" selection-end-line="69" selection-end-column="0" />
-          <folding>
-            <element signature="e#1446#1447#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://F:/Java Dev/libs/simpletime.jar!/fr/etu/univtours/marechal/SimpleTime.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-800">
-          <caret line="53" column="19" selection-start-line="53" selection-start-column="19" selection-end-line="53" selection-end-column="19" />
-          <folding>
-            <element signature="e#1247#1248#0" expanded="true" />
-            <element signature="e#1293#1294#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/lib/json/JsonSaver.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="168">
-          <caret line="12" column="1" selection-start-line="12" selection-start-column="1" selection-end-line="12" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/csv/departments.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="18" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/data/csv/employees.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="156">
-          <caret line="135" column="38" selection-start-line="135" selection-start-column="38" selection-end-line="135" selection-end-column="38" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/views/dialogs/fxml/importEmployees.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/views/dialogs/fxml/importDepartments.fxml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-      <provider editor-type-id="JavaFX-Scene-Builder">
-        <state />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/views/dialogs/EditDepartmentDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="28" column="49" selection-start-line="28" selection-start-column="49" selection-end-line="130" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/views/dialogs/ManageEmployeesDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="23" column="13" selection-start-line="23" selection-start-column="13" selection-end-line="23" selection-end-column="13" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/views/dialogs/ImportDepartmentsDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="29" column="0" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/lib/BaseController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="609">
-          <caret line="30" column="0" selection-start-line="30" selection-start-column="0" selection-end-line="30" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/views/dialogs/ImportEmployeesDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="84">
-          <caret line="4" column="0" selection-start-line="4" selection-start-column="0" selection-end-line="4" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/ApplicationMain.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="157" column="43" selection-start-line="157" selection-start-column="43" selection-end-line="157" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/lib/views/Template.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="146">
-          <caret line="158" column="89" selection-start-line="158" selection-start-column="89" selection-end-line="158" selection-end-column="89" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="jar://C:/Program Files/Java/jdk1.8.0_101/src.zip!/java/awt/Component.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#377883#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/lib/csv/CSVLine.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="493">
-          <caret line="78" column="0" selection-start-line="78" selection-start-column="0" selection-end-line="78" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/lib/csv/CSVParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="105" column="0" selection-start-line="105" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-          <folding>
-            <element signature="e#2485#2486#0" expanded="true" />
-          </folding>
-        </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/controllers/EmployeesController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="81" column="19" selection-start-line="81" selection-start-column="16" selection-end-line="81" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/controllers/DepartmentsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="99" column="30" selection-start-line="99" selection-start-column="30" selection-end-line="99" selection-end-column="30" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/views/dialogs/EditCompanyDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="70" column="31" selection-start-line="70" selection-start-column="31" selection-end-line="70" selection-end-column="31" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/TODO">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="22" column="14" selection-start-line="22" selection-start-column="14" selection-end-line="22" selection-end-column="14" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/departments.csv">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/views/employees/EmployeeList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="253">
-          <caret line="47" column="78" selection-start-line="47" selection-start-column="78" selection-end-line="47" selection-end-column="78" />
+        <state relative-caret-position="336">
+          <caret line="26" column="47" selection-start-line="26" selection-start-column="47" selection-end-line="26" selection-end-column="47" />
+          <caret line="25" column="40" selection-start-line="25" selection-start-column="40" selection-end-line="25" selection-end-column="40" />
           <folding>
-            <element signature="e#13203#13610#0" expanded="true" />
-            <element signature="e#13609#13610#0" expanded="true" />
-            <element signature="e#18754#18755#0" expanded="true" />
-            <element signature="e#18795#18796#0" expanded="true" />
+            <element signature="imports" expanded="true" />
+            <element signature="method#listAt#0;class#EmployeesController#0" expanded="false" />
+            <element signature="method#show#0;class#EmployeesController#0" expanded="false" />
+            <element signature="method#openCreationEmployeeDialog#0;class#EmployeesController#0" expanded="false" />
+            <element signature="method#createEmployee#0;class#EmployeesController#0" expanded="false" />
+            <element signature="method#checkTimeFieldValue#0;class#EmployeesController#0" expanded="false" />
+            <element signature="method#openEditionEmployeeDialog#0;class#EmployeesController#0" expanded="false" />
+            <element signature="method#updateEmployee#0;class#EmployeesController#0" expanded="false" />
+            <element signature="method#fireEmployee#0;class#EmployeesController#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/lib/csv/interfaces/CSVLoader.java">
+    <entry file="file://$PROJECT_DIR$/src/application/lib/annotations/DisplayView.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="147">
-          <caret line="7" column="4" selection-start-line="7" selection-start-column="4" selection-end-line="7" selection-end-column="4" />
+        <state relative-caret-position="105">
+          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/annotations/UpdateModel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/lib/csv/interfaces/CSVSaver.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="331">
-          <caret line="20" column="9" selection-start-line="20" selection-start-column="9" selection-end-line="20" selection-end-column="9" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="105">
+          <caret line="9" column="40" selection-start-line="9" selection-start-column="40" selection-end-line="9" selection-end-column="40" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/lib/csv/interfaces/CSVBuilder.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="189">
-          <caret line="9" column="36" selection-start-line="9" selection-start-column="36" selection-end-line="9" selection-end-column="36" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/models/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="109">
-          <caret line="465" column="13" selection-start-line="465" selection-start-column="13" selection-end-line="465" selection-end-column="13" />
+        <state relative-caret-position="105">
+          <caret line="5" column="40" selection-start-line="5" selection-start-column="0" selection-end-line="6" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <marker date="1496617350880" expanded="true" signature="80:194" ph="/**...*/" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/models/StandardDepartment.java">
+    <entry file="file://$PROJECT_DIR$/src/application/lib/csv/CSVLine.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="382">
-          <caret line="359" column="32" selection-start-line="359" selection-start-column="32" selection-end-line="359" selection-end-column="32" />
+        <state relative-caret-position="168">
+          <caret line="8" column="20" selection-start-line="8" selection-start-column="13" selection-end-line="8" selection-end-column="20" />
+          <folding>
+            <element signature="method#CSVLine#0;class#CSVLine#0" expanded="false" />
+            <element signature="method#add#0;class#CSVLine#0" expanded="false" />
+            <element signature="method#toString#0;class#CSVLine#0" expanded="false" />
+            <element signature="e#1321#1322#0" expanded="false" />
+            <element signature="e#1350#1351#0" expanded="false" />
+            <element signature="e#1527#1528#0" expanded="false" />
+            <element signature="e#1569#1570#0" expanded="false" />
+            <element signature="e#1851#1852#0" expanded="false" />
+            <element signature="e#1898#1899#0" expanded="false" />
+            <element signature="e#2218#2219#0" expanded="false" />
+            <element signature="e#2275#2276#0" expanded="false" />
+            <element signature="method#fromString#0;class#CSVLine#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/form/FieldTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="40" selection-start-line="3" selection-start-column="40" selection-end-line="3" selection-end-column="40" />
+          <folding>
+            <marker date="1496619914678" expanded="true" signature="31:210" ph="/**...*/" />
+            <marker date="1496619914678" expanded="true" signature="289:351" ph="/**...*/" />
+            <marker date="1496619914678" expanded="true" signature="372:433" ph="/**...*/" />
+            <marker date="1496619914678" expanded="true" signature="453:514" ph="/**...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/exceptions/ModelException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+          <folding>
+            <element signature="e#299#300#0" expanded="false" />
+            <element signature="e#322#323#0" expanded="false" />
+            <element signature="e#463#464#0" expanded="false" />
+            <element signature="e#495#496#0" expanded="false" />
+            <element signature="e#708#709#0" expanded="false" />
+            <element signature="e#754#755#0" expanded="false" />
+            <element signature="e#910#911#0" expanded="false" />
+            <element signature="e#945#946#0" expanded="false" />
+            <marker date="1496619988313" expanded="true" signature="37:186" ph="/**...*/" />
+            <marker date="1496619988313" expanded="true" signature="239:265" ph="/**...*/" />
+            <marker date="1496619988313" expanded="true" signature="952:1047" ph="/**...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/exceptions/Exception.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="6" column="39" selection-start-line="6" selection-start-column="39" selection-end-line="6" selection-end-column="39" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="e#547#548#0" expanded="false" />
+            <element signature="e#583#584#0" expanded="false" />
+            <element signature="e#1046#1047#0" expanded="false" />
+            <element signature="e#1090#1091#0" expanded="false" />
+            <element signature="e#1240#1241#0" expanded="false" />
+            <element signature="e#1277#1278#0" expanded="false" />
+            <element signature="e#1401#1402#0" expanded="false" />
+            <element signature="e#1428#1429#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/exceptions/codes/EmployeeCodes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+          <folding>
+            <marker date="1496619988227" expanded="true" signature="43:168" ph="/**...*/" />
+            <marker date="1496619988227" expanded="true" signature="208:259" ph="/**...*/" />
+            <marker date="1496619988227" expanded="true" signature="432:487" ph="/**...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/csv/CSVParser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="12" column="3" selection-start-line="12" selection-start-column="0" selection-end-line="12" selection-end-column="3" />
+          <folding>
+            <element signature="e#1015#1016#0" expanded="false" />
+            <element signature="e#1043#1044#0" expanded="false" />
+            <element signature="method#addLine#0;class#CSVParser#0" expanded="false" />
+            <element signature="method#addLine#1;class#CSVParser#0" expanded="false" />
+            <element signature="e#3827#3828#0" expanded="false" />
+            <element signature="e#3898#3899#0" expanded="false" />
+            <marker date="1496618616525" expanded="false" signature="37:267" ph="..." />
+            <marker date="1496618616525" expanded="true" signature="2879:3049" ph="/**...*/" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/form/FieldValueTypes.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="588">
+          <caret line="31" column="7" selection-start-line="31" selection-start-column="4" selection-end-line="31" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/annotations/FormContains.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="40" selection-start-line="5" selection-start-column="40" selection-end-line="5" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/form/FormContains.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="38" selection-start-line="6" selection-start-column="38" selection-end-line="6" selection-end-column="38" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/application/controllers/CompanyController.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="94" column="0" selection-start-line="94" selection-start-column="0" selection-end-line="94" selection-end-column="0" />
+        <state relative-caret-position="202">
+          <caret line="63" column="22" selection-start-line="63" selection-start-column="22" selection-end-line="63" selection-end-column="22" />
           <folding>
             <element signature="imports" expanded="true" />
+            <element signature="method#home#0;class#CompanyController#0" expanded="false" />
+            <element signature="method#updateCompany#0;class#CompanyController#0" expanded="false" />
+            <element signature="method#importEmployeesCSV#0;class#CompanyController#0" expanded="false" />
+            <element signature="method#importDepartmentsCSV#0;class#CompanyController#0" expanded="false" />
+            <element signature="method#exportEmployeesCSV#0;class#CompanyController#0" expanded="false" />
+            <element signature="method#exportDepartmentsCSV#0;class#CompanyController#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/models/Company.java">
+    <entry file="file://$PROJECT_DIR$/src/application/lib/json/Jsonable.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="1094" column="0" selection-start-line="1094" selection-start-column="0" selection-end-line="1094" selection-end-column="0" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
+        <state relative-caret-position="105">
+          <caret line="5" column="34" selection-start-line="5" selection-start-column="34" selection-end-line="6" selection-end-column="106" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/employees.csv">
+    <entry file="file://$PROJECT_DIR$/src/application/lib/json/JsonLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="82" selection-start-line="6" selection-start-column="82" selection-end-line="6" selection-end-column="82" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/form/Form.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3339">
+          <caret line="189" column="11" selection-start-line="189" selection-start-column="8" selection-end-line="189" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/json/JsonSaver.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="10" column="113" selection-start-line="10" selection-start-column="113" selection-end-line="10" selection-end-column="113" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/components/AnimatedProgressBar.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="10" column="3" selection-start-line="10" selection-start-column="3" selection-end-line="10" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/util/Closure.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="11" selection-start-line="9" selection-start-column="11" selection-end-line="9" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/components/Button.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="168">
-          <caret line="8" column="21" selection-start-line="8" selection-start-column="21" selection-end-line="8" selection-end-column="21" />
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/components/Tab.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="16" selection-start-line="7" selection-start-column="13" selection-end-line="7" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/components/Table.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="8" column="16" selection-start-line="8" selection-start-column="16" selection-end-line="8" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/components/TabPane.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="7" column="15" selection-start-line="7" selection-start-column="15" selection-end-line="7" selection-end-column="15" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/components/TextField.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="17" selection-start-line="6" selection-start-column="17" selection-end-line="6" selection-end-column="17" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/views/dialogs/EditCompanyDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="193">
+          <caret line="50" column="30" selection-start-line="50" selection-start-column="30" selection-end-line="50" selection-end-column="30" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/views/dialogs/EditEmployeeDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1478">
+          <caret line="87" column="8" selection-start-line="87" selection-start-column="8" selection-end-line="87" selection-end-column="8" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/views/dialogs/ManageEmployeesDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="52" column="28" selection-start-line="52" selection-start-column="28" selection-end-line="52" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/models/StandardDepartment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="223">
+          <caret line="332" column="0" selection-start-line="332" selection-start-column="0" selection-end-line="332" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/models/ManagementDepartment.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="71" column="45" selection-start-line="71" selection-start-column="45" selection-end-line="71" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/form/validator/Validator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="672">
+          <caret line="108" column="9" selection-start-line="108" selection-start-column="9" selection-end-line="108" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/controllers/DepartmentsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1210">
+          <caret line="93" column="16" selection-start-line="93" selection-start-column="16" selection-end-line="93" selection-end-column="16" />
+          <folding>
+            <element signature="method#home#0;class#DepartmentsController#0" expanded="false" />
+            <element signature="method#show#0;class#DepartmentsController#0" expanded="false" />
+            <element signature="method#removeDepartment#0;class#DepartmentsController#0" expanded="false" />
+            <element signature="method#updateDepartment#0;class#DepartmentsController#0" expanded="false" />
+            <element signature="method#openEditionDepartmentDialog#0;class#DepartmentsController#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/views/dialogs/EditDepartmentDialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="181">
+          <caret line="106" column="91" selection-start-line="106" selection-start-column="91" selection-end-line="106" selection-end-column="91" />
+          <folding>
+            <element signature="e#3410#3411#0" expanded="true" />
+            <element signature="e#3446#3447#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/components/Dialog.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="14" column="7" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="7" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/views/departments/DepartmentsList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="307">
+          <caret line="238" column="35" selection-start-line="238" selection-start-column="35" selection-end-line="238" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/effects/Animated.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="4" column="70" selection-start-line="4" selection-start-column="70" selection-end-line="4" selection-end-column="70" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/effects/transitions/LabelSlider.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="69" selection-start-line="9" selection-start-column="69" selection-end-line="9" selection-end-column="69" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/components/Stage.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="6" column="22" selection-start-line="6" selection-start-column="22" selection-end-line="6" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/components/SlidingLabel.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-192">
+          <caret line="68" column="7" selection-start-line="68" selection-start-column="7" selection-end-line="68" selection-end-column="7" />
+          <folding>
+            <element signature="e#1887#1888#0" expanded="true" />
+            <element signature="e#1945#1946#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/components/Scene.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="84">
+          <caret line="10" column="3" selection-start-line="10" selection-start-column="0" selection-end-line="10" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/components/Label.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="88">
+          <caret line="7" column="67" selection-start-line="7" selection-start-column="67" selection-end-line="7" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/custom/components/Link.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/BaseController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="126">
+          <caret line="12" column="36" selection-start-line="12" selection-start-column="22" selection-end-line="12" selection-end-column="36" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/Helper.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="5" column="19" selection-start-line="5" selection-start-column="13" selection-end-line="5" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/CSSClasses.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="63">
+          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/BaseViewController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="357">
+          <caret line="17" column="23" selection-start-line="17" selection-start-column="23" selection-end-line="17" selection-end-column="23" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/Tabs.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="18" column="38" selection-start-line="18" selection-start-column="38" selection-end-line="18" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/lib/views/Template.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="315">
+          <caret line="58" column="0" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
           <folding />
         </state>
       </provider>
@@ -1968,7 +2022,7 @@
               <type id="library" />
             </show-content>
           </artifact-editor>
-          <last-edited>DI3_ProjetJava</last-edited>
+          <last-edited>Emulator</last-edited>
           <splitter-proportions>
             <option name="proportions">
               <list>
@@ -2021,7 +2075,6 @@
             <option name="proportions">
               <list>
                 <option value="0.2" />
-                <option value="0.6" />
               </list>
             </option>
           </splitter-proportions>

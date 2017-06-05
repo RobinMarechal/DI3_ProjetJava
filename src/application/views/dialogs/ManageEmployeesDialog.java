@@ -48,7 +48,7 @@ public class ManageEmployeesDialog extends Dialog implements Initializable
         catch (IOException e)
         {
             root = new GridPane();
-            stage.setTitle("Error");
+            setTitle("Error");
             System.out.println("Failed to load employee's edition dialog...");
             e.printStackTrace();
         }
@@ -61,7 +61,7 @@ public class ManageEmployeesDialog extends Dialog implements Initializable
     @Override
     public void initialize (URL location, ResourceBundle resources)
     {
-        stage.setTitle("Manage the department's employees");
+        setTitle("Manage the department's employees");
 
         fillLists();
         prepareButtonClickEvents();
@@ -107,7 +107,7 @@ public class ManageEmployeesDialog extends Dialog implements Initializable
             })).start();
         });
 
-        btnSubmit.setOnAction(event -> stage.close());
+        btnSubmit.setOnAction(event -> close());
     }
 
 

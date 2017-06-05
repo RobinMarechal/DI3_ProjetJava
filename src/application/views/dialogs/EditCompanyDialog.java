@@ -1,8 +1,8 @@
 package application.views.dialogs;
 
 import application.controllers.CompanyController;
-import application.lib.util.form.FieldValueTypes;
-import application.lib.util.form.Form;
+import application.lib.form.FieldValueTypes;
+import application.lib.form.Form;
 import application.lib.views.custom.components.Dialog;
 import application.models.Company;
 import javafx.application.Platform;
@@ -48,7 +48,7 @@ public class EditCompanyDialog extends Dialog implements Initializable
         catch (IOException e)
         {
             root = new VBox();
-            stage.setTitle("Error");
+            setTitle("Error");
             System.out.println("Failed to load company's edition's dialog...");
             e.printStackTrace();
         }
@@ -61,7 +61,6 @@ public class EditCompanyDialog extends Dialog implements Initializable
     @Override
     public void initialize (URL location, ResourceBundle resources)
     {
-
         fieldName.setText(company.getName());
         fieldBossFirstName.setText(company.getBoss().getFirstName());
         fieldBossLastName.setText(company.getBoss().getLastName());
@@ -79,7 +78,7 @@ public class EditCompanyDialog extends Dialog implements Initializable
         {
             if (new CompanyController().updateCompany(form))
             {
-                stage.close();
+                close();
             }
         })).start());
     }

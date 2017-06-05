@@ -1,8 +1,8 @@
 package application.views.dialogs;
 
-import application.lib.util.form.FieldTypes;
-import application.lib.util.form.FieldValueTypes;
-import application.lib.util.form.Form;
+import application.lib.form.FieldTypes;
+import application.lib.form.FieldValueTypes;
+import application.lib.form.Form;
 import application.lib.views.custom.components.Dialog;
 import application.models.Employee;
 import application.models.Manager;
@@ -15,8 +15,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
-import javafx.scene.input.KeyCode;
-import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 
 import java.io.IOException;
@@ -69,7 +67,7 @@ public class EditDepartmentDialog extends Dialog implements Initializable
         catch (IOException e)
         {
             root = new VBox();
-            stage.setTitle("Error");
+            setTitle("Error");
             if (department == null)
             {
                 System.out.println("Failed to load departments's creation's dialog...");
@@ -89,11 +87,10 @@ public class EditDepartmentDialog extends Dialog implements Initializable
     @Override
     public void initialize (URL location, ResourceBundle resources)
     {
-        stage.setTitle(title);
+        setTitle(title);
         labTitle.setText(title);
 
-        comboManagers.getItems().addAll(managers);
-        comboManagers.getItems().addAll(employees);
+        setComboBoxItems(managers, employees);
 
         if(department != null)
         {
@@ -108,15 +105,6 @@ public class EditDepartmentDialog extends Dialog implements Initializable
         form.add("name", FieldValueTypes.NAME, fieldName);
         form.add("activitySector", FieldValueTypes.NAME, fieldActivitySector);
         form.add("manager", FieldValueTypes.UNDEFINED, comboManagers, FieldTypes.COMBOBOX);
-
-        root.addEventFilter(KeyEvent.KEY_PRESSED, event ->
-        {
-            if (event.getCode() == KeyCode.ENTER)
-            {
-                btnSubmit.fire();
-            }
-
-        });
     }
 
     public Form getForm ()
@@ -127,6 +115,20 @@ public class EditDepartmentDialog extends Dialog implements Initializable
     public Button getBtnSubmit ()
     {
         return btnSubmit;
+    }
+
+    public ComboBox<Employee> getMangeerComboBox ()
+    {
+        return comboManagers;
+    }
+
+    public void setComboBoxItems (ObservableList<Manager> managersList, ObservableList<Employee> employeesList)
+    {
+        employeesList.removeAll(managersList);
+        ObservableList<Employee> items = comboManagers.getItems();
+        items.clear();
+        items.addAll(managersList);
+        items.addAll(employeesList);
     }
 }
 

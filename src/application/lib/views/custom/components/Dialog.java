@@ -7,47 +7,51 @@ import javafx.scene.layout.Pane;
 import javafx.stage.StageStyle;
 
 /**
- * Created by Robin on 21/05/2017.
+ * Created by Robin on 21/05/2017. <br/>
+ * This class represent a dialog box
  */
-public class Dialog
+public abstract class Dialog extends javafx.stage.Stage
 {
-    protected Stage stage = new Stage();
-
+    /**
+     * Default constructor
+     */
     public Dialog ()
     {
-        stage.initStyle(StageStyle.UTILITY);
-        stage.setResizable(false);
-        setDialogShortcut();
+        initStyle(StageStyle.UTILITY);
+        setResizable(false);
+        prepareDialogEventListeners();
     }
 
-    public void setDialogShortcut ()
+    /**
+     * Prepare dialog events listener like close on espace pressed, or close on focus loss
+     */
+    public void prepareDialogEventListeners ()
     {
-        stage.addEventFilter(KeyEvent.KEY_RELEASED, event ->
+        addEventFilter(KeyEvent.KEY_RELEASED, event ->
         {
             if (event.getCode() == KeyCode.ESCAPE)
             {
-                stage.close();
+                close();
             }
         });
 
-        stage.focusedProperty().addListener((observable, oldValue, newValue) ->
+        focusedProperty().addListener((observable, oldValue, newValue) ->
         {
             if (!newValue)
             {
-                stage.close();
+                close();
             }
         });
     }
 
-    public void close ()
-    {
-        stage.close();
-    }
-
+    /**
+     * set the content and show the dialog
+     * @param content the inside pane
+     */
     protected void setContent (Pane content)
     {
-        stage.setScene(new Scene(content));
-        stage.show();
+        setScene(new Scene(content));
+        show();
     }
 
 

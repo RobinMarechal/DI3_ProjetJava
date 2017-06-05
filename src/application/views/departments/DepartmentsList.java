@@ -231,7 +231,8 @@ public class DepartmentsList extends DepartmentsViewController implements Initia
             // Links
             // name
             Closure closureName = () -> new DepartmentsController().show(department, SimpleDate.TODAY);
-            name = new Link(department.nameProperty(), closureName);
+            name = new Link(closureName);
+            name.textProperty().bind(department.nameProperty());
 
             // manager
             Manager managerInstance = department.getManager();

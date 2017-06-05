@@ -7,7 +7,8 @@ import java.io.FileWriter;
 import java.io.IOException;
 
 /**
- * Created by Robin on 10/04/2017.
+ * Created by Robin on 10/04/2017.<br/>
+ * The class that implements this interface should provide a way to save it's {@link JSONObject} data into a file
  */
 public interface JsonSaver
 {

@@ -1,7 +1,9 @@
 package application.controllers;
 
 import application.lib.BaseController;
-import application.lib.util.form.Form;
+import application.lib.annotations.DisplayView;
+import application.lib.annotations.UpdateModel;
+import application.lib.form.Form;
 import application.lib.views.BaseViewController;
 import application.lib.views.Tabs;
 import application.lib.views.Template;
@@ -20,20 +22,27 @@ import javafx.scene.control.*;
 import java.util.Optional;
 
 /**
- * Created by Robin on 25/04/2017.
+ * Created by Robin on 25/04/2017. <br/>
+ * MVC Controller class that handle every <br/>
+ * actions related to the employees data
  */
 public class EmployeesController extends BaseController
 {
-    public EmployeesController ()
-    {
-    }
-
+    /**
+     * Display the employee's tab home view
+     */
     @Override
     public void home ()
     {
         listAt(SimpleDate.TODAY);
     }
 
+    /**
+     * Display the list of employee's and their checks at a specific date
+     *
+     * @param date the date
+     */
+    @DisplayView
     public void listAt (SimpleDate date)
     {
         ObservableList<Employee> employees = Company.getCompany().getEmployeesList();
@@ -42,14 +51,12 @@ public class EmployeesController extends BaseController
         Template.getInstance().setView(Tabs.EMPLOYEES, view);
     }
 
-    public void show (int id)
-    {
-        Employee employee = Company.getCompany().getEmployee(id);
-        show(employee);
-
-        // Template.getInstance().setView(Tabs.EMPLOYEES, view);
-    }
-
+    /**
+     * Display the profile of an employee
+     *
+     * @param employee the employee to display
+     */
+    @DisplayView
     public void show (Employee employee)
     {
         System.out.println("Showing employee n°" + employee.getId() + "...");
@@ -58,6 +65,10 @@ public class EmployeesController extends BaseController
         Template.getInstance().setView(Tabs.EMPLOYEES, view);
     }
 
+    /**
+     * Open a dialog box allowing to create an employee (who can be a manager)
+     */
+    @DisplayView
     public void openCreationEmployeeDialog ()
     {
         final ObservableList<StandardDepartment> list = Company.getCompany().getStandardDepartmentsList();
@@ -66,6 +77,13 @@ public class EmployeesController extends BaseController
         dialog.getBtnSubmit().setOnAction(event -> createEmployee(dialog.getForm()));
     }
 
+    /**
+     * Create an employee <br/>
+     *
+     * @param form the form containing the employees's information.
+     * @return a {@link Employee} instance, or null if an the form has been unvalidated
+     */
+    @UpdateModel
     public Employee createEmployee (Form form)
     {
         boolean allPassed = validateForm(form);
@@ -99,10 +117,10 @@ public class EmployeesController extends BaseController
                 SimpleTime startingHour;
 
                 // Are the times values valid or not
-                boolean timesAreValids = checkHoursFieldValue(shHoursValue, shHoursField);
-                timesAreValids &= checkHoursFieldValue(ehHoursValue, ehHoursField);
-                timesAreValids &= checkMinutesFieldValue(shMinutesValue, shMinutesField);
-                timesAreValids &= checkMinutesFieldValue(ehMinutesValue, ehMinutesField);
+                boolean timesAreValids = checkTimeFieldValue(shHoursValue, shHoursField, 24);
+                timesAreValids &= checkTimeFieldValue(ehHoursValue, ehHoursField, 24);
+                timesAreValids &= checkTimeFieldValue(shMinutesValue, shMinutesField, 60);
+                timesAreValids &= checkTimeFieldValue(ehMinutesValue, ehMinutesField, 60);
 
                 // If not, we prevent the creation and the dialog from closing
                 if (!timesAreValids)
@@ -153,9 +171,20 @@ public class EmployeesController extends BaseController
         }
     }
 
-    private boolean checkHoursFieldValue (int value, Form.Field field)
+
+    /**
+     * Verify the value of a time field <br/>
+     * A hours field shouldn't reach 23 <br/>
+     * A minutes field shouldn't reach 59
+     *
+     * @param value the value to verify
+     * @param field the field to modify in case of incorrect value
+     * @param limit the limit that the value shouldn't reach
+     * @return true if the value is correct, false otherwise
+     */
+    private boolean checkTimeFieldValue (int value, Form.Field field, int limit)
     {
-        if (value < 0 || value >= 24)
+        if (value < 0 || value >= limit)
         {
             field.unValidate();
             return false;
@@ -164,17 +193,11 @@ public class EmployeesController extends BaseController
         return true;
     }
 
-    private boolean checkMinutesFieldValue (int value, Form.Field field)
-    {
-        if (value < 0 || value >= 60)
-        {
-            field.unValidate();
-            return false;
-        }
-
-        return true;
-    }
-
+    /**
+     * Open a dialog box allowing to update an employee
+     * @param employee the employee to update
+     */
+    @DisplayView
     public void openEditionEmployeeDialog (Employee employee)
     {
         final ObservableList<StandardDepartment> list = Company.getCompany().getStandardDepartmentsList();
@@ -189,6 +212,14 @@ public class EmployeesController extends BaseController
         });
     }
 
+
+    /**
+     * update an employee <br/>
+     *
+     * @param form the form containing the employees's information.
+     * @return true if the employee was updated, false otherwise
+     */
+    @DisplayView
     public boolean updateEmployee (Employee employee, Form form)
     {
         boolean allPassed = validateForm(form);
@@ -222,10 +253,10 @@ public class EmployeesController extends BaseController
                 SimpleTime startingHour;
 
                 // Are the times values valid or not
-                boolean timesAreValids = checkHoursFieldValue(shHoursValue, shHoursField);
-                timesAreValids &= checkHoursFieldValue(ehHoursValue, ehHoursField);
-                timesAreValids &= checkMinutesFieldValue(shMinutesValue, shMinutesField);
-                timesAreValids &= checkMinutesFieldValue(ehMinutesValue, ehMinutesField);
+                boolean timesAreValids = checkTimeFieldValue(shHoursValue, shHoursField, 24);
+                timesAreValids &= checkTimeFieldValue(ehHoursValue, ehHoursField, 24);
+                timesAreValids &= checkTimeFieldValue(shMinutesValue, shMinutesField, 60);
+                timesAreValids &= checkTimeFieldValue(ehMinutesValue, ehMinutesField, 60);
 
                 // If not, we prevent the edition and the dialog from closing
                 if (!timesAreValids)
@@ -281,6 +312,12 @@ public class EmployeesController extends BaseController
         }
     }
 
+    /**
+     * Open a confirmation dialog to confirm the firing of an employee
+     *
+     * @param employee the employee to fire
+     */
+    @UpdateModel
     public void fireEmployee (Employee employee)
     {
         Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
