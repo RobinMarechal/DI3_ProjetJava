@@ -20,7 +20,7 @@ public class Boss extends Person implements Jsonable
      * No parameter constructor <br/>
      * Define Boss' first-name and last-name.
      */
-    private Boss()
+    private Boss ()
     {
         setFirstName("Boss");
         setLastName("of the Company");
@@ -29,9 +29,10 @@ public class Boss extends Person implements Jsonable
 
     /**
      * Retrieve the instance of the singleton class Boss <br/>
+     *
      * @return Boss instance
      */
-    public static Boss getBoss()
+    public static Boss getBoss ()
     {
         return bossInstance;
     }
@@ -39,20 +40,19 @@ public class Boss extends Person implements Jsonable
 
     /**
      * Creates a String representing a Boss instance <br/>
-     * Ex: 'Boss : [first-name] [last-name]'
+     *
      * @return String
      */
     @Override
-    public String toString()
+    public String toString ()
     {
-        return "Boss : " + getFirstName() + " " + getLastName();
+        return getFirstName() + " " + getLastName() + "(Boss)";
     }
 
-    public void loadFromDeserialization (Boss instance)
-    {
-        bossInstance = instance;
-    }
-
+    /**
+     * Load the boss data from a json object
+     * @param json the object containing the boss'data
+     */
     public static void loadFromJson (JSONObject json)
     {
         Boss obj = getBoss();

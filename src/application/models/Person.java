@@ -6,57 +6,94 @@ import application.lib.json.Jsonable;
 import org.json.simple.JSONObject;
 
 /**
- * Created by Robin on 27/03/2017.
+ * Created by Robin on 27/03/2017. <br/>
+ * This class represents every human person, such as the boss, the employees or the managers.
  */
 public abstract class Person implements Jsonable
 {
+    /** The JSON key containing the person's firstname value */
     protected static final String JSON_KEY_FIRSTNAME = "firstName";
+    /** The JSON key containing the person's lastname value */
     protected static final String JSON_KEY_LASTNAME = "lastName";
 
+    /** The person's firstname */
     private StringProperty firstName = new SimpleStringProperty(this, "firstName", "");
+    /** The person's lastname */
     private StringProperty lastName = new SimpleStringProperty(this, "lastName", "");
 
-
+    /**
+     * Default constructor <br/>
+     * Does nothing.
+     */
     public Person ()
     {
     }
 
+    /**
+     * 2 parameters constructor
+     * @param firstName the person's firstname
+     * @param lastName the person's lastname
+     */
     public Person (String firstName, String lastName)
     {
         this.firstName.setValue(formatName(firstName));
         this.lastName.setValue(formatName(lastName));
     }
 
+    /**
+     * Get the person's firstname
+     * @return the person's firstname
+     */
     public String getFirstName ()
     {
         return firstName.get();
     }
 
+    /**
+     * Get the person's firstname property which can be used for bindinds
+     * @return the person's firstname property
+     */
     public StringProperty firstNameProperty ()
     {
         return firstName;
     }
 
+
+    /**
+     * Change the person's firstname
+     * @param firstName the new firstname
+     */
     public Person setFirstName (String firstName)
     {
         this.firstName.set(formatName(firstName));
         return this;
     }
 
+    /**
+     * Get the person's lastname
+     * @return the person's lastname
+     */
     public String getLastName ()
     {
         return lastName.get();
     }
 
+    /**
+     * Get the person's lastname property which can be used for bindinds
+     * @return the person's lastname property
+     */
     public StringProperty lastNameProperty ()
     {
         return lastName;
     }
 
-    public Person setLastName (String lastName)
+    /**
+     * Change the person's lastname
+     * @param lastName the new lastname
+     */
+    public void setLastName (String lastName)
     {
         this.lastName.set(formatName(lastName));
-        return this;
     }
 
     /**
@@ -87,11 +124,16 @@ public abstract class Person implements Jsonable
         return json;
     }
 
-    private String formatName (String str)
+    /**
+     * Assure that the names values has the right format
+     * @param name the name to format
+     * @return the formmated name
+     */
+    private String formatName (String name)
     {
         String result = "";
 
-        String[] arraySpace = str.trim().split(" ");
+        String[] arraySpace = name.trim().split(" ");
 
         for (String s : arraySpace)
         {

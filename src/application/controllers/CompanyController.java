@@ -57,8 +57,8 @@ public class CompanyController extends BaseController
      * Update the company's information <br/>
      *
      * @param form the form containing the company's information.
-     * @return  - true : The company has been updated. <br>
-     *          - false : at least one field has been unvalidated, the company has not been updated.
+     * @return - true : The company has been updated. <br>
+     * - false : at least one field has been unvalidated, the company has not been updated.
      */
     @UpdateModel
     public boolean updateCompany (@NotNull Form form)
@@ -127,26 +127,29 @@ public class CompanyController extends BaseController
         fc.setInitialDirectory(new File("."));
         File file = fc.showOpenDialog(new Stage());
 
-        new Thread(() -> Platform.runLater(() ->
+        if (file != null)
         {
-            try
+            new Thread(() -> Platform.runLater(() ->
             {
-                Company.getCompany().loadEmployeesFromCSVFile(file);
+                try
+                {
+                    Company.getCompany().loadEmployeesFromCSVFile(file);
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setContentText("Your file has been imported succesfully!");
-                alert.show();
-            }
-            catch (Exception e)
-            {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Failure");
-                alert.setContentText("An error occurred, your file might have not been imported entirely.");
-                alert.show();
-                e.printStackTrace();
-            }
-        })).start();
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success");
+                    alert.setContentText("Your file has been imported succesfully!");
+                    alert.show();
+                }
+                catch (Exception e)
+                {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Failure");
+                    alert.setContentText("An error occurred, your file might have not been imported entirely.");
+                    alert.show();
+                    e.printStackTrace();
+                }
+            })).start();
+        }
     }
 
     /**
@@ -159,26 +162,29 @@ public class CompanyController extends BaseController
         fc.setInitialDirectory(new File("."));
         File file = fc.showOpenDialog(new Stage());
 
-        new Thread(() -> Platform.runLater(() ->
+        if (file != null)
         {
-            try
+            new Thread(() -> Platform.runLater(() ->
             {
-                Company.getCompany().loadDepartmentsFromCSVFile(file);
+                try
+                {
+                    Company.getCompany().loadDepartmentsFromCSVFile(file);
 
-                Alert alert = new Alert(Alert.AlertType.INFORMATION);
-                alert.setTitle("Success");
-                alert.setContentText("Your file has been imported succesfully!");
-                alert.show();
-            }
-            catch (Exception e)
-            {
-                Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Failure");
-                alert.setContentText("An error occurred, your file might have not be imported entirely.");
-                alert.show();
-                e.printStackTrace();
-            }
-        })).start();
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+                    alert.setTitle("Success");
+                    alert.setContentText("Your file has been imported succesfully!");
+                    alert.show();
+                }
+                catch (Exception e)
+                {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Failure");
+                    alert.setContentText("An error occurred, your file might have not be imported entirely.");
+                    alert.show();
+                    e.printStackTrace();
+                }
+            })).start();
+        }
     }
 
     /**
@@ -193,7 +199,10 @@ public class CompanyController extends BaseController
             fc.setInitialFileName("employees.csv");
             File dest = fc.showSaveDialog(new Stage());
 
-            Company.getCompany().saveEmployeesToCSV(dest);
+            if (dest != null)
+            {
+                Company.getCompany().saveEmployeesToCSV(dest);
+            }
         })).start();
     }
 
@@ -209,7 +218,10 @@ public class CompanyController extends BaseController
             fc.setInitialFileName("departments.csv");
             File dest = fc.showSaveDialog(new Stage());
 
-            Company.getCompany().saveDepartmentsToCSV(dest);
+            if (dest != null)
+            {
+                Company.getCompany().saveDepartmentsToCSV(dest);
+            }
         })).start();
     }
 }

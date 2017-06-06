@@ -15,15 +15,24 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 /**
- * Created by Robin on 21/05/2017.
+ * Created by Robin on 21/05/2017. <br/>
+ * This class represents the network part of the application that receives data from the emulator
  */
 public class Server extends ServerBuilder implements Runnable
 {
+    /**
+     * 1 parameter constructor
+     *
+     * @param config the config
+     */
     public Server (JSONObject config)
     {
         super(config);
     }
 
+    /**
+     * Runs the server which should receive from clients and answer to them.
+     */
     @Override
     public void run ()
     {
@@ -51,22 +60,20 @@ public class Server extends ServerBuilder implements Runnable
 
                         if (receive.equals(syncRequest))
                         {
+                            // It's a sync request
                             sendEmployeeList(out);
                             System.out.println(syncRequest + " done");
                         }
                         else
                         {
+                            // It's not a sync request, so it should be a check simulation
                             out.writeInt(0);
                             simulateCheck(receive);
                         }
 
                         client.close();
                     }
-                    catch (IOException e)
-                    {
-                        e.printStackTrace();
-                    }
-                    catch (Exception e)
+                    catch (java.lang.Exception e)
                     {
                         println("Exception");
                     }
@@ -76,21 +83,24 @@ public class Server extends ServerBuilder implements Runnable
         }
         catch (IOException e)
         {
-            e.printStackTrace();
+            System.err.println("An error occured while created during the communication");
         }
-        finally
+        
+        try
         {
-            try
-            {
-                serverSocket.close();
-            }
-            catch (IOException e)
-            {
-                e.printStackTrace();
-            }
+            serverSocket.close();
+        }
+        catch (IOException e)
+        {
+            System.err.println("The server socket couldn't be closed.");
         }
     }
 
+    /**
+     * Simulate a check for an employee with the received data. <br/>
+     * If the received data is incorrect, then is does nothing
+     * @param receive the data that should contain a employee's check information (ID and datetime)
+     */
     private synchronized void simulateCheck (String receive)
     {
         try
@@ -125,11 +135,18 @@ public class Server extends ServerBuilder implements Runnable
         }
         catch (ArrayIndexOutOfBoundsException | NumberFormatException e)
         {
-            System.err.println("check failed");
+            System.err.println("Failed to simulate a check");
         }
 
     }
 
+    /**
+     * Send the employee's list <br/>
+     * First, it sends an integer representing the number of employees that will be sent. <br/>
+     * then, foreach employees, it sends a string containg and employee's name and ID.
+     * @param out the destination out stream
+     * @throws IOException
+     */
     private void sendEmployeeList (DataOutputStream out) throws IOException
     {
         ObservableList<Employee> list = Company.getCompany().getEmployeesList();

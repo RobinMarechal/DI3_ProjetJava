@@ -17,7 +17,7 @@ import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.input.ScrollEvent;
-import javafx.scene.layout.HBox;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 
@@ -56,29 +56,37 @@ public class Template
     /** The scene */
     private Scene scene;
 
-
-    private HBox contentLayout;
-    private VBox principalLayout;
+    /** The frame layout that contains everything */
+    private BorderPane frameLayout;
+    /** The nav tab layout */
     private VBox tabLabelsLayout;
+    /** The top menu bar */
     private MenuBar menuBar;
+    /** Nav tab scroll pane */
     private ScrollPane leftScrollPane;
+    /** Center content scroll pane */
     private ScrollPane centerScrollPane;
 
+    /**
+     * Get the singleton instance
+     *
+     * @return the singleton instance
+     */
     public static Template getInstance ()
     {
         return instance;
     }
 
-    public static void setInstance (Template instance)
-    {
-        Template.instance = instance;
-    }
 
+    /**
+     * Default constructor <br/>
+     * Build the frame content
+     */
     private Template ()
     {
-        principalLayout = new VBox();
-        contentLayout = new HBox();
+        frameLayout = new BorderPane();
         tabLabelsLayout = new VBox();
+
         leftScrollPane = new ScrollPane();
         centerScrollPane = new ScrollPane();
 
@@ -86,7 +94,6 @@ public class Template
         controllers[Tabs.EMPLOYEES.ordinal()] = new EmployeesController();
         controllers[Tabs.STANDARD_DEPARTMENTS.ordinal()] = new DepartmentsController();
 
-        contentLayout.getStyleClass().add("b-principalLayout");
         leftScrollPane.getStyleClass().addAll("left-scrollpane");
         centerScrollPane.getStyleClass().addAll("center-scrollpane");
 
@@ -110,16 +117,27 @@ public class Template
         leftScrollPane.setMinWidth(LEFT_WIDTH);
         leftScrollPane.setPrefWidth(LEFT_WIDTH);
 
-        contentLayout.getChildren().addAll(leftScrollPane, centerScrollPane);
-        principalLayout.getChildren().addAll(menuBar, contentLayout);
+        // Addition of the menubar
+        Pane menuBarPane = new Pane();
+        menuBarPane.getChildren().add(menuBar);
+        frameLayout.setTop(menuBarPane);
+
+        // Displaying left and center contents
+        frameLayout.setLeft(leftScrollPane);
+        frameLayout.setCenter(centerScrollPane);
 
         // We load the company home view
         setView(Tabs.COMPANY, new HomeCompany(Company.getCompany(), SimpleDate.TODAY));
 
-        scene = new Scene(principalLayout);
+        // Then we create the scene with the frame layout and we add the stylesheet to it
+        frameLayout.getStyleClass().add("bg-transparent");
+        scene = new Scene(frameLayout);
         scene.getStylesheets().add("application/lib/views/style.css");
     }
 
+    /**
+     * Initialization of the left navigation bar
+     */
     private void initNavBar ()
     {
         Tabs enumValues[] = {
@@ -128,41 +146,55 @@ public class Template
                 Tabs.STANDARD_DEPARTMENTS
         };
 
-        for (Tabs tValue : enumValues)
+        // foreach tab
+        for (Tabs tabEnumValue : enumValues)
         {
-            int index = tValue.ordinal();
-            String str = tValue.toString();
+            int    index = tabEnumValue.ordinal();
+            String str   = tabEnumValue.toString();
 
+            // The nav bar is composed by SlidingLabel
             navTabs[index] = new SlidingLabel(str);
 
+            // We set the shapes and the positions
             navTabs[index].setInitialPadding(new Insets(10, 0, 10, 20));
             navTabs[index].setAdditionalPadding(new Insets(0, 0, 0, 10));
             navTabs[index].prepareAnimation();
             navTabs[index].setMaxWidth(Double.MAX_VALUE);
 
+            // Preparation of the click evet
             navTabs[index].setOnMouseClicked(e ->
             {
-                loadHomeView(tValue);
+                loadHomeView(tabEnumValue);
                 selectedTab = navTabs[index];
             });
         }
 
+        // Then we add all navtabs, with a css class
         tabLabelsLayout.getChildren().addAll(navTabs);
         tabLabelsLayout.getStyleClass().add("navbar");
-        tabLabelsLayout.setPrefWidth(LEFT_WIDTH + 5);
+        tabLabelsLayout.setPrefWidth(LEFT_WIDTH);
     }
 
+    /**
+     * Initialization of the top menu bar
+     */
     private void initMenuBar ()
     {
-        MenuItem itemAddEmployee = new MenuItem("Employee");
+        // Creation of the menu items
+        // Add...
+        MenuItem itemAddEmployee   = new MenuItem("Employee");
         MenuItem itemAddDepartment = new MenuItem("Department");
 
-        MenuItem itemExportEmployeesToCSV = new MenuItem("Employees & checks");
+        // Export...
+        MenuItem itemExportEmployeesToCSV   = new MenuItem("Employees & checks");
         MenuItem itemExportDepartmentsToCSV = new MenuItem("Departments");
 
-        MenuItem itemImportEmployeesCSV = new MenuItem("Employees & checks");
+        // Import...
+        MenuItem itemImportEmployeesCSV   = new MenuItem("Employees & checks");
         MenuItem itemImportDepartmentsCSV = new MenuItem("Departments");
 
+
+        // Preparation of the events
         itemAddEmployee.setOnAction(event -> new EmployeesController().openCreationEmployeeDialog());
         itemAddDepartment.setOnAction(event -> new DepartmentsController().openCreationDepartmentDialog());
 
@@ -172,6 +204,7 @@ public class Template
         itemImportEmployeesCSV.setOnAction(event -> new CompanyController().importEmployeesCSV());
         itemImportDepartmentsCSV.setOnAction(event -> new CompanyController().importDepartmentsCSV());
 
+        // Creation of the menus
         Menu menuAdd = new Menu("Add...");
         menuAdd.getItems().addAll(itemAddEmployee, itemAddDepartment);
 
@@ -181,9 +214,15 @@ public class Template
         Menu menuImport = new Menu("Import...");
         menuImport.getItems().addAll(itemImportEmployeesCSV, itemImportDepartmentsCSV);
 
+        // We finally add all menus to the menubar
         menuBar = new MenuBar(menuAdd, menuExport, menuImport);
     }
 
+    /**
+     * Load the home view for a given tab
+     *
+     * @param wanted the wanted content
+     */
     private void loadHomeView (Tabs wanted)
     {
         int index = wanted.ordinal();
@@ -194,30 +233,48 @@ public class Template
         }
     }
 
+    /**
+     * Get the scene
+     *
+     * @return the scene
+     */
     public Scene getScene ()
     {
         return scene;
     }
 
-    public Template setView (Tabs enumTab, BaseViewController view)
+    /**
+     * Change the actual view
+     *
+     * @param enumTab The navigation bar tab that is concerned
+     * @param view    The view to display
+     */
+    public void setView (Tabs enumTab, BaseViewController view)
     {
         Pane pane = view.getPane();
+
         ObservableList<Node> children = tabLabelsLayout.getChildren();
 
+        // We remove the CSS class "selected" for every nav tab which has it
         children.stream()
                 .filter(n -> n.getStyleClass().contains("selected"))
                 .forEach(n -> n.getStyleClass().remove("selected"));
 
+        // We add the CSS class "selected" to the new selected nav tab
         children.get(enumTab.ordinal()).getStyleClass().add("selected");
 
         pane.setPrefHeight(Template.STAGE_HEIGHT);
         pane.setPrefWidth(Template.CENTER_WIDTH);
 
+        // Then we change the content
         centerScrollPane.setContent(pane);
-
-        return this;
     }
 
+    /**
+     * Get the selected tab
+     *
+     * @return the selected tab
+     */
     public Node getSelectedTab ()
     {
         return selectedTab;

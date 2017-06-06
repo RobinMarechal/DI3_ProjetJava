@@ -21,28 +21,23 @@ import static fr.etu.univtours.marechal.SimpleDate.fromSimpleDateTime;
  */
 public class CheckInOut implements Jsonable
 {
+    /** JSON key for check data */
     protected static final String JSON_KEY_DATE = "date";
+    /** JSON key for check in time */
     protected static final String JSON_KEY_ARRIVED_AT = "arrivedAt";
+    /** JSON key for check out time */
     protected static final String JSON_KEY_LEFT_AT = "leftAt";
 
-    /**
-     * The time (HH:MM) when this employee arrived at work this day
-     */
+    /** The time (HH:MM) when this employee arrived at work this day (rounded to nearest quarter) */
     private ObjectProperty<SimpleTime> arrivedAt = new SimpleObjectProperty<>(this, "arrivedAt");
 
-    /**
-     * The time (HH:MM) when this employee left work this day
-     */
+    /** The time (HH:MM) when this employee left work this day (rounded to nearest quarter) */
     private ObjectProperty<SimpleTime> leftAt = new SimpleObjectProperty<>(this, "leftAt");
 
-    /**
-     * The date of the working day
-     */
+    /** The date of the working day  */
     private ObjectProperty<SimpleDate> date = new SimpleObjectProperty<>(this, "date");
 
-    /**
-     * The employee who checked-in/out.
-     */
+    /** The employee who checked-in/out. */
     private final Employee employee;
 
 
@@ -134,14 +129,13 @@ public class CheckInOut implements Jsonable
         return date.getValue();
     }
 
+    /**
+     * Get the date property which can be used for bindings
+     * @return the date property
+     */
     public ObjectProperty<SimpleDate> dateProperty ()
     {
         return date;
-    }
-
-    public void setDate (SimpleDate date)
-    {
-        this.date.set(date);
     }
 
     /**
@@ -257,6 +251,12 @@ public class CheckInOut implements Jsonable
         return checkObject;
     }
 
+    /**
+     * Load a {@link CheckInOut} instance from a json object
+     * @param employee the employee who has this check
+     * @param obj the json object containing the information
+     * @return the new created CheckInOut instance
+     */
     public static CheckInOut loadFromJson (Employee employee, JSONObject obj)
     {
         LocalDate localDate = LocalDate.parse(obj.get(JSON_KEY_DATE)

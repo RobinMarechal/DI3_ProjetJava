@@ -9,12 +9,12 @@ import org.json.simple.JSONObject;
 import java.util.stream.Collectors;
 
 /**
- * Created by Robin on 27/03/2017.
+ * Created by Robin on 27/03/2017.<br/>
+ * This class is a singleton representin the company's management department. <br/>
+ * It contains only managers and is managed by the boss of the company
  */
 public class ManagementDepartment extends VirtualDepartment<Manager> implements Jsonable
 {
-    protected final static String JSON_KEY_MANAGERS = "managers";
-
     /** Instance of the ManagementDepartment singleton class */
     private static ManagementDepartment managementDepartmentInstance = new ManagementDepartment();
 
@@ -30,7 +30,7 @@ public class ManagementDepartment extends VirtualDepartment<Manager> implements 
     }
 
     /**
-     * Basic constructor
+     * Default constructor
      */
     private ManagementDepartment ()
     {
@@ -40,7 +40,7 @@ public class ManagementDepartment extends VirtualDepartment<Manager> implements 
     /**
      * Retrieve the number of managers in the Company
      *
-     * @return
+     * @return the number of managers in the company
      */
     public int getNbManagers ()
     {
@@ -76,13 +76,19 @@ public class ManagementDepartment extends VirtualDepartment<Manager> implements 
         return this.employees;
     }
 
-    public ObservableList<Manager> getManagersThatDontManage()
+    /**
+     * Get a list containing all the managers that don't manage any department.
+     *
+     * @return a list containing all the managers that don't manage any department.
+     */
+    public ObservableList<Manager> getManagersThatDontManage ()
     {
         final ObservableList<Manager> list = employees.stream()
-                                                        .filter(manager -> manager.getManagedDepartment() == null)
-                                                        .collect(Collectors.toCollection(FXCollections::observableArrayList));
+                                                      .filter(manager -> manager.getManagedDepartment() == null)
+                                                      .collect(Collectors.toCollection(FXCollections::observableArrayList));
 
-        getEmployees().addListener(new ListChangeListener<Manager>() {
+        getEmployees().addListener(new ListChangeListener<Manager>()
+        {
             @Override
             public void onChanged (Change<? extends Manager> c)
             {
@@ -90,8 +96,8 @@ public class ManagementDepartment extends VirtualDepartment<Manager> implements 
                 {
                     list.clear();
                     list.addAll(employees.stream()
-                                                 .filter(manager -> manager.getManagedDepartment() == null)
-                                                 .collect(Collectors.toCollection(FXCollections::observableArrayList)));
+                                         .filter(manager -> manager.getManagedDepartment() == null)
+                                         .collect(Collectors.toCollection(FXCollections::observableArrayList)));
                 }
             }
         });
@@ -109,7 +115,7 @@ public class ManagementDepartment extends VirtualDepartment<Manager> implements 
     {
         if (manager != null && !employees.contains(manager))
         {
-//            this.employees.add(manager);
+            //            this.employees.add(manager);
             int     id    = manager.getId();
             boolean added = false;
             for (int i = 0; i < employees.size() && !added; i++)
@@ -130,6 +136,13 @@ public class ManagementDepartment extends VirtualDepartment<Manager> implements 
         return this;
     }
 
+    /**
+     * Create a {@link Manager} instance from an {@link Employee} one. <br/>
+     * The newly created manager contains the exact same data as the employee one, including the ID.<br/>
+     * The Employee instance is deleted.
+     * @param employee the employee promote
+     * @return the newly created manager
+     */
     public Manager addEmployeeAsManager (Employee employee)
     {
         if (employee instanceof Manager)
@@ -233,11 +246,10 @@ public class ManagementDepartment extends VirtualDepartment<Manager> implements 
         return getName() + " : activity sector : " + getActivitySector() + ", managed by the " + Boss.getBoss();
     }
 
-    public void loadFromDeserialization (ManagementDepartment instance)
-    {
-        this.managementDepartmentInstance = instance;
-    }
-
+    /**
+     * Load the management department data from a JSON object.
+     * @param json the JSON object containg the management department information
+     */
     public static void loadFromJson (JSONObject json)
     {
         ManagementDepartment obj = getManagementDepartment();

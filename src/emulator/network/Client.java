@@ -37,6 +37,7 @@ public class Client extends ClientBuilder implements Runnable
     public Client (Stage window, JSONObject config)
     {
         super(config);
+        initialize();
         setWindow(window);
         startClient();
     }
@@ -50,6 +51,10 @@ public class Client extends ClientBuilder implements Runnable
     {
         try
         {
+            // We create the folders if they doesn't exist yet
+            String dirPath = serializationFilePath.substring(0, serializationFilePath.lastIndexOf("/"));
+            new File(dirPath).mkdirs();
+
             FileOutputStream   fileOut = new FileOutputStream(serializationFilePath);
             ObjectOutputStream out     = new ObjectOutputStream(fileOut);
             out.writeObject(this);
@@ -87,8 +92,7 @@ public class Client extends ClientBuilder implements Runnable
         }
         catch (Exception e)
         {
-            System.out.println("Client emulator deserialization failed");
-            e.printStackTrace();
+            System.out.println("Client emulator deserialization failed, maybe the serialization file doesn't exist");
             client = new Client(window, config);
         }
 

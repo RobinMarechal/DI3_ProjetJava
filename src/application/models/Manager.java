@@ -6,13 +6,12 @@ import application.lib.json.Jsonable;
 import org.json.simple.JSONObject;
 
 /**
- * Created by Robin on 27/03/2017.
+ * Created by Robin on 27/03/2017. <br/>
+ * This class represent a manager of the company
  */
 public class Manager extends Employee implements Jsonable
 {
-    /**
-     * The {@link StandardDepartment} instance managed by this manager
-     */
+    /** The {@link StandardDepartment} instance managed by this manager */
     private ObjectProperty<StandardDepartment> managedDepartment = new SimpleObjectProperty<>(this, "managedDepartment", null);
 
     /**
@@ -74,7 +73,7 @@ public class Manager extends Employee implements Jsonable
     @Override
     public Manager fire () throws Exception
     {
-        if(managedDepartment != null)
+        if (managedDepartment != null)
         {
             throw new Exception("Failed to fire the manager, he is still managing a department.");
         }
@@ -110,34 +109,15 @@ public class Manager extends Employee implements Jsonable
     }
 
     /**
-     * Modifies the managed department.
+     * Modifies the managed department. <br/>
+     * <b>WARNING: this method is unsafe and should only be used by StandardDepartment's methods.</b>
      *
      * @param managedDepartment the new managed department
      * @return this
-     * @warning this method is unsafe and should only be used by StandardDepartment's methods.
      */
     protected Manager setManagedDepartment (StandardDepartment managedDepartment)
     {
         this.managedDepartment.setValue(managedDepartment);
         return this;
-        /*
-        if(this.managedDepartment != null)
-        {
-            StandardDepartment tmp = this.managedDepartment;
-            this.managedDepartment = managedDepartment;
-            tmp.setManager(null);
-        }
-
-        this.managedDepartment = managedDepartment;
-
-        return this;*/
     }
-
-//    public static Manager loadFromJson (Object json) throws Exception
-//    {
-//        int id = Integer.parseInt(json.toString());
-//        Employee employee = Company.getCompany().getEmployee(id);
-//        return employee.upgradeToManager();
-//    }
-
 }

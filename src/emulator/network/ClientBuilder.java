@@ -17,14 +17,14 @@ public class ClientBuilder implements Serializable
     private static final long serialVersionUID = -783484054127761751L;
 
     protected transient Socket socketClient;
-    protected int sleepDuration;
-    protected int syncFrequency;
-    protected String hostname;
-    protected int port;
-    protected String syncRequest;
-    protected String employeeDataFormat;
-    protected String checkDataFormat;
-    protected String dateTimeFormat;
+    protected int sleepDuration = 50;
+    protected int syncFrequency = 50;
+    protected String hostname = "localhost";
+    protected int port = 8888;
+    protected String syncRequest = "SYNC";
+    protected String employeeDataFormat = "{id};{name}";
+    protected String checkDataFormat = "{datetime};{id}";
+    protected String dateTimeFormat = "yyyy-MM-dd HH:mm";
 
     protected transient BooleanProperty isServerOnline;
 
@@ -50,10 +50,10 @@ public class ClientBuilder implements Serializable
 
     public void setConfig (JSONObject config)
     {
-        JSONObject network = (JSONObject) config.get("network");
-
-        if (network != null)
+        try
         {
+            JSONObject network = (JSONObject) config.get("network");
+
             this.port = Integer.parseInt(network.get("port").toString());
             this.hostname = (String) network.get("hostname");
             this.syncRequest = (String) network.get("sync_request");
@@ -62,6 +62,10 @@ public class ClientBuilder implements Serializable
             this.dateTimeFormat = (String) network.get("datetime_format");
             this.sleepDuration = Integer.parseInt(network.get("sleep_duration").toString());
             this.syncFrequency = Integer.parseInt(network.get("sync_frequency").toString());
+        }
+        catch (NullPointerException e)
+        {
+            System.err.println("Network configurations load failed, the file might not exist or might be wrongly constructed");
         }
     }
 

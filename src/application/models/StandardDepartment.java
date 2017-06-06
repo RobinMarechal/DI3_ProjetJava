@@ -15,11 +15,14 @@ import org.json.simple.JSONObject;
 import java.util.stream.Collectors;
 
 /**
- * Created by Robin on 27/03/2017.
+ * Created by Robin on 27/03/2017.<br/>
+ * This class represents a standard working department
  */
 public class StandardDepartment extends VirtualDepartment<Employee> implements Jsonable, CSVBuilder
 {
+    /** The JSON key containing the department's ID value */
     protected static final String JSON_KEY_ID = "id";
+    /** The JSON key containing the department's manager ID value */
     protected static final String JSON_KEY_MANAGER = "manager";
 
     /** The ID of the next instance */
@@ -106,6 +109,9 @@ public class StandardDepartment extends VirtualDepartment<Employee> implements J
         return StandardDepartment.NEXT_ID;
     }
 
+    /**
+     * Update the next ID value in order to give a unique ID to each department
+     */
     private static void updateNextId ()
     {
         final ObservableList<StandardDepartment> employees = Company.getCompany().getStandardDepartmentsList();
@@ -259,11 +265,21 @@ public class StandardDepartment extends VirtualDepartment<Employee> implements J
         return manager.getValue();
     }
 
+    /**
+     * Get the department's ID property
+     *
+     * @return the department's ID property
+     */
     public IntegerProperty idProperty ()
     {
         return id;
     }
 
+    /**
+     * Get the department's manager object property
+     *
+     * @return the department's manager object property
+     */
     public ObjectProperty<Manager> managerProperty ()
     {
         return manager;
@@ -323,6 +339,12 @@ public class StandardDepartment extends VirtualDepartment<Employee> implements J
         return employees;
     }
 
+    /**
+     * Create a standard department based on data contained in a JSON object
+     *
+     * @param json the JSON object containing the departments information
+     * @return the newly created department
+     */
     public static StandardDepartment loadFromJson (JSONObject json)
     {
         String    name          = json.get(JSON_KEY_NAME).toString();
@@ -348,6 +370,11 @@ public class StandardDepartment extends VirtualDepartment<Employee> implements J
         return dep;
     }
 
+    /**
+     * Create {@link CSVLine} instances containg all the departments information, including the list of employees,
+     * then add them to the {@link CSVParser} passed as a parameter
+     * @param parser the parser to fill
+     */
     @Override
     public void buildCSV (CSVParser parser)
     {

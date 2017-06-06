@@ -33,20 +33,25 @@ import java.util.stream.Collectors;
 public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
 {
 
-    /**
-     *
-     */
+    /** Serialization version UID */
     private static final long serialVersionUID = 1697406778784975282L;
+
+    /** Serialization file path */
     private String serializationFilePath;
 
-    /** JSON object name keys */
+    /** JSON key for company object */
     private static final String JSON_KEY_COMPANY = "company";
-
+    /** JSON key for boss object */
     private static final String JSON_KEY_BOSS = "boss";
+    /** JSON key for management department object */
     private static final String JSON_KEY_MANAGEMENT_DEPARTMENT = "managementDepartment";
+    /** JSON key for employees array */
     private static final String JSON_KEY_EMPLOYEES = "employees";
+    /** JSON key for managers array */
     private static final String JSON_KEY_MANAGERS = "managers";
+    /** JSON key for standard departments array */
     private static final String JSON_KEY_STANDARD_DEPARTMENTS = "standardDepartments";
+    /** JSON key for company name value */
     private static final String JSON_KEY_COMPANY_NAME = "name";
 
 
@@ -133,6 +138,11 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
         return name.getValueSafe();
     }
 
+    /**
+     * Get the name property which can be used for bindings
+     *
+     * @return the name property
+     */
     public StringProperty nameProperty ()
     {
         return name;
@@ -615,11 +625,21 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
         return getTotalChecksInAt(date) + getTotalChecksOutAt(date);
     }
 
+    /**
+     * Get the {@link ObservableMap} that contains the number of checks in per day
+     *
+     * @return the {@link ObservableMap} that contains the number of checks in per day
+     */
     public ObservableMap<SimpleDate, Integer> getTotalChecksInPerDay ()
     {
         return totalChecksInPerDay;
     }
 
+    /**
+     * Get the {@link ObservableMap} that contains the number of checks out per day
+     *
+     * @return the {@link ObservableMap} that contains the number of checks out per day
+     */
     public ObservableMap<SimpleDate, Integer> getTotalChecksOutPerDay ()
     {
         return totalChecksOutPerDay;
@@ -682,13 +702,6 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
         // ----------------- Employees -----------------
         JSONArray empArray = employees.stream().map(Employee::toJson).collect(Collectors.toCollection(JSONArray::new));
         json.put(JSON_KEY_EMPLOYEES, empArray);
-
-        // ----------------- Managers -----------------
-        //        JSONArray manArray = managementDepartmentInstance.getManagersList()
-        //                                                         .stream()
-        //                                                         .map(Manager::toJson)
-        //                                                         .collect(Collectors.toCollection(JSONArray::new));
-        //        json.put(JSON_KEY_MANAGERS, manArray);
 
         // ----------------- Standard Departments -----------------
         JSONArray depArray = departments.stream().map(StandardDepartment::toJson).collect(Collectors.toCollection(JSONArray::new));
@@ -793,6 +806,9 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
         loadStandardDepartments((JSONArray) json.get(JSON_KEY_STANDARD_DEPARTMENTS));
     }
 
+    /**
+     * Load the company's data (including employees, departments etc...) from a serialization file
+     */
     public void deserialize ()
     {
         File f = new File(serializationFilePath);
@@ -821,10 +837,17 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
         }
     }
 
+    /**
+     * Serialize the company's data (including employees, departments etc...) into a file
+     */
     public void serialiaze ()
     {
         try
         {
+            // We create the folders if they doesn't exist yet
+            String dirPath = serializationFilePath.substring(0, serializationFilePath.lastIndexOf("/"));
+            new File(dirPath).mkdirs();
+
             File               f       = new File(serializationFilePath);
             FileOutputStream   fileOut = new FileOutputStream(f);
             ObjectOutputStream out     = new ObjectOutputStream(fileOut);
@@ -843,64 +866,13 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
         }
     }
 
-    //    private void deserialize ()
-    //    {
-    //        Company tmp = null;
-    //        try
-    //        {
-    //            File              f      = new File(serializationFilePath);
-    //            FileInputStream   fileIn = new FileInputStream(f);
-    //            ObjectInputStream in     = new ObjectInputStream(fileIn);
-    //            tmp = (Company) in.readObject();
-    //            in.close();
-    //            fileIn.close();
-    //
-    //            name = tmp.name;
-    //            employees = tmp.employees;
-    //            departments = tmp.departments;
-    //            totalChecksOutPerDay = tmp.totalChecksOutPerDay;
-    //            totalChecksInPerDay = tmp.totalChecksInPerDay;
-    //
-    //            int maxId = -1;
-    //            for (Employee e : employees)
-    //            {
-    //                int id = e.getId();
-    //                if (id > maxId)
-    //                {
-    //                    maxId = id;
-    //                }
-    //            }
-    //
-    //            maxId = Collections.max(employees.stream().map(Employee::getId).collect(Collectors.toList()));
-    //
-    //            Employee.setNextId(maxId + 1);
-    //
-    //            maxId = -1;
-    //            for (StandardDepartment d : departments)
-    //            {
-    //                int id = d.getId();
-    //                if (id > maxId)
-    //                {
-    //                    maxId = id;
-    //                }
-    //            }
-    //
-    //            StandardDepartment.setNextId(maxId + 1);
-    //
-    //            bossInstance.loadFromDeserialization(tmp.bossInstance);
-    //            bossInstance = Boss.getBoss();
-    //
-    //            managementDepartmentInstance.loadFromDeserialization(tmp.managementDepartmentInstance);
-    //            managementDepartmentInstance = ManagementDepartment.getManagementDepartment();
-    //        }
-    //        catch (Exception e)
-    //        {
-    //            System.out.println("Deserialization failed...");
-    //            System.err.println(e.getMessage());
-    //        }
-    //    }
-
-    public void incrementChecksOutAt (SimpleDate date)
+    /**
+     * Increment the number of checks out at a specific date <br/>
+     * This should only be used by {@link CheckInOut} when a check out is performed.
+     *
+     * @param date the date of the check out
+     */
+    void incrementChecksOutAt (SimpleDate date)
     {
         int total = 0;
         if (totalChecksOutPerDay.containsKey(date))
@@ -911,7 +883,13 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
         totalChecksOutPerDay.put(date, total + 1);
     }
 
-    public void incrementChecksInAt (SimpleDate date)
+    /**
+     * Increment the number of checks in at a specific date <br/>
+     * This should only be used by {@link CheckInOut} when a check in is performed.
+     *
+     * @param date the date of the check in
+     */
+    void incrementChecksInAt (SimpleDate date)
     {
         int total = 0;
         if (totalChecksInPerDay.containsKey(date))
@@ -922,7 +900,14 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
         totalChecksInPerDay.put(date, total + 1);
     }
 
-    public void decrementChecksOutAt (SimpleDate date)
+    /**
+     * Decrement the number of checks out at a specific date <br/>
+     * This should only be called when a {@link CheckInOut} is deleted, <br/>
+     * which should only happen when an employee is fired
+     *
+     * @param date the date of the check out
+     */
+    void decrementChecksOutAt (SimpleDate date)
     {
         int total = 0;
         if (totalChecksOutPerDay.containsKey(date))
@@ -933,7 +918,14 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
         totalChecksOutPerDay.put(date, total - 1);
     }
 
-    public void decrementChecksInAt (SimpleDate date)
+    /**
+     * Decrement the number of checks in at a specific date <br/>
+     * This should only be called when a {@link CheckInOut} is deleted, <br/>
+     * which should only happen when an employee is fired
+     *
+     * @param date the date of the check in
+     */
+    void decrementChecksInAt (SimpleDate date)
     {
         int total = 0;
         if (totalChecksInPerDay.containsKey(date))
@@ -944,6 +936,10 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
         totalChecksInPerDay.put(date, total - 1);
     }
 
+    /**
+     * Get the list of the employees who have not any department
+     * @return the list of the employees who have not any department
+     */
     public ObservableList<Employee> getEmployeesWithoutDepartment ()
     {
         ObservableList<Employee> list = employees.stream()
@@ -968,6 +964,10 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
         return list;
     }
 
+    /**
+     * Save the list of employees into a CSV file
+     * @param file the destination file
+     */
     public void saveEmployeesToCSV (File file)
     {
         CSVParser parser         = new CSVParser();
@@ -993,6 +993,10 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
         saveCSVToFile(file, parser);
     }
 
+    /**
+     * Save the list of departments into a CSV file
+     * @param file the destination file
+     */
     public void saveDepartmentsToCSV (File file)
     {
         CSVParser parser           = new CSVParser();
@@ -1017,7 +1021,12 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
         saveCSVToFile(file, parser);
     }
 
-    public void loadEmployeesFromCSVFile (File file) throws Exception
+    /**
+     * Load employees and their checks from a CSV file
+     * @param file the source file
+     * @throws FileNotFoundException if the file has not been found
+     */
+    public void loadEmployeesFromCSVFile (File file) throws FileNotFoundException
     {
         final CSVParser parser = CSVParser.loadFromFile(file);
 
@@ -1034,11 +1043,16 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
 
             if (employee == null)
             {
+                // Creation of an employee
+
+                // We try to get the already existing employee with this id
                 int id = Integer.parseInt(line.get(0));
                 employee = getEmployee(id);
 
+                // If not employee exists with this ID
                 if (employee == null)
                 {
+                    // If there are not all information
                     if (line.size() < 6)
                     {
                         continue;
@@ -1046,17 +1060,17 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
 
                     String firstName = line.get(1);
                     String lastName  = line.get(2);
-
                     boolean isManager = Boolean.valueOf(line.get(3));
-
                     String shStr = line.get(4);
                     String ehStr = line.get(5);
 
+                    // if time has format H:mm, we add a 0 to transform it to HH:mm format
                     if (shStr.charAt(1) == ':')
                     {
                         shStr = "0" + shStr;
                     }
 
+                    // if time has format H:mm, we add a 0 to transform it to HH:mm format
                     if (ehStr.charAt(1) == ':')
                     {
                         ehStr = "0" + ehStr;
@@ -1067,13 +1081,16 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
 
                     if (id < 0)
                     {
+                        // Invalid id, we create a new Employee without specified ID
                         employee = new Employee(firstName, lastName);
                     }
                     else
                     {
+                        // valid id, we create a new Employee with the specified ID
                         employee = new Employee(firstName, lastName, id);
                     }
 
+                    // If the employee should be a manager, we upgrade it
                     if (isManager)
                     {
                         employee = employee.upgradeToManager();
@@ -1085,17 +1102,20 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
             }
             else
             {
+                // it's a check int/out line
+
                 if (employee != null)
                 {
+                    // If all information are not specified
                     if (line.size() < 2)
                     {
                         continue;
                     }
 
                     SimpleDate date = SimpleDate.fromLocalDate(LocalDate.parse(line.get(0), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-
                     String checkInStr = line.get(1);
 
+                    // if time has format H:mm, we add a 0 to transform it to HH:mm format
                     if (checkInStr.charAt(1) == ':')
                     {
                         checkInStr = "0" + checkInStr;
@@ -1103,18 +1123,24 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
 
                     SimpleTime checkIn = SimpleTime.fromLocalTime(LocalTime.parse(checkInStr, DateTimeFormatter.ofPattern("HH:mm")));
 
+                    // We perform the check in
                     employee.doCheck(SimpleDateTime.fromDateAndTime(date, checkIn));
 
                     SimpleTime checkOut;
                     if (line.size() >= 3)
                     {
+                        // A check out is also specified
                         String checkOutStr = line.get(2);
+
+                        // if time has format H:mm, we add a 0 to transform it to HH:mm format
                         if (checkOutStr.charAt(1) == ':')
                         {
                             checkOutStr = "0" + checkOutStr;
                         }
 
                         checkOut = SimpleTime.fromLocalTime(LocalTime.parse(checkOutStr, DateTimeFormatter.ofPattern("HH:mm")));
+
+                        // We perfom the check out
                         employee.doCheck(SimpleDateTime.fromDateAndTime(date, checkOut));
                     }
                 }
@@ -1122,7 +1148,13 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
         }
     }
 
-    public void loadDepartmentsFromCSVFile (File file) throws Exception
+
+    /**
+     * Load departments and their employees from a CSV file
+     * @param file the source file
+     * @throws FileNotFoundException if the file has not been found
+     */
+    public void loadDepartmentsFromCSVFile (File file) throws FileNotFoundException
     {
         final CSVParser parser = CSVParser.loadFromFile(file);
 
@@ -1139,32 +1171,39 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
 
             if (dep == null)
             {
+                // If not all information are specified
                 if (line.size() < 4)
                 {
                     continue;
                 }
 
+                // We try to retrieve a department with this ID
                 int id = Integer.parseInt(line.get(0));
                 dep = getStandardDepartment(id);
 
                 if (dep == null)
                 {
+                    // No department found, we create a new one
                     String name   = line.get(1);
                     String sector = line.get(2);
                     int    manId  = Integer.parseInt(line.get(3));
 
                     if (id < 0)
                     {
+                        // ID invalid, we create it with auto increment ID
                         dep = new StandardDepartment(name, sector);
                     }
                     else
                     {
+                        // ID valid, we create it with specified ID
                         dep = new StandardDepartment(name, sector, id);
                     }
 
+                    // We add the manager to the departemnt...
                     Employee empMan = getEmployee(manId);
                     if (empMan != null)
                     {
+                        //... if he exists
                         Manager manager = empMan.upgradeToManager();
                         dep.setManager(manager);
                     }
@@ -1172,18 +1211,19 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
             }
             else
             {
+                // Its the employees line
                 for (String idStr : line)
                 {
+                    // foreach value, we try to get to Employee with the ID specified
                     int      id = Integer.parseInt(idStr);
                     Employee e  = getEmployee(id);
                     if (e != null)
                     {
+                        // If we found one (if he exits), we add it to the department
                         dep.addEmployee(e);
                     }
                 }
             }
-
-
         }
     }
 }
