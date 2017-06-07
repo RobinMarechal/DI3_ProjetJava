@@ -1,0 +1,154 @@
+.navbar .label{
+    -fx-font-size: 15px;
+    -fx-cursor: hand;
+}
+
+.label{
+    -fx-font-familly: Arial;
+}
+
+.h2{
+    -fx-font-size:22px;
+    -fx-padding:10px 0;
+    -fx-margin: 10px 10px !important;
+}
+
+.h3{
+    -fx-font-size:20px;
+    -fx-padding: 10px 0;
+    -fx-margin: 5px 5px;
+}
+
+.p{
+    -fx-font-size:16px;
+    -fx-padding:5px 0;
+    -fx-margin:5px 5px;
+}
+
+.navbar{
+    -fx-background-color:white !important;
+}
+
+.navbar .label:hover{
+    -fx-background-color: rgba(0, 150, 201, 0.6) !important;
+}
+
+.navbar .label.selected{
+    -fx-background-color: rgb(0, 150, 201) !important;
+}
+
+.left-scrollpane{
+    -fx-fit-to-height:true;
+}
+
+.bg-transparent{
+    -fx-background-color: white;
+}
+
+.btn{
+    -fx-padding: 10px;
+    -fx-margin: 0 30px;
+    -fx-font-size:16px;
+}
+
+.btn:hover, .btn-primary:hover{
+    -fx-cursor:hand;
+}
+
+.btn-primary{
+    -fx-background-color: rgb(52, 73, 94);
+}
+
+.btn-primary:hover{
+    -fx-background-color: rgb(44, 62, 80);
+}
+
+.button{
+    -fx-cursor: hand;
+}
+
+.menu-bar{
+    -fx-background-color:white;
+}
+
+#table .table-cell{
+    -fx-alignment : CENTER;
+
+}
+
+.text-red{
+    -fx-text-fill: red;
+}
+
+.text-green{
+    -fx-text-fill: green;
+}
+
+.text-blue{
+    -fx-text-fill: blue;
+}
+
+.mouse-hand{
+    -fx-cursor: hand;
+}
+
+.link:hover, .table-cell:hover .link{
+    -fx-underline:true;
+    -fx-cursor: hand;
+}
+
+.employees-list .table-row-cell:empty:hover{
+    -fx-cursor: default !important;
+}
+
+.employees-list .table-row-cell:hover{
+    -fx-cursor: hand;
+}
+
+.text-bold{
+    -fx-font-weight:bold;
+}
+
+.text-italic{
+    -fx-font-style: italic;
+}
+
+.text-big{
+    -fx-font-size: 18;
+}
+
+.text-white{
+    -fx-text-fill: white;
+}
+
+.border-red{
+    -fx-border-color:red;
+}
+
+.input-invalid{
+    -fx-border-color: rgba(200, 0, 0, 0.4);
+    -fx-background-color: rgba(200,0,0,0.1);
+    -fx-border-radius: 2px;
+    -fx-border-width: 2px;
+}
+
+
+.btn-danger{
+    -fx-background-color: rgb(160, 50, 50);
+}
+
+.btn-danger:hover{
+    -fx-background-color: rgb(150, 40, 40);
+}
+
+.text-underline{
+    -fx-underline: true;
+}
+
+.input-title{
+    -fx-font-size:  16px;
+}
+
+.btn-desactivated{
+    -fx-opacity: 0.65 !important;
+}

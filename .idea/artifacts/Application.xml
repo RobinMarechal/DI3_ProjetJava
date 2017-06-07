@@ -1,25 +1,24 @@
 <component name="ArtifactManager">
-  <artifact type="javafx" name="Application">
-    <output-path>$PROJECT_DIR$/../../../../../../projet/Application</output-path>
+  <artifact type="javafx" build-on-make="true" name="Application">
+    <output-path>$PROJECT_DIR$/../../../../../../ProjetJava/App</output-path>
     <properties id="javafx-properties">
       <options>
-        <option name="appClass" value="application.ApplicationMain" />
+        <option name="appClass" value="src.ApplicationMain" />
         <option name="description" value="" />
         <option name="htmlPlaceholderId" value="" />
-        <option name="title" value="Application" />
+        <option name="title" value="" />
         <option name="vendor" value="" />
-        <option name="version" value="1" />
+        <option name="version" value="" />
       </options>
     </properties>
     <root id="root">
-      <element id="archive" name="DI3_ProjetJava.jar">
-        <element id="module-output" name="DI3_ProjetJava" />
+      <element id="archive" name="Application.jar">
+        <element id="module-output" name="Application" />
       </element>
-      <element id="file-copy" path="$APPLICATION_HOME_DIR$/redist/annotations-java8.jar" />
-      <element id="library" level="project" name="simpletime" />
-      <element id="file-copy" path="$PROJECT_DIR$/json-simple-1.1.1.jar" />
-      <element id="directory" name="data">
-        <element id="dir-copy" path="$PROJECT_DIR$/data" />
+      <element id="directory" name="dependencies">
+        <element id="file-copy" path="$PROJECT_DIR$/json-simple-1.1.1.jar" />
+        <element id="library" level="project" name="simpletime" />
+        <element id="file-copy" path="F:/Java Dev/libs/intellij-annotations.jar" />
       </element>
     </root>
   </artifact>

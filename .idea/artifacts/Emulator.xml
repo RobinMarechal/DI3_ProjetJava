@@ -1,18 +1,25 @@
 <component name="ArtifactManager">
-  <artifact type="javafx" name="Emulator">
-    <output-path>$PROJECT_DIR$/../../../../../../Emulateur</output-path>
+  <artifact type="javafx" build-on-make="true" name="Emulator">
+    <output-path>$PROJECT_DIR$/../../../../../../ProjetJava/Emu</output-path>
     <properties id="javafx-properties">
       <options>
-        <option name="appClass" value="emulator.EmulatorMain" />
+        <option name="appClass" value="EmulatorMain" />
         <option name="description" value="" />
         <option name="htmlPlaceholderId" value="" />
-        <option name="title" value="Emulator" />
+        <option name="title" value="" />
         <option name="vendor" value="" />
-        <option name="version" value="1" />
+        <option name="version" value="" />
       </options>
     </properties>
     <root id="root">
-      <element id="artifact" artifact-name="Application" />
+      <element id="archive" name="Emulator.jar">
+        <element id="module-output" name="Emulator" />
+      </element>
+      <element id="directory" name="dependencies">
+        <element id="file-copy" path="F:/Java Dev/libs/simpletime.jar" />
+        <element id="file-copy" path="$PROJECT_DIR$/json-simple-1.1.1.jar" />
+        <element id="file-copy" path="F:/Java Dev/libs/intellij-annotations.jar" />
+      </element>
     </root>
   </artifact>
 </component>
