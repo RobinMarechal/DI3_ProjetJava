@@ -55,7 +55,7 @@ public class ClientBuilder implements Serializable
      * Configuration contructor
      * @param config the JSON object containing the client configurations
      */
-    public ClientBuilder (@NotNull JSONObject config)
+    public ClientBuilder (JSONObject config)
     {
         setConfig(config);
     }

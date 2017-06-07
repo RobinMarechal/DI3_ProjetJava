@@ -26,7 +26,7 @@ public class Server extends ServerBuilder implements Runnable
      *
      * @param config the config
      */
-    public Server (@NotNull JSONObject config)
+    public Server (JSONObject config)
     {
         super(config);
     }
@@ -84,14 +84,14 @@ public class Server extends ServerBuilder implements Runnable
         }
         catch (IOException e)
         {
-            System.err.println("An error occured while created during the communication");
+            System.err.println("An error occured during the communication");
         }
 
         try
         {
             serverSocket.close();
         }
-        catch (IOException e)
+        catch (Exception e)
         {
             System.err.println("The server socket couldn't be closed.");
         }

@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/src/application/Application.iml" filepath="$PROJECT_DIR$/src/application/Application.iml" />
       <module fileurl="file://$PROJECT_DIR$/DI3_ProjetJava.iml" filepath="$PROJECT_DIR$/DI3_ProjetJava.iml" />
       <module fileurl="file://$PROJECT_DIR$/src/emulator/Emulator.iml" filepath="$PROJECT_DIR$/src/emulator/Emulator.iml" />
+      <module fileurl="file://$PROJECT_DIR$/src/application/application.iml" filepath="$PROJECT_DIR$/src/application/application.iml" />
     </modules>
   </component>
 </project>

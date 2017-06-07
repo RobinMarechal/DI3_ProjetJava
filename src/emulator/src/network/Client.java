@@ -50,7 +50,7 @@ public class Client extends ClientBuilder implements Runnable
      * @param window the main window
      * @param config the JSON object containing the network configs
      */
-    public Client (@NotNull Stage window, @NotNull JSONObject config)
+    public Client (@NotNull Stage window, JSONObject config)
     {
         super(config);
         initialize();
@@ -99,7 +99,7 @@ public class Client extends ClientBuilder implements Runnable
      * @param serializedDataPath the serialization file path
      * @return the created {@link Client} instance
      */
-    public static Client start (@NotNull Stage window, @NotNull JSONObject config, @NotNull String serializedDataPath)
+    public static Client start (@NotNull Stage window, JSONObject config, @NotNull String serializedDataPath)
     {
         Client client;
 
@@ -114,9 +114,10 @@ public class Client extends ClientBuilder implements Runnable
             fileIn.close();
 
             client.initialize();
+            client.pendingChecks.setValue(client.queue.size());
             client.setConfig(config);
             client.prepareWindow(window);
-            client.pendingChecks.setValue(client.queue.size());
+            client.startClient();
 
             System.out.println("Client emulator deserialization done");
         }
@@ -127,7 +128,6 @@ public class Client extends ClientBuilder implements Runnable
         }
 
         client.setSerializationFilePath(serializedDataPath);
-        client.startClient();
 
         return client;
     }
@@ -289,7 +289,8 @@ public class Client extends ClientBuilder implements Runnable
 
     /**
      * Add a {@link Check} instance to the sending queue. <br>
-     *     This method is <b>thread safe</b>
+     * This method is <b>thread safe</b>
+     *
      * @param checkToSend the {@link Check} instance to add to the sending queue
      */
     public synchronized void addToQueue (@NotNull Check checkToSend)
@@ -302,7 +303,7 @@ public class Client extends ClientBuilder implements Runnable
 
     /**
      * Remove the first element from the sending queue. <br>
-     *     This method is <tt>thread safe</tt>
+     * This method is <tt>thread safe</tt>
      */
     private synchronized void removeFirstFromQueue ()
     {
@@ -312,6 +313,7 @@ public class Client extends ClientBuilder implements Runnable
 
     /**
      * prepare the main window
+     *
      * @param window the main window
      */
     public void prepareWindow (@NotNull Stage window)
@@ -336,6 +338,7 @@ public class Client extends ClientBuilder implements Runnable
 
     /**
      * Set the serialization file path
+     *
      * @param serializationFilePath the serialization file path
      */
     public void setSerializationFilePath (@NotNull String serializationFilePath)
@@ -345,6 +348,7 @@ public class Client extends ClientBuilder implements Runnable
 
     /**
      * Get the number of pending checks
+     *
      * @return the number of pending checks
      */
     public int getPendingChecks ()
@@ -354,6 +358,7 @@ public class Client extends ClientBuilder implements Runnable
 
     /**
      * Get the number of pending checks property
+     *
      * @return the number of pending checks property
      */
     public IntegerProperty pendingChecksProperty ()

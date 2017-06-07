@@ -1,5 +1,5 @@
 <component name="ArtifactManager">
-  <artifact type="javafx" build-on-make="true" name="Application">
+  <artifact type="javafx" name="Application">
     <output-path>$PROJECT_DIR$/../../../../../../ProjetJava/App</output-path>
     <properties id="javafx-properties">
       <options>
@@ -13,7 +13,7 @@
     </properties>
     <root id="root">
       <element id="archive" name="Application.jar">
-        <element id="module-output" name="Application" />
+        <element id="module-output" name="application" />
       </element>
       <element id="directory" name="dependencies">
         <element id="file-copy" path="$PROJECT_DIR$/json-simple-1.1.1.jar" />

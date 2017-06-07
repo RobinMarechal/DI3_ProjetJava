@@ -35,19 +35,27 @@ public abstract class ServerBuilder
      * Config parameter constructor
      * @param config a JSON object containing the server config
      */
-    public ServerBuilder (@NotNull JSONObject config)
+    public ServerBuilder (JSONObject config)
     {
         try
         {
             JSONObject network = (JSONObject) config.get("network");
 
-            this.port = Integer.parseInt(network.get("port").toString());
-            this.syncRequest = (String) network.get("sync_request");
-            this.employeeDataFormat = (String) network.get("employee_data_format");
-            this.checkDataFormat = (String) network.get("check_data_format");
-            this.dateTimeFormat = (String) network.get("datetime_format");
-            this.timeout = Integer.parseInt(network.get("server_timeout").toString());
-            this.sleepDuration = Integer.parseInt(network.get("sleep_duration").toString());
+            int port = Integer.parseInt(network.get("port").toString());
+            String syncRequest = (String) network.get("sync_request");
+            String employeeDataFormat = (String) network.get("employee_data_format");
+            String checkDataFormat = (String) network.get("check_data_format");
+            String dateTimeFormat = (String) network.get("datetime_format");
+            int timeout = Integer.parseInt(network.get("server_timeout").toString());
+            int sleepDuration = Integer.parseInt(network.get("sleep_duration").toString());
+
+            this.port = port;
+            this.syncRequest = syncRequest;
+            this.employeeDataFormat = employeeDataFormat;
+            this.checkDataFormat = checkDataFormat;
+            this.dateTimeFormat = dateTimeFormat;
+            this.timeout = timeout;
+            this.sleepDuration = sleepDuration;
         }
         catch (Exception e)
         {

@@ -1,17 +1,1 @@
-{
-    "network" : {
-        "hostname" : "localhost",
-        "port" : 8080,
-        "server_timeout" : 0,
-        "sleep_duration" : 50,
-        "sync_frequency": 50,
-        "sync_request" : "SYNC",
-        "datetime_format" : "yyyy-MM-dd HH:mm",
-        "employee_data_format" : "{id};{name}",
-        "check_data_format" : "{datetime};{id}",
-        "__comments" : [
-            "The order of the values above can be changed, but {id}, {name} and {datetime} tag names must remain unchanged!",
-            "the separator ';' must remain unchanged too."
-        ]
-    }
-}
+{"network":{"hostname":"localhost","sync_request":"SYNC","sync_frequency":50,"check_data_format":"{datetime};{id}","port":8080,"datetime_format":"yyyy-MM-dd HH:mm","sleep_duration":50,"employee_data_format":"{id};{name}"}}
