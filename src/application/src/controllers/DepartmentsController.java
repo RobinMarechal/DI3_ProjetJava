@@ -48,10 +48,17 @@ public class DepartmentsController extends BaseController
      * @param date the date of checks
      */
     @DisplayView
-    public void show (@NotNull StandardDepartment dep, @NotNull SimpleDate date)
+    public void show (StandardDepartment dep, @NotNull SimpleDate date)
     {
-        final DepartmentProfile view = new DepartmentProfile(dep, date);
-        Template.getInstance().setView(Tabs.STANDARD_DEPARTMENTS, view);
+        if (dep != null)
+        {
+            final DepartmentProfile view = new DepartmentProfile(dep, date);
+            Template.getInstance().setView(Tabs.STANDARD_DEPARTMENTS, view);
+        }
+        else
+        {
+            System.err.println("Can't show a department that is null.");
+        }
     }
 
     /**

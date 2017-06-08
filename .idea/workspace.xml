@@ -7,49 +7,165 @@
   </component>
   <component name="ArtifactsWorkspaceSettings">
     <artifacts-to-build>
-      <artifact name="Emulator" />
+      <artifact name="Application" />
     </artifacts-to-build>
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a42b8b50-aefd-421b-83b0-cc876e1f8c7e" name="Default" comment="Time managemen">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/README.rtf" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.classpath" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/.project" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Explication Diagramme.pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/JavaSE - Projet encadré - Présentation (V1.2).pdf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Maquette Interface.pdn" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Maquette Interface.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Modeles_ClassDiagram.asta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/Pointeuse_MARECHAL_ROBIN.zip" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/README.rtf" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/TODO" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/config/clientConfig.json" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/config/serverConfig.json" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/serialized/company.ser" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/serialized/emulator.ser" afterPath="" />
       <change type="DELETED" beforePath="$PROJECT_DIR$/data/serialized/emulator.sez" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/data/serialized/ser" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Application/models/BossTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Application/models/CheckInOutTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Application/models/CompanyTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Application/models/EmployeeTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Application/models/ManagementDepartmentTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Application/models/ManagerTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Application/models/ModelsTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/test/Application/models/StandardDepartmentTest.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/test/models/BossTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/test/models/CheckInOutTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/test/models/CompanyTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/test/models/EmployeeTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/test/models/ManagementDepartmentTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/test/models/ManagerTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/test/models/ModelsTest.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/application/test/models/StandardDepartmentTest.java" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Application/network/Server.class" afterPath="$PROJECT_DIR$/out/production/Application/network/Server.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Application/network/ServerBuilder.class" afterPath="$PROJECT_DIR$/out/production/Application/network/ServerBuilder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Emulator/network/Client.class" afterPath="$PROJECT_DIR$/out/production/Emulator/network/Client.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Emulator/network/ClientBuilder.class" afterPath="$PROJECT_DIR$/out/production/Emulator/network/ClientBuilder.class" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/artifacts/Application.xml" afterPath="$PROJECT_DIR$/.idea/artifacts/Application.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/modules.xml" afterPath="$PROJECT_DIR$/.idea/modules.xml" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/departments.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/employees.csv" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/hs_err_pid72348.log" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/json-simple-1.1.1.jar" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/models_ClassDiagram.png" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/models_ClassDiagram.png.bak" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/Application.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/config/serverConfig.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/controllers/CompanyController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/controllers/DepartmentsController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/controllers/EmployeesController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/data/config/serverConfig.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/data/serialized/company.ser" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/App.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/BaseController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/Helper.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/annotations/DisplayView.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/annotations/FormContains.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/annotations/UpdateModel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/csv/CSVLine.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/csv/CSVParser.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/csv/interfaces/CSVBuilder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/csv/interfaces/CSVSaver.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/exceptions/Exception.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/exceptions/ModelException.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/exceptions/codes/EmployeeCodes.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/form/FieldTypes.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/form/FieldValueTypes.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/form/Form$Field.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/form/Form.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/form/validator/Validator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/json/JsonLoader.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/json/JsonSaver.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/json/Jsonable.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/util/Closure.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/views/BaseViewController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/views/CSSClasses$Text.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/views/CSSClasses.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/views/Tabs.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/views/Template.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/views/custom/components/Dialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/views/custom/components/Link.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/views/custom/components/SlidingLabel$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/views/custom/components/SlidingLabel$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/views/custom/components/SlidingLabel.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/views/custom/effects/Animated.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/views/custom/effects/transitions/LabelSlider.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/lib/views/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/models/Boss.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/models/CheckInOut.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/models/Company$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/models/Company.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/models/Employee.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/models/ManagementDepartment$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/models/ManagementDepartment.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/models/Manager.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/models/Person.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/models/StandardDepartment.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/models/VirtualDepartment.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/network/Server.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/network/ServerBuilder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/serialized/company.ser" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/src/ApplicationMain.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/src/lib/views/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/src/views/company/fxml/home.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/src/views/departments/fxml/list.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/src/views/departments/fxml/show.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/src/views/dialogs/fxml/editCompany.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/src/views/dialogs/fxml/editDepartment.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/src/views/dialogs/fxml/editEmployee.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/src/views/dialogs/fxml/manageEmployees.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/src/views/employees/fxml/list.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/src/views/employees/fxml/profile.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/CompanyViewController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/DepartmentsViewController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/EmployeesViewController.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/company/HomeCompany.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/company/fxml/home.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/DepartmentProfile$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/DepartmentProfile$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/DepartmentProfile$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/DepartmentProfile$4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/DepartmentProfile$5.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/DepartmentProfile$6.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/DepartmentProfile$EmployeeRow.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/DepartmentProfile.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/DepartmentsList$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/DepartmentsList$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/DepartmentsList$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/DepartmentsList$4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/DepartmentsList$5.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/DepartmentsList$6.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/DepartmentsList$DepartmentRow.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/DepartmentsList.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/fxml/list.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/departments/fxml/show.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/dialogs/EditCompanyDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/dialogs/EditDepartmentDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/dialogs/EditEmployeeDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/dialogs/ManageEmployeesDialog.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/dialogs/fxml/editCompany.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/dialogs/fxml/editDepartment.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/dialogs/fxml/editEmployee.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/dialogs/fxml/manageEmployees.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/employees/EmployeeList$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/employees/EmployeeList$10.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/employees/EmployeeList$2.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/employees/EmployeeList$3.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/employees/EmployeeList$4.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/employees/EmployeeList$5.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/employees/EmployeeList$6.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/employees/EmployeeList$7.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/employees/EmployeeList$8.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/employees/EmployeeList$9.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/employees/EmployeeList$EmployeeRow$1.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/employees/EmployeeList$EmployeeRow.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/employees/EmployeeList.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/employees/EmployeeProfile.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/employees/fxml/list.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Application/views/employees/fxml/profile.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/.classpath" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/DI3_ProjetJava/.project" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Emulator/Emulator.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Emulator/Emulator.iml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Emulator/EmulatorMain.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Emulator/controllers/Controller.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Emulator/models/Check.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Emulator/models/Employee.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Emulator/network/Client.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Emulator/network/ClientBuilder.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Emulator/src/views/fxml/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Emulator/src/views/fxml/view.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Emulator/views/View.class" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Emulator/views/fxml/style.css" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/Emulator/views/fxml/view.fxml" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test.json" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/test.xml" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/out/production/Application/Application.iml" afterPath="$PROJECT_DIR$/out/production/Application/Application.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/Application.iml" afterPath="$PROJECT_DIR$/src/application/Application.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/src/network/Server.java" afterPath="$PROJECT_DIR$/src/application/src/network/Server.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/src/network/ServerBuilder.java" afterPath="$PROJECT_DIR$/src/application/src/network/ServerBuilder.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/emulator/src/network/Client.java" afterPath="$PROJECT_DIR$/src/emulator/src/network/Client.java" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/emulator/src/network/ClientBuilder.java" afterPath="$PROJECT_DIR$/src/emulator/src/network/ClientBuilder.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/src/controllers/DepartmentsController.java" afterPath="$PROJECT_DIR$/src/application/src/controllers/DepartmentsController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/src/controllers/EmployeesController.java" afterPath="$PROJECT_DIR$/src/application/src/controllers/EmployeesController.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/application/src/models/Company.java" afterPath="$PROJECT_DIR$/src/application/src/models/Company.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/emulator/Emulator.iml" afterPath="$PROJECT_DIR$/src/emulator/Emulator.iml" />
     </list>
     <ignored path="DI3_ProjetJava.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -100,44 +216,44 @@
   </component>
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="application.iml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/application.iml">
+      <file leaf-file-name="EmployeeProfile.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/src/views/employees/EmployeeProfile.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="252">
-              <caret line="12" column="37" selection-start-line="12" selection-start-column="37" selection-end-line="12" selection-end-column="37" />
+            <state relative-caret-position="62">
+              <caret line="160" column="96" selection-start-line="160" selection-start-column="96" selection-end-line="160" selection-end-column="96" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Emulator.iml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/emulator/Emulator.iml">
+      <file leaf-file-name="Link.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/src/lib/views/custom/components/Link.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="147">
-              <caret line="7" column="28" selection-start-line="7" selection-start-column="28" selection-end-line="7" selection-end-column="28" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Server.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/src/network/Server.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="31">
-              <caret line="21" column="36" selection-start-line="21" selection-start-column="36" selection-end-line="21" selection-end-column="36" />
+            <state relative-caret-position="62">
+              <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
               <folding>
-                <element signature="e#798#799#0" expanded="true" />
-                <element signature="e#827#828#0" expanded="true" />
+                <element signature="e#1399#1400#0" expanded="true" />
+                <element signature="e#1452#1453#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ServerBuilder.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/application/src/network/ServerBuilder.java">
+      <file leaf-file-name="DepartmentsController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/src/controllers/DepartmentsController.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="441">
-              <caret line="27" column="29" selection-start-line="27" selection-start-column="25" selection-end-line="27" selection-end-column="29" />
+            <state relative-caret-position="194">
+              <caret line="50" column="67" selection-start-line="50" selection-start-column="66" selection-end-line="50" selection-end-column="67" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="EmployeesController.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/application/src/controllers/EmployeesController.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="196">
+              <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -146,18 +262,18 @@
       <file leaf-file-name="Client.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/emulator/src/network/Client.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="271">
-              <caret line="119" column="18" selection-start-line="119" selection-start-column="18" selection-end-line="119" selection-end-column="18" />
+            <state relative-caret-position="166">
+              <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="ClientBuilder.java" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/src/emulator/src/network/ClientBuilder.java">
+      <file leaf-file-name="Emulator.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/emulator/src/Emulator.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="126">
-              <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+            <state relative-caret-position="41">
+              <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
               <folding />
             </state>
           </provider>
@@ -253,10 +369,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/src/application/src/lib/csv/interfaces/CSVBuilder.java" />
-        <option value="$PROJECT_DIR$/src/application/src/lib/csv/interfaces/CSVSaver.java" />
-        <option value="$PROJECT_DIR$/src/application/src/lib/csv/CSVLine.java" />
-        <option value="$PROJECT_DIR$/src/application/src/controllers/EmployeesController.java" />
         <option value="$PROJECT_DIR$/src/application/src/lib/csv/CSVParser.java" />
         <option value="$PROJECT_DIR$/src/application/src/lib/exceptions/Exception.java" />
         <option value="$PROJECT_DIR$/src/application/src/lib/form/validator/Validator.java" />
@@ -269,7 +381,6 @@
         <option value="$PROJECT_DIR$/src/application/src/models/Boss.java" />
         <option value="$PROJECT_DIR$/src/application/src/lib/App.java" />
         <option value="$PROJECT_DIR$/src/application/src/models/CheckInOut.java" />
-        <option value="$PROJECT_DIR$/src/application/src/models/Company.java" />
         <option value="$PROJECT_DIR$/src/application/src/models/Employee.java" />
         <option value="$PROJECT_DIR$/src/application/src/models/ManagementDepartment.java" />
         <option value="$PROJECT_DIR$/src/application/src/models/StandardDepartment.java" />
@@ -291,7 +402,6 @@
         <option value="$PROJECT_DIR$/src/application/src/models/Manager.java" />
         <option value="$PROJECT_DIR$/src/application/src/views/dialogs/EditCompanyDialog.java" />
         <option value="$PROJECT_DIR$/src/application/src/controllers/CompanyController.java" />
-        <option value="$PROJECT_DIR$/src/application/src/controllers/DepartmentsController.java" />
         <option value="$PROJECT_DIR$/README.rtf" />
         <option value="$PROJECT_DIR$/src/emulator/src/network/ClientBuilder.java" />
         <option value="$PROJECT_DIR$/src/application/src/network/Server.java" />
@@ -304,6 +414,12 @@
         <option value="$PROJECT_DIR$/../../../../../../ProjetJava/App/data/config/serverConfig.json" />
         <option value="$PROJECT_DIR$/src/emulator/src/network/Client.java" />
         <option value="$PROJECT_DIR$/DI3_ProjetJava.iml" />
+        <option value="$PROJECT_DIR$/src/application/src/models/Company.java" />
+        <option value="$PROJECT_DIR$/../../../../../../ProjetJava/Application/example_employees_import2.csv" />
+        <option value="$PROJECT_DIR$/../../../../../../ProjetJava/Application/example_employees_import.csv" />
+        <option value="$PROJECT_DIR$/../../../../../../ProjetJava/Application/example_departments_import.csv" />
+        <option value="$PROJECT_DIR$/src/application/src/controllers/EmployeesController.java" />
+        <option value="$PROJECT_DIR$/src/application/src/controllers/DepartmentsController.java" />
       </list>
     </option>
   </component>
@@ -688,38 +804,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DI3_ProjetJava" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="emulator" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -1226,26 +1310,26 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27937338" sideWeight="0.381875" order="12" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.27937338" sideWeight="0.378125" order="12" side_tool="false" content_ui="tabs" />
       <window_info id="Palette&#9;" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Analysis" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3118687" sideWeight="0.185" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19451697" sideWeight="0.750625" order="2" side_tool="true" content_ui="tabs" x="445" y="386" width="843" height="243" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.27937338" sideWeight="0.621875" order="2" side_tool="true" content_ui="tabs" x="445" y="386" width="843" height="243" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3144963" sideWeight="0.45125" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31331593" sideWeight="0.45125" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Run with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.285" sideWeight="0.49306932" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.285" sideWeight="0.49306932" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="FLOATING" visible="false" show_stripe_button="true" weight="0.198125" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" x="1663" y="159" width="400" height="575" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="UI Designer" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.16875" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.19451697" sideWeight="0.249375" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.20365535" sideWeight="0.249375" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.14974293" sideWeight="0.5069307" order="5" side_tool="true" content_ui="tabs" />
       <window_info id="Debug with VisualVM" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -1286,62 +1370,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/application/src/models/Company.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="239">
-          <caret line="1226" column="0" selection-start-line="1226" selection-start-column="0" selection-end-line="1226" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/src/models/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-643">
-          <caret line="515" column="50" selection-start-line="515" selection-start-column="50" selection-end-line="515" selection-end-column="50" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/src/models/ManagementDepartment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="253" column="46" selection-start-line="253" selection-start-column="46" selection-end-line="253" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/src/models/StandardDepartment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="378" column="35" selection-start-line="378" selection-start-column="35" selection-end-line="378" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/src/models/VirtualDepartment.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-223">
-          <caret line="124" column="32" selection-start-line="124" selection-start-column="32" selection-end-line="124" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/src/views/company/HomeCompany.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="134">
-          <caret line="111" column="51" selection-start-line="111" selection-start-column="51" selection-end-line="111" selection-end-column="51" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/src/views/departments/DepartmentProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="96" column="78" selection-start-line="96" selection-start-column="78" selection-end-line="96" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/src/views/dialogs/EditDepartmentDialog.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="60" column="33" selection-start-line="60" selection-start-column="33" selection-end-line="60" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/application/src/views/dialogs/EditEmployeeDialog.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
@@ -1360,13 +1388,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="198">
           <caret line="80" column="78" selection-start-line="80" selection-start-column="78" selection-end-line="80" selection-end-column="78" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/src/views/employees/EmployeeProfile.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="198">
-          <caret line="82" column="36" selection-start-line="82" selection-start-column="36" selection-end-line="82" selection-end-column="36" />
         </state>
       </provider>
     </entry>
@@ -1475,22 +1496,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/application/src/controllers/DepartmentsController.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="142">
-          <caret line="220" column="57" selection-start-line="220" selection-start-column="57" selection-end-line="220" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../../../../Vinc/CheckInOut.java" />
     <entry file="file://$PROJECT_DIR$/../../../../../../Vinc/CheckController.java" />
-    <entry file="file://$PROJECT_DIR$/src/emulator/src/Emulator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="597">
-          <caret line="42" column="17" selection-start-line="42" selection-start-column="17" selection-end-line="42" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../../../../../Vinc/TCPServer.java" />
     <entry file="file://$PROJECT_DIR$/README.rtf">
       <provider selected="true" editor-type-id="text-editor">
@@ -1606,14 +1613,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/emulator/src/network/Client.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="271">
-          <caret line="119" column="18" selection-start-line="119" selection-start-column="18" selection-end-line="119" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.classpath">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
@@ -1642,6 +1641,105 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="126">
           <caret line="18" column="18" selection-start-line="18" selection-start-column="18" selection-end-line="18" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/employees.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="10" column="21" selection-start-line="10" selection-start-column="21" selection-end-line="10" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/src/models/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="147">
+          <caret line="515" column="50" selection-start-line="515" selection-start-column="50" selection-end-line="515" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../../../ProjetJava/Application/example_employees_import2.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="378">
+          <caret line="21" column="1" selection-start-line="21" selection-start-column="1" selection-end-line="21" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../../../ProjetJava/Application/example_departments_import.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="189">
+          <caret line="9" column="37" selection-start-line="9" selection-start-column="37" selection-end-line="9" selection-end-column="37" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../../../../../ProjetJava/Application/example_employees_import.csv">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="47" selection-start-line="0" selection-start-column="47" selection-end-line="0" selection-end-column="47" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/src/models/Company.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="1056" column="42" selection-start-line="1056" selection-start-column="42" selection-end-line="1056" selection-end-column="42" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/src/lib/views/custom/components/Link.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="80" column="0" selection-start-line="80" selection-start-column="0" selection-end-line="80" selection-end-column="0" />
+          <folding>
+            <element signature="e#1399#1400#0" expanded="true" />
+            <element signature="e#1452#1453#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/src/views/employees/EmployeeProfile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="62">
+          <caret line="160" column="96" selection-start-line="160" selection-start-column="96" selection-end-line="160" selection-end-column="96" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/src/controllers/EmployeesController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="196">
+          <caret line="61" column="5" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/application/src/controllers/DepartmentsController.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="194">
+          <caret line="50" column="67" selection-start-line="50" selection-start-column="66" selection-end-line="50" selection-end-column="67" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/emulator/src/network/Client.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="166">
+          <caret line="11" column="22" selection-start-line="11" selection-start-column="22" selection-end-line="11" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/emulator/src/Emulator.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="41">
+          <caret line="21" column="40" selection-start-line="21" selection-start-column="40" selection-end-line="21" selection-end-column="40" />
           <folding />
         </state>
       </provider>

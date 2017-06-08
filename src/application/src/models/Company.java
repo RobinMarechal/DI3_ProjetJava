@@ -1042,6 +1042,10 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
         while (parser.hasNext())
         {
             CSVLine line = parser.next();
+            if (line.get(0).isEmpty())
+            {
+                continue;
+            }
             if (line.charAt(0) == CSVParser.HEADER_INDICATOR || line.charAt(0) == CSVParser.SECTION_SEPARATOR)
             {
                 employee = null;
@@ -1119,8 +1123,9 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
                         continue;
                     }
 
-                    SimpleDate date = SimpleDate.fromLocalDate(LocalDate.parse(line.get(0), DateTimeFormatter.ofPattern("yyyy-MM-dd")));
-                    String checkInStr = line.get(1);
+                    SimpleDate date       = SimpleDate.fromLocalDate(LocalDate.parse(line.get(0), DateTimeFormatter.ofPattern
+                            ("yyyy-MM-dd")));
+                    String     checkInStr = line.get(1);
 
                     // if time has format H:mm, we add a 0 to transform it to HH:mm format
                     if (checkInStr.charAt(1) == ':')
@@ -1171,6 +1176,11 @@ public class Company implements Jsonable, JsonLoader, Serializable, CSVSaver
         while (parser.hasNext())
         {
             CSVLine line = parser.next();
+            if (line.get(0).isEmpty())
+            {
+                continue;
+            }
+
             if (line.charAt(0) == CSVParser.HEADER_INDICATOR || line.charAt(0) == CSVParser.SECTION_SEPARATOR)
             {
                 dep = null;

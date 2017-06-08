@@ -58,11 +58,17 @@ public class EmployeesController extends BaseController
      * @param employee the employee to display
      */
     @DisplayView
-    public void show (@NotNull Employee employee)
+    public void show (Employee employee)
     {
-        BaseViewController view = new EmployeeProfile(employee);
-
-        Template.getInstance().setView(Tabs.EMPLOYEES, view);
+        if (employee != null)
+        {
+            BaseViewController view = new EmployeeProfile(employee);
+            Template.getInstance().setView(Tabs.EMPLOYEES, view);
+        }
+        else
+        {
+            System.err.println("Can't show an employee that is null.");
+        }
     }
 
     /**
@@ -195,6 +201,7 @@ public class EmployeesController extends BaseController
 
     /**
      * Open a dialog box allowing to update an employee
+     *
      * @param employee the employee to update
      */
     @DisplayView
@@ -217,7 +224,7 @@ public class EmployeesController extends BaseController
      * update an employee <br>
      *
      * @param employee the employee to update
-     * @param form the form containing the employees's information.
+     * @param form     the form containing the employees's information.
      * @return true if the employee was updated, false otherwise
      */
     @DisplayView

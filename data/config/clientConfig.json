@@ -1,1 +1,0 @@
-{"network":{"hostname":"localhost","sync_request":"SYNC","sync_frequency":50,"check_data_format":"{datetime};{id}","port":8080,"datetime_format":"yyyy-MM-dd HH:mm","sleep_duration":50,"employee_data_format":"{id};{name}"}}

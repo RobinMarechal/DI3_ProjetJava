@@ -1,1 +1,0 @@
-{"network":{"sync_request":"SYNC","check_data_format":"{datetime};{id}","port":8080,"datetime_format":"yyyy-MM-dd HH:mm","sleep_duration":0,"employee_data_format":"{id};{name}","server_timeout":0}}
